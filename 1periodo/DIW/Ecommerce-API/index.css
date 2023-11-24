@@ -1,0 +1,97 @@
+html{
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+body{
+  margin: 0;
+  text-align: center; 
+  padding-top: 0px;
+  align-content: center;
+}
+article{
+  background-color: #dfdfdf;
+}
+a{
+  text-decoration: none;
+}
+/*HEADER*/
+nav{
+  background-color: #000000;
+  height: fit-content;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  align-content: center;
+}
+
+/*LOGO*/
+#logo{
+  max-width: 150px;
+  height: auto;
+}
+
+/*IMAGENS*/
+#img-carrosel{
+  width: auto;
+  height: 400px;
+}
+#img-card{
+  max-height: 400px;
+}
+
+#produtos img{
+  background-color: #dddddd;
+}
+
+/*LISTAS*/
+div ul li{
+  text-decoration: none;
+}
+
+/*CAIXA-PESQUISA*/
+#caixa-pesquisa{
+  border-radius: 5px;
+  height: 400px;
+  max-width: 600px;
+}
+#title2, #title3{
+  color: #5f5dbd
+}
+
+/*CARROUSEL*/
+#carouselExample {
+  width: 400px;
+  max-height: auto;
+  border-radius: 5px;
+  align-content: center;
+  border: 1px solid #000000f1;
+}
+
+/*CARDS*/
+.card{
+  border-radius: 33px;
+  margin: 0;
+  width: 15rem;
+  height: 31rem;
+} 
+#produtos-avaliados{
+  margin: 0;
+}
+
+/*ASIDE*/
+aside{
+  max-width: 200px;
+  height: fit-content;
+}
+aside img{
+  max-width: 100%;
+  height: auto;
+}
+
+#caixa-de-email{
+  max-width: 140px;
+  height: auto;
+}
+

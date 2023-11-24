@@ -1,0 +1,62 @@
+html {
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    margin: 0;
+    text-align: center;
+    padding-top: 0px;
+    align-content: center;
+}
+
+article {
+    background-color: #dfdfdf;
+}
+
+a {
+    text-decoration: none;
+}
+
+/*HEADER*/
+nav {
+    background-color: #000000;
+    height: fit-content;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    align-content: center;
+}
+
+/*LOGO*/
+#logo {
+    max-width: 150px;
+    height: auto;
+}
+
+/*IMAGENS*/
+
+#img-card {
+    max-height: 400px;
+}
+
+#produtos img {
+    background-color: #dddddd;
+}
+
+/*LISTAS*/
+div ul li {
+    text-decoration: none;
+}
+
+/*CARDS*/
+.card {
+    border-radius: 33px;
+    margin: 0;
+    width: 15rem;
+    height: 31rem;
+}
+
+

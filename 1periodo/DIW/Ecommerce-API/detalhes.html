@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Wear</title>
+  <meta name="author" content="Yago">
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
+    crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="detalhes.css">
+  <script src="detalhes.js"></script>
+</head>
+<!-- MENU -->
+
+<body>
+  <header class="container-fluid m-0 p-0">
+    <nav class="navbar text-white p-0">
+      <div class="container">
+        <a class="navbar-brand text-white" href="index.html"><img id="logo" src="images/logo_wear.png" alt=""></a>
+        <button class="navbar-toggler bg-white" type="button" data-bs-toggle="collapse"
+          data-bs-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false"
+          aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+          <ul class="navbar-nav mx-auto mb-2 mb-lg-0 fs-4">
+            <li class="nav-item">
+              <a class="nav-link active text-white" aria-current="page" href="#">Entrar</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link text-white" href="#">Cadastre-se</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link text-white" href="#">Rastreio</a>
+            </li>
+          </ul>
+          <div class="d-flex" role="search">
+            <input id="inputPesquisa" class="form-control me-2 mb-2" type="search" placeholder="Search"
+              aria-label="Search">
+            <button id="btnPesquisar" class="btn btn-outline-success" onclick="redirectSearch()">Pesquisar</button>
+            <script>
+              function redirectSearch() {
+                var searchValue = document.getElementById('inputPesquisa').value;
+                var url = 'pesquisa.html?search=' + encodeURIComponent(searchValue);
+                window.location.href = url;
+              }
+            </script>
+          </div>
+        </div>
+      </div>
+    </nav>
+  </header>
+  <!--CONTEUDO-->
+  <article>
+    <div id="rowProdutos" class="p-5"></div>
+  </article>
+  <!--FOOTER-->
+  <footer class="">
+    <div id="colunas" class="d-flex flex-wrap flex-row justify-content-around bg-black text-white p-5">
+      <div class="p-3">
+        <p>Aceitamos todas as bandeiras de Cartões de Crédito</p>
+        <p>Pix</p>
+        <p>Boleto Bancário</p>
+      </div>
+      <ul class="list-unstyled p-3">
+        <li><a class="text-white" href="#">Ajuda</a></li>
+        <li><a class="text-white" href="#">Política de Entrega</a></li>
+        <li><a class="text-white" href="#">Trocas & Cancelamentos</a></li>
+        <li><a class="text-white" href="#">FAQ</a></li>
+        <li><a class="text-white" href="#">Política de Privacidade</a></li>
+      </ul>
+      <div class="p-3">
+        <h2>Yago Almeida Melo</h2>
+        <h2>PUC MINAS - Ciencia da Computação</h2>
+        <h2>806454</h2>
+      </div>
+    </div>
+    <section>
+      <p>Copyrigth © 2023 - Todos os direitos reservados a Yago Almeida Melo</p>
+    </section>
+  </footer>
+</body>
+
+</html>
