@@ -1,0 +1,50 @@
+const express = require('express');
+const mongoose = require('mongoose');
+
+// Conexão com o banco de dados (supondo que você tenha um banco MongoDB local em execução)
+mongoose.connect('mongodb://localhost:27017/meu_banco_de_dados', { useNewUrlParser: true, useUnifiedTopology: true })
+  .then(() => console.log('Conectado ao banco de dados'))
+  .catch(err => console.error('Erro ao conectar ao banco de dados:', err));
+
+// Definir um esquema de compra
+const compraSchema = new mongoose.Schema({
+  valor: Number,
+  usuario: String,
+  data: { type: Date, default: Date.now }
+});
+
+// Criar um modelo de compra com base no esquema
+const Compra = mongoose.model('Compra', compraSchema);
+
+// Configurar o aplicativo Express
+const app = express();
+app.use(express.json());
+
+// Rota para salvar uma nova compra
+app.post('/compras', (req, res) => {
+  const { valor, usuario } = req.body;
+
+  // Criar uma nova instância de Compra
+  const novaCompra = new Compra({
+    valor,
+    usuario
+  });
+
+  // Salvar a compra no banco de dados
+  novaCompra.save()
+    .then(compra => res.json(compra))
+    .catch(err => res.status(500).json({ error: 'Erro ao salvar a compra' }));
+});
+
+// Rota para recuperar todas as compras
+app.get('/compras, (req, res) => {
+  Compra.find()
+    .then(compras => res.json(compras))
+    .catch(err => res.status(500).json({ error: 'Erro ao recuperar as compras' }));
+});
+
+// Iniciar o servidor
+const port = 3000;
+app.listen(port, () => {
+  console.log(`Servidor iniciado na porta ${port}`);
+});
