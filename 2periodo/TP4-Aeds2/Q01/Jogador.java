@@ -1,4 +1,3 @@
-package Q01;
 /*
 	806454 - Yago Almeida Melo
 	TP4 - Q01 / Arvore Binaria
