@@ -95,17 +95,20 @@ class ArvoreArvore {
         inserir(1);
         inserir(5);
         inserir(9);
-        inserir(13);
+        inserir(12);
         inserir(0);
         inserir(2);
         inserir(4);
         inserir(6);
         inserir(8);
         inserir(10);
-        inserir(12);
+        inserir(13);
         inserir(14);
     }
 
+    /*
+     * Metodos para inserir nó de altura mod 15
+     */
     public void inserir(int altMod) {
         raiz = inserir(altMod, raiz);
     }
@@ -123,8 +126,11 @@ class ArvoreArvore {
         return i;
     }
 
+    /*
+     * Metodo para inserir um jogador na arvore
+     */
     public void inserir(Jogador s) {
-        inserir(s, raiz.raiz2);
+        inserir(s, raiz);
     }
 
     public void inserir(Jogador s, No i) {
@@ -154,6 +160,9 @@ class ArvoreArvore {
         return i;
     }
 
+    /*
+     * Metodo para mostrar caminho ate o elemento e se ele existe na arvore
+     */
     public boolean mostrar(String s) {
         MyIO.print(s + " raiz");
         return mostrar(raiz, s);
@@ -162,10 +171,12 @@ class ArvoreArvore {
     public boolean mostrar(No i, String s) {
         boolean resp = false;
         if (i != null) {
+            resp = mostrar(i.raiz2, s);
             if(!resp){
-                resp = mostrar(i.raiz2, s);
                 MyIO.print(" esq");
                 resp = mostrar(i.esq, s);
+            }
+            if(!resp){
                 MyIO.print(" dir");
                 resp = mostrar(i.dir, s);
             }
@@ -176,16 +187,15 @@ class ArvoreArvore {
     public boolean mostrar(No2 i, String s) {
         boolean resp = false;
         if (i != null) {
-            if (i.elemento.getNome().equals(s)) {
-                resp = true;
-            } else {
+            resp = i.elemento.getNome().equals(s);
+            if (!resp) {
                 MyIO.print(" ESQ");
                 resp = mostrar(i.esq, s);
-                if(!resp){
-                    MyIO.print(" DIR");
-                    resp = mostrar(i.dir, s);
-                }
             }
+            if (!resp) {
+                MyIO.print(" DIR");
+                resp = mostrar(i.dir, s);
+            }       
         }
         return resp;
     }
@@ -203,13 +213,13 @@ class ArvoreArvore {
      * Metodo para registrar o log de execucao com movimentacoes
      */
     public static void registroLog(long tempo) {
-        File file = new File("806454_arvoreArvore.txt");
+        File file = new File("/tmp/806454_arvoreArvore.txt");
         try {
             if (!file.exists()) {
                 file.createNewFile();
             }
             FileWriter fw = new FileWriter(file, false);
-            fw.write("Matricula: 806454\t" + "Comparacoes: " + comparacoes + '\t' +"Movimentações: "+ movimentacoes + '\t' + "Tempo de execucao: " + tempo
+            fw.write("Matricula: 806454\t" + "Comparacoes: " + comparacoes + '\t' + "Tempo de execucao: " + tempo
                     + " milisegundos");
             fw.close();
         } catch (Exception e) {
@@ -404,7 +414,7 @@ class Jogador {
      * Metodo para procurar um jogador pelo id e salva
      */
     public void procuraID(String id) throws Exception {
-        FileReader file = new FileReader("players.csv");
+        FileReader file = new FileReader("/tmp/players.csv");
         BufferedReader bf = new BufferedReader(file);
         Integer idInt = Integer.parseInt(id);
         String linha;
@@ -423,44 +433,25 @@ class Jogador {
         file.close();
     }
 
-    /*
-     * Metodo para procurar um jogador pelo nome e salva
-     */
-    public void procuraNome(String nome) throws Exception {
-        FileReader file = new FileReader("players.csv");
-        BufferedReader bf = new BufferedReader(file);
-        String linha;
-        while ((linha = bf.readLine()) != null) {
-            String[] linhaFinal = linha.split(", ", 8);
-            try {
-                if (linhaFinal[1].equals(nome)) {
-                    setDados(linha);
-                    break;
-                }
-            } catch (NumberFormatException e) {
-                e.getMessage();
-            }
-        }
-        bf.close();
-        file.close();
-    }
-
     public static void main(String[] args) {
         ArvoreArvore arvore = new ArvoreArvore();
         long tempo = 0;
         addJogadores(arvore);
         String nome = MyIO.readLine();
         boolean fim = false;
+        long start = System.nanoTime();
         while (!fim) {
             try {
-                long start = System.nanoTime();
-                if(!arvore.mostrar(nome)) MyIO.println(" NAO");
-                else MyIO.println(" SIM");
-                long end = System.nanoTime();
-                tempo = (end - start) / 10000;
+                boolean resp = arvore.mostrar(nome);
+                if(!resp)
+                    MyIO.println(" NAO");
+                else 
+                    MyIO.println(" SIM");
             } catch (Exception e) {
                 e.getMessage();
             }
+            long end = System.nanoTime();
+            tempo = (end - start) / 10000;
             nome = MyIO.readLine();
             if (nome.equals("FIM"))
                 fim = true;
