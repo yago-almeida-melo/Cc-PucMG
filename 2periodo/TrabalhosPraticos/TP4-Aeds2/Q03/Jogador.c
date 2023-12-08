@@ -25,14 +25,15 @@ typedef struct
 } Jogador;
 
 // Struct NO
-typedef struct No {
+typedef struct No
+{
     Jogador elemento;
     int nivel;
-    struct No* esq;
-    struct No* dir;
+    struct No *esq;
+    struct No *dir;
 } No;
 
-No* raiz = NULL;
+No *raiz = NULL;
 
 // Funcoes Jogador
 void initJogador(Jogador *j);
@@ -41,22 +42,26 @@ void tratamentoVirgula(char *linha, char *nova);
 void salvaPorId(Jogador *j, int id);
 void removeCaracteresEspeciais(char *str);
 void setJogador(Jogador *j, char *linha);
-char* imprimirJogador(Jogador j);
+char *imprimirJogador(Jogador j);
 void swap(Jogador *a, Jogador *b);
 // Funções da AVL
-No* criaNo(Jogador elemento);
+No *criaNo(Jogador elemento);
 int max(int a, int b);
-int altura(No* no);
-int fatorBalanceamento(No* no);
-No* rotacionarDir(No* no);
-No* rotacionarEsq(No* no);
+int altura(No *no);
+int fatorBalanceamento(No *no);
+No *rotacionarDir(No *no);
+No *rotacionarEsq(No *no);
 void inserindo(Jogador elemento);
-No* inserir(No* no, Jogador elemento);
-bool busca(No* no, char* str);
-void registroLog(long tempo, int comparacoes);
+No *inserir(No *no, Jogador elemento);
+bool buscaRec(No *no, char *str);
+bool busca(char *str);
+void caminharCentral();
+void caminharCentralRec(No *i);
+void registroLog();
 
-No* criaNo(Jogador elemento) {
-    No* novoNo = (No*)malloc(sizeof(No));
+No *criaNo(Jogador elemento)
+{
+    No *novoNo = (No *)malloc(sizeof(No));
     novoNo->elemento = elemento;
     novoNo->nivel = 1;
     novoNo->esq = NULL;
@@ -64,25 +69,29 @@ No* criaNo(Jogador elemento) {
     return novoNo;
 }
 
-int max(int a, int b) {
+int max(int a, int b)
+{
     return (a > b) ? a : b;
 }
 
-int altura(No* no) {
+int altura(No *no)
+{
     if (no == NULL)
         return 0;
     return no->nivel;
 }
 
-int fatorBalanceamento(No* no) {
+int fatorBalanceamento(No *no)
+{
     if (no == NULL)
         return 0;
     return altura(no->dir) - altura(no->esq);
 }
 
-No* rotacionarDir(No* no) {
-    No* noEsq = no->esq;
-    No* noEsqDir = noEsq->dir;
+No *rotacionarDir(No *no)
+{
+    No *noEsq = no->esq;
+    No *noEsqDir = noEsq->dir;
     noEsq->dir = no;
     no->esq = noEsqDir;
     no->nivel = max(altura(no->esq), altura(no->dir)) + 1;
@@ -90,9 +99,10 @@ No* rotacionarDir(No* no) {
     return noEsq;
 }
 
-No* rotacionarEsq(No* no) {
-    No* noDir = no->dir;
-    No* noDirEsq = noDir->esq;
+No *rotacionarEsq(No *no)
+{
+    No *noDir = no->dir;
+    No *noDirEsq = noDir->esq;
     noDir->esq = no;
     no->dir = noDirEsq;
     no->nivel = max(altura(no->esq), altura(no->dir)) + 1;
@@ -101,12 +111,15 @@ No* rotacionarEsq(No* no) {
     return noDir;
 }
 
-void inserindo(Jogador elemento){
+void inserindo(Jogador elemento)
+{
     raiz = inserir(raiz, elemento);
 }
 
-No* inserir(No* no, Jogador elemento) {
-    if (no == NULL){
+No *inserir(No *no, Jogador elemento)
+{
+    if (no == NULL)
+    {
         return criaNo(elemento);
     }
     if (strcmp(elemento.nome, no->elemento.nome) < 0)
@@ -126,12 +139,14 @@ No* inserir(No* no, Jogador elemento) {
     if (balanceamento < -1 && strcmp(elemento.nome, no->esq->elemento.nome) > 0)
         return rotacionarDir(no);
 
-    if (balanceamento > 1 && strcmp(elemento.nome, no->dir->elemento.nome) > 0) {
+    if (balanceamento > 1 && strcmp(elemento.nome, no->dir->elemento.nome) > 0)
+    {
         no->dir = rotacionarDir(no->dir);
         return rotacionarEsq(no);
     }
 
-    if (balanceamento < -1 && strcmp(elemento.nome, no->esq->elemento.nome) < 0) {
+    if (balanceamento < -1 && strcmp(elemento.nome, no->esq->elemento.nome) < 0)
+    {
         no->esq = rotacionarEsq(no->esq);
         return rotacionarDir(no);
     }
@@ -139,25 +154,54 @@ No* inserir(No* no, Jogador elemento) {
     return no;
 }
 
-bool busca(No* no, char* str) {
-    if (no == NULL) {
+// Função auxiliar para imprimir o caminho percorrido na pesquisa
+bool busca(char *nome)
+{
+    return buscaRec(raiz, nome);
+}
+
+// Função para realizar a pesquisa na árvore AVL
+bool buscaRec(No *no, char *nome)
+{
+    if (no == NULL)
+    {
+        printf(" NAO\n");
         return false;
     }
-    int comparacao = strcmp(str, no->elemento.nome);
-    if (comparacao < 0) {
-        printf(" esq"); 
-        return busca(no->esq, str);
-    } else if (comparacao > 0) {
-        printf(" dir"); 
-        return busca(no->dir, str);
-    } else {
+    int comparacao = strcmp(nome, no->elemento.nome);
+    if (comparacao < 0)
+    {
+        printf(" esq");
+        return buscaRec(no->esq, nome);
+    }
+    else if (comparacao > 0)
+    {
+        printf(" dir");
+        return buscaRec(no->dir, nome);
+    }
+    else
+    {
+        printf(" SIM\n");
         return true;
     }
 }
 
+void caminharCentral()
+{
+    printf("[ ");
+    caminharCentralRec(raiz);
+    printf("]");
+}
+void caminharCentralRec(No* i) {
+		if (i != NULL) {
+			caminharCentralRec(i->esq); // Elementos da esquerda.
+			printf("%s ",i->elemento.nome); // Conteudo do no.
+			caminharCentralRec(i->dir); // Elementos da direita.
+		}
+	}
 /*
-*   Funções de Jogador
-*/
+ *   Funções de Jogador
+ */
 // Inicializa o jogador
 void initJogador(Jogador *j)
 {
@@ -190,7 +234,8 @@ void addJogadores()
             inserindo(jogador);
         }
         scanf(" %[^\n]s", id);
-        if (strcmp(id, "FIM") == 0) isFim = true;
+        if (strcmp(id, "FIM") == 0)
+            isFim = true;
     }
     fflush(stdin);
 }
@@ -229,8 +274,9 @@ void tratamentoVirgula(char *linha, char *nova)
 }
 
 // Salva jogador por id, a partir do arquivo csv
-void salvaPorId(Jogador *j, int id) {
-    char path[] = "/tmp/players.csv";
+void salvaPorId(Jogador *j, int id)
+{
+    char path[] = "D:/Programacao/Cc-PucMG/2periodo/TrabalhosPraticos/TP2-Aeds2/players.csv";
     FILE *file = fopen(path, "r");
     if (file == NULL)
     {
@@ -329,10 +375,12 @@ void setJogador(Jogador *j, char *linha)
     }
 }
 
-void registroLog(long tempo, int comparacoes) {
+void registroLog()
+{
     FILE *file;
-    file = fopen("/tmp/806454_avl.txt", "w");
-    if (file == NULL) {
+    file = fopen("806454_avl.txt", "w");
+    if (file == NULL)
+    {
         perror("Erro ao abrir o arquivo.\n");
         return;
     }
@@ -342,19 +390,18 @@ void registroLog(long tempo, int comparacoes) {
 
 int main()
 {
-    printf("806454\tYago Almeida Melo\n\n");
     addJogadores();
+    caminharCentral();
     char str[100];
-    scanf(" %[^\n]s", str);
-    while (strcmp(str, "FIM") != 0) {
+    fgets(str, sizeof(str), stdin);
+    while (strcmp(str, "FIM") != 0)
+    {
         printf("%s raiz", str);
-        if(busca(raiz, str)) {
-            printf(" SIM\n");
-        } 
-        if(!busca(raiz, str)) {
-            printf(" NAO\n");
-        }
-        scanf(" %[^\n]s", str);
+        start = clock();
+        busca(str);
+        end = clock();
+        fgets(str, sizeof(str), stdin);
     }
-
+    tempo = ((double)end - start) / CLOCKS_PER_SEC;
+    registroLog();
 }
