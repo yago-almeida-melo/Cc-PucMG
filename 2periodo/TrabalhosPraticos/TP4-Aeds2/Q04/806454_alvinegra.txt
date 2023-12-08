@@ -1,1 +1,1 @@
-Matricula: 806454	Comparacoes: 5	Tempo de execucao: 37 milisegundos
+Matricula: 806454	Comparacoes: 7	Tempo de execucao: 156 milisegundos

@@ -89,46 +89,46 @@ class Alvinegra {
     * @param elemento Elemento a ser inserido.
     * @throws Exception Se o elemento existir.
     */
-   public void inserir(Jogador elemento) throws Exception {
+   public void inserir(Jogador j) throws Exception {
       // Se a arvore estiver vazia
       if (raiz == null) {
-         raiz = new NoAN(elemento);
+         raiz = new NoAN(j);
          // Senao, se a arvore tiver um elemento
       } else if (raiz.esq == null && raiz.dir == null) {
-         if (elemento.getNome().compareTo(raiz.elemento.getNome()) < 0) {
-            raiz.esq = new NoAN(elemento);
+         if (j.getNome().compareTo(raiz.elemento.getNome()) < 0) {
+            raiz.esq = new NoAN(j);
          } else {
-            raiz.dir = new NoAN(elemento);
+            raiz.dir = new NoAN(j);
          }
          // Senao, se a arvore tiver dois elementos (raiz e dir)
       } else if (raiz.esq == null) {
-         if (elemento.getNome().compareTo(raiz.elemento.getNome()) < 0) {
-            raiz.esq = new NoAN(elemento);
-         } else if (elemento.getNome().compareTo(raiz.dir.elemento.getNome()) < 0) {
+         if (j.getNome().compareTo(raiz.elemento.getNome()) < 0) {
+            raiz.esq = new NoAN(j);
+         } else if (j.getNome().compareTo(raiz.dir.elemento.getNome()) < 0) {
             raiz.esq = new NoAN(raiz.elemento);
-            raiz.elemento = elemento;
+            raiz.elemento = j;
          } else {
             raiz.esq = new NoAN(raiz.elemento);
             raiz.elemento = raiz.dir.elemento;
-            raiz.dir.elemento = elemento;
+            raiz.dir.elemento = j;
          }
          raiz.esq.cor = raiz.dir.cor = false;
          // Senao, se a arvore tiver dois elementos (raiz e esq)
       } else if (raiz.dir == null) {
-         if (elemento.getNome().compareTo(raiz.elemento.getNome()) > 0) {
-            raiz.dir = new NoAN(elemento);
-         } else if (elemento.getNome().compareTo(raiz.esq.elemento.getNome()) < 0) {
+         if (j.getNome().compareTo(raiz.elemento.getNome()) > 0) {
+            raiz.dir = new NoAN(j);
+         } else if (j.getNome().compareTo(raiz.esq.elemento.getNome()) > 0) {
             raiz.dir = new NoAN(raiz.elemento);
-            raiz.elemento = elemento;
+            raiz.elemento = j;
          } else {
             raiz.dir = new NoAN(raiz.elemento);
             raiz.elemento = raiz.esq.elemento;
-            raiz.esq.elemento = elemento;
+            raiz.esq.elemento = j;
          }
          raiz.esq.cor = raiz.dir.cor = false;
          // Senao, a arvore tem tres ou mais elementos
       } else {
-         inserir(elemento, null, null, null, raiz);
+         inserir(j, null, null, null, raiz);
       }
       raiz.cor = false;
    }
@@ -195,7 +195,7 @@ class Alvinegra {
          }
          if (elemento.getNome().compareTo(i.elemento.getNome()) < 0) {
             inserir(elemento, avo, pai, i, i.esq);
-         } else if (elemento.getNome().compareTo(i.elemento.getNome()) < 0) {
+         } else if (elemento.getNome().compareTo(i.elemento.getNome()) > 0) {
             inserir(elemento, avo, pai, i, i.dir);
          } else {
             throw new Exception("Erro inserir (elemento repetido)!");
@@ -276,7 +276,7 @@ class Alvinegra {
     * Metodo para registrar o log de execucao com movimentacoes
     */
    public static void registroLog(long tempo) {
-      File file = new File("806454_alvinegra.txt");
+      File file = new File("/tmp/806454_alvinegra.txt");
       try {
          if (!file.exists()) {
             file.createNewFile();
@@ -477,7 +477,7 @@ class Jogador {
     * Metodo para procurar um jogador pelo id e salva
     */
    public void procuraID(String id) throws Exception {
-      FileReader file = new FileReader("D:/Programacao/Cc-PucMG/2periodo/TrabalhosPraticos/TP4-Aeds2/players.csv");
+      FileReader file = new FileReader("/tmp/players.csv");
       BufferedReader bf = new BufferedReader(file);
       Integer idInt = Integer.parseInt(id);
       String linha;
