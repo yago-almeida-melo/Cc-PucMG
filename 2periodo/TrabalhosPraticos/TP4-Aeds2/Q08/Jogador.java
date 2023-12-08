@@ -1,6 +1,6 @@
 /*
 	806454 - Yago Almeida Melo
-	TP4 - Q07 / Hash com Reserva
+	TP4 - Q08 / Hash com Rehash
 */
 
 import java.io.BufferedReader;
@@ -15,44 +15,57 @@ import java.io.FileWriter;
 
 class Hash {
     Jogador tabela[];
-    int m1, m2, m, reserva;
+    int m;
     final int NULO = -1;
     static int comparacoes = 0;
     static double tempo = 0;
 
+    /*
+     * Construtores da classe Hash
+     */
     public Hash() {
-        this(21, 9);
+        this(25);
     }
 
-    public Hash(int m1, int m2) {
-        this.m1 = m1;
-        this.m2 = m2;
-        this.m = m1 + m2;
+    public Hash(int m) {
+        this.m = m;
         this.tabela = new Jogador[this.m];
-        for (int i = 0; i < m1; i++) {
+        for (int i = 0; i < m; i++) {
             tabela[i] = null;
         }
-        reserva = 0;
     }
 
+    // Metodo de Hash
     public int h(Jogador elemento) {
-        return elemento.getAltura() % m1;
+        return elemento.getAltura() % m;
     }
 
+    //metodo para o Rehash
+    public int rehash(Jogador elemento) {
+        return (elemento.getAltura() + 1) % m;
+
+    }
+
+    // Metodo de Inserir na Tabela Hash com Rehash
     public void inserir(Jogador elemento) throws Exception {
         int i = h(elemento);
         if (elemento.getId() == -1) {
             throw new Exception("Erro!");
         } else if (tabela[i] == null) {
             tabela[i] = elemento;
-        } else if (reserva < m2) {
-            tabela[m1 + reserva] = elemento;
-            reserva++;
+        } else if (tabela[i] != null) {
+            i = rehash(elemento);
+            if (tabela[i] == null) {
+                tabela[i] = elemento;
+            } else {
+                throw new Exception("Erro! Rehash nao funcionou!");
+            }
         } else {
             throw new Exception("Erro!");
         }
     }
 
+    //Metodo para pesquisar na tabela Hash com Rehash
     public void pesquisar() {
         String elemento = MyIO.readLine();
         while (!elemento.equals("FIM")) {
@@ -67,18 +80,18 @@ class Hash {
             }
             double end = System.nanoTime();
             tempo += end - start;
-            if(resp == false){
+            if (resp == false) {
                 MyIO.print(" NAO\n");
             }
             elemento = MyIO.readLine();
-        }   
+        }
     }
 
     /*
      * Metodo para registrar o log de execucao com movimentacoes
      */
     public static void registroLog() {
-        File file = new File("/tmp/806454_hashRehash.txt");
+        File file = new File("806454_arvoreArvore.txt");
         try {
             if (!file.exists()) {
                 file.createNewFile();
