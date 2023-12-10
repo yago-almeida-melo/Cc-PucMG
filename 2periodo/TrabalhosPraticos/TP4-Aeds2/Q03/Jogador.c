@@ -53,12 +53,14 @@ No *rotacionarDir(No *no);
 No *rotacionarEsq(No *no);
 void inserindo(Jogador elemento);
 No *inserir(No *no, Jogador elemento);
+No *balancear(No *no);
 bool buscaRec(No *no, char *str);
-bool busca(char *str);
+void busca(char *str);
 void caminharCentral();
 void caminharCentralRec(No *i);
 void registroLog();
 
+// Função para criar No
 No *criaNo(Jogador elemento)
 {
     No *novoNo = (No *)malloc(sizeof(No));
@@ -69,11 +71,13 @@ No *criaNo(Jogador elemento)
     return novoNo;
 }
 
+// Função para calcular o maximo entre dois numeros
 int max(int a, int b)
 {
     return (a > b) ? a : b;
 }
 
+// Função para calcular a altura do no
 int altura(No *no)
 {
     if (no == NULL)
@@ -81,6 +85,7 @@ int altura(No *no)
     return no->nivel;
 }
 
+// Função para calcular o fator de balanceamento do no
 int fatorBalanceamento(No *no)
 {
     if (no == NULL)
@@ -88,6 +93,7 @@ int fatorBalanceamento(No *no)
     return altura(no->dir) - altura(no->esq);
 }
 
+// Função para rotacionar o no para a direita
 No *rotacionarDir(No *no)
 {
     No *noEsq = no->esq;
@@ -99,6 +105,7 @@ No *rotacionarDir(No *no)
     return noEsq;
 }
 
+//  Funcao para rotacionar o no para a esquerda
 No *rotacionarEsq(No *no)
 {
     No *noDir = no->dir;
@@ -111,6 +118,9 @@ No *rotacionarEsq(No *no)
     return noDir;
 }
 
+/*
+* Função para inserir um elemento na arvore AVL
+*/ 
 void inserindo(Jogador elemento)
 {
     raiz = inserir(raiz, elemento);
@@ -122,83 +132,80 @@ No *inserir(No *no, Jogador elemento)
     {
         return criaNo(elemento);
     }
-    if (strcmp(elemento.nome, no->elemento.nome) < 0)
+    int comparacao = strcmp(elemento.nome, no->elemento.nome);
+    if (comparacao < 0)
+    {
         no->esq = inserir(no->esq, elemento);
-    else if (strcmp(elemento.nome, no->elemento.nome) > 0)
+    }
+    else if (comparacao > 0)
+    {
         no->dir = inserir(no->dir, elemento);
+    }
     else
+    {
+        // Atualiza os valores do jogador existente
+        no->elemento = elemento;
         return no;
+    }
+    balancear(no);
+}
 
+// Função para balancear a arvore
+No *balancear(No *no)
+{
     no->nivel = 1 + max(altura(no->esq), altura(no->dir));
-
-    int balanceamento = fatorBalanceamento(no);
-
-    if ((balanceamento > 1) && strcmp(elemento.nome, no->dir->elemento.nome) < 0)
-        return rotacionarEsq(no);
-
-    if (balanceamento < -1 && strcmp(elemento.nome, no->esq->elemento.nome) > 0)
-        return rotacionarDir(no);
-
-    if (balanceamento > 1 && strcmp(elemento.nome, no->dir->elemento.nome) > 0)
+    int fator = fatorBalanceamento(no);
+    if (fator > 1)
     {
-        no->dir = rotacionarDir(no->dir);
+        if (fatorBalanceamento(no->dir) < 0)
+        {
+            no->dir = rotacionarDir(no->dir);
+        }
         return rotacionarEsq(no);
     }
-
-    if (balanceamento < -1 && strcmp(elemento.nome, no->esq->elemento.nome) < 0)
+    if (fator < -1)
     {
-        no->esq = rotacionarEsq(no->esq);
+        if (fatorBalanceamento(no->esq) > 0)
+        {
+            no->esq = rotacionarEsq(no->esq);
+        }
         return rotacionarDir(no);
     }
-
     return no;
 }
 
 // Função auxiliar para imprimir o caminho percorrido na pesquisa
-bool busca(char *nome)
-{
-    return buscaRec(raiz, nome);
+void busca(char *nome) {
+    printf("%s raiz", nome);
+    comparacoes = 0; // Reinicializa o contador de comparações para cada busca
+    if(buscaRec(raiz, nome)) {
+        printf(" SIM\n");
+    } else {
+        printf(" NAO\n");
+    }
 }
 
 // Função para realizar a pesquisa na árvore AVL
-bool buscaRec(No *no, char *nome)
-{
-    if (no == NULL)
-    {
-        printf(" NAO\n");
+bool buscaRec(No *no, char *nome) {
+    if (no == NULL){
         return false;
     }
     int comparacao = strcmp(nome, no->elemento.nome);
-    if (comparacao < 0)
-    {
-        printf(" esq");
-        return buscaRec(no->esq, nome);
+    comparacoes++; // Incrementa o contador de comparações
+
+    if (comparacao == 0) {
+        return true;
     }
-    else if (comparacao > 0)
-    {
+    else if (comparacao > 0) {
         printf(" dir");
         return buscaRec(no->dir, nome);
     }
-    else
-    {
-        printf(" SIM\n");
-        return true;
+    else {
+        printf(" esq");
+        return buscaRec(no->esq, nome);
     }
 }
 
-void caminharCentral()
-{
-    printf("[ ");
-    caminharCentralRec(raiz);
-    printf("]");
-}
-void caminharCentralRec(No* i) {
-		if (i != NULL) {
-			caminharCentralRec(i->esq); // Elementos da esquerda.
-			printf("%s ",i->elemento.nome); // Conteudo do no.
-			caminharCentralRec(i->dir); // Elementos da direita.
-		}
-	}
 /*
  *   Funções de Jogador
  */
@@ -233,8 +240,8 @@ void addJogadores()
             salvaPorId(&jogador, idNum);
             inserindo(jogador);
         }
-        scanf(" %[^\n]s", id);
-        if (strcmp(id, "FIM") == 0)
+        fgets(id, sizeof(id), stdin);
+        if (strcmp(id, "FIM\n") == 0)
             isFim = true;
     }
     fflush(stdin);
@@ -276,7 +283,7 @@ void tratamentoVirgula(char *linha, char *nova)
 // Salva jogador por id, a partir do arquivo csv
 void salvaPorId(Jogador *j, int id)
 {
-    char path[] = "D:/Programacao/Cc-PucMG/2periodo/TrabalhosPraticos/TP2-Aeds2/players.csv";
+    char path[] = "/tmp/players.csv";
     FILE *file = fopen(path, "r");
     if (file == NULL)
     {
@@ -375,10 +382,10 @@ void setJogador(Jogador *j, char *linha)
     }
 }
 
-void registroLog()
+void registroLog(double tempo)
 {
     FILE *file;
-    file = fopen("806454_avl.txt", "w");
+    file = fopen("/tmp/806454_avl.txt", "w");
     if (file == NULL)
     {
         perror("Erro ao abrir o arquivo.\n");
@@ -388,20 +395,18 @@ void registroLog()
     fclose(file);
 }
 
-int main()
-{
+int main() {
     addJogadores();
-    caminharCentral();
     char str[100];
     fgets(str, sizeof(str), stdin);
-    while (strcmp(str, "FIM") != 0)
-    {
-        printf("%s raiz", str);
+    str[strcspn(str, "\n")] = '\0';
+    while (strcmp(str, "FIM") != 0) {
         start = clock();
         busca(str);
         end = clock();
+        tempo = ((double)end - start) / CLOCKS_PER_SEC;
         fgets(str, sizeof(str), stdin);
+        str[strcspn(str, "\n")] = '\0';
     }
-    tempo = ((double)end - start) / CLOCKS_PER_SEC;
-    registroLog();
+    registroLog(tempo);
 }
