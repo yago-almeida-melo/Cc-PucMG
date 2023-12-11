@@ -1,97 +1,110 @@
 /*
-	806454 - Yago Almeida Melo
-	TP4 - Q08 / Hash com Rehash
-*/
+ *      806454 - Yago Almeida Melo
+ *      TP4 - Q06 / Arvore Trie
+ */
 
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-////////////////////// CLASSE Hash
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// ///////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+class No {
+    public char elemento;
+    public final int tamanho = 255; // MAX ASCII
+    public No[] prox; // Array com 255 posicoes
+    public boolean folha;
+    
+    /*
+     * Construtores da classe.
+     */
+    public No() {
+        this(' ');
+    }
 
-class Hash {
-    Jogador tabela[];
-    int m;
-    final int NULO = -1;
-    static int comparacoes = 0;
-    static double tempo = 0;
+    public No(char elemento) {
+        this.elemento = elemento;
+        prox = new No[tamanho];
+        for (int i = 0; i < tamanho; i++){
+            prox[i] = null; 
+        } 
+        folha = false;
+    }
+}
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////// CLASSE Trie   ///////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+class Trie {
+
+    public static No raiz;
+    public static int comparacoes = 0;
+    public static double tempo = 0;
 
     /*
-     * Construtores da classe Hash
+     * Construtor da classe.
      */
-    public Hash() {
-        this(21);
+    public Trie() {
+        raiz = new No();
     }
 
-    public Hash(int m) {
-        this.m = m;
-        this.tabela = new Jogador[this.m];
-        for (int i = 0; i < m; i++) {
-            tabela[i] = null;
-        }
+    // Metodos para inserir os jogadores
+    public void inserir(String str) {
+        inserir(str, raiz, 0);
     }
 
-    // Metodo de Hash
-    public int h(Jogador elemento) {
-        return elemento.getAltura() % m;
-    }
-
-    //metodo para o Rehash
-    public int rehash(Jogador elemento) {
-        return (elemento.getAltura() + 1) % m;
-
-    }
-
-    // Metodo de Inserir na Tabela Hash com Rehash
-    public void inserir(Jogador elemento) throws Exception {
-        int i = h(elemento);
-        if (elemento.getId() == -1) {
-            throw new Exception("Erro!");
-        } else if (tabela[i] == null) {
-            tabela[i] = elemento;
-        } else if (tabela[i] != null) {
-            i = rehash(elemento);
-            if (tabela[i] == null) {
-                tabela[i] = elemento;
-            } else {
-                throw new Exception("Erro! Rehash nao funcionou!");
+    private void inserir(String str, No no, int i) {
+        if (no.prox[str.charAt(i)] == null) {
+            no.prox[str.charAt(i)] = new No(str.charAt(i));
+            if (i == str.length() - 1){
+                no.prox[str.charAt(i)].folha = true;
+            } else{
+                inserir(str, no.prox[str.charAt(i)], i + 1);
             }
-        } else {
-            throw new Exception("Erro!");
+        } else if (no.prox[str.charAt(i)].folha == false && i < str.length() - 1){
+            inserir(str, no.prox[str.charAt(i)], i + 1);
         }
     }
 
-    //Metodo para pesquisar na tabela Hash com Rehash
-    public void pesquisar() {
-        String elemento = MyIO.readLine();
-        while (!elemento.equals("FIM")) {
-            boolean resp = false;
-            MyIO.print(elemento);
-            double start = System.nanoTime();
-            for (int i = 0; i < m && resp == false; i++) {
-                if (tabela[i] != null && tabela[i].getNome().equals(elemento)) {
-                    MyIO.print(" SIM\n");
-                    resp = true;
+    // Metodos para mostrar os jogadores
+    public void mostrar() {
+        mostrar("", raiz);
+    }
+
+    public void mostrar(String s, No no) {
+        if (no.folha == true)
+            MyIO.println(s + no.elemento);
+        else {
+            for (int i = 0; i < no.prox.length; i++) {
+                if (no.prox[i] != null) {
+                    mostrar(s + no.elemento, no.prox[i]);
                 }
             }
-            double end = System.nanoTime();
-            tempo += end - start;
-            if (resp == false) {
-                MyIO.print(" NAO\n");
-            }
-            elemento = MyIO.readLine();
         }
+    }
+
+    // Metodos para pesquisar os jogadores
+    public boolean pesquisar(String s) {
+        return pesquisar(s, raiz, 0);
+    }
+
+    public boolean pesquisar(String s, No no, int i) {
+        boolean resp = false;
+        comparacoes++;
+        if (no.prox[s.charAt(i)] == null) {
+            resp = false;
+        } else if (i == s.length() - 1) {
+            resp = (no.prox[s.charAt(i)].folha == true);
+        } else if (i < s.length() - 1) {
+            resp = pesquisar(s, no.prox[s.charAt(i)], i + 1);
+        }
+
+        return resp;
     }
 
     /*
      * Metodo para registrar o log de execucao com movimentacoes
      */
-    public static void registroLog() {
-        File file = new File("806454_arvoreArvore.txt");
+    public void registroLog(long tempo) {
+        File file = new File("/tmp/806454_treesort.txt");
         try {
             if (!file.exists()) {
                 file.createNewFile();
@@ -263,7 +276,7 @@ class Jogador {
      * Metodo para transformar em string os dados da classe Jogador
      */
     public String toString() {
-        String resp = getId() + " ## " + getNome() + " ## " + getAltura() + " ## " + getPeso() + " ## "
+        String resp = getNome() + " ## " + getAltura() + " ## " + getPeso() + " ## "
                 + getAnoNascimento() + " ## " + getUniversidade() + " ## " + getCidadeNascimento() + " ## "
                 + getEstadoNascimento() + " ##";
         return resp;
@@ -272,14 +285,15 @@ class Jogador {
     /*
      * Metodo para add jogadores em um array
      */
-    public static void addJogadores(Hash hash) {
+    public static void addJogadores(Trie trie) {
         String id = MyIO.readLine();
         boolean fim = false;
         while (!fim) {
             try {
                 Jogador jogador = new Jogador();
                 jogador.procuraID(id);
-                hash.inserir(jogador);
+                trie.inserir(jogador.getNome());
+                tamanho++;
             } catch (Exception e) {
                 e.getMessage();
             }
@@ -313,8 +327,21 @@ class Jogador {
     }
 
     public static void main(String[] args) {
-        Hash hash = new Hash();
-        addJogadores(hash);
-        hash.pesquisar();
+        Trie arvore = new Trie();
+        addJogadores(arvore);
+        addJogadores(arvore);
+        String input = MyIO.readLine();
+        while (!input.equals("FIM")) {
+            long start = System.nanoTime();
+            if (arvore.pesquisar(input)){
+                MyIO.println(input + " SIM");
+            } else{
+                MyIO.println(input + " NAO");
+            }
+            long end = System.nanoTime();
+            long tempo = (end - start) / 10000;
+            arvore.registroLog(tempo);
+            input = MyIO.readLine();
+        }
     }
 }
