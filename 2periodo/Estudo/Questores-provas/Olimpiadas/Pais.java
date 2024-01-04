@@ -61,15 +61,16 @@ class Pais {
     public static void main(String[] args) {
         Pais lista[] = new Pais[300];
         int n = 0;
-        String modalidade;
-        while ((modalidade = MyIO.readLine()) != null) {
+        String modalidade = MyIO.readLine();
+        while (!modalidade.equals("FIM")) {
             for (int i = 0; i < 3; i++) {
                 String nome = MyIO.readLine();
                 if (!procurar(nome, lista)) {
-                    lista[n] = new Pais(modalidade);
+                    lista[n] = new Pais(nome);
                     n++;
                 }
                 int posicao = pos(nome, lista);
+                MyIO.print("Ta na posicao " + posicao + "\n");
                 if (i == 0) {
                     lista[posicao].ouro++;
                 } else if (i == 1) {
@@ -78,6 +79,7 @@ class Pais {
                     lista[posicao].bronze++;
                 }
             }
+            modalidade = MyIO.readLine();
         }
         ordenar(lista);
         for (int i = 0; i < n; i++) {
