@@ -1,5 +1,4 @@
 #include <stdio.h>
-#include <stdlib.h>
 #include <string.h>
 
 typedef struct
@@ -10,66 +9,77 @@ typedef struct
 } Aluno;
 
 void camisas(Aluno alunos[], int qtd);
-void ordenar(Aluno alunos[]);
-void escrever(Aluno alunos[]);
+void ordenar(Aluno alunos[], int n);
+void escrever(Aluno alunos[], int n);
 
 void camisas(Aluno alunos[], int qtd) {
     char nome[50], corTam[11];
     for (int i = 0; i < qtd; i++) {
-        fgets(nome, 50, stdin);
+        printf("Aluno[%i]: ", i);
+        scanf(" ");
+        fgets(nome, sizeof(nome), stdin);
+        nome[strcspn(nome, "\n")] = '\0'; 
         strcpy(alunos[i].nome, nome);
-        fgets(corTam, 11, stdin);
-        char cor[9];
-        if (strcmp(corTam[0], 'b') == 0){
-            strncpy(cor, corTam + 0, 6);
-            strcpy(alunos[i].cor, cor);
-            strcpy(alunos[i].tamanho, corTam[7]);
+        printf("Tamanho e cor (e.g., branco): ");
+        fgets(corTam, sizeof(corTam), stdin);
+        corTam[strcspn(corTam, "\n")] = '\0'; 
+        char *tok = strtok(corTam, " ");
+        if (corTam[0] == 'b') {
+            strcpy(alunos[i].cor, tok);
+            tok = strtok(NULL, " ");
+            alunos[i].tamanho = tok;
         }
         else {
-            strncpy(cor, corTam + 0, 8);
-            strcpy(alunos[i].cor, cor);
-            strcpy(alunos[i].tamanho, corTam[9]);
+            strcpy(alunos[i].cor, tok);
+            tok = strtok(NULL, "\0");
+            alunos[i].tamanho = tok;
         }
     }
-    ordenar(alunos);
+    ordenar(alunos, qtd);
 }
 
-void ordenar(Aluno alunos[]) {
-    int n = sizeof(alunos);
+void ordenar(Aluno alunos[], int n) {
     for (int i = 1; i < n; i++) {
         Aluno tmp = alunos[i];
         int j = i - 1;
-        while ((j >= 0) && (strcmp(alunos[j].cor , tmp.cor) == 1)) {
+        while ((j >= 0) && (strcmp(alunos[j].cor, tmp.cor) > 0)) {
             alunos[j + 1] = alunos[j];
             j--;
         }
-        while ((j >= 0) && (strcmp(alunos[j].cor , tmp.cor) == 0) && (strcmp(alunos[j].tamanho , tmp.tamanho) == 1)) {
+        while ((j >= 0) && (strcmp(alunos[j].cor, tmp.cor) == 0) && (alunos[j].tamanho > tmp.tamanho)) {
             alunos[j + 1] = alunos[j];
             j--;
         }
-        while ((j >= 0) && (strcmp(alunos[j].cor , tmp.cor) == 0) && (strcmp(alunos[j].tamanho , tmp.tamanho) == 0) && (strcmp(alunos[j].nome , tmp.nome) == 1)) {
+        while ((j >= 0) && (strcmp(alunos[j].cor, tmp.cor) == 0) && (alunos[j].tamanho == tmp.tamanho) && (strcmp(alunos[j].nome, tmp.nome) > 0)) {
             alunos[j + 1] = alunos[j];
             j--;
         }
         alunos[j + 1] = tmp;
     }
-    escrever(alunos);
+    escrever(alunos, n);
 }
 
-void escrever(Aluno alunos[]) {
-    for (int i = 0; i < sizeof(alunos); i++) {
-        printf("%s %s %s", alunos[i].cor, alunos[i].tamanho, alunos[i].nome);
+void escrever(Aluno alunos[], int n)
+{
+    for (int i = 0; i < n; i++)
+    {
+        printf("%s %c %s\n", alunos[i].cor, alunos[i].tamanho, alunos[i].nome);
     }
 }
 
-int main() {
+int main()
+{
     int qtd = 0;
-    do {
+    do
+    {
+        printf("Quantidade: ");
         scanf(" %i", &qtd);
-        Aluno alunos[qtd];
-        camisas(alunos, qtd);
-        printf("\n");
-    } while (qtd > 0);
-
+        if (qtd != 0)
+        {
+            Aluno alunos[qtd];
+            camisas(alunos, qtd);
+            printf("\n");
+        }
+    } while (qtd != 0);
     return 0;
 }
