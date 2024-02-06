@@ -1,0 +1,15 @@
+/home/yago/Documents/aeds2/TP01/Triangulo/bin/Debug/net7.0/Triangulo
+/home/yago/Documents/aeds2/TP01/Triangulo/bin/Debug/net7.0/Triangulo.deps.json
+/home/yago/Documents/aeds2/TP01/Triangulo/bin/Debug/net7.0/Triangulo.runtimeconfig.json
+/home/yago/Documents/aeds2/TP01/Triangulo/bin/Debug/net7.0/Triangulo.dll
+/home/yago/Documents/aeds2/TP01/Triangulo/bin/Debug/net7.0/Triangulo.pdb
+/home/yago/Documents/aeds2/TP01/Triangulo/obj/Debug/net7.0/Triangulo.csproj.AssemblyReference.cache
+/home/yago/Documents/aeds2/TP01/Triangulo/obj/Debug/net7.0/Triangulo.GeneratedMSBuildEditorConfig.editorconfig
+/home/yago/Documents/aeds2/TP01/Triangulo/obj/Debug/net7.0/Triangulo.AssemblyInfoInputs.cache
+/home/yago/Documents/aeds2/TP01/Triangulo/obj/Debug/net7.0/Triangulo.AssemblyInfo.cs
+/home/yago/Documents/aeds2/TP01/Triangulo/obj/Debug/net7.0/Triangulo.csproj.CoreCompileInputs.cache
+/home/yago/Documents/aeds2/TP01/Triangulo/obj/Debug/net7.0/Triangulo.dll
+/home/yago/Documents/aeds2/TP01/Triangulo/obj/Debug/net7.0/refint/Triangulo.dll
+/home/yago/Documents/aeds2/TP01/Triangulo/obj/Debug/net7.0/Triangulo.pdb
+/home/yago/Documents/aeds2/TP01/Triangulo/obj/Debug/net7.0/Triangulo.genruntimeconfig.cache
+/home/yago/Documents/aeds2/TP01/Triangulo/obj/Debug/net7.0/ref/Triangulo.dll
