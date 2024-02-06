@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/home/yago/Documents/aeds2/TP01/Triangulo/Triangulo.csproj",
+      "projectUniqueName": "/home/yago/Documents/Cc-PucMG/2periodo/TrabalhosPraticos/TP1-Aeds2/Triangulo/Triangulo.csproj",
       "projectName": "Triangulo",
-      "projectPath": "/home/yago/Documents/aeds2/TP01/Triangulo/Triangulo.csproj",
+      "projectPath": "/home/yago/Documents/Cc-PucMG/2periodo/TrabalhosPraticos/TP1-Aeds2/Triangulo/Triangulo.csproj",
       "packagesPath": "/home/yago/.nuget/packages/",
-      "outputPath": "/home/yago/Documents/aeds2/TP01/Triangulo/obj/",
+      "outputPath": "/home/yago/Documents/Cc-PucMG/2periodo/TrabalhosPraticos/TP1-Aeds2/Triangulo/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "/home/yago/.nuget/NuGet/NuGet.Config"
@@ -59,7 +59,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/usr/lib/dotnet/sdk/7.0.113/RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "/usr/lib/dotnet/sdk/7.0.115/RuntimeIdentifierGraph.json"
       }
     }
   }
