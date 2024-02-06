@@ -1,8 +1,6 @@
-import java.io.*;
 import java.util.Formatter;
 import java.util.Scanner;
 import java.io.File;
-import java.nio.charset.*;
 
 public class Arq
 {

@@ -17,5 +17,6 @@ class AlgBool{
 		} else {
 		 	expressaoBool = YagoSubString(expressao,4);
 		}
+		MyIO.print(expressaoBool);
 	}
 }

@@ -2,7 +2,6 @@
 
 class CifraCesar{
         public static String Cifra(String palavra){
-                int chave = 3; // chave para alterar o caracter
 		char[] charsCriptografadas = new char[palavra.length()]; //array de char para mensagem criptografada
 		int tabelaAscii=0;
         	for (int i = 0; i < palavra.length(); i++) { //loop para passar por cada caracter da String

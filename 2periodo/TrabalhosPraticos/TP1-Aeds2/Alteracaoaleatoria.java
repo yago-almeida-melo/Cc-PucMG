@@ -4,7 +4,6 @@ class Alteracaoaleatoria{
 	public static String AlteraString(String linha, Random gerador){
 		String novaLinha ="";
 		int letra=0, novaLetra=0;                    //integers de chars (tabela ASCII)
-		boolean temLetra = false;			//bool para verificar se str tem o caracter
 		letra = ('a' + (Math.abs(gerador.nextInt()) % 26));   		//gera primeiro caracter, que sera substituido
 		novaLetra = ('a' + (Math.abs(gerador.nextInt()) % 26));		//gera o segundo caracter que substituira o primeiro
 		for(int i=0; i<linha.length();i++){                       //for que percorre a str
