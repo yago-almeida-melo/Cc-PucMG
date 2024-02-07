@@ -3,16 +3,14 @@
 	806454 - Yago Almeida Melo
 */
 module Guia_0201;
-// define data
-	reg [7:0] a = 8'b01101000; // binary (only fraction part, Big Endian)
-	reg [7:0] b = 8'b10011000; // binary (only fraction part, Big Endian)
-	reg [7:0] c = 8'b10101000; // binary (only fraction part, Big Endian)
-	reg [7:0] d = 8'b11001000; // binary (only fraction part, Big Endian)
-	reg [7:0] e = 8'b11011000; // binary (only fraction part, Big Endian)
-	real x = 0 ; // decimal
-	real power2 = 1.0; // power of 2
-	integer y = 7 ; // counter
-// actions
+	reg [7:0] a = 8'b01101000; 
+	reg [7:0] b = 8'b10011000; 
+	reg [7:0] c = 8'b10101000; 
+	reg [7:0] d = 8'b11001000; 
+	reg [7:0] e = 8'b11011000; 
+	real x = 0 ; 
+	real power2 = 1.0; 
+	integer y = 7 ; 
 initial
 begin : main
 	$display ( "Guia_0201 - Binario com parte fracionaria para decimal\n" );
