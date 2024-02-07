@@ -1,0 +1,12 @@
+AEDS 2  
+07/02/2024
+-------------------------------------------------------------------------------------------
+Pior caso da Pesquisa Sequencial é Theta(H) de (n).
+
+Pesquisa binária alcança Theta(H) de (lg(n)) comparações.
+
+Quick, Heap e Merge Sorts alcançam o Theta(H) de (n x lg(n)) limite inferior de ordenação. 
+
+Algoritmos de ordenação tais como Bubble, Selection e Insertion fazem Theta(H) de (n²) comparações. 
+
+-------------------------------------------------------------------------------------------
