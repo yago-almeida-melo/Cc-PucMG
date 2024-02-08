@@ -1,2 +1,5 @@
 Arquitetura de Computadores I - 2024-1
 ---------------------------------------------------------------
+
+Complemento de 1 => Inverte os zeros com um e vice-versa;
+Complemento de 2 => Soma mais 1 ao numero apos o Complemento de 1;

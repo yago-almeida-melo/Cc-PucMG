@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "/home/yago/Documents/Cc-PucMG/2periodo/TrabalhosPraticos/TP1-Aeds2/Triangulo/Triangulo.csproj": {}
+    "/home/yago/Documents/Cc-PucMG/2periodo/TrabalhosPraticos/2023-2/TP1-Aeds2/Triangulo/Triangulo.csproj": {}
   },
   "projects": {
-    "/home/yago/Documents/Cc-PucMG/2periodo/TrabalhosPraticos/TP1-Aeds2/Triangulo/Triangulo.csproj": {
+    "/home/yago/Documents/Cc-PucMG/2periodo/TrabalhosPraticos/2023-2/TP1-Aeds2/Triangulo/Triangulo.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/yago/Documents/Cc-PucMG/2periodo/TrabalhosPraticos/TP1-Aeds2/Triangulo/Triangulo.csproj",
+        "projectUniqueName": "/home/yago/Documents/Cc-PucMG/2periodo/TrabalhosPraticos/2023-2/TP1-Aeds2/Triangulo/Triangulo.csproj",
         "projectName": "Triangulo",
-        "projectPath": "/home/yago/Documents/Cc-PucMG/2periodo/TrabalhosPraticos/TP1-Aeds2/Triangulo/Triangulo.csproj",
+        "projectPath": "/home/yago/Documents/Cc-PucMG/2periodo/TrabalhosPraticos/2023-2/TP1-Aeds2/Triangulo/Triangulo.csproj",
         "packagesPath": "/home/yago/.nuget/packages/",
-        "outputPath": "/home/yago/Documents/Cc-PucMG/2periodo/TrabalhosPraticos/TP1-Aeds2/Triangulo/obj/",
+        "outputPath": "/home/yago/Documents/Cc-PucMG/2periodo/TrabalhosPraticos/2023-2/TP1-Aeds2/Triangulo/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/home/yago/.nuget/NuGet/NuGet.Config"
