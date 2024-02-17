@@ -104,6 +104,7 @@ public class Guia_02 {
      public static String dbin2base(String value, int base) {
         String[] parts = value.split("\\.");
         int intValue = Integer.parseInt(parts[0], 2);
+        
         String integerPart = Integer.toString(intValue, base);
     
         if (parts.length > 1) {
