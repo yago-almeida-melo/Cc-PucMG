@@ -1,0 +1,15 @@
+/home/yago/Documents/Cc-PucMG/2periodo/TrabalhosPraticos/2024-1/TP1-Aeds2/Palindromo/bin/Debug/net7.0/Palindromo
+/home/yago/Documents/Cc-PucMG/2periodo/TrabalhosPraticos/2024-1/TP1-Aeds2/Palindromo/bin/Debug/net7.0/Palindromo.deps.json
+/home/yago/Documents/Cc-PucMG/2periodo/TrabalhosPraticos/2024-1/TP1-Aeds2/Palindromo/bin/Debug/net7.0/Palindromo.runtimeconfig.json
+/home/yago/Documents/Cc-PucMG/2periodo/TrabalhosPraticos/2024-1/TP1-Aeds2/Palindromo/bin/Debug/net7.0/Palindromo.dll
+/home/yago/Documents/Cc-PucMG/2periodo/TrabalhosPraticos/2024-1/TP1-Aeds2/Palindromo/bin/Debug/net7.0/Palindromo.pdb
+/home/yago/Documents/Cc-PucMG/2periodo/TrabalhosPraticos/2024-1/TP1-Aeds2/Palindromo/obj/Debug/net7.0/Palindromo.csproj.AssemblyReference.cache
+/home/yago/Documents/Cc-PucMG/2periodo/TrabalhosPraticos/2024-1/TP1-Aeds2/Palindromo/obj/Debug/net7.0/Palindromo.GeneratedMSBuildEditorConfig.editorconfig
+/home/yago/Documents/Cc-PucMG/2periodo/TrabalhosPraticos/2024-1/TP1-Aeds2/Palindromo/obj/Debug/net7.0/Palindromo.AssemblyInfoInputs.cache
+/home/yago/Documents/Cc-PucMG/2periodo/TrabalhosPraticos/2024-1/TP1-Aeds2/Palindromo/obj/Debug/net7.0/Palindromo.AssemblyInfo.cs
+/home/yago/Documents/Cc-PucMG/2periodo/TrabalhosPraticos/2024-1/TP1-Aeds2/Palindromo/obj/Debug/net7.0/Palindromo.csproj.CoreCompileInputs.cache
+/home/yago/Documents/Cc-PucMG/2periodo/TrabalhosPraticos/2024-1/TP1-Aeds2/Palindromo/obj/Debug/net7.0/Palindromo.dll
+/home/yago/Documents/Cc-PucMG/2periodo/TrabalhosPraticos/2024-1/TP1-Aeds2/Palindromo/obj/Debug/net7.0/refint/Palindromo.dll
+/home/yago/Documents/Cc-PucMG/2periodo/TrabalhosPraticos/2024-1/TP1-Aeds2/Palindromo/obj/Debug/net7.0/Palindromo.pdb
+/home/yago/Documents/Cc-PucMG/2periodo/TrabalhosPraticos/2024-1/TP1-Aeds2/Palindromo/obj/Debug/net7.0/Palindromo.genruntimeconfig.cache
+/home/yago/Documents/Cc-PucMG/2periodo/TrabalhosPraticos/2024-1/TP1-Aeds2/Palindromo/obj/Debug/net7.0/ref/Palindromo.dll
