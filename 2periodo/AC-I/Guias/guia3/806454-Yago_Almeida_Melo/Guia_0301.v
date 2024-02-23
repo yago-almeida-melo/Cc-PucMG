@@ -4,11 +4,11 @@
 */
 module Guia_0301;
 // define data
- reg [5:0] a = 8'b1001 ; // binary
- reg [7:0] b = 8'b1100 ; // binary
- reg [5:0] c = 8'b101101 ; // binary
- reg [6:0] d = 8'b100111 ; // binary
- reg [7:0] e = 8'b110001 ; // binary
+ reg [5:0] a = 8'b1100 ; // binary
+ reg [7:0] b = 8'b1110 ; // binary
+ reg [5:0] c = 8'b100101 ; // binary
+ reg [6:0] d = 8'b100101 ; // binary
+ reg [7:0] e = 8'b110101 ; // binary
  reg [7:0] x = 0 ; // binary
  reg [6:0] y = 0 ; // binary 
  reg [5:0] z = 0 ; // binary 

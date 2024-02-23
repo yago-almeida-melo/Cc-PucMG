@@ -4,11 +4,11 @@
 */
 module Guia_0303;
  // define data
- reg signed [4:0] a = 8'b10101; // binary
- reg signed [5:0] b = 8'b110011 ; // binary
- reg signed [5:0] c = 8'b100111 ; // binary
- reg signed [6:0] d = 8'b1011011 ; // binary
- reg signed [6:0] e = 8'b1010001 ; // binary
+ reg signed [4:0] a = 8'b10111; // binary
+ reg signed [5:0] b = 8'b110001 ; // binary
+ reg signed [5:0] c = 8'b100101 ; // binary
+ reg signed [6:0] d = 8'b1011101 ; // binary
+ reg signed [6:0] e = 8'b1010011 ; // binary
  reg signed [4:0] x = 0; // binary
  reg signed [5:0] y = 0; // binary
  reg signed [6:0] z = 0; // binary
@@ -28,9 +28,9 @@ module Guia_0303;
    x = ~d+1;
    y = ~(d-1);
    $display ( "d = %7b -> C1(d) = %7b -> C2(d) = +%7b ", d, ~d, y );
-   x = ~e+1;
+   z = ~e+1;
    y = ~(e-1);
-   $display ( "e = %7b -> C1(e) = %7b -> C2(e) = %7b = +%h", e, ~e, x, y );
+   $display ( "e = %7b -> C1(e) = %7b -> C2(e) = %7b = +%h", e, ~e, z, y );
   end // main end 
  endmodule // Guia_0303
 
