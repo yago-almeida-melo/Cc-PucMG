@@ -57,6 +57,7 @@ class Guia_03 {
      */
 
     public static String C2(int length, String value) {
+        
         return ("0");
     } // end C2 ( )
     /*
@@ -98,7 +99,13 @@ class Guia_03 {
      */
 
     public static String sbin2dec(String value) {
-        return ("0");
+        String x = "";
+        int dec=0, len = value.length();
+        for(int i = len-1, j = 1;i>=0; i++ , j = j*2){
+            if(value.charAt(i)=='1') dec += j;
+        }
+        x = String.valueOf(dec);
+        return x;
     } // end sbin2dec ( )
     /*
      * Operar (subtrair) valores em certa base.
