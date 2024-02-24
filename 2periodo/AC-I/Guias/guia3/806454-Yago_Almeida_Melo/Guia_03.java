@@ -1,3 +1,5 @@
+import java.util.StringJoiner;
+
 /**
  * Arquitetura de Computadores I - Guia_03.java
  * 806454 - Yago Almeida Melo
@@ -39,12 +41,16 @@ class Guia_03 {
      */
 
     public static String C1(int length, String value) {
-        String x = "";
-        for(int i=0;i<value.length();i++){
-            if(value.charAt(i)=='1') x+='0';
-            else x+='1';
+        StringBuilder x = new StringBuilder();
+        int dif = length - value.length();
+        for(int i=0;i<dif;i++){
+            x.append('0'); 
         }
-        return x;
+        for(int i=0;i<value.length();i++){
+            if(value.charAt(i)=='1') x.append('0');
+            else x.append('1');
+        }
+        return x.toString();
     } // end C1 ( )
     /*
      * Converter valor binario para o complemento de 2.
@@ -57,9 +63,21 @@ class Guia_03 {
      */
 
     public static String C2(int length, String value) {
-        
-        return ("0");
-    } // end C2 ( )
+        String x = C1(length, value);
+        StringBuilder str = new StringBuilder();
+        int carry = 1;
+        for (int i = x.length() - 1; i >= 0; i--) {
+            char bit = x.charAt(i);
+            int bitInt = Character.getNumericValue(bit);
+            int resultado = bitInt + carry;
+            carry = resultado / 2;
+            str.insert(0, resultado % 2);
+        }
+        if (carry > 0) {
+            str.insert(0, carry);
+        }
+        return str.toString();
+    } 
     /*
      * Converter valor em certa base para binario em complemento de 1.
      * 
