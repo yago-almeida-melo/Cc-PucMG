@@ -1,9 +1,17 @@
 /*
 *   806454 - Yago Almeida Melo
-*   Ciframento de Cesar em Java - 2024/1
+*   TP1 - Ciframento de Cesar em Java - 2024/1
 */
 
 public class Cifra {
+    /*
+     * function: isFim
+     * @params: String 
+     * action: Recebe uma String e retorna verdadeiro se a String for igual a "FIM", senão retorna falso.
+     */
+    public static boolean isFim(String input){
+        return input.charAt(0) == 'F' && input.charAt(1) == 'I' && input.charAt(2) == 'M';
+    }
     /*
      * function: Ciframento
      * @params: String 
@@ -23,11 +31,11 @@ public class Cifra {
         return resp;
     }
     public static void main(String[] args){
-        String x = "";
-        x = MyIO.readLine();
-        while(!x.equals("FIM")){ // laço de repetição que executa o ciframento até que a entrada seja "FIM"
-            System.out.println(Ciframento(x));
-            x = MyIO.readLine();
+        String input = "";
+        input = MyIO.readLine();
+        while(!isFim(input)){ // laço de repetição que executa o ciframento até que a entrada seja "FIM"
+            System.out.println(Ciframento(input));
+            input = MyIO.readLine();
         }
     }    
 }
