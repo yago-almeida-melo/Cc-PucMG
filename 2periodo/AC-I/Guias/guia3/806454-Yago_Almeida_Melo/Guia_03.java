@@ -1,5 +1,3 @@
-import java.util.StringJoiner;
-
 /**
  * Arquitetura de Computadores I - Guia_03.java
  * 806454 - Yago Almeida Melo
