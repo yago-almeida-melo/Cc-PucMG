@@ -2,6 +2,7 @@
 *   806454 - Yago Almeida Melo
 *   Palindromo em Java - 2024/1
 */
+import java.util.Scanner;
 
 class Palindromo{
     /*
@@ -31,12 +32,14 @@ class Palindromo{
     }
     //Main
     public static void main(String[] args){
+        Scanner sc = new Scanner(System.in);
         String input = "";
-        input = MyIO.readLine();
+        input = sc.nextLine();
         while(!isFim(input)){   //Repetição até String == "FIM"
             if(isPalindromo(input)) MyIO.println("SIM");
             else MyIO.println("NAO");
-            input = MyIO.readLine();
+            input = sc.nextLine();
         }
+        sc.close();
     }
 }
