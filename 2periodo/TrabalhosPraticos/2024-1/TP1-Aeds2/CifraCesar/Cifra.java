@@ -19,22 +19,18 @@ public class Cifra {
      * sendo ela aqui o 3.
      */
     public static String Ciframento(String x){
-        String resp = "";
+        String resp = new String();
         int ascii=0;
         for(int i=0;i<x.length();i++){
             ascii = x.charAt(i)+3;
-            if(ascii>122 || (ascii>90 && ascii<94)){
-                ascii -= 26;
-            }
-            resp += (char) ascii;
+            resp += (char)ascii;
         }
         return resp;
     }
     public static void main(String[] args){
-        String input = "";
-        input = MyIO.readLine();
+        String input = MyIO.readLine();
         while(!isFim(input)){ // laço de repetição que executa o ciframento até que a entrada seja "FIM"
-            System.out.println(Ciframento(input));
+            MyIO.println(Ciframento(input));
             input = MyIO.readLine();
         }
     }    

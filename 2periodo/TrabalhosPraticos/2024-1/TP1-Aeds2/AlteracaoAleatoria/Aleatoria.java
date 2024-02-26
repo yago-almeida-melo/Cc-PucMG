@@ -39,7 +39,7 @@ public class Aleatoria {
         gerador.setSeed(4);
         String input = MyIO.readLine(); 
         while(!isFim(input)){
-            System.out.println(AlteracaoAleatoria(input));
+            MyIO.println(AlteracaoAleatoria(input));
             input = MyIO.readLine(); 
         }
     }
