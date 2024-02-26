@@ -3,8 +3,6 @@
 *   TP1 - Palindromo Recursivo em Java - 2024/1
 */
 
-import java.util.*;
-
 public class PalindromoRecu {
   /*
    * function: isFim
@@ -49,17 +47,15 @@ public class PalindromoRecu {
 
   // Main
   public static void main(String[] args) {
-    Scanner sc = new Scanner(System.in);
     String entrada = "";
-    entrada = sc.nextLine();
+    entrada = MyIO.readLine();
     while (!isFim(entrada)) {
       if (isPalindromo(entrada)) {
-        System.out.println("SIM");
+        MyIO.println("SIM");
       } else {
-        System.out.println("NAO");
+        MyIO.println("NAO");
       }
-      entrada = sc.nextLine();
+      entrada = MyIO.readLine();
     }
-    sc.close();
   }
 }
