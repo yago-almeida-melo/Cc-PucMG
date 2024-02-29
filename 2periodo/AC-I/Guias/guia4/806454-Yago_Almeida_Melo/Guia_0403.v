@@ -7,20 +7,21 @@ module Guia_0403;
     wire f;
 
     // Expressão em SoP: f(x, y, z) = x'yz + xy'z' + xyz
-    assign f = (~x & y & z) | (x & ~y & ~z) | (x & y & z);
+    assign f = (~x & y & ~z) | (x & ~y & z) | (x & y & ~z) |(x & y & z);
     
     initial begin
         $display("x y z | f(x, y, z) g(x, y, z)");
         $display("-----------------------------");
 
-        for (x = 0; x < 2; x = x + 1) begin
+        $display("F = %b", f );
+        /*for (x = 0; x < 2; x = x + 1) begin
             for (y = 0; y < 2; y = y + 1) begin
                 for (z = 0; z < 2; z = z + 1) begin
                     #1;
                     $write("%b %b %b | %b\n", x, y, z, f);
                 end
             end
-        end
+        end*/
 
         $finish;
     end
