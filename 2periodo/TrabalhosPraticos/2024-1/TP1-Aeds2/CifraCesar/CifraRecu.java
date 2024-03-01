@@ -17,7 +17,7 @@ class CifraRecu{
      * @params: String
      * action: Recebe uma String e chama a função recursiva para ciframento.
      */
-	public static String cifra(String input){
+	public static String cifraRecu(String input){
 		return cifraRecu(input, 0);
 	}
     /*
@@ -31,10 +31,10 @@ class CifraRecu{
 		int ascii=0;
 		if(index < x.length()){
 			ascii = x.charAt(index)+3;
-			resp += (char)ascii;
-			MyIO.print(resp);
-			resp = cifraRecu(x, index+1);
+			resp += (char) ascii;
+			resp += cifraRecu(x, index+1);
 		}
+		
 		return resp;
 	}
 	//MAIN
@@ -42,7 +42,7 @@ class CifraRecu{
 		String in = "";
 		in = MyIO.readLine();
 		while(!isFim(in)){
-			cifra(in);
+			MyIO.println(cifraRecu(in));
 			in = MyIO.readLine();
 		}
 	}
