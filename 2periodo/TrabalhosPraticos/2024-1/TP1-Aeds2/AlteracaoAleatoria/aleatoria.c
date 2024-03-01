@@ -3,8 +3,17 @@
 #include <string.h>
 #include <stdbool.h>
 
+bool isFim(char ptr[]);
+char * alteracaoAleatoria(char ptr[]);
+char * alteracao(char ptr[], int i);
+
+
 bool isFim(char ptr[]){
     return strlen(ptr) == 3 && ptr[0] == 'F' && ptr[1] == 'I' && ptr[2] == 'M';
+}
+
+char * alteracaoAleatoria(char ptr[]){
+    return alteracao(ptr, 0);
 }
 
 char * alteracao(char ptr[], int i){
@@ -31,9 +40,10 @@ int main(){
     srand(4);
     scanf("%[^\n]s", input); 
     while(!isFim(input)){
-        char *resp = alteracao(input,0);
+        char *resp = alteracaoAleatoria(input);
         printf("%s\n", resp);
         scanf("%[^\n]s", input);
     }
+    free(input);
     return 0;
 }
