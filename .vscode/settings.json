@@ -1,6 +1,8 @@
 {
     "java.debug.settings.onBuildFailureProceed": true,
     "files.associations": {
-        "string.h": "c"
+        "string.h": "c",
+        "stdlib.h": "c",
+        "time.h": "c"
     }
 }

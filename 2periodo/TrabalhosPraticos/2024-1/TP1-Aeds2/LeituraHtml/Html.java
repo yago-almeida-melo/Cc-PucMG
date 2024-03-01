@@ -1,8 +1,32 @@
 import java.io.*;
 import java.net.*;
 
-public class Contador{
-	
+class Contador{
+	public int[] a;		//conta a quantidade de vogais , consoantes, <br> e <table>
+	public int[] e;
+	public int[] i;
+	public int[] o;
+	public int[] u;
+	public int consoantes;
+	public int br;
+	public int table;
+	public String nome;
+
+   Contador(String nome){ //construtor para armazenar difentes ocorrencias dos caracteres
+		this.a = new int[5];             // indices
+      this.e = new int[5];             //0 = letra normal
+      this.i = new int[5];             //1 = com acento agudo
+      this.o = new int[5];		         //2 = com crase
+      this.u = new int[5];             //3 = com til       //4 = com acento circunflexo
+      this.consoantes = 0;
+      this.br = 0;
+      this.table = 0;
+      this.nome = nome;
+	}
+
+   public isConsonant(char c){
+
+   }
 }
 class Html {
     public static String getHtml(String endereco){
