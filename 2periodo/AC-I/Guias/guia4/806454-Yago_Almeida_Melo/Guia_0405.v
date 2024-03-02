@@ -1,22 +1,38 @@
 /*
-	Guia_0404.v
+	Guia_0405.v
 	806454 - Yago Almeida Melo
 */
 
-module PoS_A (output S, input X, Y, Z);
-    assign S = (X| Y|~Z) & (~X|Y| ~Z) & (~X|~Y|Z) & (~X|~Y|~Z);
+module PoS_A (output S, input X, Y);
+    assign S = (X | Y) & (~X | Y);
 endmodule
 
-module PoS_B (output S, input X, Y, Z);
-    assign S = (X| Y| Z) & (~X|Y| Z) & (~X|Y|~Z) & (~X|~Y|~Z);
+module SoP_A (output S, input x, y);
+    assign S = (~x & y) | (x & y);
 endmodule
 
-module PoS_C (output S, input X, Y, W, Z);
-    assign S = (X|Y|W|Z) & (X|Y|W|~Z) & (X|~Y|W|~Z) & (X|~Y|~W|Z) & (~X|Y|W|Z) & (~X|Y|~W|~Z) & (~X|~Y|W|~Z);
+module PoS_B (output S, input X, Y);
+    assign S = (~X | Y);
 endmodule
 
-module PoS_D (output S, input X, Y, W. Z);
-    assign S = (X|Y|W|~Z) & (X|Y|~W|~Z) & (X|~Y|W|Z) & (X|~Y|~W|Z) & (~X|Y|W|Z) & (~X|Y|W|~Z) & (~X|~Y|~W|Z);
+module SoP_B (output S, input x, y);
+    assign S = (~x & ~y) | (~x & y) | (x & y);
+endmodule
+
+module PoS_C (output S, input X, Y, Z);
+    assign S = (X| ~Y| Z) & (~X|Y|~Z);
+endmodule
+
+module SoP_C (output S, input x, y, z);
+    assign S = (~x&~y&~z) | (~x&~y&z) | (~x&y&z) | (x&~y&~z) | (x&y&~z) | (x&y&z);
+endmodule
+
+module PoS_D (output S, input X, Y, Z);
+    assign S = (X| Y| ~Z) & (X|~Y|~Z) & (~X|~Y|~Z);
+endmodule
+
+module SoP_D (output S, input x, y, z);
+    assign S = (~x&~y&~z) | (~x&y&~z) | (x&~y&~z) | (x&~y&z) | (x&y&~z);
 endmodule
 
 module PoS_E (output S, input X, Y, W, Z);
