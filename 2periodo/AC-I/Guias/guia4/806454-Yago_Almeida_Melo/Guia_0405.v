@@ -43,7 +43,7 @@ module SoP_E (output S, input x, y, w, z);
     assign S = (~x&~y&~w&~z) | (~x&~y&~w&z) | (~x&~y&w&z) | (~x&y&~w&~z) | (~x&y&~w&z) | (x&~y&~w&~z) | (x&~y&~w&z) | (x&~y&w&~z) | (x&y&w&~z) | (x&y&w&z);
 endmodule
 
-module Guia_0404;
+module Guia_0405;
     reg x, y, w, z, X, Y, W, Z;
     wire pA, pB, pC, pD, pE, sA, sB, sC, sD, sE;
     PoS_A POS_A (pA, w, z);
