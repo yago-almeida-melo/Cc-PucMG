@@ -1,3 +1,8 @@
+/*
+    806454 - Yago Alemida Melo
+    TP-1:2024/1  - Alteração aleatoria em C
+*/
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
