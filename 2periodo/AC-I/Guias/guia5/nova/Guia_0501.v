@@ -15,11 +15,10 @@
 module Guia_0501 ( output s,
 input a,
 input b );
-// definir dado local
-wire not_b;
+
 // descrever por portas
-nor ( not_b, b, b );
-nor ( s, not_b, a );
+nor ( not_a, a, a );
+nor ( s, not_a, b );
 endmodule //endmodule Guia_0501 
 
 
