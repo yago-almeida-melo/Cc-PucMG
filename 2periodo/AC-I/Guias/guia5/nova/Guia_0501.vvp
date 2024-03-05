@@ -1,0 +1,67 @@
+#! /usr/bin/vvp
+:ivl_version "11.0 (stable)";
+:ivl_delay_selection "TYPICAL";
+:vpi_time_precision + 0;
+:vpi_module "/usr/lib/x86_64-linux-gnu/ivl/system.vpi";
+:vpi_module "/usr/lib/x86_64-linux-gnu/ivl/vhdl_sys.vpi";
+:vpi_module "/usr/lib/x86_64-linux-gnu/ivl/vhdl_textio.vpi";
+:vpi_module "/usr/lib/x86_64-linux-gnu/ivl/v2005_math.vpi";
+:vpi_module "/usr/lib/x86_64-linux-gnu/ivl/va_math.vpi";
+S_0x5570f7b53260 .scope module, "test_Guia_0501" "test_Guia_0501" 2 6;
+ .timescale 0 0;
+v0x5570f7b78600_0 .var "a", 0 0;
+v0x5570f7b786d0_0 .var "b", 0 0;
+v0x5570f7b787a0_0 .net "s", 0 0, L_0x5570f7b78990;  1 drivers
+S_0x5570f7b2cdc0 .scope begin, "main" "main" 2 19, 2 19 0, S_0x5570f7b53260;
+ .timescale 0 0;
+S_0x5570f7b2cfa0 .scope module, "uut" "Guia_0501" 2 11, 3 15 0, S_0x5570f7b53260;
+ .timescale 0 0;
+    .port_info 0 /OUTPUT 1 "s";
+    .port_info 1 /INPUT 1 "a";
+    .port_info 2 /INPUT 1 "b";
+L_0x5570f7b788a0 .functor NOR 1, v0x5570f7b786d0_0, v0x5570f7b786d0_0, C4<0>, C4<0>;
+L_0x5570f7b78990 .functor NOR 1, L_0x5570f7b788a0, v0x5570f7b78600_0, C4<0>, C4<0>;
+v0x5570f7b2eba0_0 .net "a", 0 0, v0x5570f7b78600_0;  1 drivers
+v0x5570f7b78360_0 .net "b", 0 0, v0x5570f7b786d0_0;  1 drivers
+v0x5570f7b78420_0 .net "not_b", 0 0, L_0x5570f7b788a0;  1 drivers
+v0x5570f7b784c0_0 .net "s", 0 0, L_0x5570f7b78990;  alias, 1 drivers
+    .scope S_0x5570f7b53260;
+T_0 ;
+    %fork t_1, S_0x5570f7b2cdc0;
+    %jmp t_0;
+    .scope S_0x5570f7b2cdc0;
+t_1 ;
+    %vpi_call 2 20 "$display", "Guia_0501 - Yago Almeida Melo - 806454" {0 0 0};
+    %vpi_call 2 21 "$display", "Test module" {0 0 0};
+    %vpi_call 2 22 "$display", "   a    b   out" {0 0 0};
+    %vpi_call 2 24 "$monitor", "%4b %4b %4b ", v0x5570f7b78600_0, v0x5570f7b786d0_0, v0x5570f7b787a0_0 {0 0 0};
+    %pushi/vec4 0, 0, 1;
+    %store/vec4 v0x5570f7b78600_0, 0, 1;
+    %pushi/vec4 0, 0, 1;
+    %store/vec4 v0x5570f7b786d0_0, 0, 1;
+    %delay 1, 0;
+    %pushi/vec4 0, 0, 1;
+    %store/vec4 v0x5570f7b78600_0, 0, 1;
+    %pushi/vec4 1, 0, 1;
+    %store/vec4 v0x5570f7b786d0_0, 0, 1;
+    %delay 1, 0;
+    %pushi/vec4 1, 0, 1;
+    %store/vec4 v0x5570f7b78600_0, 0, 1;
+    %pushi/vec4 0, 0, 1;
+    %store/vec4 v0x5570f7b786d0_0, 0, 1;
+    %delay 1, 0;
+    %pushi/vec4 1, 0, 1;
+    %store/vec4 v0x5570f7b78600_0, 0, 1;
+    %pushi/vec4 1, 0, 1;
+    %store/vec4 v0x5570f7b786d0_0, 0, 1;
+    %end;
+    .scope S_0x5570f7b53260;
+t_0 %join;
+    %end;
+    .thread T_0;
+# The file index is used to find the file name in the following table.
+:file_names 4;
+    "N/A";
+    "<interactive>";
+    "test_Guia_0501.v";
+    "Guia_0501.v";
