@@ -1,28 +1,28 @@
 /*
+	806454 - Yago Almeida Melo 
 	Guia_0506.v
-	806454 - Yago Almeida melo
 */
+// -------------------------
+// -------------------------
+// G0506_gate
+// m a b s
+// 0 0 0 1
+// 1 0 1 1
+// 2 1 0 0     (a^b)
+// 3 1 1 1
+//
+// -------------------------
+module Guia_0506 ( output s,
+input a,
+input b );
 
-module Guia_0506 (
-    input a,
-    input b,
-    output out
-);
+// descrever por portas
+nand ( not_a, a, a );
+nand ( not_b, b, b );
+nand ( wire1, not_a, b );
+nand ( wire2, not_b, a );
+nand ( s, wire2, wire1 );
+endmodule //endmodule Guia_0506
 
-wire nand1, nand2, nand3, nand4;
 
-// Portas NAND para calcular (a AND b)
-nand (nand1, a, b);
-
-// Portas NAND para calcular (a NAND a) e (b NAND b)
-nand (nand2, a, a);
-nand (nand3, b, b);
-
-// Porta NAND para calcular [(a AND b) NAND (a NAND a) NAND (b NAND b)]
-nand (nand4, nand1, nand2, nand3);
-
-// A saída é a negação da expressão anterior
-nand (out, nand4, nand4);
-
-endmodule
 

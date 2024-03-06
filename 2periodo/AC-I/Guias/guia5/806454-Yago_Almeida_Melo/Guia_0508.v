@@ -1,27 +1,24 @@
 /*
+	806454 - Yago Almeida Melo 
 	Guia_0508.v
-	806454 - Yago Almeida Melo
 */
+// -------------------------
+// -------------------------
+// G0508_gate
+// m a b s
+// 0 0 0 1
+// 1 0 1 0
+// 2 1 0 0     (a'&b')'
+// 3 1 1 1
+//
+// -------------------------
+module Guia_0508 ( output s,
+input a,
+input b );
 
-module Guia_0508 (
-    input a,
-    input b,
-    output out
-);
+// descrever por portas
+assign s = ~(~a&~b);
+endmodule //endmodule Guia_0508
 
-wire not_b, and_result, nand_result;
 
-// Porta NAND para calcular a negação de ~b
-nand (not_b, b, b);
-
-// Porta NAND para calcular a operação (a & ~b)
-nand (and_result, a, not_b);
-
-// Porta NAND para calcular a negação da operação (a & ~b)
-nand (nand_result, and_result, and_result);
-
-// A saída é a negação da expressão (a & ~b)
-nand (out, nand_result, nand_result);
-
-endmodule
 

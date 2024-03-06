@@ -1,22 +1,26 @@
 /*
+	806454 - Yago Almeida Melo 
 	Guia_0503.v
-	806454 - Yago Almeida Melo
 */
+// -------------------------
+// -------------------------
+// G0503_gate
+// m a b s
+// 0 0 0 1
+// 1 0 1 1
+// 2 1 0 0     a'+b
+// 3 1 1 1
+//
+// -------------------------
+module Guia_0503 ( output s,
+input a,
+input b );
 
-module Guia_0503 (
-    input a,
-    input b,
-    output out
-);
+// descrever por portas
+nor ( not_a, a, a );
+nor ( nor_ab, not_a, b );
+nor ( s, nor_ab, nor_ab );
+endmodule //endmodule Guia_0503
 
-wire not_a, not_b;
 
-// Portas NOR para calcular as negações de a e b
-nor (not_a, a, a);
-nor (not_b, b, b);
-
-// Porta NOR para calcular a expressão (~a | ~b)
-nor (out, not_a, not_b);
-
-endmodule
 

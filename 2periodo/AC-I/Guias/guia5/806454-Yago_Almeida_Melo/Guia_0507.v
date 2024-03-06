@@ -1,27 +1,28 @@
 /*
+	806454 - Yago Almeida Melo 
 	Guia_0507.v
-	806454 - Yago Almeida Melo
 */
+// -------------------------
+// -------------------------
+// G0507_gate
+// m a b s
+// 0 0 0 1
+// 1 0 1 0
+// 2 1 0 0     (a'^b')'
+// 3 1 1 1
+//
+// -------------------------
+module Guia_0507 ( output s,
+input a,
+input b );
 
-module Guia_0507 (
-    input a,
-    input b,
-    output out
-);
-
-wire not_b, xor_result, nand_result;
-
-// Porta NOR para calcular a negação de b
+// descrever por portas
+nor (not_a, a, a);
 nor (not_b, b, b);
+nor (wire1, not_a, b);
+nor (wire2, not_b, a);
+nor (s, wire1, wire2);
+endmodule //endmodule Guia_0507
 
-// Porta NOR para calcular a operação (a ^ ~b)
-nor (xor_result, a, not_b);
 
-// Porta NOR para calcular a negação da operação (a ^ ~b)
-nor (nand_result, xor_result, xor_result);
-
-// A saída é a negação da expressão (a ^ ~b)
-nor (out, nand_result, nand_result);
-
-endmodule
 

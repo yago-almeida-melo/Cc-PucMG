@@ -1,29 +1,28 @@
 /*
+	806454 - Yago Almeida Melo 
 	Guia_0505.v
-	806454 - Yago Almeida Melo
 */
+// -------------------------
+// -------------------------
+// G0505_gate
+// m a b s
+// 0 0 0 1
+// 1 0 1 0
+// 2 1 0 0     (a^b)'
+// 3 1 1 1
+//
+// -------------------------
+module Guia_0505 ( output s,
+input a,
+input b );
 
-module Guia_0505 (
-    input a,
-    input b,
-    output out
-);
+// descrever por portas
+nor ( not_a, a, a );
+nor ( not_b, b, b );
+nor ( wire1, not_a, b );
+nor ( wire2, not_b, a );
+nor ( s, wire2, wire1 );
+endmodule //endmodule Guia_0505
 
-wire not_a, not_b, and1, and2, or1;
 
-// Portas NOR para calcular as negações de a e b
-nor (not_a, a, a);
-nor (not_b, b, b);
-
-// Portas NOR para calcular as operações (a & b) e (~a & ~b)
-nor (and1, a, b);
-nor (and2, not_a, not_b);
-
-// Porta NOR para calcular a disjunção exclusiva (XNOR)
-nor (or1, and1, and2);
-
-// Inverta o resultado para obter o XNOR
-nor (out, or1, or1);
-
-endmodule
 

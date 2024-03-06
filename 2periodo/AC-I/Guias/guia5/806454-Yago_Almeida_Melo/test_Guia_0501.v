@@ -1,46 +1,33 @@
 /*
+	806454 - Yago Almeida Melo 
 	test_Guia_0501.v
-	806454 - Yago Almeida MELO
 */
 
 module test_Guia_0501;
-
-reg a, b;
-wire out;
-
-Guia_0501 uut (
-    .a(a),
-    .b(b),
-    .out(out)
-);
-
-initial begin
-    	// Teste 1: a = 0, b = 0
-    	a = 0;
-    	b = 0;
-    	#10;
-    	if (out !== 1'b1) $display("Teste 1 falhou");
-
-    	// Teste 2: a = 0, b = 1
-    	a = 0;
-    	b = 1;
-   	 #10;
-    	if (out !== 1'b1) $display("Teste 2 falhou");
-
-    	// Teste 3: a = 1, b = 0
-    	a = 1;
-    	b = 0;
-    	#10;
-    	if (out !== 1'b1) $display("Teste 3 falhou");
+// ------------------------- definir dados
+	reg a, b;
+	wire s;
 	
-    	// Teste 4: a = 1, b = 1
-    	a = 1;
-    	b = 1;
-    	#10;
-    	if (out !== 1'b0) $display("Teste 4 falhou");
-
-    		$finish;
-	end
-
-endmodule
-
+	Guia_0501 uut (
+    	.a(a),
+    	.b(b),
+    	.s(s)
+	);
+	
+// ------------------------- parte principal
+initial
+  begin : main
+	$display("Guia_0501 - Yago Almeida Melo - 806454");
+	$display("Test module");
+	$display("   a    b   out");
+// projetar testes do modulo
+	$monitor("%4b %4b %4b ", a, b, s);
+	a = 1'b0; b = 1'b0;
+	#1
+	a = 1'b0; b = 1'b1;
+	#1
+	a = 1'b1; b = 1'b0;
+	#1
+	a = 1'b1; b = 1'b1;
+  end
+endmodule // test_Guia_0501
