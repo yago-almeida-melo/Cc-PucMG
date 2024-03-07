@@ -24,8 +24,9 @@ class Contador{
       this.nome = nome;
 	}
 
-   public isConsonant(char c){
-
+   public boolean isConsonant(char c){
+      boolean consoante = true;
+      return consoante;
    }
 }
 class Html {
