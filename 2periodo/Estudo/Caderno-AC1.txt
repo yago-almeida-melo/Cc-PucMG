@@ -10,3 +10,28 @@ MINTERMO = resultados iguais a 1.
 MAXTERMO = resultados iguais a 0.
 SoP = Soma de Produtos     Ex.: (x*y)' + (y*y)
 PoS = Produto das SOmas    			Ex.: (x+y)' * (y+y)
+
+---------------------------------------------------------------
+
+Multiplexador (MUX)
+
+if(select){ //select = 1
+    s=b;
+} else{
+    s=a;
+}                                 a----\
+if(!select){ //select = 0         b-----\----- s
+    s=a;                               /
+} else{                      select---/
+    s=b;
+}
+
+Demultiplexador (DEMUX)
+
+if(select){
+    s1 = a;
+    s2 = indefined;        a-----*------s1
+} else{                         /    |
+    s1 = indefined;   select---/     ---s2
+    s2 = a;
+}
