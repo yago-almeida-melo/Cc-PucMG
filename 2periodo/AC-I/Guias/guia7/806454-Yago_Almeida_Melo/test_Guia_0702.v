@@ -18,8 +18,6 @@ Guia_0702 UUT(
 );
 
 initial begin
-    $dumpfile("dump.vcd");
-    $dumpvars(0, test_Guia_0702);
     $display("a   b   select   selected_output\n");
     $monitor("%b   %b      %b           %b", a,b,select,selected_output);
     // Teste 1: select = 0 (OR)
