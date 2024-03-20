@@ -35,3 +35,67 @@ if(select){
     s1 = indefined;   select---/     ---s2
     s2 = a;
 }
+
+------------------------------------------------------------
+
+Método Quine-McCluskey
+
+1*Passo:  Organizar grupos dependentes das quantidades de bits iguais a 1;
+Ex: 0 bits -> 0 = a'b'c'd' (0000)
+
+    1 bits -> 1 = a'b'c'd (0001)
+              2 = a'b'cd' (0010)
+              8 = ab'c'd' (1000)
+
+    2 bits -> 5 = a'bc'd  (0101)
+              6 = a'bcd'  (0110)
+              10 = ab'cd' (1010)
+              12 = abc'd' (1100)
+
+    3 bits -> 13 = abc'd  (1101)
+
+    4 bits -> 15 = abcd   (1111)
+
+2*Passo:  Formar pares entre grupos;
+
+(0,1) = a'b'c'_     Ga
+(0,2) = a'b'_d' 
+(0,8) = _b'c'd'
+
+(1,5) =  a'_c'd     Gb
+(2,6) =  a'_cd'     Gc
+(2,10) = _b'cd'
+(8,10) = ab'_d'
+(8,12) = a_c'd'     Gd
+
+(5,13) = _bc'd      Ge
+(12,13)= abc'_      Gf
+
+(13,15)= ab_d       Gg
+
+3*Passo:  Formar pares de pares;
+
+((0,2),(8,10)) = _b'_d'    Gh
+((0,8),(2,10)) = _b'_d'    X
+
+4*Passo:  Rotular os grupos;
+Ex: Ga, Gb, Gc...
+
+5*Passo:  Montar a tabela;
+   
+6*Passo:  Contar termos por colunas;
+
+7*Passo:  Identificar termos essenciais;
+
+8*Passo:  Separar os grupos com os itens essenciais SoP = (Gc,Gg,Gh)+...;
+
+9*Passo:  Remontar a tabela sem os essenciais;
+
+10*Passo:  Separar os grupos escolhidos;
+SoP = Gc a'_cd'
+    + Gg ab_d
+    + Gh _b'_d'
+    + Gb a'_c'd
+    + Gd a_c'd'
+
+11*Passo:  Verificar as escolhas no mapa VK

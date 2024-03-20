@@ -1,24 +1,67 @@
+
 /*
 	Guia_0802.v
-	806454 - Yago Almeida Melo
-*/
+   	806454 - Yago Almeida Melo
+*/ 
 
-
-module Subtractor (
-    input [5:0] A, // Entrada do operando A (6 bits)
-    input [5:0] B, // Entrada do operando B (6 bits)
-    output [5:0] Difference // Saída da diferença (6 bits)
+// Meio somador
+module halfAdder (
+    input a, b,
+    output sum, carry
 );
+    xor XOR1 ( sum, a, b );
+    and AND1 ( carry, a, b );
+endmodule
 
-// Sinais intermediários
-wire [5:0] Not_B;
-wire [5:0] B_plus_1;
+// Somador completo usando meio somador
+module fullAdder(
+    input a, b, cin,
+    output sum, carry
+);
+    wire c, c1, s;
+    halfAdder HA0(a, b, s, c);
+    halfAdder HA1(cin, s, sum, c1);
+    assign carry = c | c1 ;
+endmodule
 
-// Calcula o complemento de dois de B
-assign Not_B = ~B;
-assign B_plus_1 = Not_B + 1;
+module sixBitAdder(
+    input [5:0] a, b,
+    output [5:0] sum,
+    output carry
+);
+    wire c1, c2, c3, c4, c5;
 
-// Realiza a soma A + (-B)
-assign Difference = A + B_plus_1;
+    fullAdder FA0(a[0], b[0], 1'b0, sum[0], c1);
+    fullAdder FA1(a[1], b[1], c1, sum[1], c2);
+    fullAdder FA2(a[2], b[2], c2, sum[2], c3);
+    fullAdder FA3(a[3], b[3], c3, sum[3], c4);
+    fullAdder FA4(a[4], b[4], c4, sum[4], c5);
+    fullAdder FA5(a[5], b[5], c5, sum[5], carry);
+endmodule
 
+module Guia_0802;
+    reg [5:0] a, b;
+    wire [5:0] sum;
+    wire carry;
+
+    sixBitAdder uut(a, b, sum, carry);
+
+    initial begin
+        $monitor("a=%b, b=%b, sum=%b, carry=%b", a, b, sum, carry);
+        a = 6'b000011; b = 6'b000011;
+        #10;
+        a = 6'b000001; b = 6'b000001;
+        #10;
+        a = 6'b000010; b = 6'b000010;
+        #10;
+        a = 6'b000100; b = 6'b000100;
+        #10;
+        a = 6'b001000; b = 6'b001000;
+        #10;
+        a = 6'b010000; b = 6'b010000;
+        #10;
+        a = 6'b100000; b = 6'b100000;
+        #10;
+        $finish();
+    end
 endmodule
