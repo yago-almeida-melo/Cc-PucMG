@@ -1,5 +1,5 @@
 AEDS 2  
-07/02/2024
+
 -------------------------------------------------------------------------------------------
 Pior caso da Pesquisa Sequencial é Theta(H) de (n).
 
@@ -10,3 +10,110 @@ Quick, Heap e Merge Sorts alcançam o Theta(H) de (n x lg(n)) limite inferior de
 Algoritmos de ordenação tais como Bubble, Selection e Insertion fazem Theta(H) de (n²) comparações. 
 
 -------------------------------------------------------------------------------------------
+
+InsertionSort (Estável)
+
+->Temos duas sequências (a ordenada e a ordenar) e, em cada passo, 
+aumentamos a ordenada com um elemento que deve ser inserido em sua posição correta (ordenada);
+->Se o elemento a ser ordenado for maior que o último da parte ordenada, então ele já está ordenado,
+SE NÃO, deslocamos os elementos da parte ordenada e inserimos o elemento a ser ordenado na parte correta;
+
+ANÁLISE DE COMPLEXIDADE
+comparações: Melhor: [Θ(n)]  /  Pior: [Θ(n²)]
+movimentações:C(n)+1 = Melhor: [Θ(n)]  /  Pior: [Θ(n²)]
+
+Conclusão: Melhor caso (mov & comp) = array ordenado
+->Pior caso (mov & comp) =array decrescente
+->Método a ser utilizado quando o array estiver “quase” ordenado
+    *Boa opção se desejarmos adicionar alguns itens em um array ordenado
+porque seu custo será linear
+
+//===CÓDIGO===//
+
+for (int i = 1; i < n; i++) {
+    int tmp = array[i];
+    int j = i - 1;
+    while ( (j >= 0) && (array[j] > tmp) ){
+        array[j + 1] = array[j];
+        j--;
+    }
+    array[j + 1] = tmp;
+}
+
+-------------------------------------------------------------------------------------------
+
+ShellSort (não Estável)
+
+->Faz múltiplas inserções;
+->Problema da Inserção: menor elemento à direita, precisa-se fazer n-1 comparações e movimentações;
+->O método de Shell contorna esse problema permitindo trocas de registros distantes um do outro;
+->h significa quantos grupos serão divididos, exemplo: h=4, h=2, h=1;
+->A razão da eficiência do algoritmo ainda não é conhecida
+
+//===CÓDIGO===//
+
+void shellsort() {
+    int h = 1;
+    do { h = (h * 3) + 1; } while (h < n);
+    do {
+        h /= 3;
+        for(int cor = 0; cor < h; cor++){
+            insercaoPorCor(cor, h);
+        }
+    } while (h != 1);
+}
+void insercaoPorCor(int cor, int h){
+    for (int i = (h + cor); i < n; i+=h) {
+        int tmp = array[i];
+        int j = i - h;
+        while ((j >= 0) && (array[j] > tmp)) {
+            array[j + h] = array[j];
+            j -= h;
+        }
+        array[j + h] = tmp;
+    }
+}
+
+-------------------------------------------------------------------------------------------
+
+QuickSort(não Estável)
+
+-> Algoritmo de ordenação mais rápido para a maioria das situações;
+-> Dividir para conquistar;
+-> Divide o array em duas partes que serão independentemente ordenadas e a combinação de seus resultados produz a solução final
+->Particionamento:
+    •Escolha arbitrariamente um pivô
+    •Percorra o array a partir da esquerda enquanto array[ i ] < pivô
+    •Percorra o array a partir da direita enquanto array[ j ] > pivô
+    •Se i ≤ j então troque array[ i ] com array[ j ]
+    •Continue o processo enquanto i ≤ j
+
+//===CÓDIGO===//
+
+void quicksort(int esq, int dir) {
+    int i = esq, j = dir, pivo = array[(esq+dir)/2];
+    while (i <= j) {
+        while (array[i] < pivo)
+            i++;
+        while (array[j] > pivo)
+            j--;
+        if (i <= j) {
+            swap(i, j);
+            i++;
+            j--; 
+        }
+    }
+    if (esq < j)
+        quicksort(esq, j);
+    if (i < dir)
+        quicksort(i, dir);
+}
+
+ANÁLISE DE COMPLEXIDADE
+
+->A análise de complexidade do Quicksort depende de equação de
+recorrência (vista nas disciplinas Teoria dos Grafos e Computabilidade e
+Projeto e Análise de Algoritmos)
+
+comparações: Melhor = Θ[n * lg(n)]  /  Pior = Θ(n²)
+movimentações: Melhor = Θ[n * lg(n)]   /  Pior = Θ(n²)
