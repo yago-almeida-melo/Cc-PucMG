@@ -1,53 +1,55 @@
-
 /*
-	Guia_0802.v
-   	806454 - Yago Almeida Melo
-*/ 
+    806454 - Yago Almeida Melo
+    Guia_0802.v
+*/
 
-// Meio somador
-module halfAdder (
-    input a, b,
-    output sum, carry
+
+
+// Half-subtractor module
+module half_subtractor(
+    input A, // Operand A
+    input B, // Operand B
+    output diff, // Difference
+    output borrow // Borrow-out
 );
-    xor XOR1 ( sum, a, b );
-    and AND1 ( carry, a, b );
+    assign diff = A ^ B;
+    assign borrow = ~A & B;
 endmodule
 
-// Somador completo usando meio somador
-module fullAdder(
-    input a, b, cin,
-    output sum, carry
+// Full-subtractor module
+module full_subtractor(
+    input wire A, // Operand A
+    input wire B, // Operand B
+    input wire Cin, // Carry-in
+    output wire S, // Sum
+    output wire Cout // Carry-out
 );
-    wire c, c1, s;
-    halfAdder HA0(a, b, s, c);
-    halfAdder HA1(cin, s, sum, c1);
-    assign carry = c | c1 ;
-endmodule
+    wire diff1, borrow1, diff2, borrow2;
 
-module sixBitAdder(
-    input [5:0] a, b,
-    output [5:0] sum,
-    output carry
-);
-    wire c1, c2, c3, c4, c5;
+    // First half-subtractor
+    half_subtractor HS1(.A(A), .B(B), .diff(diff1), .borrow(borrow1));
 
-    fullAdder FA0(a[0], b[0], 1'b0, sum[0], c1);
-    fullAdder FA1(a[1], b[1], c1, sum[1], c2);
-    fullAdder FA2(a[2], b[2], c2, sum[2], c3);
-    fullAdder FA3(a[3], b[3], c3, sum[3], c4);
-    fullAdder FA4(a[4], b[4], c4, sum[4], c5);
-    fullAdder FA5(a[5], b[5], c5, sum[5], carry);
+    // Second half-subtractor
+    half_subtractor HS2(.A(diff1), .B(Cin), .diff(diff2), .borrow(borrow2));
+
+    // Output sum
+    assign S = diff2;
+
+    // Output carry-out
+    assign Cout = borrow1 | borrow2;
 endmodule
 
 module Guia_0802;
-    reg [5:0] a, b;
-    wire [5:0] sum;
-    wire carry;
+    reg [5:0] a;
+    reg [5:0] b;
+    reg cin;    
+    wire [5:0] sum; 
+    wire cout;      
 
-    sixBitAdder uut(a, b, sum, carry);
+    full_subtractor uut(a[0], b[0], cin, sum[0], cout);
 
     initial begin
-        $monitor("a=%b, b=%b, sum=%b, carry=%b", a, b, sum, carry);
+        $monitor("a=%b, b=%b, sum=%b, carry=%b", a, b, sum, cout);
         a = 6'b000011; b = 6'b000011;
         #10;
         a = 6'b000001; b = 6'b000001;
@@ -65,3 +67,5 @@ module Guia_0802;
         $finish();
     end
 endmodule
+
+
