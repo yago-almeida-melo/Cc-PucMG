@@ -135,7 +135,7 @@
                 }
             
             }
-            in = alteracao(in,i--);
+            in = alteracao(in,i-1);
         }
             
         return in;
