@@ -7,50 +7,57 @@
 
 // Half-subtractor module
 module half_subtractor(
-    input A, // Operand A
-    input B, // Operand B
-    output diff, // Difference
-    output borrow // Borrow-out
+    input A, 
+    input B, 
+    output diff, borrow
 );
-    assign diff = A ^ B;
-    assign borrow = ~A & B;
+    wire not_A;
+    not NOT1 (not_A, A);
+    xor XOR1 (diff, A, B);
+    and AND1 (borrow, not_A, B);
 endmodule
 
-// Full-subtractor module
 module full_subtractor(
-    input wire A, // Operand A
-    input wire B, // Operand B
-    input wire Cin, // Carry-in
-    output wire S, // Sum
-    output wire Cout // Carry-out
+    input A, B, Bin,
+    output diff, Bout 
 );
-    wire diff1, borrow1, diff2, borrow2;
+    wire borrow1, borrow2, diff1;
 
-    // First half-subtractor
-    half_subtractor HS1(.A(A), .B(B), .diff(diff1), .borrow(borrow1));
+    half_subtractor HS1(A, B, diff1, borrow1);
 
-    // Second half-subtractor
-    half_subtractor HS2(.A(diff1), .B(Cin), .diff(diff2), .borrow(borrow2));
+    half_subtractor HS2(Bin, diff1, diff, borrow2);
 
-    // Output sum
-    assign S = diff2;
+    assign Bout = borrow1 | borrow2;
 
-    // Output carry-out
-    assign Cout = borrow1 | borrow2;
+    
 endmodule
 
-module Guia_0802;
+module sixBitSubtractor(
+    input [5:0] a, b,
+    output [5:0] diff,
+    output Bout
+);
+    wire c1, c2, c3, c4, c5;
+
+    full_subtractor FS0(a[5], b[5], 1'b0, diff[5], c1);
+    full_subtractor FS1(a[4], b[4], c1, diff[4], c2);
+    full_subtractor FS2(a[3], b[3], c2, diff[3], c3);
+    full_subtractor FS3(a[2], b[2], c3, diff[2], c4);
+    full_subtractor FS4(a[1], b[1], c4, diff[1], c5);
+    full_subtractor FS5(a[0], b[0], c5, diff[0], Bout);
+endmodule
+
+module sixBitSubtractor_tb;
     reg [5:0] a;
     reg [5:0] b;
-    reg cin;    
-    wire [5:0] sum; 
-    wire cout;      
+    wire [5:0] diff; 
+    wire Bout;      
 
-    full_subtractor uut(a[0], b[0], cin, sum[0], cout);
+    sixBitSubtractor uut(a, b, diff, Bout);
 
     initial begin
-        $monitor("a=%b, b=%b, sum=%b, carry=%b", a, b, sum, cout);
-        a = 6'b000011; b = 6'b000011;
+        $monitor("%b - %b = %b", a, b, diff);
+        a = 6'b001010; b = 6'b000100;
         #10;
         a = 6'b000001; b = 6'b000001;
         #10;
@@ -60,9 +67,9 @@ module Guia_0802;
         #10;
         a = 6'b001000; b = 6'b001000;
         #10;
-        a = 6'b010000; b = 6'b010000;
+        a = 6'b010000; b = 6'b000001;
         #10;
-        a = 6'b100000; b = 6'b100000;
+        a = 6'b100000; b = 6'b000001;
         #10;
         $finish();
     end
