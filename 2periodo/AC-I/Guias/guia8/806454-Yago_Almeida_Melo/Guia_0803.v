@@ -4,22 +4,45 @@
 */
 
 
-module UnidadeLogica (
-    input [4:0] a, // Entrada a de 5 bits
-    input [4:0] b, // Entrada b de 5 bits
-    output [4:0] s // Saída s de 5 bits
+module Guia_0803(
+    input [5:0] entradaA,
+    input [5:0] entradaB,
+    output igualdade
 );
 
-// Calcula o XNOR bit a bit entre a e b
-wire [4:0] xnor_result;
-assign xnor_result = a ~^ b; // ~^ é o operador XNOR 
+assign igualdade = (entradaA == entradaB) ? 1 : 0;
 
-// Calcula a função f para produzir a saída s
-assign s[4] = xnor_result[4];
-assign s[3] = xnor_result[3] & xnor_result[4];
-assign s[2] = xnor_result[2] & xnor_result[3] & xnor_result[4];
-assign s[1] = xnor_result[1] & xnor_result[2] & xnor_result[3] & xnor_result[4];
-assign s[0] = xnor_result[0] & xnor_result[1] & xnor_result[2] & xnor_result[3] & xnor_result[4];
+endmodule
+
+module test_Guia_0803;
+
+reg [5:0] entradaA;
+reg [5:0] entradaB;
+wire igualdade;
+
+Guia_0803 UUT(
+    .entradaA(entradaA),
+    .entradaB(entradaB),
+    .igualdade(igualdade)
+);
+
+initial begin
+    $monitor("Entrada A: %b, Entrada B: %b, Igualdade: %b", entradaA, entradaB, igualdade);
+    //test1
+    entradaA = 6'b000000;
+    entradaB = 6'b000000;
+    #10;
+    //test2
+    entradaA = 6'b101010;
+    entradaB = 6'b101010;
+    #10;    
+    //test3
+    entradaA = 6'b111111;
+    entradaB = 6'b000000;
+    #10;
+    
+    $finish;
+end
 
 endmodule
 

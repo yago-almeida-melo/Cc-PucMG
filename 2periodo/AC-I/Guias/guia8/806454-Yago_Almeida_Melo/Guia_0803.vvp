@@ -1,0 +1,57 @@
+#! /c/Source/iverilog-install/bin/vvp
+:ivl_version "12.0 (devel)" "(s20150603-1539-g2693dd32b)";
+:ivl_delay_selection "TYPICAL";
+:vpi_time_precision + 0;
+:vpi_module "D:\iverilog\lib\ivl\system.vpi";
+:vpi_module "D:\iverilog\lib\ivl\vhdl_sys.vpi";
+:vpi_module "D:\iverilog\lib\ivl\vhdl_textio.vpi";
+:vpi_module "D:\iverilog\lib\ivl\v2005_math.vpi";
+:vpi_module "D:\iverilog\lib\ivl\va_math.vpi";
+S_00000208e14957d0 .scope module, "test_Guia_0803" "test_Guia_0803" 2 17;
+ .timescale 0 0;
+v00000208e1639b70_0 .var "entradaA", 5 0;
+v00000208e1639c10_0 .var "entradaB", 5 0;
+v00000208e1639cb0_0 .net "igualdade", 0 0, L_00000208e1639e90;  1 drivers
+S_00000208e1495960 .scope module, "UUT" "Guia_0803" 2 23, 2 7 0, S_00000208e14957d0;
+ .timescale 0 0;
+    .port_info 0 /INPUT 6 "entradaA";
+    .port_info 1 /INPUT 6 "entradaB";
+    .port_info 2 /OUTPUT 1 "igualdade";
+v00000208e1462f10_0 .net *"_ivl_0", 0 0, L_00000208e1639d50;  1 drivers
+L_00000208e14d8018 .functor BUFT 1, C4<01>, C4<0>, C4<0>, C4<0>;
+v00000208e1462b20_0 .net/2s *"_ivl_2", 1 0, L_00000208e14d8018;  1 drivers
+L_00000208e14d8060 .functor BUFT 1, C4<00>, C4<0>, C4<0>, C4<0>;
+v00000208e163bdb0_0 .net/2s *"_ivl_4", 1 0, L_00000208e14d8060;  1 drivers
+v00000208e163be50_0 .net *"_ivl_6", 1 0, L_00000208e1639df0;  1 drivers
+v00000208e1639990_0 .net "entradaA", 5 0, v00000208e1639b70_0;  1 drivers
+v00000208e1639a30_0 .net "entradaB", 5 0, v00000208e1639c10_0;  1 drivers
+v00000208e1639ad0_0 .net "igualdade", 0 0, L_00000208e1639e90;  alias, 1 drivers
+L_00000208e1639d50 .cmp/eq 6, v00000208e1639b70_0, v00000208e1639c10_0;
+L_00000208e1639df0 .functor MUXZ 2, L_00000208e14d8060, L_00000208e14d8018, L_00000208e1639d50, C4<>;
+L_00000208e1639e90 .part L_00000208e1639df0, 0, 1;
+    .scope S_00000208e14957d0;
+T_0 ;
+    %vpi_call 2 30 "$monitor", "Entrada A: %b, Entrada B: %b, Igualdade: %b", v00000208e1639b70_0, v00000208e1639c10_0, v00000208e1639cb0_0 {0 0 0};
+    %pushi/vec4 0, 0, 6;
+    %store/vec4 v00000208e1639b70_0, 0, 6;
+    %pushi/vec4 0, 0, 6;
+    %store/vec4 v00000208e1639c10_0, 0, 6;
+    %delay 10, 0;
+    %pushi/vec4 42, 0, 6;
+    %store/vec4 v00000208e1639b70_0, 0, 6;
+    %pushi/vec4 42, 0, 6;
+    %store/vec4 v00000208e1639c10_0, 0, 6;
+    %delay 10, 0;
+    %pushi/vec4 63, 0, 6;
+    %store/vec4 v00000208e1639b70_0, 0, 6;
+    %pushi/vec4 0, 0, 6;
+    %store/vec4 v00000208e1639c10_0, 0, 6;
+    %delay 10, 0;
+    %vpi_call 2 44 "$finish" {0 0 0};
+    %end;
+    .thread T_0;
+# The file index is used to find the file name in the following table.
+:file_names 3;
+    "N/A";
+    "<interactive>";
+    "Guia_0803.v";
