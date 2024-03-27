@@ -1,0 +1,91 @@
+/*
+    806454 - Yago Almeida Melo
+    T01
+*/
+
+1) Artigo escolhido: Overview of FPGA and CPLD Device Testing Techniques Based on ATE
+
+2) Título: Overview of FPGA and CPLD Device Testing Techniques Based on ATE
+Autores: Xie, Weikun / Lin, Xiaohui / Wang, Houjun / Zhang, Kaihong
+Fonte: 2021 IEEE 3rd International Conference on Circuits and Systems (ICCS) Circuits and Systems (ICCS), 2021 IEEE 3rd International Conference on. :41-45 Oct, 2021
+Informações do editor: IEEE
+Ano da publicação: 2021
+Termos do assunto: Components, Circuits, Devices and Systems, Circuits and systems, Conferences, 
+Programmable logic devices, Field programmable gate arrays, Testing, Configuration, FPGA, CPLD
+
+Referências
+
+1.J Lin, "Modern accounting data analysis platform based on 5G network and FPGA[J]", Microprocessors and Microsystems, 2020. 
+2.H Rexha and S Lafond, Data Collection and Acceleration Infrastructure for FPGA-based Edge AI Applications[J], 2021. 
+3.Z Long, "FPGA testing technology and ATE to achieve[J]", Computer Engineering & Applications, 2011. 
+4.W K Xie, "FPGA Testing based on ATE[J]", Electronics & Packaging, 2009. 
+5.A M Majid, Methods for Extending High-Performance Automated Test Equipment (ATE) using Multi-Gigahertz FPGA Technologies.[D], Georgia Institute of Technology, 2011. 
+6.Kintex-7 Series FPGAs Configuration User Guide[Z], Xilinx Inc, October 2007. 
+7.M. Ceschia et al., "Ion beam testing of ALTERA APEX FPGAs", Radiation Effects Data Workshop, pp. 45-50, 2002. 
+8.Cyclone IV Series FPGAs User Guide[Z], Altera Inc, October 2011. 
+9.E Chmelaf, "Fpga interconnect delay fault testing[C]", Test Conference 2003. Proceedings. ITC 2003. International, 2003. 
+10.J Y Zhang, J N Huang, J M Lai et al., "A design-for-test for SRAM-based FPGA interconnect testing[J]", Journal of Circuits and Systems, 2008
+
+3) I: ASIC (Application-Specific Integrated Circuit): Circuito Integrado de Aplicação Específica. 
+É um tipo de chip projetado para um propósito específico, como uma função de processamento única. 
+Geralmente, é fabricado sob medida para uma aplicação específica, resultando em alto desempenho 
+e baixo consumo de energia.
+
+II: ASSP (Application-Specific Standard Product): Produto Padrão de Aplicação Específica.
+É um circuito integrado desenvolvido para uma aplicação específica, mas com maior flexibilidade do que um ASIC.
+É produzido em massa para uma aplicação particular, mas pode ser adaptado para diferentes clientes.
+
+III: SPLD (Simple Programmable Logic Device): Dispositivo Lógico Programável Simples. 
+São dispositivos de lógica digital que podem ser programados pelo usuário para realizar funções lógicas simples.
+Eles oferecem menor complexidade e menor capacidade de programação em comparação com CPLDs e FPGAs.
+
+IV: CPLD (Complex Programmable Logic Device): Dispositivo de Lógica Programável Complexa. 
+São chips que contêm blocos de lógica configurável e elementos de interconexão programáveis. 
+Eles são adequados para aplicações que exigem um nível médio de complexidade e flexibilidade.
+
+V: SOC (System on Chip): Sistema em um Chip. 
+É um chip que integra todos os componentes necessários para um sistema de computação em um único chip.
+Isso inclui processador, memória, periféricos e interfaces de comunicação.
+
+VII: FPGA (Field-Programmable Gate Array): Matriz de Portas Programável em Campo. 
+É um dispositivo de lógica programável que pode ser reconfigurado após a fabricação. 
+Eles oferecem alta flexibilidade e capacidade de programação, tornando-os adequados para uma ampla gama de aplicações.
+
+4) Diferença entre PROM, PLA e PAL
+______________________________________________________________________________________________________________________________________________
+|Característica       | PROM (Programmable Read-Only Memory)  |	PLA (Programmable Logic Array)        |  PAL (Programmable Array Logic)       |
+|_____________________|_______________________________________|______________________________________ |_______________________________________|
+|Tipo de Dispositivo  |	Memória Programável                   |	Matriz de Lógica Programável          | Array de Lógica Programável           |  
+|_____________________|_______________________________________|_______________________________________|_______________________________________|
+|Funcionalidade	      |Armazena dados permanentes programados |Implementa funções lógicas programáveis|Implementa funções lógicas programáveis|
+|                     |pelo usuário	                          |pelo usuário pelo usuário              |pelo usuário                           |
+|_____________________|_______________________________________|_______________________________________|_______________________________________|
+|Programação	      |Uma vez programável	                  |Reconfigurável após a fabricação	      | Reconfigurável após a fabricação      |
+|_____________________|_______________________________________|_______________________________________|_______________________________________|
+|Flexibilidade	      | Baixa                                 |	Alta                                  |	Média                                 |
+|_____________________|_______________________________________|_______________________________________|_______________________________________|
+|Utilização Comum	  |Armazenamento de tabelas de busca 	  | Implementação de circuitos lógicos 	  |Implementação de circuitos lógicos     |
+|                     |ou código de inicialização             | complexos                             |em aplicações de média complexidade    |
+----------------------------------------------------------------------------------------------------------------------------------------------
+
+5) Diferença entre CPLD FPGA
+_____________________________________________________________________________________________________________________________
+|Característica	          | CPLD (Complex Programmable Logic Device) |	FPGA (Field-Programmable Gate Array)                 |
+|_________________________|__________________________________________|_______________________________________________________|
+|Arquitetura              |	Estrutura de bloco com várias entradas 	 |Matriz de portas e blocos de interconexão configuráveis|
+|                         |e saídas configuráveis                    |                                                       |
+|_________________________|__________________________________________|_______________________________________________________| 
+|Complexidade	          | Menor                                    |	Maior                                                |
+|_________________________|__________________________________________|_______________________________________________________|
+|Capacidade de Lógica	  | Menor                                    |	Maior                                                |
+|_________________________|__________________________________________|_______________________________________________________|
+|Integração	              |Integra menos recursos em um único chip	 |Pode integrar uma variedade de recursos em um único    |
+|                         |                                          |chip                                                   |
+|_________________________|__________________________________________|_______________________________________________________|
+|Tempo de Desenvolvimento |	Mais rápido	                             | Mais lento                                            |
+|_________________________|__________________________________________|_______________________________________________________|
+|Consumo de Energia       |	Geralmente menor	                     | Geralmente maior                                      |
+|_________________________|__________________________________________|_______________________________________________________|
+|Custo                    |	Geralmente mais baixo	                 | Geralmente mais alto                                  |
+------------------------------------------------------------------------------------------------------------------------------
+
