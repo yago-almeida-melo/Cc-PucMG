@@ -11,15 +11,30 @@ module half_subtractor(
     input B, 
     output diff, borrow
 );
+<<<<<<< HEAD
     wire not_A;
     not NOT1 (not_A, A);
     xor XOR1 (diff, A, B);
     and AND1 (borrow, not_A, B);
+=======
+    wire not_a;
+    not NOT_A (not_a, A);
+    xor XOR1 (diff, A, B);
+    and AND1 (borrow, not_a, B);
+>>>>>>> 3770920 (.)
 endmodule
 
 module full_subtractor(
+<<<<<<< HEAD
     input A, B, Bin,
     output diff, Bout 
+=======
+    input wire A, // Operand A
+    input wire B, // Operand B
+    input wire Cin, // Carry-in
+    output wire S, // diff
+    output wire Cout // Carry-out
+>>>>>>> 3770920 (.)
 );
     wire borrow1, borrow2, diff1;
 
@@ -53,7 +68,11 @@ module sixBitSubtractor_tb;
     wire [5:0] diff; 
     wire Bout;      
 
+<<<<<<< HEAD
     sixBitSubtractor uut(a, b, diff, Bout);
+=======
+    full_subtractor uut(.A(a), .B(b), .Cin(cin), .S(sum), .Cout(cout));
+>>>>>>> 3770920 (.)
 
     initial begin
         $monitor("%b - %b = %b", a, b, diff);
