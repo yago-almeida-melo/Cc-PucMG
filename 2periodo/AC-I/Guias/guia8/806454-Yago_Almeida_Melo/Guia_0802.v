@@ -64,11 +64,8 @@ module sixBitSubtractor_tb;
     wire [5:0] diff; 
     wire Bout;      
 
-<<<<<<< HEAD
     sixBitSubtractor uut(a, b, diff, Bout);
-=======
     full_subtractor uut(.A(a), .B(b), .Cin(cin), .S(sum), .Cout(cout));
->>>>>>> 3770920 (.)
 
     initial begin
         $monitor("%b - %b = %b", a, b, diff);
