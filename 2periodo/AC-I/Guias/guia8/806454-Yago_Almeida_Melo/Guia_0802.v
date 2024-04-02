@@ -26,11 +26,6 @@ endmodule
 module full_subtractor(
     input A, B, Bin,
     output diff, Bout 
-    input wire A, // Operand A
-    input wire B, // Operand B
-    input wire Cin, // Carry-in
-    output wire S, // diff
-    output wire Cout // Carry-out
 );
     wire borrow1, borrow2, diff1;
 
