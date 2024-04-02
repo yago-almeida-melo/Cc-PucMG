@@ -1,5 +1,5 @@
 /*
-	Guia_0803.v
+	Guia_0804.v
 	806454 - Yago Almeida Melo
 */
 
@@ -9,7 +9,7 @@ module oneBitCompare(
     output diff
 ); 
     
-    xor XOR1(diff,a,b);
+    xnor XNOR1(diff,a,b);
 endmodule
 
 module full_compare(
@@ -27,7 +27,7 @@ module full_compare(
 
 endmodule
 
-module Guia_0803;
+module Guia_0804;
     reg [5:0] a;
     reg [5:0] b;
     wire diff; 
@@ -53,4 +53,6 @@ module Guia_0803;
         $finish();
     end
 endmodule
+
+
 
