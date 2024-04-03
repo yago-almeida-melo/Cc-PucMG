@@ -117,3 +117,77 @@ Projeto e Análise de Algoritmos)
 
 comparações: Melhor = Θ[n * lg(n)]  /  Pior = Θ(n²)
 movimentações: Melhor = Θ[n * lg(n)]   /  Pior = Θ(n²)
+
+-------------------------------------------------------------------------------------------
+
+HeapSort (Não Estável)
+
+->Contém duas etapas, ambas  com custo Θ[n x lg(n)]. A primeira etapa é a criação do heap, a segunda é a destruição/ordenação do heap.
+->O heap é um TAD que nos fornece ou o menor ou o maior elemnto de um conjunto, com custo Θ (1). O custo de construção é Θ[n x lg(n)].
+Ao remover a cabeça do heap, conseguimos reorganizá-lo com custo Θ[lg(n)].
+->O heap tradicional armazena o MENOR elemento em sua cabeça. Já o heap Invertido armazena o MAIOR elemento em sua cabeça e ele é utilizado no HeapSort
+
+
+    //=====CÓDIGO====//
+
+    public void sort() {
+      //Alterar o vetor ignorando a posicao zero
+      int[] tmp = new int[n+1];
+      for(int i = 0; i < n; i++){
+         tmp[i+1] = array[i];
+      }
+      array = tmp;
+
+      //Contrucao do heap
+      for(int tamHeap = 2; tamHeap <= n; tamHeap++){
+         construir(tamHeap);
+      }
+
+      //Ordenacao propriamente dita
+      int tamHeap = n;
+      while(tamHeap > 1){
+         swap(1, tamHeap--);
+         reconstruir(tamHeap);
+      }
+
+      //Alterar o vetor para voltar a posicao zero
+      tmp = array;
+      array = new int[n];
+      for(int i = 0; i < n; i++){
+         array[i] = tmp[i+1];
+      }
+    }
+
+    public void construir(int tamHeap){
+      for(int i = tamHeap; i > 1 && array[i] > array[i/2]; i /= 2){
+         swap(i, i/2);
+      }
+    }
+    public void reconstruir(int tamHeap){
+      int i = 1;
+      while(i <= (tamHeap/2)){
+         int filho = getMaiorFilho(i, tamHeap);
+         if(array[i] < array[filho]){
+            swap(i, filho);
+            i = filho;
+         }else{
+            i = tamHeap;
+         }
+        }
+    }
+
+    public int getMaiorFilho(int i, int tamHeap){
+      int filho;
+      if (2*i == tamHeap || array[2*i] > array[2*i+1]){
+         filho = 2*i;
+      } else {
+         filho = 2*i + 1;
+      }
+      return filho;
+    }
+
+Análise de COMPLEXIDADE
+->Depende do tamanho da aŕvore (número de níveis)
+
+comparações: Pior = Θ[lg(n)]
+movimentações: Pior = Θ[lg(n)]
