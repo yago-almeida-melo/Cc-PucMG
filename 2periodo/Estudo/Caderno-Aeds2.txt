@@ -191,3 +191,9 @@ Análise de COMPLEXIDADE
 
 comparações: Pior = Θ[lg(n)]
 movimentações: Pior = Θ[lg(n)]
+
+OBS.: 1 - O princípio de inserção do heap consiste em inserir uma nova folha no último nível (o mais a esquerda possível). Em seguida, comparamaos a nova folha com o pai.
+Se a nova folha for maior que o pai. Invertemos seus valores. Continuaremos "subindo" o novo elemento enquanto ele for maior que o elemento pai; 
+2 - Na verdade, o pior caso e o caso médio da primeira etapa do hepsort têm custo Θ[n x lg(n)]. A novidade, o melhor caso da primeira etapa do heapsort tem custo Θ[n] e acontece quando
+cada elemento inserido no heap for menor ou igual ao seu pai;
+3 - O único momento do heapsort que comparamos elementos irmãos acontece na remoção da cabeça do heap. Nesse caso, comparamos os irmãos para saber quem ficará no lugar do pai.
