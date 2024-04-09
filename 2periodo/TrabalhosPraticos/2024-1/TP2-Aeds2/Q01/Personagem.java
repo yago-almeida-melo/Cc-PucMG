@@ -214,6 +214,9 @@ class Personagem{
      */
     public static String formatter(String date){
         String[] x = date.split("-");
+        if(x[1].length() == 1){
+            x[1] = '0'+ x[1];
+        }
         String resp = x[2]+"-"+x[1]+"-"+x[0];
         return resp;
     }
@@ -301,12 +304,16 @@ class Personagem{
         setWizard((dados[17]));
 	}
 
+
     /*
-	 * Metodo para procurar um jogador pelo id e salva
-	 */
-	public void ler(String id, int key) throws Exception {
-        FileReader file;
+     * function: ler
+     * @params: Personagem[]
+     * @action: Faz a leitura de todos os Personagens e põe no Array de Personagem
+     */
+    public static void ler(Personagem[] p, int key) throws Exception {
+		FileReader file;
         BufferedReader bf;
+        String line;
         if(key == 0){
             file = new FileReader("/home/yago/Documents/Cc-PucMG/2periodo/TrabalhosPraticos/2024-1/TP2-Aeds2/characters.csv");
             bf = new BufferedReader(file);
@@ -315,32 +322,6 @@ class Personagem{
             file = new FileReader("/tmp/characters.csv");
             bf = new BufferedReader(file);
         }
-		
-		String line;
-		while ((line = bf.readLine()) != null) {
-			String numId = line.substring(0, line.indexOf(","));
-			try {
-				if (numId.equals(id)) {
-					setDados(line);
-					break;
-				}
-			} catch (NumberFormatException e) {
-				e.getMessage();
-			}
-		}
-		bf.close();
-		file.close();
-	}
-
-    /*
-     * function: ler
-     * @params: Personagem[]
-     * @action: Faz a leitura de todos os Personagens e põe no Array de Personagem
-     */
-    public static void ler(Personagem[] p) throws Exception {
-		FileReader file = new FileReader("/home/yago/Documents/Cc-PucMG/2periodo/TrabalhosPraticos/2024-1/TP2-Aeds2/characters.csv");
-		BufferedReader bf = new BufferedReader(file);
-		String line;
         int i=0;
 		while ((line = bf.readLine()) != null) {
             try{
@@ -357,25 +338,32 @@ class Personagem{
 		file.close();
 	}
 
-    public static String ler() throws Exception {
+     /*
+     * function: ler
+     * @params: Personagem[]
+     * @action: Faz a leitura de todos os Personagens e põe no Array de Personagem
+     */
+    public static Personagem ler() throws Exception {
 		FileReader file = new FileReader("/home/yago/Documents/Cc-PucMG/2periodo/TrabalhosPraticos/2024-1/TP2-Aeds2/characters.csv");
 		BufferedReader bf = new BufferedReader(file);
 		String line, resp="";
+        Personagem per = new Personagem();
         int i=0;
-		while ((line = bf.readLine()) != null){
-            if(i==4){
-                resp += line;
+		while ((line = bf.readLine()) != null && i<405){
+            if(i==28){
+			    per.setDados(line);
+                i = 405;
             }
             i++;
         }
 		bf.close();
 		file.close();
-        return resp;
+        return per;
 	}
 
-    public static void procuraId(Personagem[] personagens, String id){
+    public static void procuraId(Personagem personagens[], String id){
         for(int i=0;i<personagens.length;i++){
-            if((personagens[i].id).equals(id)){
+            if((personagens[i].getId()).equals(id)){
                 imprimir(personagens[i]);
                 i = personagens.length;
             }
@@ -383,8 +371,8 @@ class Personagem{
     }
 
     public static void main(String[] args) throws Exception{
-        Personagem[] personagens = new Personagem[405];
-        ler(personagens);
+        Personagem personagens[] = new Personagem[404];
+        ler(personagens, 0);  // Segundo parametro: 0 para teste / 1 para enviar ao verde com /tmp/characters.csv
         String id = MyIO.readLine();
         while(!id.equals("FIM")){
             procuraId(personagens, id);
