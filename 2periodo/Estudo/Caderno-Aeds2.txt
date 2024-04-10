@@ -11,6 +11,34 @@ Algoritmos de ordenação tais como Bubble, Selection e Insertion fazem Theta(H)
 
 -------------------------------------------------------------------------------------------
 
+===========================================================================================
+========================== ALGORITMOS DE ORDENAÇÃO ========================================
+===========================================================================================
+
+SelectionSort (Não Estável)
+
+-> Não há melhor caso;
+-> Melhor uso: quando registros são "grandes", movimentações é linear;
+
+//===CÓDIGO===//
+
+for (int i = 0; i < (n - 1); i++) {
+    int menor = i;
+    for (int j = (i + 1); j < n; j++){
+        if (array[menor] > array[j]){
+            menor = j;
+        }
+    }
+    swap(menor, i);
+}
+
+ANÁLISE DE COMPLEXIDADE
+
+movimentações: 3(n-1) =  Θ(n)
+comparações: Θ(n²)
+
+------------------------------------------------------------------------------------------
+
 InsertionSort (Estável)
 
 ->Temos duas sequências (a ordenada e a ordenar) e, em cada passo, 
@@ -189,11 +217,132 @@ Ao remover a cabeça do heap, conseguimos reorganizá-lo com custo Θ[lg(n)].
 Análise de COMPLEXIDADE
 ->Depende do tamanho da aŕvore (número de níveis)
 
-comparações: Pior = Θ[lg(n)]
-movimentações: Pior = Θ[lg(n)]
+comparações: Melhor = Θ[n*lg(n)]
+movimentações: Melhor = Θ[n*lg(n)]
 
 OBS.: 1 - O princípio de inserção do heap consiste em inserir uma nova folha no último nível (o mais a esquerda possível). Em seguida, comparamaos a nova folha com o pai.
 Se a nova folha for maior que o pai. Invertemos seus valores. Continuaremos "subindo" o novo elemento enquanto ele for maior que o elemento pai; 
 2 - Na verdade, o pior caso e o caso médio da primeira etapa do hepsort têm custo Θ[n x lg(n)]. A novidade, o melhor caso da primeira etapa do heapsort tem custo Θ[n] e acontece quando
 cada elemento inserido no heap for menor ou igual ao seu pai;
 3 - O único momento do heapsort que comparamos elementos irmãos acontece na remoção da cabeça do heap. Nesse caso, comparamos os irmãos para saber quem ficará no lugar do pai.
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+BubbleSort (Estável)
+
+-> Método de ordenação por seleção em que os registros são comparados,
+dois a dois e o menor é movimentado para o início do array
+
+/===CÓDIGO===/
+
+public void sort() {
+	for (int i = (n - 1); i > 0; i--) {
+		for (int j = 0; j < i; j++) {
+			if (array[j] > array[j + 1]) {
+               swap(j, j+1);
+			}
+		}
+	}
+}
+
+ANÁLISE DE COMPLEXIDADE
+
+comparações: os três casos é Θ(n²)
+movimentações: Pior caso (array decrescente)
+
+---------------------------------------------------------------------------------------------------
+
+MergeSort (Estável)
+
+-> Ordenação por intercalação
+-> Algoritmo de ordenação do tipo dividir para conquistar
+-> Normalmente, implementado de forma recursiva e demandando um
+espaço adicional de memória (não é um algoritmo in-place)
+
+*in-place:  Um algoritmo de ordenação é in-place se a memória
+adicional requerida é independente do tamanho do array
+
+/===CÓDIGO===/
+
+void mergesort(int esq, int dir) {
+    if (esq < dir){
+        int meio = (esq + dir) / 2;
+        mergesort(esq, meio);
+        mergesort(meio + 1, dir);
+        intercalar(esq, meio, dir);
+    }
+}
+void intercalar(int esq, int meio, int dir){
+    //Definir tamanho dos dois subarrays
+    int nEsq = (meio+1)-esq;
+    int nDir = dir - meio;
+
+    int[] arrayEsq = new int[nEsq+1];
+    int[] arrayDir = new int[nDir+1];
+
+    //Sentinela no final dos dois arrays
+    arrayEsq[nEsq] = arrayDir[nDir] = 0x7FFFFFFF;
+    int iEsq, iDir, i;
+
+    //Inicializar primeiro subarray
+    for (iEsq = 0; iEsq < nEsq; iEsq++){
+        arrayEsq[iEsq] = array[esq+iEsq];
+    }
+
+    //Inicializar segundo subarray
+    for (iDir = 0; iDir < nDir; iDir++){
+        arrayDir[iDir] = array[(meio+1)+iDir];
+    }
+
+    //Intercalacao propriamente dita
+    for (iEsq = iDir = 0, i = esq; i <= dir; i++){
+        array[i] = (arrayEsq[iEsq] <= arrayDir[iDir]) ? arrayEsq[iEsq++] : arrayDir[iDir++];
+    }
+}
+
+ANÁLISE DE COMPLEXIDADE
+
+comparações: todos casos: Θ[n*lg(n)]
+movimentações: todos casos: Θ[n*lg(n)]
+
+-------------------------------------------------------------------------------------------------------
+
+CountingSort (Estável)
+
+• Inicializar todas as posições do array de contagem com zero
+𝚯(n)
+• Para cada elemento do array de entrada, incrementá-lo no de contagem
+𝚯(n)
+• Fazer com que o array de contagem seja acumulativo de tal forma que
+cada posição i armazene o número de elementos menores ou iguais a i
+𝚯(n)
+• Sabendo o número de elementos menores ou iguais a i, preencher o array
+de saída
+𝚯(n)
+
+/===CODÍGO===/
+
+void countingsort() {
+    //Array para contar o numero de ocorrencias de cada elemento
+    int[] count = new int[getMaior() + 1];
+    int[] ordenado = new int[n];
+    
+    //Inicializar cada posicao do array de contagem
+    for (int i = 0; i < count.length; count[i] = 0, i++);
+    
+    //Agora, o count[i] contem o numero de elemento iguais a i
+    for (int i = 0; i < n; count[array[i]]++, i++);
+    
+    //Agora, o count[i] contem o numero de elemento menores ou iguais a i
+    for (int i = 1; i < count.length; count[i] += count[i- 1], i++);
+    
+    //Ordenando
+    for (int i = n-1; i >= 0; ordenado[count[array[i]]-1] = array[i], count[array[i]]--, i--);
+}
+
+===========================================================================================================
+
+ORDENAÇÃO PARCIAL
+
+Em um array de n elementos, achamos os k menores/maiores elementos desse array, sendo k < n;
+k << n  => k muito menor que n;
