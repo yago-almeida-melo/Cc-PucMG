@@ -13,13 +13,3 @@ module clock ( output clk );
 	  end
 endmodule // clock ( )
 
-module Guia_0900;
-	wire clk;
-	clock CLK1 ( clk );
-	initial 
-	  begin
-	    $dumpfile ( "Guia_0900.vcd" );
-	    $dumpvars;
-	    #120 $finish;
-	  end
-endmodule // Guia_0901 ( )
