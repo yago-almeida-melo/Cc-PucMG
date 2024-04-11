@@ -1,58 +1,34 @@
 /*
-*	Guia_0905.v
-* 	806454 - Yago Almeida Melo
+	Guia_0905.v
+	806454 - Yago Almeida Melo	
+	
 */
+`include "clock.v"
 
+module pulse1 (signal, clock);
+    input clock;
+    output signal;      
+    reg signal;
 
-
-
-
-module Guia_0905 (
-    input wire clk,       					// Sinal de clock de entrada do módulo Guia_09001
-    output wire pulse    					// Saída do pulso
-);
-
-reg [1:0] count;         					// Contador de 2 bits para controlar a marcação
-
-always @(posedge clk) begin
-    if (count == 2'b01) begin
-        pulse <= 1'b1;   					// Saída de pulso ativo
-    end else begin		
-        pulse <= 1'b0;   					// Saída de pulso desativado
+    always @ (posedge clock ) begin;
+        signal = 1'b1;
+        #6 signal = 1'b0;
     end
-    count <= count + 1'b1; 					// Incrementar o contador
-end
-
-endmodule
+endmodule // pulse1
 
 
-
-
-
-module test_Guia_0905;
-
-    reg clk;
-    wire pulse;
-
-    Guia_0905 UUT (
-        .clk(clk),
-        .pulse(pulse)
-    );
-
-    always begin
-        #1 clk = ~clk;
-    end
+module Guia_0905;
+    wire clock;
+    wire p;
+    
+    clock clk (clock);
+    pulse1 pls(p, clock);
 
     initial begin
-        clk = 0;
-        $dumpfile("waveform.vcd");
-        $dumpvars(0, test_Guia_0905);
-        $display("Iniciando simulação...");
-        $monitor("Tempo=%t pulse=%b", $time, pulse);
-
-        #10;
-        $finish;
+        $dumpfile("Guia_0905.vcd");
+        $dumpvars(0, Guia_0905);
+        $monitor("clock=%b / p=%b ", clock, p);
+        #1000 $finish;
     end
-
-endmodule
+endmodule // Guia_0904
 

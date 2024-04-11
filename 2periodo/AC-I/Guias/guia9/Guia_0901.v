@@ -1,6 +1,8 @@
-// ---------------------------
-// -- test clock generator (2)
-// ---------------------------
+/*
+*   806454 - Yago Almeida Melo
+*   Guia_0901.v
+*/
+
 module clock ( output clk );
     reg clk;
     initial begin
