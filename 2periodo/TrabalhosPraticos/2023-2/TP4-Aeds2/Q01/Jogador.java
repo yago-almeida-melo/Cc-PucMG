@@ -138,7 +138,7 @@ class ArvoreBinaria {
 	/*
 	 * Metodo para registrar o log de execucao com movimentacoes
 	 */
-	public static void registroLog(long tempo) {
+	public void registroLog(long tempo) {
 		File file = new File("/tmp/806454_arvoreBinaria.txt");
 		try {
 			if (!file.exists()) {

@@ -89,7 +89,7 @@ class TreeSort {
     /*
      * Metodo para registrar o log de execucao com movimentacoes
      */
-    public static void registroLog(long tempo) {
+    public void registroLog(long tempo) {
         File file = new File("/tmp/806454_treesort.txt");
         try {
             if (!file.exists()) {
