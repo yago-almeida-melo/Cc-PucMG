@@ -15,9 +15,8 @@ typedef struct {
 } LocalDate;
 
 typedef struct {
-    char id[50], name[50], house[50], ancestry[50], species[50], patronus[50], actorName[50], eyeColour[50], gender[50],
-    hairColour[50];
-    char *alternate_names, *alternate_actors;
+    char id[50], name[50], alternate_names[200], house[50], ancestry[50], species[50], patronus[50], actorName[50], alternate_actors[200],
+    eyeColour[50], gender[50], hairColour[50];
     int yearOfBirth;
     bool hogwartsStaff, hogwartsStudent, alive, wizard;
     LocalDate dateOfBirth;
@@ -26,7 +25,7 @@ typedef struct {
 void initPersonagem(Personagem *p) {
     strcpy(p->id, "");
     strcpy(p->name, "");
-    p->alternate_names = (char*)malloc(100 * sizeof(char));
+    strcpy(p->alternate_names, "");
     strcpy(p->house, "");
     strcpy(p->ancestry, "");
     strcpy(p->species, "");
@@ -35,7 +34,7 @@ void initPersonagem(Personagem *p) {
     p->hogwartsStudent = false;
     strcpy(p->actorName, "");
     p->alive = false;
-    p->alternate_actors = (char*)malloc(100 * sizeof(char));
+    strcpy(p->alternate_actors, "");
     p->dateOfBirth.dia = -1;
     p->dateOfBirth.mes = -1;
     p->dateOfBirth.ano = -1;
@@ -52,26 +51,6 @@ LocalDate convertData(char data[]) {
     return localDate;
 }
 
-char* fixList(char line[]) {
-    size_t len = strlen(line);
-    if (len <= 2) {
-        return "";
-    }
-    // Aloca memória para o array de caracteres corrigido
-    char* resp = (char*)malloc(len-1);
-    if (resp == NULL) {
-        return NULL;
-    }
-    int i = 1;
-    int j = 0;
-    // Copia os caracteres corrigidos para o novo array de caracteres
-    while (i < len - 1) {
-        resp[j++] = line[i++];
-    }
-    // Adiciona o caractere nulo final para formar uma string válida
-    resp[j] = '\0';
-    return resp;
-}
 
 void setPersonagem(Personagem *p, char *line){
     char input[300], date[11], year[5]; strcpy(input,line);
@@ -96,76 +75,6 @@ void setPersonagem(Personagem *p, char *line){
     while(input[x]!=';'){ p->hairColour[y] = input[x]; x++; y++;}  p->hairColour[y]='\0'; x++; y=0;
     while(input[x]!=';'){ if(input[x]=='V'){ p->wizard=true; x+=10;} else{ p->wizard=false; x+=5;}}
 }
-
-/*void setPersonagem(Personagem *p, char *linha) {
-    char *token = strtok(linha, ";");
-    int count = 0;
-    while (token != NULL) {
-        if (strcmp(token, "") == 0) {
-            token = strtok(NULL, ";");
-        } else {
-            switch (count) {
-                case 0:
-                    strcpy(p->id, token);
-                    break;
-                case 1:
-                    strcpy(p->name, token);
-                    break;
-                case 2:
-                    p->alternate_names = fixList(token);
-                    break;
-                case 3:
-                    strcpy(p->house, token);
-                    break;
-                case 4:
-                    strcpy(p->ancestry,token);
-                    break;
-                case 5:
-                    strcpy(p->species,token);
-                    break;
-                case 6:
-                    strcpy(p->patronus,token);
-                    break;
-                case 7:
-                    p->hogwartsStaff = (strcmp(token, "VERDADEIRO") == 0);
-                    break;
-                case 8:
-                    p->hogwartsStudent = (strcmp(token, "VERDADEIRO") == 0);
-                    break;
-                case 9:
-                    strcpy(p->actorName, token);
-                    break;
-                case 10: 
-                    p->alive = (strcmp(token, "VERDADEIRO") == 0);
-                    break;
-                case 11:
-                    p->alternate_actors = fixList(token);
-                    break;
-                case 12:
-                    LocalDate date = convertData(token);
-                    p->dateOfBirth = date;
-                    break;
-                case 13:
-                    p->yearOfBirth = atoi(token);
-                    break;
-                case 14:
-                    strcpy(p->eyeColour, token);
-                    break;
-                case 15:
-                    strcpy(p->gender, token);
-                    break;
-                case 16:
-                    strcpy(p->hairColour, token);
-                    break;
-                case 17: 
-                    p->wizard = (strcmp(token, "VERDADEIRO") == 0);
-                    break;
-            }
-            token = strtok(NULL, ";");
-            count++;
-        }
-    }
-}*/
 
 void arrayOfPersonagens(Personagem p[], int key) {
     char path[100];
@@ -194,17 +103,41 @@ void arrayOfPersonagens(Personagem p[], int key) {
     fclose(file);
 }
 
+char* dayAndMonthFix(int x){
+    char *resp = (char*)malloc(3 * sizeof(char)); 
+    if(x < 10){
+        sprintf(resp, "0%d", x); 
+    } else {
+        sprintf(resp, "%d", x);
+    }
+    return resp;
+}
+
 void toString(Personagem *p) {
-    printf("%s ## %s ## {%s} ## %s ## %s ## %s ## %s ## %s ## %s ## %s ## %s ## %d-%d-%d ## %d ## %s ## %s ## %s ## %s\n", p->id, p->name, p->alternate_names, p->house, 
-    p->ancestry, p->species, p->patronus, p->hogwartsStaff ? "true" : "false", p->hogwartsStudent ? "true" : "false", p->actorName, p->alive ? "true" : "false", 
-    p->dateOfBirth.dia, p->dateOfBirth.mes,p->dateOfBirth.ano, p->yearOfBirth, p->eyeColour, p->gender, p->hairColour, p->wizard ? "true" : "false");
+    printf("%s ## %s ## {%s} ## %s ## %s ## %s ## %s ## %s ## %s ## %s ## %s ## %s-%s-%d ## %d ## %s ## %s ## %s ## %s\n", p->id, p->name, p->alternate_names, p->house, 
+    p->ancestry, p->species, p->patronus, p->hogwartsStaff ? "true" : "false", p->hogwartsStudent ? "false" : "false", p->actorName, p->alive ? "false" : "false", 
+    dayAndMonthFix(p->dateOfBirth.dia), dayAndMonthFix(p->dateOfBirth.mes),p->dateOfBirth.ano, p->yearOfBirth, p->eyeColour, p->gender, p->hairColour, p->wizard ? "false" : "false");
+}
+
+void findId(Personagem p[]){
+    char strid[50];
+    fgets(strid ,sizeof(strid) , stdin);
+    strid[strcspn(strid, "\n")] = '\0';
+    while(strcmp(strid, "FIM") != 0){
+        for(int i=0;i<MAX_TAM;i++){
+            if(strcmp(p[i].id, strid)==0){
+                toString(&p[i]);
+                i = MAX_TAM;
+            }
+        }
+        fgets(strid ,sizeof(strid) , stdin);
+        strid[strcspn(strid, "\n")] = '\0';
+    }
 }
 
 int main() {
     Personagem p[MAX_TAM];
-    arrayOfPersonagens(p, 0);
-    for(int i=0;i<MAX_TAM;i++){
-        toString(&p[i]);
-    }
+    arrayOfPersonagens(p, 1);
+    findId(p);
     return 0;
 }
