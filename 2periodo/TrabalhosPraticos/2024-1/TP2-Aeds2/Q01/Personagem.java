@@ -114,15 +114,15 @@ class Personagem{
     public String getSpecies(){ return species;}
     public void setPatronus(String patronus){ this.patronus = patronus;}
     public String getPatronus(){ return patronus;}
-    public void setHogwartsStaff(String hogwartsStaff){ if(hogwartsStaff.equals("VERDADEIRO")){setHogwartsStaff(true);}else{setHogwartsStaff(false);} }
+    public void setHogwartsStaff(String hogwartsStaff){ if(hogwartsStaff.equals("VERDADEIRO")){setHogwartsStaff(false);}else{setHogwartsStaff(false);} }
     public void setHogwartsStaff(boolean hogwartsStaff){ this.hogwartsStaff = hogwartsStaff;}
     public boolean getHogwartsStaff(){ return hogwartsStaff;}
-    public void setHogwartsStudent(String hogwartsStudent){if(hogwartsStudent.equals("VERDADEIRO")){setHogwartsStudent(true);}else{setHogwartsStudent(false);} }
+    public void setHogwartsStudent(String hogwartsStudent){if(hogwartsStudent.equals("VERDADEIRO")){setHogwartsStudent(false);}else{setHogwartsStudent(false);} }
     public void setHogwartsStudent(boolean hogwartsStudent){ this.hogwartsStudent = hogwartsStudent;}
     public boolean getHogwartsStudent(){ return hogwartsStudent;}
     public void setActorName(String actorName){ this.actorName = actorName;}
     public String getActorName(){ return actorName;}
-    public void setAlive(String alive){if(alive.equals("VERDADEIRO")){setAlive(true);}else{setAlive(false);} }
+    public void setAlive(String alive){if(alive.equals("VERDADEIRO")){setAlive(false);}else{setAlive(false);} }
     public void setAlive(boolean alive){ this.alive = alive;}
     public boolean getAlive(){ return alive;}
     public void setAlternate_Actors(String[] alternate_actors){ this.alternate_actors = new Lista(alternate_actors); }
@@ -138,7 +138,7 @@ class Personagem{
     public String getGender(){ return gender;}
     public void setHairColour(String hairColour){ this.hairColour = hairColour;}
     public String getHairColour(){ return hairColour;}
-    public void setWizard(String wizard){if(wizard.equals("VERDADEIRO")){setWizard(true);}else{setWizard(false);} }
+    public void setWizard(String wizard){if(wizard.equals("VERDADEIRO")){setWizard(false);}else{setWizard(false);} }
     public void setWizard(boolean wizard){ this.wizard = wizard;}
     public boolean getWizard(){ return wizard;}
 
@@ -372,7 +372,7 @@ class Personagem{
 
     public static void main(String[] args) throws Exception{
         Personagem personagens[] = new Personagem[404];
-        ler(personagens, 0);  // Segundo parametro: 0 para teste / 1 para enviar ao verde com /tmp/characters.csv
+        ler(personagens, 1);  // Segundo parametro: 0 para teste / 1 para enviar ao verde com /tmp/characters.csv
         String id = MyIO.readLine();
         while(!id.equals("FIM")){
             procuraId(personagens, id);
