@@ -1,0 +1,405 @@
+9e3f7ce4-b9a7-4244-b709-dae5c1f1d4a8 ## Harry Potter ## {The Boy Who Lived, The Chosen One, Undesirable No. 1, Potty} ## Gryffindor ## half-blood ## human ## stag ## false ## true ## Daniel Radcliffe ## true ## 31-7-1980 ## 1980 ## green ## male ## black ## false
+4c7e6819-a91a-45b2-a454-f931e4a7cce3 ## Hermione Granger ## {Hermy, Know-it-all, Miss Grant, Herm-own-ninny} ## Gryffindor ## muggleborn ## human ## otter ## false ## true ## Emma Watson ## true ## 19-9-1979 ## 1979 ## brown ## female ## brown ## false
+c3b1f9a5-b87b-48bf-b00d-95b093ea6390 ## Ron Weasley ## {Dragomir Despard, Ronald, Ickle Ronniekins, Ronnie, Wheezy, Won-Won, Roonil Wazlib} ## Gryffindor ## pure-blood ## human ## Jack Russell terrier ## false ## true ## Rupert Grint ## true ## 1-3-1980 ## 1980 ## blue ## male ## red ## false
+af95bd8a-dfae-45bb-bc69-533860d34129 ## Draco Malfoy ## {} ## Slytherin ## pure-blood ## human ## Jack Russell terrier ## false ## true ## Tom Felton ## true ## 5-6-1980 ## 1980 ## grey ## male ## blonde ## false
+ca3827f0-375a-4891-aaa5-f5e8a5bad225 ## Minerva McGonagall ## {} ## Gryffindor ## half-blood ## human ## tabby cat ## true ## false ## Dame Maggie Smith ## true ## 4-10-1925 ## 1925 ## grey ## female ## black ## false
+d5c4daa3-c726-426a-aa98-fb40f3fba816 ## Cedric Diggory ## {} ## Hufflepuff ## half-blood ## human ##  ## false ## true ## Robert Pattinson ## false ## 4-10-1925 ## 1977 ## grey ## male ## brown ## false
+8f9aa40b-5d7c-441e-ad32-4564ecda3b70 ## Cho Chang ## {} ## Ravenclaw ## half-blood ## human ## swan ## false ## true ## Katie Leung ## true ## 7-4-1979 ## 1979 ## brown ## female ## black ## false
+3569d265-bd27-44d8-88e8-82fb0a848374 ## Severus Snape ## {Half-Blood Prince, Snivellus, Sev} ## Slytherin ## half-blood ## human ## doe ## true ## false ## Alan Rickman ## false ## 9-1-1960 ## 1960 ## black ## male ## black ## false
+36bfefd0-e0bb-4d11-be98-d1ef6117a77a ## Rubeus Hagrid ## {Professor Hagrid, Hagger} ## Gryffindor ## half-blood ## half-giant ##  ## true ## false ## Robbie Coltrane ## true ## 6-12-1928 ## 1928 ## black ## male ## black ## false
+3db6dc51-b461-4fa4-a6e4-b1ff352221c5 ## Neville Longbottom ## {} ## Gryffindor ## pure-blood ## human ## Non-Corporeal ## false ## true ## Matthew Lewis ## true ## 30-7-1980 ## 1980 ## black ## male ## blonde ## false
+861c4cde-2f0f-4796-8d8f-9492e74b2573 ## Luna Lovegood ## {Loony Lovegood} ## Ravenclaw ## pure-blood ## human ## hare ## false ## true ## Evanna Lynch ## true ## 13-2-1981 ## 1981 ## silver ## female ## blonde ## true
+1cd6dc64-01a9-4379-9cfd-1a7167ba1bb1 ## Ginny Weasley ## {} ## Gryffindor ## pure-blood ## human ## horse ## false ## true ## Bonnie Wright ## true ## 11-8-1981 ## 1981 ## brown ## female ## red ## false
+2cfd2d4b-5d1e-4dc5-8837-37a97c7e2f2f ## Sirius Black ## {Padfoot, Snuffles} ## Gryffindor ## pure-blood ## human ## hare ## false ## false ## Gary Oldman ## false ## 3-11-1959 ## 1959 ## grey ## male ## black ## false
+b8f9095b-9de6-4d7d-83e0-4391af8f22e4 ## Remus Lupin ## {Professor Lupin, Moony, Remus John Lupin} ## Gryffindor ## half-blood ## werewolf ## wolf ## true ## false ## David Thewlis ## false ## 10-3-1960 ## 1960 ## green ## male ## brown ## false
+dd925874-e800-4eb4-9f0d-4d0fed15634b ## Arthur Weasley ## {} ## Gryffindor ## pure-blood ## human ## weasel ## false ## false ## Mark Williams ## true ## 6-2-1950 ## 1950 ## blue ## male ## red ## false
+6afb1960-febd-418d-b604-e50c1b59459b ## Bellatrix Lestrange ## {Bella} ## Slytherin ## pure-blood ## human ##  ## false ## false ## Helena Bonham Carter ## false ## 6-2-1950 ## 1951 ## brown ## female ## black ## false
+efa802c8-ae18-4ae1-a524-49df21d05939 ## Lord Voldemort ## {Tom Riddle, Tom Marvolo Riddle, You-Know-Who, He Who Must Not Be Named, the Dark Lord, the Heir of Slytherin} ## Slytherin ## half-blood ## human ##  ## false ## false ## Ralph Fiennes ## false ## 31-12-1926 ## 1926 ## Scarlet ## male ## bald ## false
+2fb675cd-5505-4c8e-a54e-579e73bf4174 ## Horace Slughorn ## {} ## Slytherin ## pure-blood ## human ##  ## true ## false ## Jim Broadbent ## true ## 31-12-1926 ## 1926 ## green ## male ## blonde ## false
+106cf68d-a86a-415e-ad75-6ad9a4ae24e4 ## Kingsley Shacklebolt ## {} ## Slytherin ## pure-blood ## human ## lynx ## false ## false ## George Harris ## true ## 31-12-1926 ## 1926 ## brown ## male ## brown ## false
+d58e7249-19d1-40bd-a43f-1da0497fe8aa ## Dolores Umbridge ## {} ## Slytherin ## half-blood ## human ## persian cat ## true ## false ## Imelda Staunton ## true ## 31-12-1926 ## 1926 ## brown ## female ## grey ## false
+43403619-70cb-4a0c-b70a-6d5cae20e602 ## Lucius Malfoy ## {} ## Slytherin ## pure-blood ## human ##  ## false ## false ## Jason Isaacs ## true ## 31-12-1926 ## 1954 ## grey ## male ## blonde ## false
+04f9eb45-d843-4e29-a7d3-0bd49ed87f85 ## Vincent Crabbe ## {} ## Slytherin ## pure-blood ## human ##  ## false ## true ## Jamie Waylett ## false ## 31-12-1926 ## 1954 ## black ## male ## black ## false
+a31ddc78-af12-4978-929c-3cc8a00a833e ## Gregory Goyle ## {} ## Slytherin ## pure-blood ## human ##  ## false ## true ## Josh Herdman ## true ## 31-12-1926 ## 1954 ## black ## male ## brown ## false
+b0620914-858d-46fc-8e6d-033c565e138b ## Mrs Norris ## {} ## Slytherin ## pure-blood ## cat ##  ## true ## false ## Maxime, Alanis and Tommy the cats ## true ## 31-12-1926 ## 1954 ## yellow ## female ## brown ## false
+2b82cfb8-0440-4a57-a030-6d75a40c0d98 ## Argus Filch ## {} ## Slytherin ## squib ## human ##  ## true ## false ## David Bradley ## true ## 31-12-1926 ## 1954 ## yellow ## male ## grey ## false
+b4ffe89b-8796-42ad-a6d9-5af1a369af7e ## Vernon Dursley ## {} ## Slytherin ## muggle ## human ##  ## false ## false ## Richard Griffiths ## true ## 31-12-1926 ## 1954 ## yellow ## male ## grey ## false
+fed624df-56d9-495e-9ad4-ea77000957e8 ## Petunia Dursley ## {} ## Slytherin ## muggle ## human ##  ## false ## false ## Fiona Shaw ## true ## 31-12-1926 ## 1954 ## yellow ## female ## blonde ## false
+7614cf6e-689e-47ac-a976-b1e9997637e9 ## Dudley Dursley ## {} ## Slytherin ## muggle ## human ##  ## false ## false ## Harry Melling ## true ## 23-6-19806 ## 1980 ## blue ## male ## blond ## false
+41cd0bbe-a943-431b-9bde-bb2cad3491a1 ## Lily Potter ## {} ## Gryffindor ## muggleborn ## human ##  ## false ## false ## Geraldine Somerville ## false ## 30-1-1960 ## 1960 ## green ## female ## blond ## false
+34eb6182-00cf-4c95-ae73-7d2f34066d18 ## James Potter ## {Prongs} ## Gryffindor ## pure-blood ## human ## stag ## false ## false ## Adrian Rawlins ## false ## 27-3-1960 ## 1960 ## green ## male ## black ## false
+b415c867-1cff-455e-b194-748662ac2cca ## Albus Dumbledore ## {Professor Dumbledore} ## Gryffindor ## half-blood ## human ## Phoenix ## true ## false ## Richard Harris ## false ## 27-3-1960 ## 1881 ## blue ## male ## silver ## false
+e9457467-d10a-4893-afa9-19f9602b218a ## Madam Pomfrey ## {Poppy Pomfrey} ## Gryffindor ## half-blood ## human ##  ## true ## false ## Gemma Jones ## true ## 27-3-1960 ## 1881 ## blue ## female ## silver ## false
+63c6fcff-a1a4-4caf-a5ac-e2197c12cb1e ## Mrs Figg ## {Arabella Doreen Figg} ## Gryffindor ## squib ## human ##  ## false ## false ## Kathryn Hunter ## true ## 27-3-1960 ## 1980 ## blue ## female ## silver ## false
+162b34f3-aaab-46ae-980b-f2a5ebceb684 ## Marge Dursley ## {Marjorie Eileen Dursley, Aunt Marge, Auntie Marge, Margie} ## Gryffindor ## muggle ## human ##  ## false ## false ## Pam Ferris ## true ## 27-3-1960 ## 1979 ## blue ## female ## silver ## false
+d70f60ae-81ea-4230-905d-cb52c801c1fb ## Yvonne ## {} ## Gryffindor ## muggle ## human ##  ## false ## false ##  ## true ## 27-3-1960 ## 1980 ## blue ## female ## silver ## false
+57fa4f38-a1ff-4671-890d-49af38b2a619 ## Piers Polkiss ## {} ## Gryffindor ## muggle ## human ##  ## false ## false ## Jason Boyd ## true ## 27-3-1960 ## 1980 ## blue ## male ## silver ## false
+a18ef59a-89cf-4afd-bf87-83273990d911 ## Dennis ## {} ## Gryffindor ## muggle ## human ##  ## false ## false ## Christopher Rithin ## true ## 27-3-1960 ## 1925 ## blue ## male ## silver ## false
+ef33d1e6-427c-465e-9a9f-037442b376d3 ## Malcolm ## {} ## Gryffindor ## muggle ## human ##  ## false ## false ## Richard Macklin ## true ## 27-3-1960 ## 1977 ## blue ## male ## silver ## false
+71a95495-134d-4af7-8473-5f3495979845 ## Gordon ## {} ## Gryffindor ## muggle ## human ##  ## false ## false ##  ## true ## 27-3-1960 ## 1979 ## blue ## male ## silver ## false
+933787c2-51e3-4eac-8a85-ab332cac0456 ## Miranda Gaushawk ## {} ## Gryffindor ## muggle ## human ##  ## false ## false ##  ## false ## 27-3-1960 ## 1960 ## blue ## female ## silver ## false
+8b5bbdda-6a45-409c-99b7-0c64e69ed611 ## Bathilda Bagshot ## {} ## Gryffindor ## muggle ## human ##  ## false ## false ##  ## false ## 27-3-1960 ## 1928 ## blue ## female ## silver ## false
+8674a5d1-b2ba-4025-ac6d-4d1aa3f49ad9 ## Adalbert Waffling ## {} ## Gryffindor ## muggle ## human ##  ## false ## false ##  ## false ## 27-3-1960 ## 1980 ## blue ## male ## silver ## false
+cd98821f-04a8-4df7-9098-64ab117ede00 ## Emeric Switch ## {} ## Gryffindor ## muggle ## human ##  ## false ## false ##  ## false ## 27-3-1960 ## 1981 ## blue ## male ## silver ## false
+19fa7e4e-dadd-46a8-912e-51a1f622ce0e ## Phyllida Spore ## {Dame Phyllida Spore} ## Gryffindor ## muggle ## human ##  ## false ## false ##  ## false ## 27-3-1960 ## 1981 ## blue ## female ## silver ## false
+f859a0ab-0401-4791-b8f5-d3b2bc9668ca ## Arsenius Jigger ## {} ## Gryffindor ## muggle ## human ##  ## false ## false ##  ## false ## 27-3-1960 ## 1959 ## blue ## male ## silver ## false
+2a376401-4821-4aec-94d7-9b3da2c77d85 ## Newt Scamander ## {Newton Artemis Fido Scamander} ## Hufflepuff ## muggle ## human ##  ## false ## false ## Eddie Redmayne ## true ## 24-2-1897 ## 1960 ## hazel ## male ## brown ## false
+aa83dd83-beb5-43ef-b4a1-9bb2389edc44 ## Quentin Trimble ## {} ## Hufflepuff ## muggle ## human ##  ## false ## false ##  ## false ## 24-2-1897 ## 1950 ## hazel ## male ## brown ## false
+1e705d10-aa89-4e9c-94be-478304d55dbb ## Tom ## {} ## Hufflepuff ## muggle ## human ##  ## false ## false ## Derek Deadman ## true ## 24-2-1897 ## 1951 ## hazel ## male ## brown ## false
+43b2880a-df86-4f55-a599-9cd0548833f4 ## Doris Crockford ## {} ## Hufflepuff ## muggle ## human ##  ## false ## false ## Nina Young ## true ## 31-7-1980 ## 1926 ## hazel ## female ## brown ## false
+ba19be27-178b-4594-95b7-51ba0e3ba1dd ## Quirinus Quirrel ## {Professor Quirrel} ## Hufflepuff ## muggle ## human ##  ## true ## false ## Ian Hart ## false ## 19-9-1979 ## 1926 ## hazel ## male ## brown ## false
+4bd76a78-86d8-40f6-aed4-74fe51783594 ## Griphook ## {} ## Hufflepuff ## muggle ## goblin ##  ## false ## false ## Verne Troyer ## false ## 1-3-1980 ## 1926 ## hazel ## male ## brown ## false
+7b26f1db-7cc5-4b66-9f2f-6bbb04d628b2 ## Madam Malkin ## {} ## Hufflepuff ## muggle ## human ##  ## false ## false ##  ## true ## 5-6-1980 ## 1926 ## hazel ## female ## brown ## false
+ba05fee0-483c-42ed-a8b6-b7a82b6e800a ## Vindictus Viridian ## {} ## Hufflepuff ## muggle ## human ##  ## false ## false ##  ## false ## 4-10-1925 ## 1954 ## hazel ## male ## brown ## false
+d59691a4-f830-4eb0-a819-a0fb00b7e80f ## Garrick Ollivander ## {} ## Hufflepuff ## muggle ## human ##  ## false ## false ## John Hurt ## true ## 4-10-1925 ## 1954 ## pale, silvery ## male ## brown ## false
+6b59be3f-e527-422d-959d-79fcdb3b24eb ## Hedwig ## {} ## Hufflepuff ## muggle ## owl ##  ## false ## false ## Gizmo ## false ## 7-4-1979 ## 1954 ## amber ## female ## brown ## false
+79e02eb5-17c0-4dd9-bf55-aec03434812c ## Molly Weasley ## {Molly Prewett, Mollywabbles} ## Gryffindor ## pure-blood ## human ##  ## false ## false ## Julie Walters ## true ## 9-1-1960 ## 1954 ## amber ## female ## red ## false
+8f3b8796-c7b9-442e-ac02-113d48306fc7 ## Percy Weasley ## {Perce, Percy Ignatius Weasley, Weatherby} ## Gryffindor ## pure-blood ## human ##  ## false ## true ## Chris Rankin ## true ## 6-12-1928 ## 1954 ## amber ## male ## red ## false
+28741184-263c-4000-b011-ca7c60466ef4 ## Fred Weasley ## {} ## Gryffindor ## pure-blood ## human ##  ## false ## true ## James Phelps ## false ## 30-7-1980 ## 1954 ## amber ## male ## red ## false
+2a0615de-8aa4-41e7-9504-dd875f5f3f01 ## George Weasley ## {} ## Gryffindor ## pure-blood ## human ##  ## false ## true ## Oliver Phelps ## true ## 13-2-1981 ## 1954 ## amber ## male ## red ## false
+979ab773-944f-4ff8-88be-943a4bc2c18a ## Lee Jordan ## {} ## Gryffindor ## pure-blood ## human ##  ## false ## true ## Luke Youngblood ## true ## 11-8-1981 ## 1980 ## amber ## male ## red ## false
+cd09be4a-1581-4a7e-b4e7-4505e66a68a5 ## Bill Weasley ## {William Arthur Weasley} ## Gryffindor ## pure-blood ## human ##  ## false ## false ## Richard Fish ## true ## 3-11-1959 ## 1960 ## amber ## male ## red ## false
+01c62c63-f481-41c0-ab06-189caf3a6a61 ## Charlie Weasley ## {Charles Weasley} ## Gryffindor ## pure-blood ## human ##  ## false ## false ## Alex Crockford ## true ## 10-3-1960 ## 1960 ## amber ## male ## red ## false
+2772994f-6a19-4d01-9993-5e10cc6f69a5 ## Fat Friar ## {} ## Hufflepuff ## pure-blood ## ghost ##  ## false ## false ## Simon Fisher-Becker ## false ## 6-2-1950 ## 1881 ## amber ## male ## red ## false
+1ec8a085-d88c-4ba7-a7c6-a0f93156db07 ## Peeves ## {} ## Hufflepuff ## pure-blood ## poltergeist ##  ## false ## false ##  ## false ## 6-2-1950 ## 1881 ## amber ## male ## red ## false
+0af82694-e24f-45ec-a8d7-5bb1199ce631 ## Hannah Abbott ## {} ## Hufflepuff ## half-blood ## human ##  ## false ## true ## Charlotte Skeoch ## true ## 31-12-1926 ## 1980 ## amber ## female ## blonde ## false
+7cc5e694-850d-4c44-830b-7154e23bb5c3 ## Susan Bones ## {} ## Hufflepuff ## half-blood ## human ##  ## false ## true ## Eleanor Columbus ## true ## 31-12-1926 ## 1979 ## amber ## female ## blonde ## false
+9055a7b1-6ac9-4363-977c-4dec78572fad ## Terry Boot ## {} ## Ravenclaw ## half-blood ## human ##  ## false ## true ## Kevin Lee Yi ## true ## 31-12-1926 ## 1980 ## amber ## male ## blonde ## false
+c5acae3e-1a05-4f1d-bb83-3f8c7639d84e ## Mandy Brocklehurst ## {} ## Ravenclaw ## half-blood ## human ##  ## false ## true ## Christina Petrou ## true ## 31-12-1926 ## 1980 ## amber ## female ## blonde ## false
+f94086b8-03ae-4457-ba2c-e624d0980869 ## Lavender Brown ## {} ## Gryffindor ## half-blood ## human ##  ## false ## true ## Kathleen Cauley ## true ## 31-12-1926 ## 1925 ## amber ## female ## blonde ## false
+14aca981-2b60-413e-8f8e-3534961b534b ## Millicent Bulstrode ## {} ## Slytherin ## half-blood ## human ##  ## false ## true ## Helen Stuart ## true ## 31-12-1926 ## 1977 ## amber ## female ## blonde ## false
+34155375-c8c0-415e-873a-b6483f0cbf17 ## Justin Finch-Fletchley ## {} ## Hufflepuff ## muggleborn ## human ##  ## false ## true ## Edward Randell ## true ## 31-12-1926 ## 1979 ## amber ## male ## blonde ## false
+1413e1b3-2903-4a47-a2d5-e8abc5ce8014 ## Seamus Finnigan ## {O Flaherty, Seamus Finnegan} ## Gryffindor ## half-blood ## human ##  ## false ## true ## Devon Murray ## true ## 31-12-1926 ## 1960 ## amber ## male ## sandy ## false
+ec714982-e604-40d4-bd4c-dc5155506957 ## Morag MacDougal ## {} ## Gryffindor ## half-blood ## human ##  ## false ## true ##  ## true ## 31-12-1926 ## 1928 ## amber ## female ## sandy ## false
+e32dd37c-91cd-4950-8ef2-e2ba1b87bd75 ## Lily Moon ## {} ## Gryffindor ## half-blood ## human ##  ## false ## true ##  ## true ## 31-12-1926 ## 1980 ## amber ## female ## sandy ## false
+47aa7511-59b9-4760-9bd7-822a1103177b ## Theodore Nott ## {} ## Slytherin ## pure-blood ## human ##  ## false ## true ##  ## true ## 31-12-1926 ## 1981 ## amber ## male ## sandy ## false
+2899e63f-ed02-4152-8ace-0270a068a70d ## Pansy Parkinson ## {} ## Slytherin ## pure-blood ## human ##  ## false ## true ## Genevieve Gaunt ## true ## 23-6-19806 ## 1981 ## amber ## female ## sandy ## false
+0201cf73-8a86-4358-b232-2abaa23f09af ## Parvati Patil ## {} ## Gryffindor ## pure-blood ## human ##  ## false ## true ## Sitara Shah ## true ## 30-1-1960 ## 1959 ## amber ## female ## sandy ## false
+69c18f6a-cd97-4218-9f2f-740393e6eb1f ## Padma Patil ## {} ## Ravenclaw ## pure-blood ## human ##  ## false ## true ## Sharon Sandhu ## true ## 27-3-1960 ## 1960 ## amber ## female ## sandy ## false
+3d629315-1dbb-4e1e-840d-ffbf45bd5894 ## Sally-Anne Perks ## {} ## Ravenclaw ## pure-blood ## human ##  ## false ## true ##  ## true ## 27-3-1960 ## 1950 ## amber ## female ## sandy ## false
+eaea5eb3-48a3-41c6-9ea5-c695299bab16 ## Lisa Turpin ## {} ## Ravenclaw ## pure-blood ## human ##  ## false ## true ##  ## true ## 27-3-1960 ## 1951 ## amber ## female ## sandy ## false
+1fab149b-52b1-4ffe-be52-4eda25d98f5d ## Blaise Zabini ## {} ## Slytherin ## pure-blood ## human ##  ## false ## true ## Louis Cordice ## true ## 27-3-1960 ## 1926 ## amber ## male ## sandy ## false
+11b5ca88-64ad-41a4-9f36-317b66c290af ## Nearly Headless Nick ## {Sir Nicholas de Mimsy-Porpington, Sir Nicholas, Nick} ## Gryffindor ## pure-blood ## ghost ##  ## false ## false ## John Cleese ## false ## 27-3-1960 ## 1926 ## amber ## male ## sandy ## false
+9a33fe44-b950-4877-a0cb-902a52c72e8b ## Bloody Baron ## {} ## Slytherin ## pure-blood ## ghost ##  ## false ## false ## Terence Bayler ## false ## 27-3-1960 ## 1926 ## amber ## male ## sandy ## false
+8392b326-31fd-43de-ad5c-0cfcf81b82ee ## Fat Lady ## {} ## Slytherin ## pure-blood ## human ##  ## false ## false ## Elizabeth Spriggs ## false ## 27-3-1960 ## 1926 ## amber ## female ## sandy ## false
+e8694719-a975-48fb-9523-f4cade1c38aa ## Pomona Sprout ## {Professor Sprout} ## Hufflepuff ## pure-blood ## human ##  ## true ## false ## Miriam Margolyes ## true ## 27-3-1960 ## 1954 ## amber ## female ## sandy ## false
+6ea188f3-d95c-407c-ab00-a0bec8678a71 ## Cuthbert Binns ## {Professor Binns} ## Hufflepuff ## pure-blood ## ghost ##  ## true ## false ##  ## false ## 27-3-1960 ## 1954 ## amber ## male ## sandy ## false
+c1f90a1e-33eb-4e60-8dac-15ea5855a996 ## Emeric the Evil ## {} ## Hufflepuff ## pure-blood ## human ##  ## false ## false ##  ## false ## 27-3-1960 ## 1954 ## amber ## male ## sandy ## false
+4cc138eb-6882-4b78-bf45-28f0041590fb ## Uric the Oddball ## {} ## Hufflepuff ## pure-blood ## human ##  ## false ## false ##  ## false ## 27-3-1960 ## 1954 ## amber ## male ## sandy ## false
+a61e0783-7914-4f8d-a800-c409c06315cf ## Filius Flitwick ## {Professor Flitwick} ## Ravenclaw ## pure-blood ## human ##  ## true ## false ## Warwick Davis ## true ## 27-3-1960 ## 1954 ## amber ## male ## sandy ## false
+0a81c4f9-b80d-45a7-a4fd-9191453815a1 ## Madam Hooch ## {Rolanda Hooch} ## Ravenclaw ## pure-blood ## human ##  ## true ## false ## Zoë Wanamaker ## true ## 27-3-1960 ## 1954 ## yellow ## female ## grey ## false
+09396e81-d317-499f-b330-25b90ba17d20 ## Oliver Wood ## {} ## Ravenclaw ## pure-blood ## human ##  ## false ## true ## Sean Biggerstaff ## true ## 27-3-1960 ## 1954 ## yellow ## male ## grey ## false
+2ae8e574-9154-459c-b92e-4b0d1267e573 ## Gregory the Smarmy ## {} ## Ravenclaw ## pure-blood ## human ##  ## false ## false ##  ## false ## 27-3-1960 ## 1980 ## yellow ## male ## grey ## false
+0112e668-f94d-4d5f-8fa8-99c45280e9a8 ## Wizard Baruffio ## {} ## Ravenclaw ## pure-blood ## human ##  ## false ## false ##  ## false ## 27-3-1960 ## 1960 ## yellow ## male ## grey ## false
+b634f0a1-7b48-49b6-b039-27f947ee76fd ## Angelina Johnson ## {} ## Gryffindor ## pure-blood ## human ##  ## false ## true ## Danielle Tabor ## true ## 24-2-1897 ## 1960 ## yellow ## female ## grey ## false
+0e42ecbe-27b2-4940-9b03-00182a92c415 ## Marcus Flint ## {} ## Slytherin ## pure-blood ## human ##  ## false ## true ## Jamie Yeates ## true ## 24-2-1897 ## 1881 ## yellow ## male ## grey ## false
+c29cd5f9-d2c3-4be9-ba1c-04169cdf511b ## Alicia Spinet ## {} ## Gryffindor ## pure-blood ## human ##  ## false ## true ## Leilah Sutherland ## true ## 24-2-1897 ## 1881 ## yellow ## female ## grey ## false
+2832bea8-7aad-4160-a748-442f5770d586 ## Katie Bell ## {} ## Gryffindor ## pure-blood ## human ##  ## false ## true ## Emily Dale ## true ## 31-7-1980 ## 1980 ## yellow ## female ## grey ## false
+b78e6677-8bb4-4eb7-97cb-2f86677e27ea ## Adrian Pucey ## {} ## Slytherin ## pure-blood ## human ##  ## false ## true ## Scot Fearn ## true ## 19-9-1979 ## 1979 ## yellow ## male ## grey ## false
+c8aed011-ab8f-46df-9e8d-dde938256ea9 ## Miles Bletchley ## {} ## Slytherin ## pure-blood ## human ##  ## false ## true ## David Churchyard ## true ## 1-3-1980 ## 1980 ## yellow ## male ## grey ## false
+9ac09267-92ea-444a-a395-28f3b0f6fe6f ## Terrence Higgs ## {} ## Slytherin ## pure-blood ## human ##  ## false ## true ## Will Theakston ## true ## 5-6-1980 ## 1980 ## yellow ## male ## grey ## false
+40e0acaa-30cd-4923-8408-9a96a484e892 ## Fluffy ## {} ## Slytherin ## pure-blood ## three-headed dog ##  ## false ## false ##  ## true ## 4-10-1925 ## 1925 ## yellow ## male ## grey ## false
+b93b8e74-c283-4547-8a69-83ee51657f13 ## Nicolas Flamel ## {} ## Slytherin ## pure-blood ## human ##  ## false ## false ## Brontis Jodorowsky ## false ## 4-10-1925 ## 1977 ## yellow ## male ## grey ## false
+f6901cd9-a7b2-49d0-af85-73678536b4df ## Gellert Grindelwald ## {} ## Slytherin ## pure-blood ## human ##  ## false ## false ## Jamie Campbell Bower ## false ## 7-4-1979 ## 1979 ## blue ## male ## blond ## false
+5e4d5e25-5393-435b-81c8-556fa78af659 ## Norberta ## {} ## Slytherin ## pure-blood ## dragon ##  ## false ## false ##  ## true ## 9-1-1960 ## 1960 ## orange ## female ## blond ## false
+f94e870e-2c3b-4e17-adea-088660b6de78 ## Ronan ## {} ## Slytherin ## pure-blood ## centaur ##  ## false ## false ##  ## true ## 6-12-1928 ## 1928 ## orange ## male ## red ## false
+484d89aa-5d22-4d4d-9e07-4913cf8d4d20 ## Bane ## {} ## Slytherin ## pure-blood ## centaur ##  ## false ## false ## Jason Piper ## true ## 30-7-1980 ## 1980 ## orange ## male ## red ## false
+68eb4a0b-6c49-44e9-aec8-5af947d22141 ## Firenze ## {Professor Firenze} ## Slytherin ## pure-blood ## centaur ##  ## true ## false ## Ray Fearon ## true ## 13-2-1981 ## 1981 ## blue ## male ## blond ## false
+c8f7f244-97ac-449e-922d-a30f063a1ad0 ## Elfrick the Eager ## {} ## Slytherin ## pure-blood ## goblin ##  ## false ## false ##  ## false ## 11-8-1981 ## 1981 ## blue ## male ## blond ## false
+bd687632-3bec-4071-952d-c6cb813a41e7 ## Perenelle Flamel ## {} ## Slytherin ## pure-blood ## human ##  ## false ## false ##  ## false ## 3-11-1959 ## 1959 ## blue ## female ## blond ## false
+4c1adea5-3421-49a9-8e3e-a3ff0fe7ce60 ## Bertie Bott ## {} ## Slytherin ## pure-blood ## human ##  ## false ## false ##  ## true ## 10-3-1960 ## 1960 ## blue ## male ## blond ## false
+0d8ea37f-35c4-4c7d-9dd2-8ccd96b0a2b3 ## Dobby ## {} ## Slytherin ## pure-blood ## house-elf ##  ## false ## false ## Toby Jones ## false ## 6-2-1950 ## 1950 ## green ## male ## blond ## false
+cd022893-b7ea-4bd8-a4fb-c9933c695813 ## Mr Mason ## {} ## Slytherin ## muggle ## human ##  ## false ## false ## Jim Norton ## true ## 6-2-1950 ## 1951 ## green ## male ## blond ## false
+1c520134-9f75-48a9-b3c7-6c31ffa86178 ## Mrs Mason ## {} ## Slytherin ## muggle ## human ##  ## false ## false ## Veronica Clifford ## true ## 31-12-1926 ## 1926 ## green ## female ## blond ## false
+e3f5217d-52b5-4d7b-9a40-faed18a98d3c ## Perkins ## {} ## Slytherin ## muggle ## human ##  ## false ## false ##  ## true ## 31-12-1926 ## 1926 ## green ## male ## white ## false
+fa09ab9d-9e65-4966-9d79-ea7c837348fb ## Celestina Warbeck ## {} ## Gryffindor ## half-blood ## human ##  ## false ## false ##  ## true ## 31-12-1926 ## 1926 ## green ## female ## white ## false
+3d687c4d-852e-470f-bac5-5a02758b1f8f ## Gilderoy Lockhart ## {Professor Lockhart} ## Gryffindor ## half-blood ## human ##  ## true ## false ## Kenneth Branagh ## true ## 31-12-1926 ## 1926 ## blue ## male ## blond ## false
+17bd1ab9-19bc-4796-8865-53e75e3b488d ## Mundungus Fletcher ## {Dung} ## Gryffindor ## half-blood ## human ##  ## false ## false ## Andy Linden ## true ## 31-12-1926 ## 1954 ## blue ## male ## ginger ## false
+d74336b1-cee5-4d25-a783-bf61dbb6c19a ## Mr Borgin ## {} ## Gryffindor ## half-blood ## human ##  ## false ## false ## Edward Tudor-Pole ## true ## 31-12-1926 ## 1954 ## blue ## male ## ginger ## false
+c9804c5b-943b-4710-8f95-0c3b40141007 ## Mr Granger ## {Wendell Wilkins} ## Gryffindor ## muggle ## human ##  ## false ## false ## Tom Knight ## true ## 31-12-1926 ## 1954 ## blue ## male ## ginger ## false
+895e355a-c017-4eba-bc72-dda0699c0b96 ## Mrs Granger ## {Monica Wilkins} ## Gryffindor ## muggle ## human ##  ## false ## false ## Heather Bleasdale ## true ## 31-12-1926 ## 1954 ## blue ## female ## ginger ## false
+c0f33c97-d01d-42ed-ae40-1a525f75bb01 ## Dr Filibuster ## {} ## Gryffindor ## muggle ## human ##  ## false ## false ##  ## true ## 31-12-1926 ## 1954 ## blue ## male ## ginger ## false
+8e557e86-28d5-433f-8ac1-d2cecfeb8fb7 ## Colin Creevey ## {} ## Gryffindor ## muggleborn ## human ##  ## false ## true ## Hugh Mitchell ## false ## 31-12-1926 ## 1954 ## blue ## male ## ginger ## false
+8d885bd9-6103-424b-b884-c26720a64d94 ## Gladys Gudgeon ## {} ## Gryffindor ## muggleborn ## human ##  ## false ## false ##  ## true ## 31-12-1926 ## 1954 ## blue ## female ## ginger ## false
+a4e18c27-077a-441a-b9a9-97ee9ba53224 ## Veronica Smethley ## {} ## Gryffindor ## muggleborn ## human ##  ## false ## false ##  ## true ## 23-6-19806 ## 1980 ## blue ## female ## ginger ## false
+e938023d-ba03-402a-b6ff-ecadc0ff4dbb ## Patrick Delaney-Podmore ## {Sir Patrick Delaney-Podmore} ## Gryffindor ## muggleborn ## ghost ##  ## false ## false ##  ## false ## 30-1-1960 ## 1960 ## blue ## male ## ginger ## false
+8d018f5d-8370-41c8-8aa4-8b8a815ec801 ## Z. Nettles ## {} ## Gryffindor ## muggleborn ## human ##  ## false ## false ##  ## true ## 27-3-1960 ## 1960 ## blue ## female ## ginger ## false
+50f9e638-fa69-4c97-ba2c-bfc7124b7818 ## D.J. Prod ## {Demetrius J. Prod} ## Gryffindor ## muggleborn ## human ##  ## false ## false ## Chris Wilson ## false ## 27-3-1960 ## 1881 ## blue ## male ## ginger ## false
+98a5a56d-91a6-4c32-b793-f97e83919bde ## Elsie Prod ## {} ## Gryffindor ## muggleborn ## human ##  ## false ## false ##  ## true ## 27-3-1960 ## 1881 ## blue ## female ## ginger ## false
+9969f803-6835-4871-80b3-7bb975c1ec06 ## Moaning Myrtle ## {Myrtle Elizabeth Warren} ## Ravenclaw ## muggleborn ## ghost ##  ## false ## false ## Shirley Henderson ## false ## 27-3-1960 ## 1980 ## blue ## female ## ginger ## false
+834d5f9b-cdd8-48ee-9efa-5e155422f6c2 ## Godric Gryffindor ## {} ## Ravenclaw ## muggleborn ## human ##  ## false ## false ##  ## false ## 27-3-1960 ## 1979 ## blue ## male ## ginger ## false
+575626ab-cf61-440e-88a0-db188abb1cbb ## Rowena Ravenclaw ## {} ## Ravenclaw ## muggleborn ## human ##  ## false ## false ##  ## false ## 27-3-1960 ## 1980 ## blue ## female ## ginger ## false
+a7c7c44d-07e4-4257-860e-375f47338cb2 ## Helga Hufflepuff ## {} ## Ravenclaw ## muggleborn ## human ##  ## false ## false ##  ## false ## 27-3-1960 ## 1980 ## blue ## female ## ginger ## false
+20d331c9-cd3e-4dde-a480-6cc05cd26db7 ## Salazar Slytherin ## {} ## Ravenclaw ## muggleborn ## human ##  ## false ## false ##  ## false ## 27-3-1960 ## 1925 ## blue ## male ## ginger ## false
+cdec9b95-c7a5-4623-ad12-6fa76d168588 ## Madame Pince ## {Irma Pince} ## Ravenclaw ## muggleborn ## human ##  ## true ## false ## Sally Mortemore ## true ## 27-3-1960 ## 1977 ## blue ## female ## ginger ## false
+ecca342d-d345-4fb3-8a85-ece848ab8938 ## Milicent Bullstroude ## {} ## Slytherin ## muggleborn ## human ##  ## false ## true ## Helen Stuart ## true ## 27-3-1960 ## 1979 ## blue ## female ## black ## false
+0c80d701-fa23-4126-9711-efe5f3c4789a ## Ernie Macmillan ## {Ernest Macmillan} ## Hufflepuff ## muggleborn ## human ## boar ## false ## true ## Louis Doyle ## true ## 27-3-1960 ## 1960 ## blue ## male ## blond ## false
+7cf58a76-8af2-4ebb-9264-ea0ac273eadc ## Armando Dippet ## {Professor Dippet} ## Hufflepuff ## muggleborn ## human ##  ## false ## false ## Alfred Burke ## false ## 27-3-1960 ## 1928 ## blue ## male ## white ## false
+42915280-ba56-4ab8-8b17-9511ba2ab093 ## Penelope Clearwater ## {Penny} ## Ravenclaw ## muggleborn ## human ##  ## false ## true ## Gemma Padley ## true ## 27-3-1960 ## 1980 ## blue ## female ## white ## false
+3ba61708-c5a2-4691-8c7a-9c0865575dba ## Cornelius Fudge ## {Minister Cornelius Oswald Fudge} ## Ravenclaw ## muggleborn ## human ##  ## false ## false ## Robert Hardy ## true ## 27-3-1960 ## 1981 ## blue ## male ## grey ## false
+a08aebd0-49fb-4d5d-b3db-52bf8f7ce594 ## Aragog ## {} ## Ravenclaw ## muggleborn ## acromantula ##  ## false ## false ## Julian Glover ## false ## 27-3-1960 ## 1981 ## white ## male ## brown ## false
+82a29e30-1321-47b8-813f-2710f885b7d2 ## Mosag ## {} ## Ravenclaw ## muggleborn ## acromantula ##  ## false ## false ##  ## true ## 27-3-1960 ## 1959 ## black ## female ## brown ## false
+3f0fc32c-744b-4351-8542-58ed267e059b ## Stanley Shunpike ## {Stan} ## Ravenclaw ## muggleborn ## human ##  ## false ## false ## Lee Ingleby ## true ## 24-2-1897 ## 1960 ## black ## male ## brown ## false
+a62905eb-4965-44c7-baf0-0d8a2486f5b0 ## Ernest Prang ## {Ernie} ## Ravenclaw ## muggleborn ## human ##  ## false ## false ## Jimmy Gardner ## true ## 24-2-1897 ## 1950 ## black ## male ## brown ## false
+cfce8b1b-64c9-4058-8e13-9b192b80d2ef ## Madam Marsh ## {} ## Ravenclaw ## muggleborn ## human ##  ## false ## false ##  ## true ## 24-2-1897 ## 1951 ## black ## female ## brown ## false
+7673c196-9187-49ea-a3f0-7cebc079a15a ## Florean Fortescue ## {} ## Ravenclaw ## muggleborn ## human ##  ## false ## false ##  ## false ## 31-7-1980 ## 1926 ## black ## male ## brown ## false
+c7121c73-1fce-4343-b823-a67f4ecfdef2 ## Sir Cadogan ## {} ## Ravenclaw ## muggleborn ## human ##  ## false ## false ## Paul Whitehouse ## false ## 19-9-1979 ## 1926 ## black ## male ## brown ## false
+8ea29415-012d-4781-ba5f-d0de63a05abe ## Sybill Trelawney ## {Sybill Patricia Trelawney, Professor Trelawney} ## Ravenclaw ## muggleborn ## human ##  ## true ## false ## Emma Thompson ## true ## 1-3-1980 ## 1926 ## black ## female ## brown ## true
+fa4f7f3a-947b-4bc1-bab2-c7a19c7c2c30 ## Buckbeak ## {Beaky, Witherwings} ## Ravenclaw ## muggleborn ## hippogriff ##  ## false ## false ##  ## true ## 5-6-1980 ## 1926 ## orange ## male ## brown ## false
+1b6c8547-294a-40c0-892b-63a9511ca7d7 ## Peter Pettigrew ## {Wormtail, Scabbers, Wormy} ## Gryffindor ## muggleborn ## human ##  ## false ## false ## Timothy Spall ## false ## 4-10-1925 ## 1954 ## orange ## male ## brown ## false
+113d2cd5-4d5c-4727-ae97-64a7dfc4423c ## Madam Rosmerta ## {} ## Gryffindor ## muggleborn ## human ##  ## false ## false ## Julie Christie ## true ## 4-10-1925 ## 1954 ## orange ## female ## brown ## false
+eb96189d-e2b6-4159-a357-c6cdf11f3631 ## Derek ## {} ## Gryffindor ## muggleborn ## human ##  ## false ## true ##  ## true ## 7-4-1979 ## 1954 ## orange ## male ## brown ## false
+58f2cf41-392c-4e84-b441-dbbce585f78d ## Septima Vector ## {Professor Vector} ## Gryffindor ## muggleborn ## human ##  ## true ## false ##  ## true ## 9-1-1960 ## 1954 ## orange ## female ## brown ## false
+c61b5c80-2c8e-404f-88ca-349a6344f35c ## Cassius Warrington ## {} ## Slytherin ## muggleborn ## human ##  ## false ## true ## Ashley Hull ## true ## 6-12-1928 ## 1954 ## orange ## male ## brown ## false
+e7f4554e-8193-4b16-a40b-a8b38a0c3e57 ## Graham Montague ## {} ## Slytherin ## muggleborn ## human ##  ## false ## true ##  ## true ## 30-7-1980 ## 1954 ## orange ## male ## brown ## false
+458828b3-82a5-4cad-a784-e23215825765 ## Peregrine Derrick ## {} ## Slytherin ## muggleborn ## human ##  ## false ## true ##  ## true ## 13-2-1981 ## 1954 ## orange ## male ## brown ## false
+58a287c2-8c7a-485a-b095-8c6dcfc7f31d ## Lucian Bole ## {} ## Slytherin ## muggleborn ## human ##  ## false ## true ##  ## true ## 11-8-1981 ## 1980 ## orange ## male ## brown ## false
+f677db35-cef6-466f-a0e4-548d0a274ec5 ## Walden Macnair ## {} ## Slytherin ## muggleborn ## human ##  ## false ## false ## Peter Best ## true ## 3-11-1959 ## 1960 ## orange ## male ## black ## false
+08aefb5c-2a7c-42e1-a6ac-7f150749aa2a ## Franc Bryce ## {} ## Slytherin ## muggle ## human ##  ## false ## false ## Eric Sykes ## false ## 10-3-1960 ## 1960 ## orange ## male ## black ## false
+da0c8c39-04e1-4899-b562-e69c21218e2a ## Dot ## {} ## Slytherin ## muggle ## human ##  ## false ## false ##  ## false ## 6-2-1950 ## 1881 ## orange ## female ## black ## false
+8c3a1d16-83be-4904-b074-476f8cf72198 ## Bertha Jorkins ## {} ## Slytherin ## muggle ## human ##  ## false ## false ##  ## false ## 6-2-1950 ## 1881 ## orange ## female ## black ## false
+70d665a5-35c9-43a8-a2b0-ef20ddfc3770 ## Barty Crouch ## {Bartemius Crouch Senior} ## Slytherin ## pure-blood ## human ##  ## false ## false ## Roger Lloyd-Pack ## false ## 31-12-1926 ## 1980 ## orange ## male ## black ## false
+13f1edc7-e2e2-4f3d-9637-f3e897a484b7 ## Ludo Bagman ## {Ludovic Bagman} ## Slytherin ## pure-blood ## human ##  ## false ## false ##  ## true ## 31-12-1926 ## 1979 ## blue ## male ## blond ## false
+d9294c96-bd7d-45d0-95e2-deaf71e09945 ## Amos Diggory ## {} ## Slytherin ## pure-blood ## human ##  ## false ## false ## Jeff Rawle ## true ## 31-12-1926 ## 1980 ## blue ## male ## brown ## false
+2d25ada6-801e-4943-acca-adffc942820b ## Mr Roberts ## {} ## Slytherin ## muggle ## human ##  ## false ## false ##  ## true ## 31-12-1926 ## 1980 ## blue ## male ## brown ## false
+8f3f55ac-99d5-4a01-a0a3-f43ca5052596 ## Mr Payne ## {} ## Slytherin ## muggle ## human ##  ## false ## false ##  ## true ## 31-12-1926 ## 1925 ## blue ## male ## brown ## false
+10460839-62ce-426b-b690-2c82f8c65869 ## Basil ## {} ## Slytherin ## muggle ## human ##  ## false ## false ##  ## true ## 31-12-1926 ## 1977 ## blue ## male ## brown ## false
+941c0d0c-ec0d-4c32-af0d-bcf8af84d584 ## Archie Aymslowe ## {} ## Slytherin ## muggle ## human ##  ## false ## false ##  ## true ## 31-12-1926 ## 1979 ## blue ## male ## brown ## false
+0c19c654-d363-42a1-bd8f-13bd35dad075 ## Cuthbert Mockridge ## {} ## Slytherin ## muggle ## human ##  ## false ## false ##  ## true ## 31-12-1926 ## 1960 ## blue ## male ## brown ## false
+ca8a41e3-1f20-4c28-bc8a-b1831206edf5 ## Gilbert Wimple ## {} ## Slytherin ## muggle ## human ##  ## false ## false ##  ## true ## 31-12-1926 ## 1928 ## blue ## male ## brown ## false
+6777feda-2318-4605-ba0e-1a6fd5fc2e7f ## Arnold Peasegood ## {} ## Slytherin ## muggle ## human ##  ## false ## false ##  ## true ## 31-12-1926 ## 1980 ## blue ## male ## brown ## false
+cb49285e-1dcb-413e-905b-2a883ac35ddc ## Broderick Bode ## {} ## Slytherin ## muggle ## human ##  ## false ## false ##  ## false ## 31-12-1926 ## 1981 ## blue ## male ## brown ## false
+391546f6-d357-43e1-8072-98a8548d4902 ## Saul Croaker ## {} ## Slytherin ## muggle ## human ##  ## false ## false ##  ## true ## 23-6-19806 ## 1981 ## blue ## male ## brown ## false
+91142fb9-dc92-4f6f-8504-5498916f07a6 ## Ali Bashir ## {} ## Slytherin ## muggle ## human ##  ## false ## false ##  ## true ## 30-1-1960 ## 1959 ## blue ## male ## brown ## false
+b7b18aa1-b5a0-4083-8142-cb3655bc2849 ## Victor Krum ## {} ## Slytherin ## muggle ## human ##  ## false ## false ## Stanislav Ianevski ## true ## 27-3-1960 ## 1960 ## dark ## male ## dark ## false
+45d6db91-393e-40e0-8c04-43cb598fb9e5 ## Winky ## {} ## Slytherin ## muggle ## house-elf ##  ## false ## false ##  ## true ## 27-3-1960 ## 1950 ## dark ## female ## dark ## false
+166ba5e0-ad04-4c7e-9850-6a21aede93c2 ## Narcissa Malfoy ## {Cissy} ## Slytherin ## pure-blood ## human ##  ## false ## false ## Helen McCrory ## true ## 27-3-1960 ## 1951 ## blue ## female ## blonde ## false
+110a6a98-78c5-420a-b9b6-d25af10ddc4e ## Vasily Dimitrov ## {} ## Slytherin ## pure-blood ## human ##  ## false ## false ##  ## true ## 27-3-1960 ## 1926 ## blue ## male ## blonde ## false
+3e9461c1-4262-4beb-8c48-ca8a46a8859b ## Clara Ivanova ## {} ## Slytherin ## pure-blood ## human ##  ## false ## false ##  ## true ## 27-3-1960 ## 1926 ## blue ## female ## blonde ## false
+6a094c72-e53b-4e21-adc3-8c54fb205c1d ## Lev Zograf ## {} ## Slytherin ## pure-blood ## human ##  ## false ## false ##  ## true ## 27-3-1960 ## 1926 ## blue ## male ## blonde ## false
+5c913cb2-e964-4172-b8ce-a0550d2734df ## Alexei Levski ## {} ## Slytherin ## pure-blood ## human ##  ## false ## false ##  ## true ## 27-3-1960 ## 1926 ## blue ## male ## blonde ## false
+5161ffa8-9c86-4500-9533-4c805eb69a61 ## Pyotr Vulchanov ## {} ## Slytherin ## pure-blood ## human ##  ## false ## false ##  ## true ## 27-3-1960 ## 1954 ## blue ## male ## blonde ## false
+a6a27c4f-9bbd-4bf9-89b2-f62171ae9a37 ## Ivan Volkov ## {} ## Slytherin ## pure-blood ## human ##  ## false ## false ##  ## true ## 27-3-1960 ## 1954 ## blue ## male ## blonde ## false
+29db34fe-8f85-4fc0-accf-642d025de301 ## Connolly ## {} ## Slytherin ## pure-blood ## human ##  ## false ## false ##  ## true ## 27-3-1960 ## 1954 ## blue ## male ## blonde ## false
+9fd63149-724d-4a80-9761-6db7394575c0 ## Barry Ryan ## {} ## Slytherin ## pure-blood ## human ##  ## false ## false ##  ## true ## 27-3-1960 ## 1954 ## blue ## male ## blonde ## false
+311850b1-2d4d-4e29-b115-9488cc554415 ## Troy ## {} ## Slytherin ## pure-blood ## human ##  ## false ## false ##  ## true ## 27-3-1960 ## 1954 ## blue ## male ## blonde ## false
+0bdbed6e-7690-4326-99cc-86de89dc4a58 ## Mullet ## {} ## Slytherin ## pure-blood ## human ##  ## false ## false ##  ## true ## 27-3-1960 ## 1954 ## blue ## female ## blonde ## false
+8b225672-8f2a-4a11-829b-3b42d082aff0 ## Moran ## {} ## Slytherin ## pure-blood ## human ##  ## false ## false ##  ## true ## 27-3-1960 ## 1954 ## blue ## female ## blonde ## false
+2bbc36f9-914c-45c7-b61e-1003f2ac728f ## Quigley ## {} ## Slytherin ## pure-blood ## human ##  ## false ## false ##  ## true ## 27-3-1960 ## 1980 ## blue ## male ## blonde ## false
+559719e0-c54d-4589-8485-2dc865581001 ## Aidan Lynch ## {} ## Slytherin ## pure-blood ## human ##  ## false ## false ##  ## true ## 27-3-1960 ## 1960 ## blue ## male ## blonde ## false
+53ed1c30-a5dc-4b1b-aa0d-3da881b0ddc2 ## Hassan Mostafa ## {} ## Slytherin ## pure-blood ## human ##  ## false ## false ##  ## true ## 24-2-1897 ## 1960 ## blue ## male ## blonde ## false
+a93b80a0-987d-4148-944d-16043df95e8c ## Dennis Creevey ## {} ## Slytherin ## muggleborn ## human ##  ## false ## true ##  ## true ## 24-2-1897 ## 1881 ## blue ## male ## brown ## false
+99d3ce6b-6a45-495a-a7c6-132203697d45 ## Aurora Sinistra ## {Professor Sinistra} ## Slytherin ## muggleborn ## human ##  ## true ## false ##  ## true ## 24-2-1897 ## 1881 ## blue ## female ## brown ## false
+05bd5fd1-f347-45e6-8ec0-59b7f11c2aec ## Stewart Ackerley ## {} ## Ravenclaw ## muggleborn ## human ##  ## false ## true ##  ## true ## 31-7-1980 ## 1980 ## blue ## male ## brown ## false
+2f8db183-e935-4b91-884f-fb9effe42ab8 ## Malcolm Baddock ## {} ## Slytherin ## muggleborn ## human ##  ## false ## true ##  ## true ## 19-9-1979 ## 1979 ## blue ## male ## brown ## false
+29adbbf0-417a-4c97-8467-adb5341f75e5 ## Eleanor Branstone ## {} ## Hufflepuff ## muggleborn ## human ##  ## false ## true ##  ## true ## 1-3-1980 ## 1980 ## blue ## female ## brown ## false
+98546bab-8d5b-4627-95f6-38e306d58a91 ## Owen Cauldwell ## {} ## Hufflepuff ## muggleborn ## human ##  ## false ## true ##  ## true ## 5-6-1980 ## 1980 ## blue ## male ## brown ## false
+cf3707ad-e816-4b54-90d0-403800a06ecd ## Emma Dobbs ## {} ## Hufflepuff ## muggleborn ## human ##  ## false ## true ##  ## true ## 4-10-1925 ## 1925 ## blue ## female ## brown ## false
+ae068570-8419-4063-bf61-ba4a0ef41fe3 ## Laura Madley ## {} ## Hufflepuff ## muggleborn ## human ##  ## false ## true ##  ## true ## 4-10-1925 ## 1977 ## blue ## female ## brown ## false
+48880498-3903-4914-bd11-ec650d803199 ## Natalie McDonald ## {} ## Gryffindor ## muggleborn ## human ##  ## false ## true ##  ## true ## 7-4-1979 ## 1979 ## blue ## female ## brown ## false
+a506574f-c8cf-46c6-a8ac-2f805c25e49e ## Graham Pritchard ## {} ## Slytherin ## muggleborn ## human ##  ## false ## true ##  ## true ## 9-1-1960 ## 1960 ## blue ## male ## brown ## false
+b01be346-290b-4f65-9c88-a49922e116ee ## Orla Quirke ## {} ## Ravenclaw ## muggleborn ## human ##  ## false ## true ##  ## true ## 6-12-1928 ## 1928 ## blue ## female ## brown ## false
+4eef1e03-cf1c-4441-9119-a6e47a61f880 ## Kevin Whitby ## {} ## Hufflepuff ## muggleborn ## human ##  ## false ## true ##  ## true ## 30-7-1980 ## 1980 ## blue ## male ## brown ## false
+13a54f8a-7f68-4add-a1b4-49f60c8e7bcc ## Eloise Midgen ## {} ## Gryffindor ## muggleborn ## human ##  ## false ## true ## Samantha Clinch ## true ## 13-2-1981 ## 1981 ## blue ## female ## brown ## false
+41ebe856-f0f4-4c77-8795-4735d3a87f3d ## Alastor Moody ## {Professor Moody, Mad-Eye} ## Gryffindor ## pure-blood ## human ##  ## true ## false ## Brendan Gleeson ## false ## 11-8-1981 ## 1981 ## dark ## male ## grey ## false
+b4dbc2d2-afde-40ec-a622-b1ffa6aaca4d ## Madame Maxime ## {Olympe Maxime} ## Gryffindor ## pure-blood ## half-giant ##  ## false ## false ## Frances de la Tour ## true ## 3-11-1959 ## 1959 ## dark ## female ## grey ## false
+72239274-a060-4fd5-bff2-7d4a01d31969 ## Igor Karkaroff ## {} ## Gryffindor ## pure-blood ## human ##  ## false ## false ## Predrag Bjelac ## false ## 10-3-1960 ## 1960 ## blue ## male ## silver ## false
+2ec7c04f-2aac-47e8-9f9c-2360b2884ac2 ## Poliakoff ## {} ## Gryffindor ## pure-blood ## human ##  ## false ## false ##  ## true ## 6-2-1950 ## 1950 ## blue ## male ## silver ## false
+6045a853-10f3-4d6d-a29d-b76c5972f264 ## Fawcett ## {} ## Ravenclaw ## pure-blood ## human ##  ## false ## true ## Alex Argenti ## true ## 6-2-1950 ## 1951 ## blue ## female ## silver ## false
+0a6a1c41-793f-419c-a133-be6ac7d80ab6 ## Summers ## {} ## Hufflepuff ## pure-blood ## human ##  ## false ## true ##  ## true ## 31-12-1926 ## 1926 ## blue ## male ## silver ## false
+f1beae08-3bec-4978-89e9-4ecda4ec7514 ## Fleur Delacour ## {} ## Hufflepuff ## pure-blood ## human ##  ## false ## false ## Clémence Poésy ## true ## 31-12-1926 ## 1926 ## blue ## female ## blonde ## false
+d254b20b-37a6-4468-bec9-6069754edaf2 ## Gregorovic ## {Mykew Gregorovitch} ## Hufflepuff ## pure-blood ## human ##  ## false ## false ## Rade Šerbedžija ## false ## 31-12-1926 ## 1926 ## blue ## male ## white ## false
+2844e38c-ded3-47e7-8de2-381d1e3581fc ## Rita Skeeter ## {} ## Hufflepuff ## pure-blood ## human ##  ## false ## false ## Miranda Richardson ## true ## 31-12-1926 ## 1926 ## blue ## female ## blonde ## false
+f4b817be-f0c1-457d-8ec4-1716652d0c06 ## Stebbins ## {} ## Ravenclaw ## pure-blood ## human ##  ## false ## true ##  ## true ## 31-12-1926 ## 1954 ## blue ## male ## blonde ## false
+b48c5b8a-4066-4c24-ba26-7677f5ed2b6f ## Wilhelmina Grubbly-Plank ## {Professor Grubbly-Plank} ## Ravenclaw ## pure-blood ## human ##  ## true ## false ## Apple Brook ## true ## 31-12-1926 ## 1954 ## blue ## female ## grey ## false
+8ace1b0d-b058-4e44-994b-8dc2aa3427a5 ## Bozo ## {} ## Ravenclaw ## pure-blood ## human ##  ## false ## false ## Peter O'Farrell ## true ## 31-12-1926 ## 1954 ## blue ## male ## grey ## false
+4a2339cf-de3d-4e3c-899e-59d0a4c7606f ## Evan Rosier ## {} ## Slytherin ## pure-blood ## human ##  ## false ## false ##  ## false ## 31-12-1926 ## 1954 ## blue ## male ## grey ## false
+d4a0a760-a318-4c62-a110-6533c28c57ba ## Wilkes ## {} ## Slytherin ## pure-blood ## human ##  ## false ## false ##  ## false ## 31-12-1926 ## 1954 ## blue ## male ## grey ## false
+30d850c1-637b-41d7-a57a-e97b81216858 ## Avery ## {} ## Slytherin ## pure-blood ## human ##  ## false ## false ## Richard Rosson ## true ## 31-12-1926 ## 1954 ## blue ## male ## grey ## false
+de6c8669-ce5b-4b03-b2f4-e8ea20742a58 ## Antonin Dolohov ## {} ## Slytherin ## pure-blood ## human ##  ## false ## false ## Arben Bajraktaraj ## true ## 31-12-1926 ## 1954 ## blue ## male ## dark ## false
+6a7090ae-b6ab-49a0-bd19-e24acb219426 ## Travers ## {} ## Slytherin ## pure-blood ## human ##  ## false ## false ## Tav MacDougall ## true ## 23-6-19806 ## 1980 ## blue ## male ## grey ## false
+f012a686-0aa8-47f6-96e3-0cf1577cad18 ## Marlene McKinnon ## {} ## Slytherin ## pure-blood ## human ##  ## false ## false ##  ## false ## 30-1-1960 ## 1960 ## blue ## female ## grey ## false
+070e077a-2b02-44c0-80c1-f63817ee4a33 ## Mulciber ## {} ## Slytherin ## pure-blood ## human ##  ## false ## false ##  ## true ## 27-3-1960 ## 1960 ## blue ## male ## grey ## false
+dd3b2fbe-e9f2-4069-b881-9c31040ed9ae ## Augustus Rookwood ## {} ## Slytherin ## pure-blood ## human ##  ## false ## false ## Richard Trinder ## true ## 27-3-1960 ## 1881 ## blue ## male ## grey ## false
+d0d1b648-4e97-4fd0-9045-b721b6ef18d4 ## Frank Longbottom ## {} ## Slytherin ## pure-blood ## human ##  ## false ## false ## James Payton ## true ## 27-3-1960 ## 1881 ## blue ## male ## grey ## false
+27a51041-06a0-4f86-adb1-983ebfac708a ## Alice Longbottom ## {} ## Slytherin ## pure-blood ## human ##  ## false ## false ## Lisa Wood ## true ## 27-3-1960 ## 1980 ## blue ## female ## white ## false
+b5e2cf01-8bb6-4fcd-ad88-0efb611195da ## Augusta Longbottom ## {} ## Slytherin ## pure-blood ## human ##  ## false ## false ## Leila Hoffman ## true ## 27-3-1960 ## 1979 ## blue ## female ## white ## false
+87f71cce-7a3d-498c-8a0b-ff90f96cb820 ## Violet ## {} ## Slytherin ## pure-blood ## human ##  ## false ## false ##  ## false ## 27-3-1960 ## 1980 ## blue ## female ## white ## false
+f59b1911-61ed-495a-8746-31b215a447f1 ## Apollyon Pringle ## {} ## Slytherin ## pure-blood ## human ##  ## false ## false ##  ## true ## 27-3-1960 ## 1980 ## blue ## male ## white ## false
+47fa1849-f127-47ba-8248-656f9b569e3f ## Ogg ## {} ## Slytherin ## pure-blood ## human ##  ## false ## false ##  ## true ## 27-3-1960 ## 1925 ## blue ## male ## white ## false
+d1d4f6bb-be3c-4bf7-8f6b-824f4e3fa255 ## Mafalda Hopkirk ## {} ## Slytherin ## pure-blood ## human ##  ## false ## false ## Jessica Hynes ## true ## 27-3-1960 ## 1977 ## hazel ## female ## grey ## false
+99370b33-d5a7-465b-91b1-55ef2a40182b ## Nymphadora Tonks ## {Dora, Nymphadora Lupin} ## Hufflepuff ## pure-blood ## human ##  ## false ## false ## Natalia Tena ## false ## 27-3-1960 ## 1979 ## hazel ## female ## brown ## false
+1bb1f2d3-a22d-4f88-b26b-75e18a805ae8 ## Elphias Doge ## {} ## Hufflepuff ## pure-blood ## human ##  ## false ## false ## Peter Cartwright ## true ## 27-3-1960 ## 1960 ## blue ## male ## silver ## false
+9a2979bd-0325-4316-bc71-ec4cfe673dca ## Dedalus Diggle ## {} ## Hufflepuff ## pure-blood ## human ##  ## false ## false ## David Brett ## true ## 27-3-1960 ## 1928 ## blue ## male ## silver ## false
+3f335cbf-3706-4b21-bf2e-bce7d0126f8f ## Sturgis Podmore ## {} ## Hufflepuff ## pure-blood ## human ##  ## false ## false ##  ## true ## 27-3-1960 ## 1980 ## blue ## male ## blond ## false
+5c87063c-ad61-4e65-8b2e-5fb69fc39c4e ## Hestia Jones ## {} ## Hufflepuff ## pure-blood ## human ##  ## false ## false ##  ## true ## 27-3-1960 ## 1981 ## blue ## female ## black ## false
+c9c3927e-9858-477f-8847-db5d62841ab6 ## Ragnok ## {} ## Hufflepuff ## pure-blood ## goblin ##  ## false ## false ##  ## true ## 27-3-1960 ## 1981 ## blue ## male ## black ## false
+a64df82a-1131-46cb-ae94-659dadec66e5 ## Alphard Black ## {} ## Slytherin ## pure-blood ## human ##  ## false ## false ##  ## false ## 27-3-1960 ## 1959 ## blue ## male ## black ## false
+214bcbd0-a50a-42be-a25a-22f6eac5b8db ## Regulus Black ## {Regulus Arcturus Black} ## Slytherin ## pure-blood ## human ##  ## false ## false ## Tom Moorcroft ## false ## 24-2-1897 ## 1960 ## blue ## male ## black ## false
+3dfc2e91-ec32-4e50-bc7a-eda089fbed0d ## Phineas Nigelus Black ## {Professor Phineas Nigellus Black} ## Slytherin ## pure-blood ## human ##  ## false ## false ## John Atterbury ## false ## 24-2-1897 ## 1950 ## blue ## male ## black ## false
+ac403614-3872-4bef-b92f-efb4aeb8874b ## Araminta Meliflua Black ## {} ## Slytherin ## pure-blood ## human ##  ## false ## false ##  ## false ## 24-2-1897 ## 1951 ## blue ## female ## black ## false
+8475e091-e150-44de-9d83-1d524cfed5c5 ## Elladora Black ## {} ## Slytherin ## pure-blood ## human ##  ## false ## false ##  ## false ## 31-7-1980 ## 1926 ## blue ## female ## black ## false
+d08ba2a1-2104-4719-89ec-4aab5d9b9072 ## Andromeda Tonks ## {} ## Slytherin ## pure-blood ## human ##  ## false ## false ##  ## true ## 19-9-1979 ## 1926 ## blue ## female ## brown ## false
+78a85508-8396-4977-a837-87842f603be0 ## Ted Tonks ## {Edward} ## Slytherin ## muggleborn ## human ##  ## false ## false ##  ## false ## 1-3-1980 ## 1926 ## blue ## female ## blond ## false
+3cf024f3-d956-4b86-8d4d-944c79bc6fe7 ## Rodolphus Lestrange ## {} ## Slytherin ## pure-blood ## human ##  ## false ## false ##  ## true ## 5-6-1980 ## 1926 ## blue ## male ## blond ## false
+874673a2-68e7-45b4-afbc-5520bb62af63 ## Rabastan Lestrange ## {} ## Slytherin ## pure-blood ## human ##  ## false ## false ##  ## true ## 4-10-1925 ## 1954 ## blue ## male ## blond ## false
+d072aa84-ec4d-4c2f-a0a1-8831e1f6396a ## Eric Munch ## {} ## Slytherin ## pure-blood ## human ##  ## false ## false ##  ## true ## 4-10-1925 ## 1954 ## blue ## male ## blond ## false
+23821246-7a7a-45e5-82ce-2ed3589da4f3 ## Bob ## {} ## Slytherin ## pure-blood ## human ##  ## false ## false ## Nicholas Blane ## true ## 7-4-1979 ## 1954 ## blue ## male ## blond ## false
+4a0e91eb-ea6e-409d-b6f2-56f2155d05c9 ## Bengie Fenwick ## {} ## Slytherin ## pure-blood ## human ##  ## false ## false ##  ## false ## 9-1-1960 ## 1954 ## blue ## male ## blond ## false
+028f862b-129d-43bf-b371-b1fefd82365c ## Edgar Bones ## {} ## Slytherin ## pure-blood ## human ##  ## false ## false ## Cliff Lanning ## false ## 6-12-1928 ## 1954 ## blue ## male ## blond ## false
+87484ff7-777d-4fe3-88aa-f756c17fe4a2 ## Amelia Bones ## {} ## Slytherin ## pure-blood ## human ##  ## false ## false ## Sian Thomas ## true ## 30-7-1980 ## 1954 ## blue ## female ## grey ## false
+b48eacb4-6c52-4293-98a5-6433bde351c2 ## Caradoc Dearborn ## {} ## Slytherin ## pure-blood ## human ##  ## false ## false ##  ## false ## 13-2-1981 ## 1954 ## blue ## male ## grey ## false
+2d4cc5cf-836f-4379-82e0-fca4e766ca70 ## Gideon Prewett ## {} ## Slytherin ## pure-blood ## human ##  ## false ## false ##  ## false ## 11-8-1981 ## 1980 ## blue ## male ## grey ## false
+a44923d3-776d-478b-af9c-3b2efc1e1360 ## Fabian Prewett ## {} ## Slytherin ## pure-blood ## human ##  ## false ## false ##  ## false ## 3-11-1959 ## 1960 ## blue ## male ## grey ## false
+94c993f6-a443-4408-b908-6e78e223e8ac ## Aberforth Dumbledore ## {} ## Gryffindor ## half-blood ## human ## goat ## false ## false ## Jim McManus ## true ## 10-3-1960 ## 1960 ## blue ## male ## grey ## false
+6f2c7ab3-db2c-454c-9f34-b8614b9779f8 ## Dorcas Meadowes ## {} ## Gryffindor ## half-blood ## human ##  ## false ## false ##  ## false ## 6-2-1950 ## 1881 ## blue ## female ## grey ## false
+b1725aa9-117b-4e47-b749-9a7a8e1fafa0 ## Algie Longbottom ## {} ## Gryffindor ## half-blood ## human ##  ## false ## false ##  ## true ## 6-2-1950 ## 1881 ## blue ## male ## grey ## false
+61b6d68e-4128-408c-9f71-9ef167cb0e69 ## Anthony Goldstein ## {} ## Ravenclaw ## half-blood ## human ##  ## false ## true ##  ## true ## 31-12-1926 ## 1980 ## blue ## male ## grey ## false
+2b846267-2df3-4e13-8219-712d92dda9c1 ## Doris Purkiss ## {} ## Ravenclaw ## half-blood ## human ##  ## false ## false ##  ## true ## 31-12-1926 ## 1979 ## blue ## male ## grey ## false
+a01f6dbb-bad5-426b-a7df-f9613fa1021d ## Euan Abercrombie ## {} ## Gryffindor ## half-blood ## human ##  ## false ## true ##  ## true ## 31-12-1926 ## 1980 ## blue ## male ## grey ## false
+e65c8acb-0dfc-4f15-bcf8-d32b78811093 ## Rose Zeller ## {} ## Hufflepuff ## half-blood ## human ##  ## false ## true ##  ## true ## 31-12-1926 ## 1980 ## blue ## female ## grey ## false
+fd142190-f1d7-4ce2-bdb3-6ed6b3edc020 ## Patricia Stimpson ## {} ## Hufflepuff ## half-blood ## human ##  ## false ## true ##  ## true ## 31-12-1926 ## 1925 ## blue ## female ## grey ## false
+26bd4437-73fa-4865-afdd-2fc1456f4592 ## Kenneth Towler ## {} ## Gryffindor ## half-blood ## human ##  ## false ## true ##  ## true ## 31-12-1926 ## 1977 ## blue ## male ## grey ## false
+bff82738-5bb0-4edc-9cec-f80d1af4801f ## Vicky Frobisher ## {} ## Gryffindor ## half-blood ## human ##  ## false ## true ##  ## true ## 31-12-1926 ## 1979 ## blue ## female ## grey ## false
+88886e27-9ce2-416f-9dd6-56d4cd94a4fb ## Geoffrey Hooper ## {} ## Gryffindor ## half-blood ## human ##  ## false ## true ##  ## true ## 31-12-1926 ## 1960 ## blue ## male ## grey ## false
+57ce2ac3-2cea-4e76-9b2d-7d294f593d4a ## Cassandra Trelawney ## {} ## Gryffindor ## half-blood ## human ##  ## false ## false ##  ## false ## 31-12-1926 ## 1928 ## blue ## female ## grey ## false
+cb263aed-289b-43ad-8647-db54b8a5fc92 ## Michael Corner ## {} ## Ravenclaw ## half-blood ## human ##  ## false ## true ## Ryan Nelson ## true ## 31-12-1926 ## 1980 ## blue ## male ## grey ## false
+6fa93583-b935-4228-91e0-729e6713bdab ## Zacharias Smith ## {} ## Ravenclaw ## half-blood ## human ##  ## false ## true ## Nick Shirm ## true ## 31-12-1926 ## 1981 ## blue ## male ## blond ## false
+781f1061-5413-40c7-8a35-b078e2e969b1 ## Barnabas the Barmy ## {} ## Ravenclaw ## half-blood ## human ##  ## false ## true ##  ## false ## 23-6-19806 ## 1981 ## blue ## male ## blond ## false
+ff0c4625-be03-4815-b7cf-241e496b0593 ## Karkus ## {} ## Ravenclaw ## half-blood ## giant ##  ## false ## false ##  ## false ## 30-1-1960 ## 1959 ## blue ## male ## blond ## false
+ab86f41a-3eeb-4586-95d8-b59fbdfc6bb7 ## Golgomath ## {} ## Ravenclaw ## half-blood ## giant ##  ## false ## false ##  ## true ## 27-3-1960 ## 1960 ## blue ## male ## blond ## false
+41a7eedf-f856-48e0-b9fd-69cfccaf8835 ## Fridwulfa ## {} ## Ravenclaw ## half-blood ## giant ##  ## false ## false ##  ## false ## 27-3-1960 ## 1950 ## blue ## female ## blond ## false
+d9cec110-a1d0-4437-9a55-dced475dfe6d ## Andrew Kirke ## {} ## Gryffindor ## half-blood ## human ##  ## false ## true ##  ## true ## 27-3-1960 ## 1951 ## blue ## male ## blond ## false
+575fbbc2-ac94-4c58-92f6-e5d75846da91 ## Jack Sloper ## {} ## Gryffindor ## half-blood ## human ##  ## false ## true ##  ## true ## 27-3-1960 ## 1926 ## blue ## male ## blond ## false
+b45f28ff-29de-4149-8380-739db0e6855a ## Everard ## {Professor Everard} ## Gryffindor ## half-blood ## human ##  ## false ## false ## Sam Beazley ## false ## 27-3-1960 ## 1926 ## blue ## male ## black ## false
+4de07608-5dd6-451d-9efc-ccceefb9a2f6 ## Dilys Derwent ## {} ## Gryffindor ## half-blood ## human ##  ## false ## false ##  ## false ## 27-3-1960 ## 1926 ## blue ## female ## silver ## false
+828aa47a-faa2-4481-b80d-14a4c7dd76ff ## Hippocrates Smethwyck ## {} ## Gryffindor ## half-blood ## human ##  ## false ## false ##  ## true ## 27-3-1960 ## 1926 ## blue ## male ## silver ## false
+8d3fc7e7-c313-4b66-bfd9-f9c8746520e3 ## Augustus Pye ## {} ## Gryffindor ## half-blood ## human ##  ## false ## false ##  ## true ## 27-3-1960 ## 1954 ## blue ## male ## silver ## false
+5d9f5681-8f09-4c69-bc31-44b97b06811e ## Urquhart Rackharrow ## {} ## Gryffindor ## half-blood ## human ##  ## false ## false ##  ## false ## 27-3-1960 ## 1954 ## blue ## male ## silver ## false
+d878d27d-eef8-47de-9f01-9260d8c2290b ## Willy Widdershins ## {} ## Gryffindor ## half-blood ## human ##  ## false ## false ##  ## true ## 27-3-1960 ## 1954 ## blue ## male ## silver ## false
+b1d8360e-333f-43e8-a0bb-b26217a0d91c ## Agnes ## {} ## Gryffindor ## half-blood ## human ##  ## false ## false ##  ## true ## 27-3-1960 ## 1954 ## blue ## female ## silver ## false
+00434cd3-fcc7-44c7-8f98-7368415b4206 ## Miriam Strout ## {} ## Gryffindor ## half-blood ## human ##  ## false ## false ##  ## true ## 27-3-1960 ## 1954 ## blue ## female ## silver ## false
+bc9b5ca3-632f-4fbf-a188-23c5da3cb31c ## Madam Puddifoot ## {} ## Gryffindor ## half-blood ## human ##  ## false ## false ##  ## true ## 27-3-1960 ## 1954 ## blue ## female ## black ## false
+6e74bd51-c1c0-4db0-b821-3570a62912f5 ## Summerby ## {} ## Hufflepuff ## half-blood ## human ##  ## false ## true ##  ## true ## 27-3-1960 ## 1954 ## blue ## male ## black ## false
+4a0f4c3b-14dc-4a9e-a2f8-da23734f5d34 ## Marietta Edgecombe ## {} ## Ravenclaw ## half-blood ## human ##  ## false ## true ##  ## true ## 27-3-1960 ## 1980 ## blue ## female ## blonde ## false
+4ecfda07-0e35-4afe-86d8-d48b979e13a7 ## Madam Edgecombe ## {} ## Ravenclaw ## half-blood ## human ##  ## false ## false ##  ## true ## 27-3-1960 ## 1960 ## blue ## female ## blonde ## false
+7d87a1aa-ea29-4ddd-8831-67113735b470 ## John Dawlish ## {} ## Ravenclaw ## half-blood ## human ##  ## false ## false ## Richard Leaf ## true ## 24-2-1897 ## 1960 ## blue ## male ## grey ## false
+3a989b9d-a9a3-41fb-8246-35becfb0c7ad ## Bradley ## {} ## Ravenclaw ## half-blood ## human ##  ## false ## true ##  ## true ## 24-2-1897 ## 1881 ## blue ## male ## grey ## false
+0a13bf8e-a763-44cc-ac76-c6c53a639809 ## Roger Davies ## {} ## Ravenclaw ## half-blood ## human ##  ## false ## true ## Henry Lloyd-Hughes ## true ## 24-2-1897 ## 1881 ## blue ## male ## grey ## false
+b91bfd22-05cd-4209-970c-dc56c463e9df ## Grawp ## {} ## Ravenclaw ## half-blood ## giant ##  ## false ## false ## Tony Maudsley ## true ## 24-2-1897 ## 1980 ## green ## male ## brown ## false
+b04e0987-7e90-4492-a6b4-4974468e3a2e ## Griselda Marchbanks ## {Madam Professor Griselda Marchbanks} ## Ravenclaw ## half-blood ## human ##  ## false ## false ##  ## true ## 31-7-1980 ## 1979 ## green ## female ## brown ## false
+a3e5ea64-b103-4f47-bc26-dc08b799c668 ## Eddie Carmichael ## {} ## Ravenclaw ## half-blood ## human ##  ## false ## true ##  ## true ## 19-9-1979 ## 1980 ## green ## male ## brown ## false
+7772cb4e-5c33-405a-970d-c05cae167917 ## Daphne Greengrass ## {} ## Slytherin ## pure-blood ## human ##  ## false ## true ##  ## true ## 1-3-1980 ## 1980 ## green ## female ## brown ## false
+e8066a6a-33f3-4650-a8b1-72d4315989dd ## Tofty ## {Professor Tofty} ## Slytherin ## pure-blood ## human ##  ## false ## false ##  ## true ## 5-6-1980 ## 1925 ## brown ## male ## grey ## false
+91097f7f-1dd7-42cb-9f53-003c9c4ea0db ## Tiberius Ogden ## {} ## Slytherin ## pure-blood ## human ##  ## false ## false ##  ## true ## 4-10-1925 ## 1977 ## brown ## male ## grey ## false
+1984a8cd-eeb1-4c2c-b4a0-6574219a1b1f ## Pierre Bonaccord ## {} ## Slytherin ## pure-blood ## human ##  ## false ## false ##  ## true ## 4-10-1925 ## 1979 ## brown ## male ## grey ## false
+0f3b4e5e-89e4-42f5-ab00-958ec3895965 ## Stubby Boardman ## {Sirius Black} ## Slytherin ## pure-blood ## human ##  ## false ## false ##  ## true ## 7-4-1979 ## 1960 ## brown ## male ## grey ## false
+4adb7764-5292-4b1d-988b-45aa2f9aa7bc ## Magorian ## {} ## Slytherin ## pure-blood ## centaur ##  ## false ## false ## Michael Wildman ## true ## 9-1-1960 ## 1928 ## brown ## male ## black ## false
+2cd07351-973b-4feb-8b02-7bfa5b8b63cd ## Emmeline Vance ## {} ## Slytherin ## pure-blood ## human ##  ## false ## false ## Brigitte Millar ## false ## 6-12-1928 ## 1980 ## brown ## female ## black ## false
+c6176f66-ad40-4d0d-9a35-76e2b58c7c23 ## Herbert Chorley ## {} ## Slytherin ## muggle ## human ##  ## false ## false ##  ## true ## 30-7-1980 ## 1981 ## brown ## male ## black ## false
+2859f35c-8c47-4a8e-8649-61499a9352df ## Rufus Scrimgeour ## {} ## Slytherin ## muggle ## human ##  ## false ## false ## Bill Nighy ## false ## 13-2-1981 ## 1981 ## yellowish ## male ## tawny ## false
+fed82306-e03c-48ed-b3f5-06de7af38bc8 ## Corban Yaxley ## {} ## Slytherin ## muggle ## human ##  ## false ## false ## Peter Mullan ## true ## 11-8-1981 ## 1959 ## blue ## male ## blond ## false
+f3c96d16-e0de-4417-9052-5259e6a8e781 ## Fenrir Greyback ## {} ## Slytherin ## muggle ## werewolf ##  ## false ## false ## Dave Legeno ## true ## 3-11-1959 ## 1960 ## blue ## male ## grey ## false
+1d4c4ebb-84cb-4e32-92d2-28232448675c ## Dirk Cresswell ## {} ## Slytherin ## muggleborn ## human ##  ## false ## false ##  ## false ## 10-3-1960 ## 1950 ## blue ## male ## grey ## false
+2143bf7c-8f8e-46f1-8860-b9a9558a4f8f ## Barnabas Cuffe ## {} ## Slytherin ## muggleborn ## human ##  ## false ## false ## Roger C. Bailey ## true ## 6-2-1950 ## 1951 ## blue ## male ## grey ## false
+39357ad1-ae41-4a2c-b24f-77e7296db059 ## Ambrosius Flume ## {} ## Slytherin ## muggleborn ## human ##  ## false ## false ##  ## true ## 6-2-1950 ## 1926 ## blue ## male ## bald ## false
+3314a65a-47c8-4ae5-8c60-15bfb25a5a0f ## Gwenog Jones ## {} ## Slytherin ## muggleborn ## human ##  ## false ## false ##  ## true ## 31-12-1926 ## 1926 ## brown ## female ## brown ## false
+451602b0-74e6-4481-b7b1-443c9280c82d ## Arkie Philpott ## {} ## Slytherin ## muggleborn ## human ##  ## false ## false ##  ## true ## 31-12-1926 ## 1926 ## brown ## male ## brown ## false
+46375e59-a782-4e43-bb7f-82560a5dd146 ## Verity ## {} ## Slytherin ## muggleborn ## human ##  ## false ## false ##  ## true ## 31-12-1926 ## 1926 ## brown ## female ## blonde ## false
+6c4350a9-2356-4bba-96bd-0458c12d99b5 ## Romilda Vane ## {} ## Gryffindor ## muggleborn ## human ##  ## false ## true ## Anna Shaffer ## true ## 31-12-1926 ## 1954 ## dark ## female ## black ## false
+341e65d4-6917-48d7-80b2-1f9af607e95a ## Cormac McLaggen ## {} ## Gryffindor ## muggleborn ## human ##  ## false ## true ## Freddie Stroma ## true ## 31-12-1926 ## 1954 ## dark ## male ## black ## false
+938559ee-e8e5-4963-8437-e7da04fd1b31 ## Marcus Belby ## {} ## Ravenclaw ## muggleborn ## human ##  ## false ## true ## Robert Knox ## true ## 31-12-1926 ## 1954 ## dark ## male ## black ## false
+af3601a7-61c8-43ba-a685-a9c9d7b76de4 ## Damocles Belby ## {} ## Ravenclaw ## muggleborn ## human ##  ## false ## false ##  ## false ## 31-12-1926 ## 1954 ## dark ## male ## black ## false
+b44d83d7-8850-4fe7-b246-2335322a46f1 ## Tiberius ## {} ## Ravenclaw ## muggleborn ## human ##  ## false ## true ##  ## false ## 31-12-1926 ## 1954 ## dark ## male ## black ## false
+cbb7e8e0-c8f7-4a3f-befc-b288e1c385d4 ## Bertie Higgs ## {} ## Ravenclaw ## muggleborn ## human ##  ## false ## false ##  ## false ## 31-12-1926 ## 1954 ## dark ## male ## black ## false
+3ba97e84-9fbb-49a6-b084-0924e811e712 ## Proudfoot ## {} ## Ravenclaw ## muggleborn ## human ##  ## false ## false ##  ## true ## 31-12-1926 ## 1954 ## dark ## male ## black ## false
+44551b41-9742-40ad-b327-15227ef615c4 ## Savage ## {} ## Ravenclaw ## muggleborn ## human ##  ## false ## false ##  ## true ## 31-12-1926 ## 1980 ## dark ## male ## black ## false
+f8c5cdbf-a6e9-431b-85a4-9d6dd2fa09dd ## Humphrey Belcher ## {} ## Ravenclaw ## muggleborn ## human ##  ## false ## false ##  ## true ## 23-6-19806 ## 1960 ## dark ## male ## black ## false
+6821f44c-d662-4a57-9236-0a0b289e14ac ## Bob Ogden ## {} ## Ravenclaw ## muggleborn ## human ##  ## false ## false ##  ## false ## 30-1-1960 ## 1960 ## dark ## male ## black ## false
+ee7b0dfb-b639-46f1-9364-7644a103a9a3 ## Morfin Gaunt ## {} ## Ravenclaw ## pure-blood ## human ##  ## false ## false ##  ## false ## 27-3-1960 ## 1881 ## dark ## male ## black ## false
+0607b07a-d58a-47c7-8845-32476298e9ef ## Marvolo Gaunt ## {} ## Ravenclaw ## pure-blood ## human ##  ## false ## false ##  ## false ## 27-3-1960 ## 1881 ## brown ## male ## grey ## false
+23d32b4f-189e-4704-918c-73e733293bcd ## Merope Gaunt ## {Merope Riddle} ## Ravenclaw ## pure-blood ## human ##  ## false ## false ##  ## false ## 27-3-1960 ## 1980 ## brown ## female ## dull ## false
+b1189355-fe8a-49c5-9a37-3312ef7caecf ## Cecilia ## {} ## Ravenclaw ## muggle ## human ##  ## false ## false ##  ## false ## 27-3-1960 ## 1979 ## brown ## female ## dull ## false
+3a0fe4df-2e40-4541-8d7f-13586f0b9294 ## Tom Riddle ## {Tom Riddle Senior} ## Ravenclaw ## muggle ## human ##  ## false ## false ##  ## false ## 27-3-1960 ## 1980 ## brown ## male ## dark ## false
+0e53860c-7679-49e4-891e-fb92286f0e5b ## Demelza Robins ## {} ## Gryffindor ## muggle ## human ##  ## false ## true ## Katy Huxley-Golden ## true ## 27-3-1960 ## 1980 ## brown ## female ## dark ## false
+28e9fe6b-3ca5-41ca-8a14-b995e0fb398b ## Jimmy Peakes ## {} ## Gryffindor ## muggle ## human ##  ## false ## true ##  ## true ## 27-3-1960 ## 1925 ## brown ## male ## dark ## false
+c74b1fae-4793-4b47-bec2-ee652beabce2 ## Ritchie Coote ## {} ## Gryffindor ## muggle ## human ##  ## false ## true ## Ashley Virgil ## true ## 27-3-1960 ## 1977 ## brown ## male ## dark ## false
+9ba0ca6e-4fba-410d-9b5e-e20694dde413 ## Melinda Bobbin ## {} ## Gryffindor ## muggle ## human ##  ## false ## true ##  ## true ## 27-3-1960 ## 1979 ## brown ## female ## dark ## false
+a4cbbe42-e30c-44b6-81c2-4690900a9a91 ## Leanne ## {} ## Hufflepuff ## muggle ## human ##  ## false ## true ## Isabella Laughland ## true ## 27-3-1960 ## 1960 ## brown ## female ## dark ## false
+e0656ac4-fa6d-419b-a798-ce98ccb1e5dd ## Caractacus Burke ## {} ## Hufflepuff ## muggle ## human ##  ## false ## false ##  ## false ## 27-3-1960 ## 1928 ## brown ## male ## dark ## false
+345e02fa-cb14-4269-be4b-8c50090f42fb ## Billy Stubbs ## {} ## Hufflepuff ## muggle ## human ##  ## false ## false ##  ## true ## 27-3-1960 ## 1980 ## brown ## male ## dark ## false
+f4c61a83-8f9a-4e66-873f-2e7375d6d309 ## Amy Benson ## {} ## Hufflepuff ## muggle ## human ##  ## false ## false ##  ## true ## 27-3-1960 ## 1981 ## brown ## female ## dark ## false
+36f0ca66-b700-4ed6-9cc3-884941f3dfab ## Dennis Bishop ## {} ## Hufflepuff ## muggle ## human ##  ## false ## false ##  ## true ## 27-3-1960 ## 1981 ## brown ## male ## dark ## false
+39c01cd4-c599-4eb2-86be-86c3b5e38aee ## Mrs Cole ## {} ## Hufflepuff ## muggle ## human ##  ## false ## false ## Amelda Brown ## true ## 27-3-1960 ## 1959 ## brown ## female ## dark ## false
+a224e504-8a52-4e25-82fc-22cc121180e9 ## Eric Whalley ## {} ## Hufflepuff ## muggle ## human ##  ## false ## false ##  ## true ## 27-3-1960 ## 1960 ## brown ## male ## dark ## false
+215330e2-953c-4ed1-996c-d813f752c02d ## Vaisey ## {} ## Slytherin ## muggle ## human ##  ## false ## true ##  ## true ## 24-2-1897 ## 1950 ## brown ## male ## dark ## false
+56bc7e56-740f-4140-85f4-dc591e66a322 ## Harper ## {} ## Slytherin ## muggle ## human ##  ## false ## true ##  ## true ## 24-2-1897 ## 1951 ## brown ## male ## dark ## false
+31749f52-77fa-4a73-be32-398ba74237f9 ## Urquhart ## {} ## Slytherin ## muggle ## human ##  ## false ## true ##  ## true ## 24-2-1897 ## 1926 ## brown ## male ## dark ## false
+0d3d2a06-54dd-4f0a-80b5-a4b9e7f651b1 ## Eldred Worple ## {} ## Slytherin ## muggle ## human ##  ## false ## false ## Paul Ritter ## true ## 24-2-1897 ## 1926 ## brown ## male ## dark ## false
+c86421d3-d5a1-4ab3-a980-1ba6bca5e572 ## Sangwini ## {} ## Slytherin ## muggle ## vampire ##  ## false ## false ## Charlie Bennison ## true ## 31-7-1980 ## 1926 ## brown ## male ## dark ## false
+cc511b1e-0f11-4b83-80a7-5862cf0ef145 ## Gawain Robards ## {} ## Slytherin ## muggle ## human ##  ## false ## false ##  ## true ## 19-9-1979 ## 1926 ## brown ## male ## dark ## false
+0a0dfd61-c500-4a02-ad56-b7ab4f4a9371 ## Fergus ## {} ## Slytherin ## muggle ## human ##  ## false ## false ##  ## true ## 1-3-1980 ## 1954 ## brown ## male ## dark ## false
+dfc535e3-c367-4d6c-b026-a3ae450c7c1b ## Wilkie Twycross ## {} ## Slytherin ## muggle ## human ##  ## false ## false ##  ## true ## 5-6-1980 ## 1954 ## brown ## male ## dark ## false
+ff9a7a10-34b8-4b62-bab8-66aee1f4141b ## Cadwallader ## {} ## Hufflepuff ## muggle ## human ##  ## false ## true ##  ## true ## 4-10-1925 ## 1954 ## brown ## male ## dark ## false
+c4e73590-3ee2-4125-87fb-692dd991819b ## Galatea Merrythought ## {} ## Hufflepuff ## muggle ## human ##  ## true ## false ##  ## false ## 4-10-1925 ## 1954 ## brown ## female ## dark ## false
+92956011-c3f9-4537-80a7-798ec6065f98 ## Hepzibah Smith ## {} ## Hufflepuff ## muggle ## human ##  ## false ## false ##  ## false ## 7-4-1979 ## 1954 ## brown ## female ## dark ## false
+096825a1-4e83-4744-8186-a83139d387c1 ## Hokey ## {} ## Hufflepuff ## muggle ## house-elf ##  ## false ## false ##  ## false ## 9-1-1960 ## 1954 ## brown ## female ## dark ## false
+9cd332eb-9f6c-4c03-8c66-9dd04bb23dd4 ## Octavius Pepper ## {} ## Hufflepuff ## muggle ## human ##  ## false ## false ##  ## false ## 6-12-1928 ## 1954 ## brown ## male ## dark ## false
+58cfdca2-6068-4474-ad37-5e12a1b50671 ## Bertram Aubrey ## {} ## Hufflepuff ## muggle ## human ##  ## false ## false ##  ## false ## 30-7-1980 ## 1980 ## brown ## male ## dark ## false
+ceb72b66-cef4-4578-a48b-5e613fcbd276 ## Eileen Prince ## {} ## Hufflepuff ## pure-blood ## human ##  ## false ## false ##  ## false ## 13-2-1981 ## 1960 ## brown ## female ## dark ## false
+5d20ece0-e872-453b-8f9a-bee8b704f7c7 ## Amycus Carrow ## {} ## Slytherin ## pure-blood ## human ##  ## false ## false ## Ralph Ineson ## true ## 11-8-1981 ## 1960 ## brown ## male ## dark ## false
+88c30ceb-c607-49bc-b6c9-85365aee9e8c ## Alecto Carrow ## {} ## Slytherin ## pure-blood ## human ##  ## false ## false ## Suzie Toase ## true ## 3-11-1959 ## 1881 ## brown ## female ## dark ## false
+e12104b2-a1e1-4d62-8c83-9ada5c95eb9f ## Gibbon ## {} ## Slytherin ## pure-blood ## human ##  ## false ## false ##  ## false ## 10-3-1960 ## 1881 ## brown ## male ## dark ## false
+85fc2ddf-c149-4bae-a987-2a6924960ffa ## Tobias Snape ## {} ## Slytherin ## pure-blood ## human ##  ## false ## false ##  ## true ## 6-2-1950 ## 1980 ## brown ## male ## dark ## false
+81ff4efd-b2e3-45db-8be8-08a5bc4f195a ## Pius Thicknesse ## {} ## Slytherin ## pure-blood ## human ##  ## false ## false ## Guy Henry ## true ## 6-2-1950 ## 1979 ## brown ## male ## black ## false
+61d78dce-890b-4f02-844f-b41d66553802 ## Charity Burbage ## {} ## Slytherin ## pure-blood ## human ##  ## true ## false ## Carolyn Pickles ## false ## 31-12-1926 ## 1980 ## brown ## female ## black ## false
+4a45f7ae-518b-4e9a-bf6e-cb9134d29afc ## Percival Dumbledore ## {} ## Slytherin ## pure-blood ## human ##  ## false ## false ##  ## false ## 31-12-1926 ## 1980 ## brown ## male ## black ## false
+5a4c95db-947d-4914-a631-41e8d466328e ## Kendra Dumbledore ## {} ## Slytherin ## muggleborn ## human ##  ## false ## false ##  ## false ## 31-12-1926 ## 1925 ## dark ## female ## black ## false
+a3cf6943-d402-41d4-b98e-3c4a444b828d ## Ariana Dumbledore ## {} ## Slytherin ## half-blood ## human ##  ## false ## false ## Hebe Beardsall ## false ## 31-12-1926 ## 1977 ## dark ## female ## black ## false
+5cd214c9-7822-47e0-b41d-01939ade77e7 ## Betty Braithwaite ## {} ## Slytherin ## half-blood ## human ##  ## false ## false ##  ## true ## 31-12-1926 ## 1979 ## dark ## female ## black ## false
+acff45a0-33e5-4d19-ad9b-4e522e5edaab ## Apolline Delacour ## {} ## Slytherin ## half-veela ## half-human ##  ## false ## false ##  ## true ## 31-12-1926 ## 1960 ## dark ## female ## blonde ## false
+5293240e-c512-4cdb-89b0-cb21ef8b04fb ## Gabrielle Delacour ## {} ## Slytherin ## quarter-veela ## human ##  ## false ## false ## Angelica Mandy ## true ## 31-12-1926 ## 1928 ## dark ## female ## blonde ## false
+bd9f49ef-452e-4c22-84c8-ab76da9f0003 ## Monsieur Delacour ## {} ## Slytherin ## quarter-veela ## human ##  ## false ## false ##  ## true ## 31-12-1926 ## 1980 ## dark ## male ## black ## false
+4848cf4f-27ac-42d3-8e49-f63515c92c37 ## Dragomir Gorgovitch ## {} ## Slytherin ## quarter-veela ## human ##  ## false ## false ##  ## true ## 31-12-1926 ## 1981 ## dark ## male ## black ## false
+d1e8ddf1-cfc7-404a-bffe-f4ac6c656ead ## Xenophilius Lovegood ## {} ## Ravenclaw ## quarter-veela ## human ##  ## false ## false ## Rhys Ifans ## true ## 31-12-1926 ## 1981 ## dark ## male ## white ## false
+20354d7a-e4fe-47af-8ff6-187bca92f3f9 ## Pandora Lovegood ## {} ## Ravenclaw ## quarter-veela ## human ##  ## false ## false ##  ## false ## 31-12-1926 ## 1959 ## dark ## female ## white ## false
+f7457448-8382-4e5e-b72a-0044fc6f8958 ## Muriel ## {Aunt Muriel} ## Ravenclaw ## quarter-veela ## human ##  ## false ## false ## Matyelok Gibbs ## true ## 23-6-19806 ## 1960 ## dark ## female ## grey ## false
+cf903d42-5d51-44b0-b362-adc57e626885 ## Bilius ## {Uncle Bilius} ## Ravenclaw ## quarter-veela ## human ##  ## false ## false ##  ## false ## 30-1-1960 ## 1950 ## dark ## male ## grey ## false
+753ffe5f-19a8-41c9-b264-289766c8a4be ## Thorfinn Rowle ## {} ## Ravenclaw ## quarter-veela ## human ##  ## false ## false ## Rod Hunt ## true ## 27-3-1960 ## 1951 ## dark ## male ## blond ## false
+d4eee96d-c53f-4e6f-8a95-c97d42343833 ## Reg Cattermole ## {Reginald Cattermole} ## Ravenclaw ## quarter-veela ## human ##  ## false ## false ## Steffan Rhodri ## true ## 27-3-1960 ## 1926 ## dark ## male ## blond ## false
+22ed3c3e-c30c-4e79-a93d-fdfe470c8090 ## Albert Runcorn ## {} ## Ravenclaw ## quarter-veela ## human ##  ## false ## false ## David O'Hara ## true ## 27-3-1960 ## 1926 ## dark ## male ## black ## false
+daea26d1-895d-4c29-8225-4d1ec2607cf0 ## Arkie Alderton ## {} ## Ravenclaw ## quarter-veela ## human ##  ## false ## false ##  ## true ## 27-3-1960 ## 1926 ## dark ## male ## black ## false
+e96dc731-5217-4c83-b173-248e1c70b5e7 ## Mary Cattermole ## {Mary Elizabeth Cattermole} ## Ravenclaw ## muggleborn ## human ##  ## false ## false ## Kate Fleetwood ## true ## 27-3-1960 ## 1926 ## dark ## female ## black ## false
+5f70c4d0-981e-4dab-993d-5af0aa6bbcd5 ## Maisie Cattermole ## {} ## Ravenclaw ## muggleborn ## human ##  ## false ## false ##  ## true ## 27-3-1960 ## 1954 ## dark ## female ## black ## false
+0aabac0a-9212-4cad-9c42-d54886feb351 ## Ellie Cattermole ## {} ## Ravenclaw ## muggleborn ## human ##  ## false ## false ##  ## true ## 27-3-1960 ## 1954 ## dark ## female ## black ## false
+064733fb-bd1c-4b15-8fdd-2b3100b34f0b ## Alfred Cattermole ## {} ## Ravenclaw ## muggleborn ## human ##  ## false ## false ##  ## true ## 27-3-1960 ## 1954 ## dark ## male ## black ## false
+0f5bc3a8-566d-443e-a49a-8e0616fb8dec ## Gornuk ## {} ## Ravenclaw ## muggleborn ## goblin ##  ## false ## false ##  ## false ## 27-3-1960 ## 1954 ## dark ## male ## black ## false
+ede100e7-c8d8-42bb-8d39-ed41c92979c8 ## Bowman Wright ## {} ## Ravenclaw ## muggleborn ## human ##  ## false ## false ##  ## false ## 27-3-1960 ## 1954 ## dark ## male ## black ## false
+151f886b-2fcf-4010-9e6f-8621e616a2c4 ## Ivor Dillonsby ## {} ## Ravenclaw ## muggleborn ## human ##  ## false ## false ##  ## true ## 27-3-1960 ## 1954 ## dark ## male ## black ## false
+38aa76a6-d1d9-4ef5-9e67-573fe4fa916e ## Enid Smeek ## {} ## Ravenclaw ## muggleborn ## human ##  ## false ## false ##  ## true ## 27-3-1960 ## 1954 ## dark ## female ## black ## false
+8e0715f3-1b16-44b7-862d-bcdea99e7ba6 ## Egbert the Egregious ## {} ## Ravenclaw ## muggleborn ## human ##  ## false ## false ##  ## false ## 27-3-1960 ## 1980 ## dark ## male ## black ## false
+d9175f7a-9e92-45fc-8207-b31b5a69c8e6 ## Godelot ## {} ## Ravenclaw ## muggleborn ## human ##  ## false ## false ##  ## false ## 27-3-1960 ## 1960 ## dark ## male ## black ## false
+6af6d07a-692a-42d6-80ab-dec3cef84269 ## Hereward ## {} ## Ravenclaw ## muggleborn ## human ##  ## false ## false ##  ## false ## 27-3-1960 ## 1960 ## dark ## male ## black ## false
+63b292fd-d297-4bb3-95d2-51a88a46891b ## Loxias ## {} ## Ravenclaw ## muggleborn ## human ##  ## false ## false ##  ## false ## 27-3-1960 ## 1881 ## dark ## male ## black ## false
+c86e0027-dd93-4ddd-bec3-a1b832fd27f1 ## Barnabas Deverill ## {} ## Ravenclaw ## muggleborn ## human ##  ## false ## false ##  ## false ## 24-2-1897 ## 1881 ## dark ## male ## black ## false
+3535214c-9814-42c1-95d1-2e1db92d2a47 ## Arcus ## {} ## Ravenclaw ## muggleborn ## human ##  ## false ## false ##  ## false ## 24-2-1897 ## 1980 ## dark ## male ## black ## false
+b336a6be-7954-420e-8e05-95945ad1d727 ## Livius ## {} ## Ravenclaw ## muggleborn ## human ##  ## false ## false ##  ## false ## 24-2-1897 ## 1979 ## dark ## male ## black ## false
+14505ff9-e2d8-4a27-bc85-c8d8dfb2ca33 ## Antioch Peverell ## {First Brother} ## Ravenclaw ## pure-blood ## human ##  ## false ## false ##  ## false ## 31-7-1980 ## 1980 ## dark ## male ## black ## false
+9a8b9fcd-6610-4e24-a5c6-bec1aa50fadd ## Cadmus Peverell ## {Second Brother} ## Ravenclaw ## pure-blood ## human ##  ## false ## false ##  ## false ## 19-9-1979 ## 1980 ## dark ## male ## black ## false
+461bddf4-cc9d-4737-b1a2-703c06b771a6 ## Ignotus Peverell ## {Third Brother} ## Ravenclaw ## pure-blood ## human ##  ## false ## false ##  ## false ## 1-3-1980 ## 1925 ## dark ## male ## black ## false
+a8dc2688-e8a2-4d50-ac06-5cd324becb5b ## Selwyn ## {} ## Ravenclaw ## pure-blood ## human ##  ## false ## false ##  ## true ## 5-6-1980 ## 1977 ## dark ## male ## black ## false
+1d6d87f8-6561-4e27-b77d-247067d3a7cc ## Scabior ## {} ## Slytherin ## pure-blood ## human ##  ## false ## false ## Nick Moran ## true ## 4-10-1925 ## 1979 ## dark ## male ## black ## false
+b3c7de0a-fc23-4dd5-94d2-27e906c45fb7 ## Ragnuk the First ## {King Ragnuk the First} ## Slytherin ## pure-blood ## goblin ##  ## false ## false ##  ## false ## 4-10-1925 ## 1960 ## dark ## male ## black ## false
+7d7968e6-ef05-4192-87d5-99ebd1e54d0b ## Ted Lupin ## {Edward Remus Teddy Lupin} ## Hufflepuff ## half-blood ## human ##  ## false ## false ## Luke Newberry ## true ## 7-4-1979 ## 1928 ## dark ## male ## black ## false
+cae8556b-eea7-4e5a-b6a3-29d685421bfa ## Marius ## {} ## Hufflepuff ## half-blood ## human ##  ## false ## false ##  ## true ## 9-1-1960 ## 1980 ## dark ## male ## black ## false
+a2c4fbb5-af04-45a4-9a1e-b39f9bb479c8 ## Bogrod ## {} ## Hufflepuff ## half-blood ## goblin ##  ## false ## false ## Jon Key ## true ## 6-12-1928 ## 1981 ## black ## male ## white ## false
+2d9fd582-0be6-4f11-98f5-3358ad14b973 ## The Grey Lady ## {Helena Ravenclaw} ## Hufflepuff ## half-blood ## ghost ##  ## false ## false ## Nina Young ## false ## 30-7-1980 ## 1981 ## black ## female ## white ## false
+2550709a-d94b-4794-bb5f-a8d6ba546011 ## Dexter Fortescue ## {} ## Hufflepuff ## half-blood ## human ##  ## false ## false ##  ## false ## 13-2-1981 ## 1959 ## black ## male ## white ## false
+6025d951-2638-4827-baff-aa5db5017a4a ## Lily Potter ## {Lily Luna Potter} ## Gryffindor ## half-blood ## human ##  ## false ## false ## Daphne de Beistegui ## true ## 11-8-1981 ## 1960 ## black ## female ## red ## false
+9c8ce8c7-ae0a-4646-920f-09c071862f10 ## James Potter ## {James Sirius Potter} ## Gryffindor ## half-blood ## human ##  ## false ## true ## Will Dunn ## true ## 3-11-1959 ## 1950 ## black ## male ## red ## false
+dcdc063e-cf3e-48fc-b777-65922e899b38 ## Albus Severus Potter ## {Al} ## Slytherin ## half-blood ## human ##  ## false ## true ## Arthur Bowen ## true ## 10-3-1960 ## 1951 ## green ## male ## black ## false
+e4653b01-76a5-4769-a6a2-1f2efaf89cbb ## Rose Weasley ## {} ## Gryffindor ## half-blood ## human ##  ## false ## true ## Helena Barlow ## true ## 6-2-1950 ## 1926 ## green ## female ## red ## false
+2b203c7e-7b3d-4f27-8b3c-11473904da73 ## Hugo Weasley ## {} ## Gryffindor ## half-blood ## human ##  ## false ## true ## Ryan Turner ## true ## 6-2-1950 ## 1926 ## green ## male ## brown ## false
+7f2f6207-8998-4f98-92c2-8d02898a82eb ## Scorpius Malfoy ## {Scorpius Hyperion Malfoy} ## Slytherin ## pure-blood ## human ##  ## false ## true ## Bertie Gilbert ## true ## 31-12-1926 ## 1926 ## grey ## male ## blond ## false
+57fe29d4-312a-4711-bd9a-c320253d9176 ## Victoire Weasley ## {} ## Slytherin ## pure-blood ## human ##  ## false ## true ##  ## true ## 31-12-1926 ## 1926 ## grey ## female ## blonde ## false
+ ##  ## {(null)} ##  ##  ##  ##  ## false ## false ##  ## false ## 0-0-0 ## 0 ##  ##  ##  ## false
