@@ -5,7 +5,7 @@
 
 import java.io.FileReader;
 import java.io.BufferedReader;
-import java.util.ArrayList;
+import java.util.Scanner;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
@@ -186,15 +186,15 @@ class Personagem{
 	 */
 	public String toString() {
 		String resp = "["+getId()+" ## "+getName()+" ## "+getAlternate_names()+ " ## "+getHouse()+" ## "+getAncestry()+" ## "+getSpecies()+
-        " ## "+getPatronus()+" ## "+booleanToString(getHogwartsStaff())+" ## "+booleanToString(getHogwartsStudent())+" ## "+getActorName()+" ## "+
-        booleanToString(getAlive())+" ## "+getDateOfBirth()+" ## "+getYearOfBirth()+" ## "+getEyeOfColour()+" ## "+getGender()+" ## "+
-        getHairColour()+" ## "+booleanToString(getWizard())+"]"; 
+        " ## "+getPatronus()+" ## "+getHogwartsStaff()+" ## "+getHogwartsStudent()+" ## "+getActorName()+" ## "+
+        getAlive()+" ## "+getDateOfBirth()+" ## "+getYearOfBirth()+" ## "+getEyeOfColour()+" ## "+getGender()+" ## "+
+        getHairColour()+" ## "+getWizard()+"]"; 
 		return resp;
 	}
     public static String toString(Personagem x) {
 		String resp = "["+x.getId()+" ## "+x.getName()+" ## "+x.getAlternate_names()+ " ## "+x.getHouse()+" ## "+x.getAncestry()+" ## "+x.getSpecies()+
-        " ## "+x.getPatronus()+" ## "+booleanToString(x.getHogwartsStaff())+" ## "+booleanToString(x.getHogwartsStudent())+" ## "+x.getActorName()+" ## "+booleanToString(x.getAlive())+" ## "+formatter(x.getDateOfBirth().toString())+
-        " ## "+x.getYearOfBirth()+" ## "+x.getEyeOfColour()+" ## "+x.getGender()+" ## "+x.getHairColour()+" ## "+booleanToString(x.getWizard())+"]";
+        " ## "+x.getPatronus()+" ## "+x.getHogwartsStaff()+" ## "+x.getHogwartsStudent()+" ## "+x.getActorName()+" ## "+x.getAlive()+" ## "+formatter(x.getDateOfBirth().toString())+
+        " ## "+x.getYearOfBirth()+" ## "+x.getEyeOfColour()+" ## "+x.getGender()+" ## "+x.getHairColour()+" ## "+x.getWizard()+"]";
 		return resp;
 	}
 
@@ -338,29 +338,11 @@ class Personagem{
 		file.close();
 	}
 
-     /*
-     * function: ler
-     * @params: Personagem[]
-     * @action: Faz a leitura de todos os Personagens e põe no Array de Personagem
+    /*
+     * function: procuraId
+     * @params: Personagem[] && String
+     * action: Procura o personagem no Array de acordo com seu id
      */
-    public static Personagem ler() throws Exception {
-		FileReader file = new FileReader("/home/yago/Documents/Cc-PucMG/2periodo/TrabalhosPraticos/2024-1/TP2-Aeds2/characters.csv");
-		BufferedReader bf = new BufferedReader(file);
-		String line, resp="";
-        Personagem per = new Personagem();
-        int i=0;
-		while ((line = bf.readLine()) != null && i<405){
-            if(i==28){
-			    per.setDados(line);
-                i = 405;
-            }
-            i++;
-        }
-		bf.close();
-		file.close();
-        return per;
-	}
-
     public static void procuraId(Personagem personagens[], String id){
         for(int i=0;i<personagens.length;i++){
             if((personagens[i].getId()).equals(id)){
@@ -371,12 +353,13 @@ class Personagem{
     }
 
     public static void main(String[] args) throws Exception{
+        Scanner sc = new Scanner(System.in);
         Personagem personagens[] = new Personagem[404];
         ler(personagens, 1);  // Segundo parametro: 0 para teste / 1 para enviar ao verde com /tmp/characters.csv
-        String id = MyIO.readLine();
+        String id = sc.nextLine();
         while(!id.equals("FIM")){
             procuraId(personagens, id);
-            id = MyIO.readLine();
+            id = sc.nextLine();
         }
     }
 }
