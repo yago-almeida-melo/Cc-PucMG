@@ -10,10 +10,16 @@
 
 #define MAX_TAM 405
 
+/*
+*   Strcut da data de nascimento
+*/
 typedef struct {
     int dia, mes, ano;
 } LocalDate;
 
+/*
+*   Struct do Personagem
+*/
 typedef struct {
     char id[50], name[50], alternate_names[200], house[50], ancestry[50], species[50], patronus[50], actorName[50], alternate_actors[200],
     eyeColour[50], gender[50], hairColour[50];
@@ -22,6 +28,12 @@ typedef struct {
     LocalDate dateOfBirth;
 } Personagem;
 
+
+/*
+    function: initPersonagem
+    @params: Personagem*
+    action: inicializa o personagem
+*/
 void initPersonagem(Personagem *p) {
     strcpy(p->id, "");
     strcpy(p->name, "");
@@ -45,13 +57,22 @@ void initPersonagem(Personagem *p) {
     p->wizard = false;
 }
 
+/*
+    function: convertData
+    @params: char[]
+    action: retorna um LocalDate de acordo com o parametro char[]
+*/
 LocalDate convertData(char data[]) {
     LocalDate localDate;
-    sscanf(data, "%d-%d-%d", &localDate.dia, &localDate.mes, &localDate.ano);
+    sscanf(data, "%d-%02d-%04d", &localDate.dia, &localDate.mes, &localDate.ano);
     return localDate;
 }
 
-
+/*
+    function: setPersonagem
+    @params: Personagem* && char*
+    action: seta um personagem de acordo com a linha char*
+*/
 void setPersonagem(Personagem *p, char *line){
     char input[300], date[11], year[5]; strcpy(input,line);
     int x=0, y=0;
@@ -63,19 +84,24 @@ void setPersonagem(Personagem *p, char *line){
     while(input[x]!=';'){ p->ancestry[y] = input[x]; x++; y++;}  p->ancestry[y]='\0'; x++; y=0;
     while(input[x]!=';'){ p->species[y] = input[x]; x++; y++;}   p->species[y]='\0'; x++; y=0;
     while(input[x]!=';'){ p->patronus[y] = input[x]; x++; y++;}  p->patronus[y]='\0'; x++; y=0;
-    while(input[x]!=';'){ if(input[x]=='F'){ p->hogwartsStaff=false; x+=5;} else{ p->hogwartsStaff = true; x+=10;}} x++; y=0;
-    while(input[x]!=';'){ if(input[x]=='F'){ p->hogwartsStudent = false; x+=5;} else{p->hogwartsStudent=true; x+=10;}} x++; y=0;
+    while(input[x]!=';'){ if(input[x]=='F'){ p->hogwartsStaff=false; x+=5;} else{ p->hogwartsStaff = false; x+=10;}} x++; y=0;
+    while(input[x]!=';'){ if(input[x]=='F'){ p->hogwartsStudent = false; x+=5;} else{p->hogwartsStudent=false; x+=10;}} x++; y=0;
     while(input[x]!=';'){ p->actorName[y] = input[x]; x++; y++;}  p->actorName[y]='\0'; x++; y=0;
-    while(input[x]!=';'){ if(input[x]=='V'){ p->alive=true; x+=10;} else{ p->alive=false; x+=5;}} x++; y=0;
+    while(input[x]!=';'){ if(input[x]=='V'){ p->alive=false; x+=10;} else{ p->alive=false; x+=5;}} x++; y=0;
     while(input[x]!=';'){ p->alternate_actors[y] = input[x]; x++; y++;}  p->alternate_actors[y]='\0'; x++; y=0;
     while(input[x]!=';'){ date[y] = input[x]; x++; y++;} LocalDate data=convertData(date); p->dateOfBirth = data; x++; y=0;
     while(input[x]!=';'){ year[y] = input[x];x++; y++;} p->yearOfBirth = atoi(year) ;x++; y=0;
     while(input[x]!=';'){ p->eyeColour[y] = input[x]; x++; y++;}  p->eyeColour[y]='\0'; x++; y=0;
     while(input[x]!=';'){ p->gender[y] = input[x]; x++; y++;}  p->gender[y]='\0'; x++; y=0;
     while(input[x]!=';'){ p->hairColour[y] = input[x]; x++; y++;}  p->hairColour[y]='\0'; x++; y=0;
-    while(input[x]!=';'){ if(input[x]=='V'){ p->wizard=true; x+=10;} else{ p->wizard=false; x+=5;}}
+    while(input[x]!=';'){ if(input[x]=='V'){ p->wizard=false; x+=10;} else{ p->wizard=false; x+=5;}}
 }
 
+/*
+    function: arrayOfPersonagens
+    @params: Personagem[] && int
+    action: Guarda todos os Personagens do csv em um array
+*/
 void arrayOfPersonagens(Personagem p[], int key) {
     char path[100];
     if (key == 1) {
@@ -103,26 +129,25 @@ void arrayOfPersonagens(Personagem p[], int key) {
     fclose(file);
 }
 
-char* dayAndMonthFix(int x){
-    char *resp = (char*)malloc(3 * sizeof(char)); 
-    if(x < 10){
-        sprintf(resp, "0%d", x); 
-    } else {
-        sprintf(resp, "%d", x);
-    }
-    return resp;
-}
-
+/*
+    function: toString
+    @params: Personagem*
+    action: Imprime na tela o Personagem do parâmetro
+*/
 void toString(Personagem *p) {
-    printf("%s ## %s ## {%s} ## %s ## %s ## %s ## %s ## %s ## %s ## %s ## %s ## %s-%s-%d ## %d ## %s ## %s ## %s ## %s\n", p->id, p->name, p->alternate_names, p->house, 
+    printf("[%s ## %s ## {%s} ## %s ## %s ## %s ## %s ## %s ## %s ## %s ## %s ## %02d-%02d-%d ## %d ## %s ## %s ## %s ## %s]\n", p->id, p->name, p->alternate_names, p->house, 
     p->ancestry, p->species, p->patronus, p->hogwartsStaff ? "true" : "false", p->hogwartsStudent ? "false" : "false", p->actorName, p->alive ? "false" : "false", 
-    dayAndMonthFix(p->dateOfBirth.dia), dayAndMonthFix(p->dateOfBirth.mes),p->dateOfBirth.ano, p->yearOfBirth, p->eyeColour, p->gender, p->hairColour, p->wizard ? "false" : "false");
+    p->dateOfBirth.dia, p->dateOfBirth.mes, p->dateOfBirth.ano, p->yearOfBirth, p->eyeColour, p->gender, p->hairColour, p->wizard ? "false" : "false");
 }
 
+/*
+    function: findId
+    @params: Personagem[]
+    action: pede o input que será o id, procura no array de Personagem e imprime este personagem na tela
+*/
 void findId(Personagem p[]){
     char strid[50];
-    fgets(strid ,sizeof(strid) , stdin);
-    strid[strcspn(strid, "\n")] = '\0';
+    scanf("%s", strid);
     while(strcmp(strid, "FIM") != 0){
         for(int i=0;i<MAX_TAM;i++){
             if(strcmp(p[i].id, strid)==0){
@@ -130,11 +155,11 @@ void findId(Personagem p[]){
                 i = MAX_TAM;
             }
         }
-        fgets(strid ,sizeof(strid) , stdin);
-        strid[strcspn(strid, "\n")] = '\0';
+        scanf("%s", strid);
     }
 }
 
+//MAIN
 int main() {
     Personagem p[MAX_TAM];
     arrayOfPersonagens(p, 1);
