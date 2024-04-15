@@ -114,15 +114,15 @@ class Personagem{
     public String getSpecies(){ return species;}
     public void setPatronus(String patronus){ this.patronus = patronus;}
     public String getPatronus(){ return patronus;}
-    public void setHogwartsStaff(String hogwartsStaff){ if(hogwartsStaff.equals("VERDADEIRO")){setHogwartsStaff(false);}else{setHogwartsStaff(false);} }
+    public void setHogwartsStaff(String hogwartsStaff){ if(hogwartsStaff.equals("VERDADEIRO")){setHogwartsStaff(true);}else{setHogwartsStaff(false);} }
     public void setHogwartsStaff(boolean hogwartsStaff){ this.hogwartsStaff = hogwartsStaff;}
     public boolean getHogwartsStaff(){ return hogwartsStaff;}
-    public void setHogwartsStudent(String hogwartsStudent){if(hogwartsStudent.equals("VERDADEIRO")){setHogwartsStudent(false);}else{setHogwartsStudent(false);} }
+    public void setHogwartsStudent(String hogwartsStudent){if(hogwartsStudent.equals("VERDADEIRO")){setHogwartsStudent(true);}else{setHogwartsStudent(false);} }
     public void setHogwartsStudent(boolean hogwartsStudent){ this.hogwartsStudent = hogwartsStudent;}
     public boolean getHogwartsStudent(){ return hogwartsStudent;}
     public void setActorName(String actorName){ this.actorName = actorName;}
     public String getActorName(){ return actorName;}
-    public void setAlive(String alive){if(alive.equals("VERDADEIRO")){setAlive(false);}else{setAlive(false);} }
+    public void setAlive(String alive){if(alive.equals("VERDADEIRO")){setAlive(true);}else{setAlive(false);} }
     public void setAlive(boolean alive){ this.alive = alive;}
     public boolean getAlive(){ return alive;}
     public void setAlternate_Actors(String[] alternate_actors){ this.alternate_actors = new Lista(alternate_actors); }
@@ -138,7 +138,7 @@ class Personagem{
     public String getGender(){ return gender;}
     public void setHairColour(String hairColour){ this.hairColour = hairColour;}
     public String getHairColour(){ return hairColour;}
-    public void setWizard(String wizard){if(wizard.equals("VERDADEIRO")){setWizard(false);}else{setWizard(false);} }
+    public void setWizard(String wizard){if(wizard.equals("VERDADEIRO")){setWizard(true);}else{setWizard(false);} }
     public void setWizard(boolean wizard){ this.wizard = wizard;}
     public boolean getWizard(){ return wizard;}
 
@@ -197,15 +197,6 @@ class Personagem{
         " ## "+x.getYearOfBirth()+" ## "+x.getEyeOfColour()+" ## "+x.getGender()+" ## "+x.getHairColour()+" ## "+x.getWizard()+"]";
 		return resp;
 	}
-
-    /*
-     * function: booleanToString
-     * @params: boolean 
-     * @action: Retorna "VERDADEIRO" se o booleano for true e "FALSO" se for false
-     */
-    public static String booleanToString(boolean x){
-        return x ? "VERDADEIRO" : "FALSO";
-    }
 
     /* 
      * function: formatter
