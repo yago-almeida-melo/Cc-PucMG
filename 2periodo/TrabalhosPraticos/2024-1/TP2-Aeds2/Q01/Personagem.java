@@ -47,7 +47,7 @@ class Personagem{
     private String id, name, house, ancestry, species, patronus, actorName, eyeColour, gender, hairColour;
     private int yearOfBirth;
     private boolean hogwartsStaff, hogwartsStudent, alive, wizard;
-    public LocalDate dateOfBirth;
+    private LocalDate dateOfBirth;
     Lista alternate_names, alternate_actors;
 
     /*
