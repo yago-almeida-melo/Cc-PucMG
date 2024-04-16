@@ -74,27 +74,28 @@ LocalDate convertData(char data[]) {
     action: seta um personagem de acordo com a linha char*
 */
 void setPersonagem(Personagem *p, char *line){
-    char input[300], date[11], year[5]; strcpy(input,line);
+    char str[300], date[11], year[5];
+    strcpy(str,line);
     int x=0, y=0;
 
-    while(input[x]!=';'){ p->id[y] = input[x]; x++; y++;}    p->id[y]='\0'; x++; y=0;
-    while(input[x]!=';'){ p->name[y] = input[x]; x++; y++;}  p->name[y]='\0'; x++; y=0;
-    while(input[x]!=';'){ if(input[x]!='[' && input[x]!=']' && input[x]!=39){ p->alternate_names[y] = input[x]; y++;} x++;}  p->alternate_names[y]='\0'; x++; y=0;   
-    while(input[x]!=';'){ p->house[y] = input[x]; x++; y++;} p->house[y]='\0'; x++; y=0;
-    while(input[x]!=';'){ p->ancestry[y] = input[x]; x++; y++;}  p->ancestry[y]='\0'; x++; y=0;
-    while(input[x]!=';'){ p->species[y] = input[x]; x++; y++;}   p->species[y]='\0'; x++; y=0;
-    while(input[x]!=';'){ p->patronus[y] = input[x]; x++; y++;}  p->patronus[y]='\0'; x++; y=0;
-    while(input[x]!=';'){ if(input[x]=='F'){ p->hogwartsStaff=false; x+=5;} else{ p->hogwartsStaff = false; x+=10;}} x++; y=0;
-    while(input[x]!=';'){ if(input[x]=='F'){ p->hogwartsStudent = false; x+=5;} else{p->hogwartsStudent=false; x+=10;}} x++; y=0;
-    while(input[x]!=';'){ p->actorName[y] = input[x]; x++; y++;}  p->actorName[y]='\0'; x++; y=0;
-    while(input[x]!=';'){ if(input[x]=='V'){ p->alive=false; x+=10;} else{ p->alive=false; x+=5;}} x++; y=0;
-    while(input[x]!=';'){ p->alternate_actors[y] = input[x]; x++; y++;}  p->alternate_actors[y]='\0'; x++; y=0;
-    while(input[x]!=';'){ date[y] = input[x]; x++; y++;} LocalDate data=convertData(date); p->dateOfBirth = data; x++; y=0;
-    while(input[x]!=';'){ year[y] = input[x];x++; y++;} p->yearOfBirth = atoi(year) ;x++; y=0;
-    while(input[x]!=';'){ p->eyeColour[y] = input[x]; x++; y++;}  p->eyeColour[y]='\0'; x++; y=0;
-    while(input[x]!=';'){ p->gender[y] = input[x]; x++; y++;}  p->gender[y]='\0'; x++; y=0;
-    while(input[x]!=';'){ p->hairColour[y] = input[x]; x++; y++;}  p->hairColour[y]='\0'; x++; y=0;
-    while(input[x]!=';'){ if(input[x]=='V'){ p->wizard=false; x+=10;} else{ p->wizard=false; x+=5;}}
+    while(str[x]!=';'){ p->id[y] = str[x]; x++; y++;}    p->id[y]='\0'; x++; y=0;
+    while(str[x]!=';'){ p->name[y] = str[x]; x++; y++;}  p->name[y]='\0'; x++; y=0;
+    while(str[x]!=';'){ if(str[x]!='[' && str[x]!=']' && str[x]!=39){ p->alternate_names[y] = str[x]; y++;} x++;}  p->alternate_names[y]='\0'; x++; y=0;   
+    while(str[x]!=';'){ p->house[y] = str[x]; x++; y++;} p->house[y]='\0'; x++; y=0;
+    while(str[x]!=';'){ p->ancestry[y] = str[x]; x++; y++;}  p->ancestry[y]='\0'; x++; y=0;
+    while(str[x]!=';'){ p->species[y] = str[x]; x++; y++;}   p->species[y]='\0'; x++; y=0;
+    while(str[x]!=';'){ p->patronus[y] = str[x]; x++; y++;}  p->patronus[y]='\0'; x++; y=0;
+    while(str[x]!=';'){ if(str[x]=='V'){ p->hogwartsStaff = true; x+=10;} else{ p->hogwartsStaff = false; x+=5;}} x++;y=0;
+    while(str[x]!=';'){ if(str[x]=='V'){ p->hogwartsStudent = true; x+=10;} else{p->hogwartsStudent = false; x+=5;}} x++;y=0;
+    while(str[x]!=';'){ p->actorName[y] = str[x]; x++; y++;}  p->actorName[y]='\0'; x++; y=0;
+    while(str[x]!=';'){ if(str[x]=='V'){ p->alive=true; x+=10;} else{ p->alive=false; x+=5;}} x++; y=0;
+    while(str[x]!=';'){ p->alternate_actors[y] = str[x]; x++; y++;}  p->alternate_actors[y]='\0'; x++; y=0;
+    while(str[x]!=';'){ date[y] = str[x]; x++; y++;} LocalDate data=convertData(date); p->dateOfBirth = data; x++; y=0;
+    while(str[x]!=';'){ year[y] = str[x];x++; y++;} p->yearOfBirth = atoi(year) ;x++; y=0;
+    while(str[x]!=';'){ p->eyeColour[y] = str[x]; x++; y++;}  p->eyeColour[y]='\0'; x++; y=0;
+    while(str[x]!=';'){ p->gender[y] = str[x]; x++; y++;}  p->gender[y]='\0'; x++; y=0;
+    while(str[x]!=';'){ p->hairColour[y] = str[x]; x++; y++;}  p->hairColour[y]='\0'; x++; y=0;
+    if(str[x]=='V'){ p->wizard=true; x+=10;} else{ p->wizard=false; x+=5;}
 }
 
 /*
@@ -136,8 +137,8 @@ void arrayOfPersonagens(Personagem p[], int key) {
 */
 void toString(Personagem *p) {
     printf("[%s ## %s ## {%s} ## %s ## %s ## %s ## %s ## %s ## %s ## %s ## %s ## %02d-%02d-%d ## %d ## %s ## %s ## %s ## %s]\n", p->id, p->name, p->alternate_names, p->house, 
-    p->ancestry, p->species, p->patronus, p->hogwartsStaff ? "true" : "false", p->hogwartsStudent ? "false" : "false", p->actorName, p->alive ? "false" : "false", 
-    p->dateOfBirth.dia, p->dateOfBirth.mes, p->dateOfBirth.ano, p->yearOfBirth, p->eyeColour, p->gender, p->hairColour, p->wizard ? "false" : "false");
+    p->ancestry, p->species, p->patronus, p->hogwartsStaff ? "true" : "false", p->hogwartsStudent ? "true" : "false", p->actorName, p->alive ? "true" : "false", 
+    p->dateOfBirth.dia, p->dateOfBirth.mes, p->dateOfBirth.ano, p->yearOfBirth, p->eyeColour, p->gender, p->hairColour, p->wizard ? "true" : "false");
 }
 
 /*
@@ -162,7 +163,7 @@ void findId(Personagem p[]){
 //MAIN
 int main() {
     Personagem p[MAX_TAM];
-    arrayOfPersonagens(p, 1);
+    arrayOfPersonagens(p, 0);
     findId(p);
     return 0;
 }
