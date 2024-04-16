@@ -163,7 +163,7 @@ void findId(Personagem p[]){
 //MAIN
 int main() {
     Personagem p[MAX_TAM];
-    arrayOfPersonagens(p, 0); // 2* parâmetro: 0 == teste / 1 == verde
+    arrayOfPersonagens(p, 1); // 2* parâmetro: 0 == teste / 1 == verde
     findId(p);
     return 0;
 }
