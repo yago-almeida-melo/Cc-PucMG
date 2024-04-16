@@ -5,6 +5,10 @@
 
 import java.io.FileReader;
 import java.io.BufferedReader;
+import java.io.FileWriter;
+import java.time.Duration;
+import java.time.Instant;
+import java.io.IOException;
 import java.util.Scanner;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -37,6 +41,37 @@ class Lista{
         } 
         resp+='}';
         return resp;
+    }
+}
+
+/*
+ * Class : Log
+ * Cria Arquivo contendo Matrícula, tempo de execução e número de comparações
+ */
+class Log{
+    public int comparacoes;
+    public float time;
+    public String fileName;
+    
+
+    Log(String fileName){
+        this.comparacoes = 0;
+
+        this.fileName = fileName;
+    }
+
+    public void incrementaComp(){
+        comparacoes++;
+    }
+
+    public void registroLog(){
+        try {
+            FileWriter writer = new FileWriter(this.fileName);
+            writer.write("Matrícula: 806454\tTempo de execução: " + this.time + " segundos\tNúmero de comparações: " + this.comparacoes);
+            writer.close();
+        } catch (IOException e) {
+            System.out.println("Erro ao escrever o log no arquivo: " + e.getMessage());
+        }
     }
 }
 
@@ -361,26 +396,33 @@ class Personagem{
      * @params: Personagem[]
      * action: Procura o personagem no Array de acordo com o nome dado no input
      */
-    public static void findByName(Personagem personagens[]){
+    public static void findByName(Personagem personagens[], Log log){
         String name = sc.nextLine();
-        while(!name.equals("FIM")){
+        Instant start = Instant.now();
+        while (!name.equals("FIM")) {
             boolean achou = false;
-            for(int i=0;i<personagens.length && personagens[i]!=null && !achou;i++){
-                if((personagens[i].getName()).equals(name)){
+            for (int i = 0; i < personagens.length && personagens[i] != null && !achou; i++) {
+                if ((personagens[i].getName()).equals(name)) {
                     System.out.println("SIM");
                     achou = true;
                 }
+                log.incrementaComp(); // Incrementa o contador de comparações
             }
-            if(!achou){
+            if (!achou) {
                 System.out.println("NAO");
             }
             name = sc.nextLine();
-        } 
+        }
+        Instant end = Instant.now();
+        long elapsedTime = Duration.between(start, end).toMillis();
+        log.time = (float) elapsedTime / 1000; // Tempo em segundos
+        log.registroLog();
     }
 
     public static void main(String[] args) throws Exception{
         Personagem personagens[] = new Personagem[404];
+        Log log = new Log("/tmp/806454_sequencal.txt");
         makeArray(personagens, 1);  // Segundo parametro: 0 para teste / 1 para enviar ao verde com /tmp/characters.csv
-        findByName(personagens);
+        findByName(personagens, log);
     }
 }
