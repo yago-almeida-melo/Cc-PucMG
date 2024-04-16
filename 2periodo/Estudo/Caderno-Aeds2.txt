@@ -346,3 +346,12 @@ ORDENAÇÃO PARCIAL
 
 Em um array de n elementos, achamos os k menores/maiores elementos desse array, sendo k < n;
 k << n  => k muito menor que n;
+
+===========================================================================================================
+===========================================================================================================
+===========================================================================================================
+
+                                         TADs FLEXÍVEIS
+
+Nas linguagens C e C# todos os Obejtos não referenciados ficam aptos para a coleta automática de lixo;
+Nas linguagens C e C++, antes de removermos a referência para um registro, devemos desalocá-lo ("free()" ou "delete()");
