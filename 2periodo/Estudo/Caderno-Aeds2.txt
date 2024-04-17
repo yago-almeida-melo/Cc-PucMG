@@ -353,5 +353,13 @@ k << n  => k muito menor que n;
 
                                          TADs FLEXÍVEIS
 
-Nas linguagens C e C# todos os Obejtos não referenciados ficam aptos para a coleta automática de lixo;
+Nas linguagens Java e C# todos os Obejtos não referenciados ficam aptos para a coleta automática de lixo;
 Nas linguagens C e C++, antes de removermos a referência para um registro, devemos desalocá-lo ("free()" ou "delete()");
+
+Nas linguagens Java e C existe exclusivamente a passagem de parâmetro por valor, ou seja, ao passar uma variável como parametro,
+na verdade, passamos apenas o valor desta variável. Alterações nessa variável pelo método chamado não serão refletidas no método original;
+
+Nas Linguagens C++ e C# existem dois tipos de passagem de parâmetros. Uma delas é por valor;
+
+Na Fila Flexível temos dois ponteiros, porque a inserção e a remoção acontecem em extremidades distintas. O ponteiro primeiro gerencia
+as remoções e o último, as inserções;
