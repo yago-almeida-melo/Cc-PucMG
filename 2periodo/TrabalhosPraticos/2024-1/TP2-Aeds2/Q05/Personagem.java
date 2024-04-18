@@ -407,6 +407,11 @@
          return i;
      }
 
+     /*
+      * function: fixLength
+      * @params: Personagem[] && int
+      * action: Retorna o Array de Personagem com o tamanho correto
+      */
      public static Personagem[] fixLength(Personagem p[], int novoTamanho){
         Personagem[] newArray = new Personagem[novoTamanho];
         for (int i = 0;i<novoTamanho;i++) {
@@ -415,6 +420,11 @@
         return newArray;
      }
      
+     /*
+      * function: swap
+      * @params: Personagem[] && int && int
+      * action: Troca dois personagens
+      */
      public static void swap(Personagem p[], int i, int j){
         Personagem tmp = p[i];
         p[i] = p[j];
@@ -422,9 +432,9 @@
      }
  
      /*
-      * function: findByName
+      * function: Selecao
       * @params: Personagem[]
-      * action: Procura o personagem no Array de acordo com o nome dado no input
+      * action: Ordena o Array de Personagem pelo atributo name, usando Seleção
       */
      public static void Selecao(Personagem personagens[], int n,Log log){
          Instant start = Instant.now();
