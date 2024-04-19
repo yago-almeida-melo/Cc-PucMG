@@ -1,6 +1,6 @@
 /*
 *   806454 - Yago Almeida Melo
-*   TP2-Q04: Selecao Recursiva em C
+*   TP2-Q06: Selecao Recursiva em C
 */
 
 #include <stdio.h>

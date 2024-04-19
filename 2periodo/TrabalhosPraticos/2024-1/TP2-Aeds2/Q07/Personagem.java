@@ -1,6 +1,6 @@
  /*
  *  806454 - Yago Almeida Melo
- *  TP1-Q05: Ordenação por Seleção em Java
+ *  TP1-Q07: Ordenação por Seleção em Java
  */
 
  import java.io.FileReader;
