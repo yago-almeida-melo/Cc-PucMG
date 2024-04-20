@@ -462,7 +462,6 @@
       * action: Ordena o Array de Personagem pelo atributo dateOfBirth, usando Inserção
       */
     public static void insercao(Personagem personagens[], int n,Log log){
-        Instant start = Instant.now();
         for (int i = 1; i < n; i++) {
 		    Personagem tmp = personagens[i];
             int j = i - 1;
@@ -473,10 +472,6 @@
             }
             personagens[j + 1] = tmp;
         }
-        Instant end = Instant.now();
-        long elapsedTime = Duration.between(start, end).toMillis();
-        log.time = (float) elapsedTime / 1000; // Tempo em segundos
-        log.registroLog();
      }
  
      //MAIN
@@ -484,7 +479,12 @@
         Personagem personagens[] = new Personagem[404];
         Log log = new Log("/tmp/806454_insercao.txt");
         int tam = makeArray(personagens, 1);  // Segundo parametro: 0 para teste / 1 para enviar ao verde com /tmp/characters.csv
+        Instant start = Instant.now();
         insercao(personagens, tam, log);
+        Instant end = Instant.now();
+        long elapsedTime = Duration.between(start, end).toMillis();
+        log.time = (float) elapsedTime / 1000; // Tempo em segundos
+        log.registroLog();
         mostrar(personagens);
     }
 }
