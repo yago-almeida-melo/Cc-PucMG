@@ -449,17 +449,19 @@
             log.incrementaMov(); log.incrementaMov(); log.incrementaMov();
 			swap(personagens, menor, i);
 		 }
-         Instant end = Instant.now();
-         long elapsedTime = Duration.between(start, end).toMillis();
-         log.time = (float) elapsedTime / 1000; // Tempo em segundos
-         log.registroLog();
+         
      }
  
      public static void main(String[] args) throws Exception{
          Personagem personagens[] = new Personagem[404];
          Log log = new Log("/tmp/806454_selecao.txt");
          int tam = makeArray(personagens, 1);  // Segundo parametro: 0 para teste / 1 para enviar ao verde com /tmp/characters.csv
+         Instant start = Instant.now();
          Selecao(personagens, tam,log);
+         Instant end = Instant.now();
+         long elapsedTime = Duration.between(start, end).toMillis();
+         log.time = (float) elapsedTime / 1000; // Tempo em segundos
+         log.registroLog();
          mostrar(personagens);
      }
  }
