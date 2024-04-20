@@ -1,6 +1,6 @@
  /*
  *  806454 - Yago Almeida Melo
- *  TP1-Q07: Ordenação por Seleção em Java
+ *  TP1-Q07: Ordenação por Inserção em Java
  */
 
  import java.io.FileReader;
@@ -361,7 +361,7 @@
       * @params: Personagem[] && int
       * @action: Faz a leitura de IDs e põe no Array de Personagem
       */
-     public static int makeArray(Personagem[] p, int key) throws Exception {
+    public static int makeArray(Personagem[] p, int key) throws Exception {
          FileReader file;
          BufferedReader bf;
          String line;
@@ -405,61 +405,86 @@
          bf.close();
          file.close();
          return i;
-     }
+    }
 
      /*
       * function: fixLength
       * @params: Personagem[] && int
       * action: Retorna o Array de Personagem com o tamanho correto
       */
-     public static Personagem[] fixLength(Personagem p[], int novoTamanho){
+    public static Personagem[] fixLength(Personagem p[], int novoTamanho){
         Personagem[] newArray = new Personagem[novoTamanho];
         for (int i = 0;i<novoTamanho;i++) {
             newArray[i] = p[i];
         }
         return newArray;
-     }
+    }
      
      /*
       * function: swap
       * @params: Personagem[] && int && int
       * action: Troca dois personagens
       */
-     public static void swap(Personagem p[], int i, int j){
+    public static void swap(Personagem p[], int i, int j){
         Personagem tmp = p[i];
         p[i] = p[j];
         p[j] = tmp;
-     }
+    }
  
+    /*
+     * function: dateComparator
+     * @params: Personagem && Personagem && Log
+     * action: Retorna -1 se o primeiro Personagem nasceu antes que o segundo ou 1 se for o contrário (Nome desempata se data for igual)
+     */
+    public static int dateComparator(Personagem d1, Personagem d2, Log log){
+        int resp = 0;
+        LocalDate d1Date = d1.getDateOfBirth();
+        LocalDate d2Date = d2.getDateOfBirth();
+         if(d1Date.isBefore(d2Date)){   // resp = -1 -> d1 < d2
+            resp = -1;
+            log.incrementaComp();
+         } else if(d1Date.isAfter(d2Date)){   // resp = 1 -> d1 > d2 
+            resp = 1;
+            log.incrementaComp();
+         } else{
+            if(d1.getName().compareTo(d2.getName()) > 0){   // resp = 0 d1==d2 / desempate por nome
+                resp = 1;
+                log.incrementaComp();
+            } else { 
+                resp = -1;
+            }
+         }
+         return resp;
+    }
      /*
-      * function: Selecao
+      * function: insercao
       * @params: Personagem[]
-      * action: Ordena o Array de Personagem pelo atributo name, usando Seleção
+      * action: Ordena o Array de Personagem pelo atributo dateOfBirth, usando Inserção
       */
-     public static void Selecao(Personagem personagens[], int n,Log log){
-         Instant start = Instant.now();
-         for (int i = 0; i < (n - 1); i++) {
-			int menor = i;
-			for (int j = (i + 1); j < n; j++){
-				if (personagens[menor].getName().compareTo(personagens[j].getName()) > 0){
-					menor = j;
-                    log.incrementaComp();
-				}
-			}
-            log.incrementaMov(); log.incrementaMov(); log.incrementaMov();
-			swap(personagens, menor, i);
-		 }
-         Instant end = Instant.now();
-         long elapsedTime = Duration.between(start, end).toMillis();
-         log.time = (float) elapsedTime / 1000; // Tempo em segundos
-         log.registroLog();
+    public static void insercao(Personagem personagens[], int n,Log log){
+        Instant start = Instant.now();
+        for (int i = 1; i < n; i++) {
+		    Personagem tmp = personagens[i];
+            int j = i - 1;
+            while ((j >= 0) && (dateComparator(tmp, personagens[j], log)) == -1) {
+                personagens[j + 1] = personagens[j];
+                log.incrementaMov();
+                j--;
+            }
+            personagens[j + 1] = tmp;
+        }
+        Instant end = Instant.now();
+        long elapsedTime = Duration.between(start, end).toMillis();
+        log.time = (float) elapsedTime / 1000; // Tempo em segundos
+        log.registroLog();
      }
  
-     public static void main(String[] args) throws Exception{
-         Personagem personagens[] = new Personagem[404];
-         Log log = new Log("/tmp/806454_selecao.txt");
-         int tam = makeArray(personagens, 1);  // Segundo parametro: 0 para teste / 1 para enviar ao verde com /tmp/characters.csv
-         Selecao(personagens, tam,log);
-         mostrar(personagens);
-     }
- }
+     //MAIN
+    public static void main(String[] args) throws Exception{
+        Personagem personagens[] = new Personagem[404];
+        Log log = new Log("/tmp/806454_insercao.txt");
+        int tam = makeArray(personagens, 1);  // Segundo parametro: 0 para teste / 1 para enviar ao verde com /tmp/characters.csv
+        insercao(personagens, tam, log);
+        mostrar(personagens);
+    }
+}
