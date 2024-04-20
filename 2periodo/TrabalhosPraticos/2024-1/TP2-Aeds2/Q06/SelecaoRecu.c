@@ -287,15 +287,15 @@ void selecaoArray(int index){
 void registroLog(int key){
     FILE *arquivo;
     if(key == 0){
-        arquivo = fopen("806454_binaria.txt", "w");
+        arquivo = fopen("806454_selecaoRecursiva.txt", "w");
     }else{
-        arquivo = fopen("/tmp/806454_binaria.txt", "w");
+        arquivo = fopen("/tmp/806454_selecaoRecursiva.txt", "w");
     }
     if (arquivo == NULL) {
         perror("Erro ao abrir o arquivo.");
         exit(EXIT_FAILURE); 
     }
-    fprintf(arquivo, "Matrícula: 806454\tTempo de execução: %.6f segundos\tComparações: %d\tMovimentacões: %d", tempo, comparacoes, movimentacoes);
+    fprintf(arquivo, "Matricula: 806454\tTempo de execucao: %.6f segundos\tComparacoes: %d\tMovimentacoes: %d", tempo, comparacoes, movimentacoes);
     fclose(arquivo);
 }
 
