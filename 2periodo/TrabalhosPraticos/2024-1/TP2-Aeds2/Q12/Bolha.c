@@ -299,9 +299,9 @@ void bolha() {
 void registroLog(int key){
     FILE *arquivo;
     if(key == 0){
-        arquivo = fopen("806454_quicksort.txt", "w");
+        arquivo = fopen("806454_bolha.txt", "w");
     }else{
-        arquivo = fopen("/tmp/806454_quicksort.txt", "w");
+        arquivo = fopen("/tmp/806454_bolha.txt", "w");
     }
     if (arquivo == NULL) {
         perror("Erro ao abrir o arquivo.");
