@@ -1,4 +1,3 @@
-[efa802c8-ae18-4ae1-a524-49df21d05939 ## Lord Voldemort ## {Tom Riddle, Tom Marvolo Riddle, You-Know-Who, He Who Must Not Be Named, the Dark Lord, the Heir of Slytherin} ## Slytherin ## half-blood ## human ##  ## false ## false ## Ralph Fiennes ## false ## 31-12-1926 ## 1926 ## Scarlet ## male ## bald ## true]
 [2a0615de-8aa4-41e7-9504-dd875f5f3f01 ## George Weasley ## {} ## Gryffindor ## pure-blood ## human ##  ## false ## true ## Oliver Phelps ## true ## 13-02-1981 ## 1954 ## amber ## male ## red ## true]
 [6b59be3f-e527-422d-959d-79fcdb3b24eb ## Hedwig ## {} ## Hufflepuff ## muggle ## owl ##  ## false ## false ## Gizmo ## false ## 07-04-1979 ## 1954 ## amber ## female ## brown ## false]
 [eaea5eb3-48a3-41c6-9ea5-c695299bab16 ## Lisa Turpin ## {} ## Ravenclaw ## pure-blood ## human ##  ## false ## true ##  ## true ## 27-03-1960 ## 1951 ## amber ## female ## sandy ## true]
@@ -22,6 +21,7 @@
 [2cfd2d4b-5d1e-4dc5-8837-37a97c7e2f2f ## Sirius Black ## {Padfoot, Snuffles} ## Gryffindor ## pure-blood ## human ## hare ## false ## false ## Gary Oldman ## false ## 03-11-1959 ## 1959 ## grey ## male ## black ## true]
 [57fe29d4-312a-4711-bd9a-c320253d9176 ## Victoire Weasley ## {} ## Slytherin ## pure-blood ## human ##  ## false ## true ##  ## true ## 31-12-1926 ## 1926 ## grey ## female ## blonde ## true]
 [d59691a4-f830-4eb0-a819-a0fb00b7e80f ## Garrick Ollivander ## {} ## Hufflepuff ## muggle ## human ##  ## false ## false ## John Hurt ## true ## 04-10-1925 ## 1954 ## pale, silvery ## male ## brown ## true]
+[efa802c8-ae18-4ae1-a524-49df21d05939 ## Lord Voldemort ## {Tom Riddle, Tom Marvolo Riddle, You-Know-Who, He Who Must Not Be Named, the Dark Lord, the Heir of Slytherin} ## Slytherin ## half-blood ## human ##  ## false ## false ## Ralph Fiennes ## false ## 31-12-1926 ## 1926 ## Scarlet ## male ## bald ## true]
 [861c4cde-2f0f-4796-8d8f-9492e74b2573 ## Luna Lovegood ## {Loony Lovegood} ## Ravenclaw ## pure-blood ## human ## hare ## false ## true ## Evanna Lynch ## true ## 13-02-1981 ## 1981 ## silver ## female ## blonde ## true]
 [b0620914-858d-46fc-8e6d-033c565e138b ## Mrs Norris ## {} ## Slytherin ## pure-blood ## cat ##  ## true ## false ## Maxime, Alanis and Tommy the cats ## true ## 31-12-1926 ## 1954 ## yellow ## female ## brown ## false]
 [fed624df-56d9-495e-9ad4-ea77000957e8 ## Petunia Dursley ## {} ## Slytherin ## muggle ## human ##  ## false ## false ## Fiona Shaw ## true ## 31-12-1926 ## 1954 ## yellow ## female ## blonde ## false]

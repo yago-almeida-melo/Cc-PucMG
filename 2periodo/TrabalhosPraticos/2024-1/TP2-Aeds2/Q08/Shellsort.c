@@ -246,25 +246,42 @@ void swap(Personagem *p1, Personagem *p2){
 }
 
 /*
+    function: tolower
+    @params: int
+    action: retorna o low case de uma letra
+*/
+int tolower(int c) {
+    if (c <= 'Z' && c >= 'A') return c + 32;
+    return c;
+}
+
+/*
     function: comparator
     @params: Personagem && Personagem
     action: Compara dois Personagens pelo atributo eyeOfColour (desempate por nome) e retorna um int
 */
-int comparator(Personagem a, Personagem b){
-    int resp = 0;
-    if(strcmp(a.eyeColour, b.eyeColour) > 0){       // a < b
-        resp = 1; 
+bool comparator(Personagem a, Personagem b){
+    bool resp = false;
+    char aEye[100], bEye[100];   // Variaveis para trocar a primeira letra para torna-la low case
+    strcpy(aEye, a.eyeColour);
+    strcpy(bEye, b.eyeColour);
+    aEye[0] = tolower(aEye[0]);
+    bEye[0] = tolower(bEye[0]);
+    if(strcmp(aEye, bEye) < 0){       // a < b
+        resp = true; 
         comparacoes++;  
-    } else if(strcmp(a.eyeColour, b.eyeColour) < 0){  // a > b
-        resp = -1;
+    } else if(strcmp(aEye, bEye) > 0){  // a > b
+        resp = false;
         comparacoes++;
-    } else{                             // a == b
+    } else{                 // a == b
+        comparacoes++;   
+        comparacoes++;                        
         if(strcmp(a.name, b.name) < 0){    
-            resp = -1;
+            resp = true;
             comparacoes++;
         } else{
             comparacoes++;
-            resp = 1;
+            resp = false;
         }
     }
     return resp;
@@ -275,17 +292,18 @@ int comparator(Personagem a, Personagem b){
     @params: int* && int && int && int
     action: Ordenada o subArray pelo metodo de insercao apenas por elementos pre definidos (shellsort)
 */
-void insercaoPorCor(Personagem array[], int n, int cor, int h){
+void insercaoPorCor(int n, int cor, int h){
     for (int i = (h + cor); i < tamSubArray; i+=h) {
-        Personagem tmp = array[i];
+        Personagem tmp = sub[i];
         int j = i - h;
-        while ((j >= 0) && (comparator(array[j], tmp)) > 0) {
+
+        while ((j >= 0) && (!comparator(sub[j], tmp))) {
             movimentacoes++;
-            array[j + h] = array[j];
+            sub[j + h] = sub[j];
             j-=h;
         }
         movimentacoes++;
-        array[j + h] = tmp;
+        sub[j + h] = tmp;
     }
 }
 
@@ -301,7 +319,7 @@ void shellsort(){
     do {
         h /= 3;
         for(int cor = 0; cor < h; cor++){
-            insercaoPorCor(sub, tamSubArray, cor, h);
+            insercaoPorCor(tamSubArray, cor, h);
         }
     } while (h != 1);
     end = clock();
