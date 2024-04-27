@@ -1,0 +1,67 @@
+#! /c/Source/iverilog-install/bin/vvp
+:ivl_version "12.0 (devel)" "(s20150603-1539-g2693dd32b)";
+:ivl_delay_selection "TYPICAL";
+:vpi_time_precision + 0;
+:vpi_module "D:\iverilog\lib\ivl\system.vpi";
+:vpi_module "D:\iverilog\lib\ivl\vhdl_sys.vpi";
+:vpi_module "D:\iverilog\lib\ivl\vhdl_textio.vpi";
+:vpi_module "D:\iverilog\lib\ivl\v2005_math.vpi";
+:vpi_module "D:\iverilog\lib\ivl\va_math.vpi";
+S_0000017ad9717780 .scope module, "R01_05a" "R01_05a" 2 21;
+ .timescale 0 0;
+v0000017ad97743f0_0 .var "a", 3 0;
+v0000017ad9774710_0 .var "b", 3 0;
+v0000017ad97739f0_0 .net "out1", 3 0, L_0000017ad9773db0;  1 drivers
+v0000017ad97740d0_0 .net "out2", 3 0, L_0000017ad9724560;  1 drivers
+S_0000017ad984cf60 .scope module, "xor_inst" "xor_table" 2 26, 2 6 0, S_0000017ad9717780;
+ .timescale 0 0;
+    .port_info 0 /INPUT 4 "a";
+    .port_info 1 /INPUT 4 "b";
+    .port_info 2 /OUTPUT 4 "out";
+    .port_info 3 /OUTPUT 4 "out0";
+L_0000017ad9724a80 .functor XOR 1, L_0000017ad9773a90, L_0000017ad9773b30, C4<0>, C4<0>;
+L_0000017ad984d2d0 .functor XOR 1, L_0000017ad9774490, L_0000017ad9773c70, C4<0>, C4<0>;
+L_0000017ad984d340 .functor XOR 1, L_0000017ad97745d0, L_0000017ad9773bd0, C4<0>, C4<0>;
+L_0000017ad97244f0 .functor XOR 1, L_0000017ad9773ef0, L_0000017ad9774670, C4<0>, C4<0>;
+L_0000017ad9724560 .functor NOT 4, L_0000017ad9773db0, C4<0000>, C4<0000>, C4<0000>;
+v0000017ad96f2ef0_0 .net *"_ivl_0", 0 0, L_0000017ad9724a80;  1 drivers
+v0000017ad96f2b20_0 .net *"_ivl_11", 0 0, L_0000017ad9773c70;  1 drivers
+v0000017ad9717910_0 .net *"_ivl_12", 0 0, L_0000017ad984d340;  1 drivers
+v0000017ad97179b0_0 .net *"_ivl_15", 0 0, L_0000017ad97745d0;  1 drivers
+v0000017ad984d0f0_0 .net *"_ivl_17", 0 0, L_0000017ad9773bd0;  1 drivers
+v0000017ad984d190_0 .net *"_ivl_18", 0 0, L_0000017ad97244f0;  1 drivers
+v0000017ad984d230_0 .net *"_ivl_22", 0 0, L_0000017ad9773ef0;  1 drivers
+v0000017ad9774170_0 .net *"_ivl_24", 0 0, L_0000017ad9774670;  1 drivers
+v0000017ad9773d10_0 .net *"_ivl_3", 0 0, L_0000017ad9773a90;  1 drivers
+v0000017ad9774210_0 .net *"_ivl_5", 0 0, L_0000017ad9773b30;  1 drivers
+v0000017ad9773950_0 .net *"_ivl_6", 0 0, L_0000017ad984d2d0;  1 drivers
+v0000017ad97738b0_0 .net *"_ivl_9", 0 0, L_0000017ad9774490;  1 drivers
+v0000017ad97742b0_0 .net "a", 3 0, v0000017ad97743f0_0;  1 drivers
+v0000017ad9774350_0 .net "b", 3 0, v0000017ad9774710_0;  1 drivers
+v0000017ad97747b0_0 .net "out", 3 0, L_0000017ad9773db0;  alias, 1 drivers
+v0000017ad9773e50_0 .net "out0", 3 0, L_0000017ad9724560;  alias, 1 drivers
+L_0000017ad9773a90 .part v0000017ad97743f0_0, 3, 1;
+L_0000017ad9773b30 .part v0000017ad9774710_0, 3, 1;
+L_0000017ad9774490 .part v0000017ad97743f0_0, 2, 1;
+L_0000017ad9773c70 .part v0000017ad9774710_0, 2, 1;
+L_0000017ad97745d0 .part v0000017ad97743f0_0, 1, 1;
+L_0000017ad9773bd0 .part v0000017ad9774710_0, 1, 1;
+L_0000017ad9773db0 .concat8 [ 1 1 1 1], L_0000017ad97244f0, L_0000017ad984d340, L_0000017ad984d2d0, L_0000017ad9724a80;
+L_0000017ad9773ef0 .part v0000017ad97743f0_0, 0, 1;
+L_0000017ad9774670 .part v0000017ad9774710_0, 0, 1;
+    .scope S_0000017ad9717780;
+T_0 ;
+    %pushi/vec4 5, 0, 4;
+    %store/vec4 v0000017ad97743f0_0, 0, 4;
+    %pushi/vec4 6, 0, 4;
+    %store/vec4 v0000017ad9774710_0, 0, 4;
+    %vpi_call 2 35 "$display", "a | b | XOR(a, b) | XOR(-a, -b)" {0 0 0};
+    %vpi_call 2 36 "$display", "%b  %b   %b   %b", v0000017ad97743f0_0, v0000017ad9774710_0, v0000017ad97739f0_0, v0000017ad97740d0_0 {0 0 0};
+    %vpi_call 2 37 "$finish" {0 0 0};
+    %end;
+    .thread T_0;
+# The file index is used to find the file name in the following table.
+:file_names 3;
+    "N/A";
+    "<interactive>";
+    "R01_05b.v";
