@@ -271,50 +271,52 @@ bool comparator(Personagem a, Personagem b){
     return resp;
 }
 
-int getMax(int *array, int n) {
-    int maior = array[0];
 
-    for (int i = 1; i < n; i++) {
-        if(maior < array[i]){
-            maior = array[i];
-        }
-    }
-    return maior;
-}
-
-void radcountingSort(int exp){
-    int count[10];
-    int output[tamSubArray]; 
-    for (int i = 0; i < 10; count[i] = 0, i++);
-    for (int i = 0; i < tamSubArray; i++) {
-        count[(sub[i]/exp) % 10]++;
-    }
-    for (int i = 1; i < 10; i++) {
-        count[i] += count[i-1];
-    }
-    for (int i = tamSubArray-1; i >= 0; i--) {
-        output[count[(sub[i]/exp) % 10] - 1] = sub[i];
-        count[(sub[i]/exp) % 10]--;
-    }
-    for (int i = 0; i < tamSubArray; i++) {
-        sub[i] = output[i];
-    }
-}
 /*
-    function: bolha
-    @params: null
-    action: Ordena o Array de Personagem pelo metodo bolha, pelo atributo hairColour e desempate por name
+    function: radcountingSort
+    @params: 
+    action: Ordena o Array de Personagem pelo metodo radixsort, pelo atributo id 
 */
-void radixsort(int *array) {
-    start = clock();
-    char *max = getMax(sub, tamSubArray);
-    for (int exp = 1; max/exp > 0; exp *= 10) {
-        radcountingSort(exp);
+void radcountingSort(int n) {
+    // Loop de classificação de caracteres da direita para a esquerda
+    for (int pos = n - 1; pos >= 0; pos--) {
+        int count[256] = {0}; // Array de contagem para todos os caracteres ASCII
+        for (int i = 0; i < tamSubArray; i++) {
+            count[(unsigned char)sub[i].id[pos]]++;
+        }
+        for (int i = 1; i < 256; i++) {
+            count[i] += count[i - 1];
+        }
+        // array auxiliar para armazenar os personagens ordenados temporariamente
+        Personagem *temp = (Personagem *)malloc(tamSubArray * sizeof(Personagem));
+        for (int i = tamSubArray - 1; i >= 0; i--) {
+            temp[count[(unsigned char)sub[i].id[pos]] - 1] = sub[i];
+            count[(unsigned char)sub[i].id[pos]]--;
+        }
+        for (int i = 0; i < tamSubArray; i++) {
+            sub[i] = temp[i];
+            movimentacoes++;
+        }
+        free(temp);
     }
+}
+
+/*
+    function: radixsort
+    @params: null
+    action: Ordena o Array de Personagem pelo metodo radixsort, pelo atributo id 
+*/
+void radixsort() {
+    start = clock();
+    int max = strlen(sub[0].id);
+    //for (int exp = 1; max/exp > 0; exp *= 10) {
+        radcountingSort(max);
+    //}
     end = clock();
     tempo = ((double)(end - start)) / CLOCKS_PER_SEC;
     mostrar();
 }
+
 
 /*
     function: registroLog
@@ -338,9 +340,9 @@ void registroLog(int key){
 
 //MAIN
 int main() {
-    makeArray(0);          // 0 == teste   / 1 == verde
+    makeArray(1);          // 0 == teste   / 1 == verde
     makeSubArray();
-    radix();
-    registroLog(0);          // 0 == teste  /  1 == verde
+    radixsort();
+    registroLog(1);          // 0 == teste  /  1 == verde
     return 0;
 }
