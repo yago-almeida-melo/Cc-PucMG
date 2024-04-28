@@ -1,7 +1,8 @@
-// --------------
-// --- Mealy FSM
-// --------------
-//constant definitions
+/*
+    Guia_1101.v
+    806454 - Yago Almeida Melo
+*/
+
 `define found 1
 `define notfound 0
 // FSM by Mealy
@@ -66,7 +67,7 @@ module mealy_1101 ( y, x, clk, reset );
             end // always at signal changing
 endmodule // mealy_1101
 
-module Guia_0901;
+module Guia_1101;
     reg x, clk, reset;
     wire y;
 
@@ -85,6 +86,5 @@ module Guia_0901;
         #5 x = 0;
         #100 $finish;
     end
-
     always #5 clk = ~clk;
 endmodule
