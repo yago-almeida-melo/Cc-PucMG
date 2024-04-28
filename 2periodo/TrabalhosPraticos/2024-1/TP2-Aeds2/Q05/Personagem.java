@@ -11,7 +11,6 @@
  import java.io.IOException;
  import java.util.Scanner;
  import java.time.LocalDate;
- import java.time.format.DateTimeFormatter;
  
  
  /*
@@ -437,7 +436,6 @@
       * action: Ordena o Array de Personagem pelo atributo name, usando Seleção
       */
      public static void Selecao(Personagem personagens[], int n,Log log){
-         Instant start = Instant.now();
          for (int i = 0; i < (n - 1); i++) {
 			int menor = i;
 			for (int j = (i + 1); j < n; j++){

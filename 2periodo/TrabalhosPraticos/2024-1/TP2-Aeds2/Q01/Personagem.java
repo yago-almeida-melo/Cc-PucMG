@@ -7,7 +7,6 @@ import java.io.FileReader;
 import java.io.BufferedReader;
 import java.util.Scanner;
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 
 
 /*
@@ -352,5 +351,6 @@ class Personagem{
             procuraId(personagens, id);
             id = sc.nextLine();
         }
+        sc.close();
     }
 }
