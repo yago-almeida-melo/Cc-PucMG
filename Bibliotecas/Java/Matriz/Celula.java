@@ -1,5 +1,3 @@
-package Bibliotecas.Java.Matriz;
-
 public class Celula {
    public int elemento;
    public Celula inf, sup, esq, dir;

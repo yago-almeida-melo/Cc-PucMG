@@ -1,4 +1,3 @@
-package Bibliotecas.Java.Matriz;
 import java.util.Scanner;
 
 public class Matriz {
