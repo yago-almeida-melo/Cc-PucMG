@@ -9,100 +9,138 @@ import java.io.EOFException;
 import java.util.Scanner;
 import java.time.LocalDate;
 
-
 /* 
  * Class ListaPersonagem
  * Lista propriamente dita de Personagem
- 
-class ListaPersonagem{
+ */
+class ListaPersonagem {
     public Personagem p[];
-    public int tamanho=0;
+    public int tamanho = 0;
     Scanner sc = new Scanner(System.in);
 
-    ListaPersonagem(){
+    ListaPersonagem() {
         this.p = new Personagem[404];
         tamanho = 0;
     }
-    ListaPersonagem(int tam){
+
+    ListaPersonagem(int tam) {
         this.p = new Personagem[tam];
     }
 
-    void inserirFim(Personagem personagem) throws Exception{
-        if(tamanho >= p.length){
+    void inserirFim(Personagem personagem) throws Exception {
+        if (tamanho >= p.length) {
             throw new Exception("Limite excedido!");
         }
         p[tamanho] = personagem;
         tamanho++;
     }
-    void inserirInicio(Personagem personagem) throws Exception{
-        if(tamanho >= p.length){
+
+    void inserirInicio(Personagem personagem) throws Exception {
+        if (tamanho >= p.length) {
             throw new Exception("Limite excedido!");
         }
-        for(int i = tamanho-1;i>=0;i--){
-            p[i+1] = p[i];
+        for (int i = tamanho - 1; i >= 0; i--) {
+            p[i + 1] = p[i];
         }
         p[0] = personagem;
         tamanho++;
     }
 
-    void inserir(Personagem personagem, int pos) throws Exception{
-        if(pos < 0 || pos > p.length){
+    void inserir(Personagem personagem, int pos) throws Exception {
+        if (pos < 0 || pos > p.length) {
             throw new Exception("Erro ao inserir!");
         }
-        for(int i = tamanho-1;i>=pos;i--){
-            p[i+1] = p[i];
+        for (int i = tamanho - 1; i >= pos; i--) {
+            p[i + 1] = p[i];
         }
         p[pos] = personagem;
         tamanho++;
     }
 
-    Personagem removerInicio()throws Exception{
-        if(tamanho==0){
+    Personagem removerInicio() throws Exception {
+        if (tamanho == 0) {
             throw new Exception("Lista vazia!");
         }
         Personagem removido = p[0];
-        for(int i = 0;i<tamanho;i++){
-            p[i] = p[i+1];
+        for (int i = 0; i < tamanho; i++) {
+            p[i] = p[i + 1];
         }
         tamanho--;
         return removido;
     }
 
-    Personagem remover(int pos)throws Exception{
-        if(tamanho==0 || pos < 0 || pos >= tamanho){
+    Personagem remover(int pos) throws Exception {
+        if (tamanho == 0 || pos < 0 || pos >= tamanho) {
             throw new Exception("Erro ao remover!");
         }
         Personagem removido = p[pos];
-        for(int i = pos;i<tamanho;i++){
-            p[i] = p[i+1];
+        for (int i = pos; i < tamanho; i++) {
+            p[i] = p[i + 1];
         }
-        tamanho--;
-        return removido;
-    }
-    Personagem removerFim()throws Exception{
-        if(tamanho==0){
-            throw new Exception("Erro ao remover! Lista vazia!!!");
-        }
-        Personagem removido = p[tamanho-1];
         tamanho--;
         return removido;
     }
 
-    public void metodos(int x){
-        String m="";
-        for(int i=0;i<x;i++){
-            m = sc.nextLine();
-            String[] str = m.split(" ");
-            switch (str[0]) {
-                case "II":
-                    this.inserirInicio();
-                    break;
-                default:
-                    break;
+    Personagem removerFim() throws Exception {
+        if (tamanho == 0) {
+            throw new Exception("Erro ao remover! Lista vazia!!!");
+        }
+        Personagem removido = p[tamanho - 1];
+        tamanho--;
+        return removido;
+    }
+
+    Personagem findPersonagem(Personagem p[], String id) {
+        Personagem x = new Personagem();
+        for (int i = 0; i < p.length; i++) {
+            if (p[i].getId().equals(id)) {
+                try {
+                    x = p[i].clone();
+                    i = p.length;
+                } catch (CloneNotSupportedException e) {
+                    e.getMessage();
+                }
             }
         }
+        return x;
     }
-}*/
+
+    public void metodos(Personagem p[], int x) {
+        try {
+            String m = "";
+            Personagem novo = new Personagem();
+            for (int i = 0; i < x; i++) {
+                m = sc.nextLine();
+                String[] str = m.split(" ");
+                switch (str[0]) {
+                    case "II":
+                        novo = findPersonagem(p, str[1]);
+                        this.inserirInicio(novo);
+                        break;
+                    case "IF":
+                        novo = findPersonagem(p, str[1]);
+                        this.inserirFim(novo);
+                        break;
+                    case "I*":
+                        novo = findPersonagem(p, str[2]);
+                        this.inserir(novo, Integer.parseInt(str[1]));
+                        break;
+                    default:
+                        break;
+                }
+            }
+        } catch (Exception e) {
+            e.getMessage();
+        }
+        mostrar();
+    }
+
+    void mostrar(){
+        for(int i=0;i<this.p.length;i++){
+            this.toString();
+        }
+    }
+}
 
 /*
  * Class Lista
@@ -149,8 +187,7 @@ class Personagem {
     private LocalDate dateOfBirth;
     Lista alternate_names, alternate_actors;
     public int tamanho = 0;
-    Scanner sc = new Scanner(System.in);
-    
+    static Scanner sc = new Scanner(System.in);
 
     /*
      * Construtores da classe Personagem
@@ -586,152 +623,21 @@ class Personagem {
             } catch (Exception e) {
                 e.getMessage();
             }
-
         }
         bf.close();
         file.close();
     }
-    public void insereNoArray(Personagem p1[], Personagem lista[]){
-        int tam = 0;
-        String id = sc.nextLine();
-        while(!id.equals("FIM")){
-            for(int i=0;i<p1.length;i++){
-                if(p1[i].id.equals(id)){
-                    lista[tam++] = p1[i];
-                    i = p1.length;
-                }
-            }
-            id = sc.nextLine();
-        }
-        sc.close();
-    }
-
-    void inserirFim(Personagem p[], Personagem personagem) throws Exception{
-        if(tamanho >= p.length){
-            throw new Exception("Limite excedido!");
-        }
-        p[tamanho] = personagem;
-        tamanho++;
-    }
-    void inserirInicio(Personagem p[], Personagem personagem) throws Exception{
-        if(tamanho >= p.length){
-            throw new Exception("Limite excedido!");
-        }
-        for(int i = tamanho-1;i>=0;i--){
-            p[i+1] = p[i];
-        }
-        p[0] = personagem;
-        tamanho++;
-    }
-
-    void inserir(Personagem p[], Personagem personagem, int pos) throws Exception{
-        if(pos < 0 || pos > p.length){
-            throw new Exception("Erro ao inserir!");
-        }
-        for(int i = tamanho-1;i>=pos;i--){
-            p[i+1] = p[i];
-        }
-        p[pos] = personagem;
-        tamanho++;
-    }
-
-    Personagem removerInicio(Personagem p[])throws Exception{
-        if(tamanho==0){
-            throw new Exception("Lista vazia!");
-        }
-        Personagem removido = p[0];
-        for(int i = 0;i<tamanho;i++){
-            p[i] = p[i+1];
-        }
-        tamanho--;
-        System.out.println("R "+ removido.name);
-        return removido;
-    }
-
-    Personagem remover(Personagem p[], int pos)throws Exception{
-        if(tamanho==0 || pos < 0 || pos >= tamanho){
-            throw new Exception("Erro ao remover!");
-        }
-        Personagem removido = p[pos];
-        for(int i = pos;i<tamanho;i++){
-            p[i] = p[i+1];
-        }
-        tamanho--;
-        System.out.println("R "+ removido.name);
-        return removido;
-    }
-    Personagem removerFim(Personagem p[])throws Exception{
-        if(tamanho==0){
-            throw new Exception("Erro ao remover! Lista vazia!!!");
-        }
-        Personagem removido = p[tamanho-1];
-        tamanho--;
-        System.out.println("R "+ removido.name);
-        return removido;
-    }
-
-    Personagem findPersonagem(Personagem p[], String id) throws Exception{
-        Personagem tmp = new Personagem();
-        for(int i=0;i<p.length;i++){
-            if(p[i].id.equals(id)){
-                tmp = p[i].clone();
-                if(tmp == null){
-                    throw new CloneNotSupportedException("Clone nao deu certo!!!");
-                }
-                i = p.length;
-            }
-        }
-        return tmp;
-    }
-
-    public void metodos(Personagem pGeral[], Personagem p[],int x){
-        for(int i=0;i<x;i++){
-            String input = sc.nextLine();
-            String[] str = input.split(" ");
-            Personagem novo = new Personagem();
-            switch (str[0]) {
-                case "II":
-                    try{
-                        findPersonagem(pGeral, str[1]);
-                        inserirInicio(p, novo);
-                    } catch(Exception e){
-                        e.getMessage();
-                    } 
-                    break;
-                case "IF":
-                try{
-                    findPersonagem(pGeral, str[1]);
-                    inserirFim(p, novo);
-                } catch(Exception e){
-                    e.getMessage();
-                }
-                    break;
-                case "I*":
-                try{
-                    findPersonagem(pGeral, str[2]);
-                    int pos = Integer.parseInt(str[0]);
-                    inserir(p, novo, pos);
-                } catch(Exception e){
-                    e.getMessage();
-                }
-                    break;
-                case "RI":
-                    
-                    break;
-                case "RF":
-                    
-                    break;
-                case "R*":
-                    
-                    break;
-                default:
-                    break;
-            }
-        }
-    }
 
     public static void main(String[] args) throws Exception {
         Personagem personagens[] = new Personagem[404];
+        ListaPersonagem list = new ListaPersonagem(404);
         ler(personagens, 0); // Segundo parametro: 0 para teste | 1 para enviar ao verde com /tmp/characters.csv
+        String id = sc.nextLine();
+        while (!id.equals("FIM")) {
+            Personagem novo = list.findPersonagem(personagens, id);
+            list.inserirFim(novo);
+        }
+        int qtd = sc.nextInt();
+        list.metodos(list.p, qtd);
     }
 }
