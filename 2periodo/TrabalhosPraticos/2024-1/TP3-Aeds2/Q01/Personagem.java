@@ -5,7 +5,6 @@
 
 import java.io.FileReader;
 import java.io.BufferedReader;
-import java.io.EOFException;
 import java.util.Scanner;
 import java.time.LocalDate;
 
@@ -16,15 +15,12 @@ import java.time.LocalDate;
 class ListaPersonagem {
     public Personagem p[];
     public int tamanho = 0;
-    Scanner sc = new Scanner(System.in);
-
-    ListaPersonagem() {
-        this.p = new Personagem[404];
-        tamanho = 0;
-    }
+    public Scanner sc;
 
     ListaPersonagem(int tam) {
         this.p = new Personagem[tam];
+        this.tamanho = 0;
+        this.sc = new Scanner(System.in);
     }
 
     void inserirFim(Personagem personagem) throws Exception {
@@ -106,38 +102,50 @@ class ListaPersonagem {
     }
 
     public void metodos(Personagem p[], int x) {
-        try {
-            String m = "";
-            Personagem novo = new Personagem();
-            for (int i = 0; i < x; i++) {
-                m = sc.nextLine();
-                String[] str = m.split(" ");
+        String m = "";
+        Personagem novo = new Personagem();
+        for (int i = 0; i < x+1; i++) {
+            m = sc.nextLine();
+            String[] str = m.split(" ");
+            try {
                 switch (str[0]) {
                     case "II":
                         novo = findPersonagem(p, str[1]);
-                        this.inserirInicio(novo);
+                        inserirInicio(novo);
                         break;
                     case "IF":
                         novo = findPersonagem(p, str[1]);
-                        this.inserirFim(novo);
+                        inserirFim(novo);
                         break;
                     case "I*":
                         novo = findPersonagem(p, str[2]);
-                        this.inserir(novo, Integer.parseInt(str[1]));
+                        inserir(novo, Integer.parseInt(str[1]));
+                        break;
+                    case "RI":
+                        novo = removerInicio();
+                        System.out.println("(R) " + novo.getName());
+                        break;
+                    case "RF":
+                        novo = removerFim();
+                        System.out.println("(R) " + novo.getName());
+                        break;
+                    case "R*":
+                        novo = remover(Integer.parseInt(str[1]));
+                        System.out.println("(R) " + novo.getName());
                         break;
                     default:
                         break;
                 }
+            } catch (Exception e) {
+                e.getMessage();
             }
-        } catch (Exception e) {
-            e.getMessage();
         }
         mostrar();
     }
 
-    void mostrar(){
-        for(int i=0;i<this.p.length;i++){
-            this.toString();
+    void mostrar() {
+        for (int i = 0; i < tamanho; i++) {
+            Personagem.imprimir(this.p[i], i);
         }
     }
 }
@@ -187,7 +195,6 @@ class Personagem {
     private LocalDate dateOfBirth;
     Lista alternate_names, alternate_actors;
     public int tamanho = 0;
-    static Scanner sc = new Scanner(System.in);
 
     /*
      * Construtores da classe Personagem
@@ -458,8 +465,8 @@ class Personagem {
         System.out.println(toString());
     }
 
-    public static void imprimir(Personagem x) {
-        System.out.println(toString(x));
+    public static void imprimir(Personagem x, int id) {
+        System.out.println(toString(x, id));
     }
 
     /*
@@ -476,8 +483,9 @@ class Personagem {
         return resp;
     }
 
-    public static String toString(Personagem x) {
-        String resp = "[" + x.getId() + " ## " + x.getName() + " ## " + x.getAlternate_names() + " ## " + x.getHouse()
+    public static String toString(Personagem x, int id) {
+        String resp = "[" + id + " ## " + x.getId() + " ## " + x.getName() + " ## " + x.getAlternate_names() + " ## "
+                + x.getHouse()
                 + " ## " + x.getAncestry() + " ## " + x.getSpecies() +
                 " ## " + x.getPatronus() + " ## " + x.getHogwartsStaff() + " ## " + x.getHogwartsStudent() + " ## "
                 + x.getActorName() + " ## " + x.getAlive() + " ## " + formatter(x.getDateOfBirth().toString()) +
@@ -607,7 +615,7 @@ class Personagem {
         String line;
         if (key == 0) {
             file = new FileReader(
-                    "/home/yago/Documents/Cc-PucMG/2periodo/TrabalhosPraticos/2024-1/TP2-Aeds2/characters.csv");
+                    "/home/yago/Documents/Cc-PucMG/2periodo/TrabalhosPraticos/2024-1/characters.csv");
             bf = new BufferedReader(file);
         } else {
             file = new FileReader("/tmp/characters.csv");
@@ -631,13 +639,15 @@ class Personagem {
     public static void main(String[] args) throws Exception {
         Personagem personagens[] = new Personagem[404];
         ListaPersonagem list = new ListaPersonagem(404);
-        ler(personagens, 0); // Segundo parametro: 0 para teste | 1 para enviar ao verde com /tmp/characters.csv
-        String id = sc.nextLine();
+        ler(personagens, 1); // Segundo parametro: 0 para teste | 1 para enviar ao verde
+        String id = list.sc.nextLine();
         while (!id.equals("FIM")) {
             Personagem novo = list.findPersonagem(personagens, id);
             list.inserirFim(novo);
+            id = list.sc.nextLine();
         }
-        int qtd = sc.nextInt();
-        list.metodos(list.p, qtd);
+        int qtd = list.sc.nextInt();
+        list.metodos(personagens, qtd);
+        list.sc.close();
     }
 }
