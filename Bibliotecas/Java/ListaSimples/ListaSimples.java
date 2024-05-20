@@ -37,6 +37,7 @@ public class ListaSimples {
             nova.prox = tmp.prox;
             tmp.prox = nova;
             tmp = null; nova = null;
+            qtd++;
         }
     }
 
@@ -47,5 +48,69 @@ public class ListaSimples {
             System.out.print(tmp.elemento+" ");
         }
         System.out.print("]");
+    }
+
+    public int removerFim(){
+        int elemento = -1;
+        if(primeiro == ultimo){
+            System.out.println("ERRO LISTA VAZIA");
+        } else{
+            Celula i = primeiro;
+            for(;i.prox!=ultimo;i = i.prox);
+            Celula tmp = i.prox;
+            elemento = tmp.elemento;
+            i.prox = null;
+            i = tmp = null;
+            qtd--;
+        }
+        return elemento;
+    }
+
+    public int removerInicio(){
+        int elemento = -1;
+        if(primeiro==ultimo){
+            System.out.println("LISTA VAZIA");
+        } else{
+            elemento = primeiro.prox.elemento;
+            Celula tmp = primeiro.prox;
+            primeiro.prox = tmp.prox;
+            tmp.prox = null;
+            tmp = null;
+            qtd--;
+        }
+        return elemento;
+    }
+
+    public int remover(int pos){
+        int resp=-1;
+        if(primeiro==ultimo){
+            System.out.println("EROOR");
+        } else if(pos < 0 || pos >= qtd){
+        
+        } else if(pos==0){
+            resp = removerInicio();
+        } else if(pos == qtd-1){
+            resp = removerFim();
+        } else{
+            Celula i = primeiro;
+            for(int j=0;j<pos;j++,i=i.prox);
+            Celula tmp = i.prox;
+            resp = tmp.elemento;
+            i.prox = tmp.prox;
+            tmp.prox = null;
+            i = tmp = null;
+        }
+        return resp;
+    }
+
+    public void removerImpares(){
+        for(Celula i = primeiro;i.prox!=null;i=i.prox){
+            while(i.prox.elemento%2==1){
+                Celula tmp = i.prox;
+                i.prox = tmp.prox;
+                tmp.prox = null;
+                tmp = null;
+            }
+        }
     }
 }
