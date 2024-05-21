@@ -3,10 +3,10 @@
 *  TP3-Q01: Lista Sequencial
 */
 
-import java.io.FileReader;
 import java.io.BufferedReader;
-import java.util.Scanner;
+import java.io.FileReader;
 import java.time.LocalDate;
+import java.util.Scanner;
 
 /* 
  * Class ListaPersonagem
@@ -103,7 +103,7 @@ class ListaPersonagem {
 
     public void metodos(Personagem p[], int x) {
         String m = "";
-        Personagem novo = new Personagem();
+        Personagem novo;
         for (int i = 0; i < x+1; i++) {
             m = sc.nextLine();
             String[] str = m.split(" ");
@@ -156,10 +156,6 @@ class ListaPersonagem {
  */
 class Lista {
     public String[] list;
-
-    Lista() {
-        this.list = null;
-    }
 
     Lista(String[] list) {
         this.list = list;
@@ -218,31 +214,6 @@ class Personagem {
         this.gender = null;
         this.hairColour = null;
         this.wizard = false;
-    }
-
-    Personagem(String id, String name, String[] alternate_names, String house, String ancestry, String species,
-            String patronus,
-            boolean hogwartsStaff, boolean hogwartsStudent, String actorName, boolean alive, String[] alternate_actors,
-            String dateOfBirth,
-            int yearOfBirth, String eyeColour, String gender, String hairColour, boolean wizard) {
-        this.id = id;
-        this.name = name;
-        this.alternate_names = new Lista(alternate_names);
-        this.house = house;
-        this.ancestry = ancestry;
-        this.species = species;
-        this.patronus = patronus;
-        this.hogwartsStaff = hogwartsStaff;
-        this.hogwartsStudent = hogwartsStudent;
-        this.actorName = actorName;
-        this.alive = alive;
-        this.alternate_actors = new Lista(alternate_actors);
-        this.dateOfBirth = LocalDate.parse(dateOfBirth);
-        this.yearOfBirth = yearOfBirth;
-        this.eyeColour = eyeColour;
-        this.gender = gender;
-        this.hairColour = hairColour;
-        this.wizard = wizard;
     }
 
     /*
