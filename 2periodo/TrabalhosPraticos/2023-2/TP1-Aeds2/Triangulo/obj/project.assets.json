@@ -8,19 +8,19 @@
     "net7.0": []
   },
   "packageFolders": {
-    "/home/yago/.nuget/packages/": {}
+    "C:\\Users\\Yago\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/home/yago/Documents/Cc-PucMG/2periodo/TrabalhosPraticos/2023-2/TP1-Aeds2/Triangulo/Triangulo.csproj",
+      "projectUniqueName": "C:\\Programacao\\Cc-PucMG\\2periodo\\TrabalhosPraticos\\2023-2\\TP1-Aeds2\\Triangulo\\Triangulo.csproj",
       "projectName": "Triangulo",
-      "projectPath": "/home/yago/Documents/Cc-PucMG/2periodo/TrabalhosPraticos/2023-2/TP1-Aeds2/Triangulo/Triangulo.csproj",
-      "packagesPath": "/home/yago/.nuget/packages/",
-      "outputPath": "/home/yago/Documents/Cc-PucMG/2periodo/TrabalhosPraticos/2023-2/TP1-Aeds2/Triangulo/obj/",
+      "projectPath": "C:\\Programacao\\Cc-PucMG\\2periodo\\TrabalhosPraticos\\2023-2\\TP1-Aeds2\\Triangulo\\Triangulo.csproj",
+      "packagesPath": "C:\\Users\\Yago\\.nuget\\packages\\",
+      "outputPath": "C:\\Programacao\\Cc-PucMG\\2periodo\\TrabalhosPraticos\\2023-2\\TP1-Aeds2\\Triangulo\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "/home/yago/.nuget/NuGet/NuGet.Config"
+        "C:\\Users\\Yago\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net7.0"
@@ -38,6 +38,11 @@
         "warnAsError": [
           "NU1605"
         ]
+      },
+      "restoreAuditProperties": {
+        "enableAudit": "true",
+        "auditLevel": "low",
+        "auditMode": "direct"
       }
     },
     "frameworks": {
@@ -54,12 +59,30 @@
         ],
         "assetTargetFallback": true,
         "warn": true,
+        "downloadDependencies": [
+          {
+            "name": "Microsoft.AspNetCore.App.Ref",
+            "version": "[7.0.19, 7.0.19]"
+          },
+          {
+            "name": "Microsoft.NETCore.App.Host.win-x64",
+            "version": "[7.0.19, 7.0.19]"
+          },
+          {
+            "name": "Microsoft.NETCore.App.Ref",
+            "version": "[7.0.19, 7.0.19]"
+          },
+          {
+            "name": "Microsoft.WindowsDesktop.App.Ref",
+            "version": "[7.0.19, 7.0.19]"
+          }
+        ],
         "frameworkReferences": {
           "Microsoft.NETCore.App": {
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/usr/lib/dotnet/sdk/7.0.117/RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.300\\RuntimeIdentifierGraph.json"
       }
     }
   }
