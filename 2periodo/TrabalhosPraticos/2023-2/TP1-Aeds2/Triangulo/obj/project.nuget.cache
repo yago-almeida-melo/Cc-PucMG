@@ -1,6 +1,10 @@
 {
   "version": 2,
+<<<<<<< HEAD
   "dgSpecHash": "kKtb3F1g/zI=",
+=======
+  "dgSpecHash": "M7qffUKUMTciWyhBKhZVVbTDiknQPs0NY8vR4TmiL5vgliZ+UwOrI1O8HBUBFXWTWYdByM2IQJFlQmHTpTBB1w==",
+>>>>>>> 53a415f811bd27725549063dd5c60632883729f6
   "success": true,
   "projectFilePath": "C:\\Programacao\\Cc-PucMG\\2periodo\\TrabalhosPraticos\\2023-2\\TP1-Aeds2\\Triangulo\\Triangulo.csproj",
   "expectedPackageFiles": [
