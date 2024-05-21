@@ -1,17 +1,15 @@
 {
   "version": 2,
-<<<<<<< HEAD
-  "dgSpecHash": "kKtb3F1g/zI=",
-=======
   "dgSpecHash": "M7qffUKUMTciWyhBKhZVVbTDiknQPs0NY8vR4TmiL5vgliZ+UwOrI1O8HBUBFXWTWYdByM2IQJFlQmHTpTBB1w==",
->>>>>>> 53a415f811bd27725549063dd5c60632883729f6
   "success": true,
-  "projectFilePath": "C:\\Programacao\\Cc-PucMG\\2periodo\\TrabalhosPraticos\\2023-2\\TP1-Aeds2\\Triangulo\\Triangulo.csproj",
-  "expectedPackageFiles": [
-    "C:\\Users\\Yago\\.nuget\\packages\\microsoft.netcore.app.ref\\7.0.19\\microsoft.netcore.app.ref.7.0.19.nupkg.sha512",
-    "C:\\Users\\Yago\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\7.0.19\\microsoft.windowsdesktop.app.ref.7.0.19.nupkg.sha512",
-    "C:\\Users\\Yago\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\7.0.19\\microsoft.aspnetcore.app.ref.7.0.19.nupkg.sha512",
-    "C:\\Users\\Yago\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\7.0.19\\microsoft.netcore.app.host.win-x64.7.0.19.nupkg.sha512"
-  ],
-  "logs": []
+  "projectFilePath": "/home/yago/Documents/Cc-PucMG/2periodo/TrabalhosPraticos/2023-2/TP1-Aeds2/Triangulo/Triangulo.csproj",
+  "expectedPackageFiles": [],
+  "logs": [
+    {
+      "code": "Undefined",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Problem reading the cache file /home/yago/Documents/Cc-PucMG/2periodo/TrabalhosPraticos/2023-2/TP1-Aeds2/Triangulo/obj/project.nuget.cache : Invalid property identifier character: <. Path 'version', line 3, position 0."
+    }
+  ]
 }
