@@ -1,8 +1,13 @@
 {
   "version": 2,
-  "dgSpecHash": "dJqP85Gp0Bu4fQnk+7KOri2J0Lmo/OnIwadQEnn7iXlxp8S4kZo3RZ00rKQCQ0K9RgRT3AqS+ruPnWjJMRW6Pg==",
+  "dgSpecHash": "6mElvG5f5Gk=",
   "success": true,
-  "projectFilePath": "/home/yago/Documents/Cc-PucMG/2periodo/TrabalhosPraticos/2024-1/TP1-Aeds2/Palindromo/Palindromo.csproj",
-  "expectedPackageFiles": [],
+  "projectFilePath": "C:\\Programacao\\Cc-PucMG\\2periodo\\TrabalhosPraticos\\2024-1\\TP1-Aeds2\\Palindromo\\Palindromo.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Yago\\.nuget\\packages\\microsoft.netcore.app.ref\\7.0.19\\microsoft.netcore.app.ref.7.0.19.nupkg.sha512",
+    "C:\\Users\\Yago\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\7.0.19\\microsoft.windowsdesktop.app.ref.7.0.19.nupkg.sha512",
+    "C:\\Users\\Yago\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\7.0.19\\microsoft.aspnetcore.app.ref.7.0.19.nupkg.sha512",
+    "C:\\Users\\Yago\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\7.0.19\\microsoft.netcore.app.host.win-x64.7.0.19.nupkg.sha512"
+  ],
   "logs": []
 }
