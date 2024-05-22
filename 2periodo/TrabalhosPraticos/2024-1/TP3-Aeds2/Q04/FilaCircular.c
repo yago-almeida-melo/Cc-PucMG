@@ -289,7 +289,7 @@ void metodos(Personagem array[], int qtd) {
 // MAIN
 int main() {
     Personagem array[MAX_TAM];
-    arrayOfPersonagens(array, 0); // 2* parâmetro: 0 == teste / 1 == verde
+    arrayOfPersonagens(array, 1); // 2* parâmetro: 0 == teste / 1 == verde
     start();
     makeArray(array);
     int x = 0;
