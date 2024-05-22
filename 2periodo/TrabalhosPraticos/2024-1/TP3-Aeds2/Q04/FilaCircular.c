@@ -36,7 +36,7 @@ typedef struct{
 } Personagem;
 
 
-Personagem p[TAM_FILA];
+Personagem p[TAM_FILA+1];
 
 /*
     function: initPersonagem
@@ -185,7 +185,7 @@ void mostrar() {
     int j=0;
     while(i!=ultimo){
         toString(&p[i], j);
-        i = ((i+1)% TAM_FILA);
+        i = ((i+1)% (TAM_FILA+1));
         j++;
     }
 }
@@ -196,7 +196,7 @@ void mostrar() {
 int media(){
     int soma=0;
     int count=0;
-    for(int i = primeiro; i != ultimo; i = (i + 1) % TAM_FILA){
+    for(int i = primeiro; i != ultimo; i = ((i + 1) % (TAM_FILA+1))){
         count++;
         soma += p[i].yearOfBirth;
     }
@@ -209,17 +209,18 @@ Personagem remover(){
         printf("ERROR"); exit(1);
     }
     Personagem resp = p[primeiro];
-    primeiro = (primeiro + 1) % TAM_FILA;
+    primeiro = (primeiro + 1) % (TAM_FILA+1);
     return resp;
 }
 
 void inserir(Personagem novo){
-    if (((ultimo+1) % TAM_FILA) == primeiro){
-        remover();
+    if (((ultimo+1) % (TAM_FILA+1)) == primeiro){
+        Personagem rem = remover();
     }
     p[ultimo] = novo;
-    ultimo = (ultimo + 1) % TAM_FILA;
+    ultimo = (ultimo + 1) % (TAM_FILA+1);
     printf(">> Year Birthday Average: %d\n", media());
+    
 }
 
 /*
