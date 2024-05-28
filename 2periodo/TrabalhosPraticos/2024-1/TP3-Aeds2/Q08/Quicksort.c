@@ -278,66 +278,59 @@ void swap(Celula *p1, Celula *p2){
     @params: Personagem && Personagem
     action: Compara dois Personagens pelo atributo eyeOfColour (desempate por nome) e retorna um int
 */
-bool comparator(Personagem a, Personagem b, int key){
+bool comparator(Personagem a, Personagem b){
     bool resp = false;
-    if(key == 0){   
-        if(strcmp(a.house, b.house) > 0){       // a < b
-            resp = true; 
-            comparacoes++;  
-        } else if(strcmp(a.house, b.house) < 0){  // a > b
-            resp = false;
+    if(strcmp(a.house, b.house) < 0){       // a > b
+        resp = true; 
+        comparacoes++;  
+    } else if(strcmp(a.house, b.house) > 0){  // a > b
+        resp = false;
+        comparacoes++;
+    } else{                               // a==b   
+        if(strcmp(a.name, b.name) < 0){
+            resp = true;
             comparacoes++;
-        } else{                               // a==b   
-            if(strcmp(a.name, b.name) > 0){    
-                resp = true;
-                comparacoes++;
-            } else{
-                resp = false;
-                comparacoes++;
-            }
-        } 
-    } else{
-        if(strcmp(a.house, b.house) < 0){       // a > b
-            resp = true; 
-            comparacoes++;  
-        } else if(strcmp(a.house, b.house) > 0){  // a > b
-            resp = false;
+        } else{
             comparacoes++;
-        } else{                               // a==b   
-            if(strcmp(a.name, b.name) < 0){    
-                resp = true;
-                comparacoes++;
-            } else{
-                comparacoes++;
-                resp = false;
-            }
+            resp = false;
         }
     }
     return resp;
 }
 
+bool verify(Celula* i, Celula* pro){
+    bool resp = false;
+    while(!resp && i!=NULL){
+        if(i == pro){
+            resp = true;
+        }
+        i = i->prox;
+    }
+    return resp;
+}
 /*
     function: quicksortRec
     @params: int && int
     action: Ordenada o subArray pelo metodo de Quicksort, pelo atributo house e desempate por nome
 */
-void quicksortRec(Celula* esq, Celula* dir, int left, int right) {
-    Celula* i = esq; Celula* j = dir;
-    int esqInt = left; int dirInt = right;
-    Celula* tmp = primeiro;
-    for(int h=0;h<tamanho/2;h++, tmp = tmp->prox);
-    while (esqInt <= dirInt) {
-        while (comparator(i->elemento, tmp->elemento, 1)){ i = i->prox; esqInt++;}
-        while (comparator(j->elemento, tmp->elemento, 0)){ j = j->ant; dirInt--;}
-        if (esqInt <= dirInt) {
-            swap(i, j);
-            i = i->prox; esqInt++;
-            j = j->ant; dirInt++;
+void quicksortRec(Celula* esq, Celula* dir) {
+    if(esq != dir && esq != dir->prox){
+        Celula* i = esq; Celula* j = dir;
+        Personagem pivo = i->elemento;
+        while (verify(i, j)) {
+            while (comparator(i->elemento, pivo)) { i = i->prox; }
+            while (comparator(pivo, j->elemento)) { j = j->ant; }
+            if (verify(i, j)) {
+                swap(i, j);
+                i = i->prox; 
+                j = j->ant;
+            }
         }
+        quicksortRec(esq, j);
+        quicksortRec(i, dir);
     }
-    if (left < dirInt)  quicksortRec(esq, j,left, dirInt);
-    if (esqInt < right)  quicksortRec(i, dir, esqInt, right);
 }
+
 /*
     function: quicksort
     @params: int
@@ -345,7 +338,7 @@ void quicksortRec(Celula* esq, Celula* dir, int left, int right) {
 */
 void quicksort() {
     start = clock();
-    quicksortRec(primeiro, ultimo, 0, tamanho-1);
+    quicksortRec(primeiro->prox, ultimo);
     end = clock();
     tempo = ((double)(end - start)) / CLOCKS_PER_SEC;
 }
@@ -372,11 +365,11 @@ void registroLog(int key){
 
 //MAIN
 int main() {
-    makeArray(0);          // 0 == teste   / 1 == verde
+    makeArray(1);          // 0 == teste   / 1 == verde
     init();
     makeSubList();
     quicksort();
     mostrar();
-    registroLog(0);          // 0 == teste  /  1 == verde
+    registroLog(1);          // 0 == teste  /  1 == verde
     return 0;
 }
