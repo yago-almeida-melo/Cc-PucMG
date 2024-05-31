@@ -1,0 +1,144 @@
+/*
+    806454 - Yago Almeida Melo
+    Guia_16.txt  
+*/
+
+01) 
+
+// Produto de dois dados de 8 bits usando somas sucessivas
+// dado03 = dado01 * dado02
+
+               JMP MAIN
+
+// Função de multiplicação
+IMUL:          MVI A,00       // Inicializa A com 0 (produto)
+               MOV D,B        // D = dado01
+IMUL_LOOP:     MOV E,C        // E = contador (dado02)
+               JZ IMUL_DONE   // Se contador é zero, termina
+               ADD D          // A = A + D (soma sucessiva)
+               DCR E          // Decrementa contador
+               JNZ IMUL_LOOP  // Se contador não é zero, repete
+IMUL_DONE:     RET            // Retorna com o produto em A
+
+// Programa principal
+MAIN:          LXI H,0050     // HL aponta para dado01
+               MOV B,M        // B = dado01
+               INX H          // HL aponta para dado02
+               MOV C,M        // C = dado02
+               CALL IMUL      // Chama função de multiplicação
+               STA 0052       // Armazena resultado em 0052h
+               HLT            // Termina o programa
+END:
+
+02) 
+
+// Quociente inteiro de dois dados de 8 bits usando subtrações sucessivas
+// dado03 = dado01 / dado02
+
+               JMP MAIN
+
+// Função de divisão inteira
+IDIV:          MVI A,00       // Inicializa A com 0 (quociente)
+               MOV D,B        // D = dividendo (dado01)
+               MOV E,C        // E = divisor (dado02)
+IDIV_LOOP:     CMP E          // Compara D com E
+               JC IDIV_DONE   // Se D < E, termina
+               SUB E          // D = D - E (subtração sucessiva)
+               INX A          // Incrementa quociente
+               JMP IDIV_LOOP  // Repete
+IDIV_DONE:     RET            // Retorna com o quociente em A
+
+// Programa principal
+MAIN:          LXI H,0050     // HL aponta para dado01
+               MOV B,M        // B = dado01
+               INX H          // HL aponta para dado02
+               MOV C,M        // C = dado02
+               CALL IDIV      // Chama função de divisão
+               STA 0052       // Armazena resultado em 0052h
+               HLT            // Termina o programa
+END:
+
+03)
+
+// Resto da divisão de dois dados de 8 bits usando subtrações sucessivas
+// dado03 = dado01 % dado02
+
+               JMP MAIN
+
+// Função de resto da divisão
+IMOD:          MOV D,B        // D = dividendo (dado01)
+               MOV E,C        // E = divisor (dado02)
+IMOD_LOOP:     CMP E          // Compara D com E
+               JC IMOD_DONE   // Se D < E, termina
+               SUB E          // D = D - E (subtração sucessiva)
+               JMP IMOD_LOOP  // Repete
+IMOD_DONE:     MOV A,D        // A = resto (valor final de D)
+               RET            // Retorna com o resto em A
+
+// Programa principal
+MAIN:          LXI H,0050     // HL aponta para dado01
+               MOV B,M        // B = dado01
+               INX H          // HL aponta para dado02
+               MOV C,M        // C = dado02
+               CALL IMOD      // Chama função de resto
+               STA 0052       // Armazena resultado em 0052h
+               HLT            // Termina o programa
+END:
+
+04)
+
+// Encontrar o maior valor de um arranjo
+
+               JMP MAIN
+
+// Função para encontrar o maior valor
+MAX:           MVI D,00       // D = índice
+               MOV A,M        // A = MEM[HL] (primeiro valor)
+MAX_LOOP:      INX H          // HL aponta para o próximo valor
+               MOV B,M        // B = MEM[HL]
+               CMP B          // Compara A com B
+               JC MAX_NEXT    // Se A < B, atualiza A
+               MOV A,B        // A = B
+MAX_NEXT:      DCR C          // Decrementa contador
+               JNZ MAX_LOOP   // Repete até C = 0
+               RET            // Retorna com o maior valor em A
+
+// Programa principal
+MAIN:          LXI H,0050     // HL aponta para o início do arranjo
+               MVI C,05       // C = número de elementos no arranjo
+               CALL MAX       // Chama função para encontrar o maior valor
+               STA 0055       // Armazena resultado em 0055h
+               HLT            // Termina o programa
+END:
+
+// Área de dados
+// dado1:  02h, 03h, 05h, 01h, 04h
+// resultado: 00h
+
+05)
+
+// Conversão de BCD para hexadecimal
+// dado02 = HI(dado01) * 10 + LOW(dado01)
+
+               JMP MAIN
+
+// Função para conversão de BCD para hexadecimal
+BCD_TO_HEX:   MOV A,B        // A = dado01
+               ANI 0F0H       // Isola o dígito alto
+               RLC            // Shift à esquerda 4 bits
+               RLC
+               RLC
+               RLC
+               MOV D,A        // D = dígito alto * 10
+               MOV A,B        // A = dado01
+               ANI 0F         // Isola o dígito baixo
+               ADD D          // A = dígito baixo + dígito alto * 10
+               RET            // Retorna com o resultado em A
+
+// Programa principal
+MAIN:          LXI H,0050     // HL aponta para dado01
+               MOV B,M        // B = dado01
+               CALL BCD_TO_HEX // Chama função de conversão
+               STA 0052       // Armazena resultado em 0052h
+               HLT            // Termina o programa
+END:

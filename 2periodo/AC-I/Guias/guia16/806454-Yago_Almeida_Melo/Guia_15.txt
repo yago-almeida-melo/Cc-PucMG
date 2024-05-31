@@ -1,0 +1,163 @@
+/*
+    806454 - Yago Almeida Melo
+    Guia_15.txt  (Atrasado)
+*/
+
+01)
+// Guia_1501.txt
+// Calcular dado04 = dado01 - dado02 + dado03
+// Usar dados com 8 bits
+
+// Area de código ; Significado  // Comentario
+        LXI    H,dado1 ; HL <- addr(dado1) // endereco do dado1
+        MOV A,M  ; A  <- MEM [HL] // A = MEM [dado1]
+        INX   H  ; HL <- HL+1  // endereco do dado2
+        SUB M  ; A  <- A - MEM [HL] // A = A - dado2
+        INX   H  ; HL <- HL+1  // endereco do dado3
+        ADD M  ; A  <- A + MEM [HL] // A = A + dado3
+        STA dado4 ; MEM [dado4] <- A // MEM [dado4] = A
+        HLT  ; halt   // parar
+
+; Area de dados
+; dado1:  02h  ; primeiro  dado em hexadecimal
+; dado2:  03h  ; segundo dado em hexadecimal
+; dado3:  01h  ; terceiro dado em hexadecimal
+; dado4:  00h  ; resultado em hexadecimal
+
+02)
+
+// Guia_1502.txt
+// Calcular dado04 = dado01 + dado02 - dado03
+// Usar dados com 16 bits (sinal + amplitude)
+
+// Area de código ; Significado  // Comentario
+        LXI    H, dado1      ; HL <- addr(dado1)        // Endereço de dado1
+        MOV    A, M          ; A <- MEM[HL]            // Carrega dado1 (parte baixa)
+        INX    H             ; HL <- HL + 1            // Incrementa para parte alta
+        MOV    B, M          ; B <- MEM[HL]            // Carrega dado1 (parte alta)
+
+        INX    H             ; HL <- HL + 1            // Incrementa para parte baixa de dado2
+        MOV    A, M          ; A <- MEM[HL]            // Carrega dado2 (parte baixa)
+        INX    H             ; HL <- HL + 1            // Incrementa para parte alta
+        MOV    C, M          ; C <- MEM[HL]            // Carrega dado2 (parte alta)
+        
+        MOV    D, B          ; D <- B                  // Move parte alta de dado1 para D
+        MOV    E, A          ; E <- A                  // Move parte baixa de dado1 para E
+
+        LHLD   dado2         ; HL <- addr(dado2)       // Endereço de dado2
+        DAD    H             ; DE = DE + HL            // Adiciona dado2 a dado1
+
+        LHLD   dado3         ; HL <- addr(dado3)       // Endereço de dado3
+        MOV    A, L          ; A <- L                  // Carrega parte baixa de dado3
+        CMA                   ; A <- ~A                 // Complemento de 1 da parte baixa
+        MOV    L, A          ; L <- A                  // Atualiza L com complemento de 1
+        MOV    A, H          ; A <- H                  // Carrega parte alta de dado3
+        CMA                   ; A <- ~A                 // Complemento de 1 da parte alta
+        MOV    H, A          ; H <- A                  // Atualiza H com complemento de 1
+        INX    H             ; HL <- HL + 1            // Adiciona 1 para complemento de 2
+
+        DAD    H             ; DE = DE + HL            // Adiciona complemento de 2 de dado3
+
+        SHLD   dado4         ; MEM[dado4] <- HL        // Armazena resultado em dado4
+        HLT                   ; halt                   // Parar
+
+// Area de dados
+dado1:   DW 1234h            ; primeiro dado de 16 bits
+dado2:   DW 5678h            ; segundo dado de 16 bits
+dado3:   DW 0003h            ; terceiro dado de 16 bits
+dado4:   DW 0000h            ; resultado de 16 bits
+
+03)
+
+// Guia_1503.txt
+// Calcular dado04 = dado01 + dado02 + dado03
+// Usar dados com 8 bits codificados em BCD
+
+// Area de código ; Significado  // Comentario
+        MVI    H, 00h           ; H <- 00                // Inicializa registrador H
+        LXI    D, dado1         ; DE <- addr(dado1)      // Endereço de dado1
+        MOV    A, M             ; A <- MEM[DE]           // Carrega dado1 no acumulador
+        CALL   DAA              ; Ajusta A para BCD      // Ajusta acumulador para BCD
+        
+        INX    D                ; DE <- DE + 1           // Incrementa para dado2
+        MOV    B, M             ; B <- MEM[DE]           // Carrega dado2 no registrador B
+        ADD    B                ; A <- A + B             // Adiciona dado2 ao acumulador
+        CALL   DAA              ; Ajusta A para BCD      // Ajusta acumulador para BCD
+        
+        INX    D                ; DE <- DE + 1           // Incrementa para dado3
+        MOV    C, M             ; C <- MEM[DE]           // Carrega dado3 no registrador C
+        ADD    C                ; A <- A + C             // Adiciona dado3 ao acumulador
+        CALL   DAA              ; Ajusta A para BCD      // Ajusta acumulador para BCD
+        
+        STA    dado4            ; MEM[dado4] <- A        // Armazena o resultado em dado4
+        HLT                     ; halt                   // Parar
+
+; Area de dados
+dado1:   DB 25h                ; primeiro dado em BCD (25)
+dado2:   DB 37h                ; segundo dado em BCD (37)
+dado3:   DB 19h                ; terceiro dado em BCD (19)
+dado4:   DB 00h                ; resultado em BCD (inicializado em 00)
+
+04)
+
+// Guia_1504.txt
+// Calcular dado03 = 4 * (dado01 - 2 * dado02)
+// Usar dados com 8 bits
+
+// Area de código ; Significado  // Comentario
+        LXI    H, dado1         ; HL <- addr(dado1)      // Endereço de dado1
+        MOV    A, M             ; A <- MEM[HL]           // Carrega dado1 no acumulador
+        
+        INX    H                ; HL <- HL + 1           // Incrementa para dado2
+        MOV    B, M             ; B <- MEM[HL]           // Carrega dado2 no registrador B
+        MOV    C, B             ; C <- B                 // Copia dado2 para registrador C
+        
+        ADD    B                ; A <- A + B             // A = A + dado2 (2 * dado2)
+        MOV    B, A             ; B <- A                 // Move resultado para B
+        MOV    A, M             ; A <- MEM[HL]           // Recarrega dado1 no acumulador
+        SUB    B                ; A <- A - B             // A = dado1 - 2 * dado2
+        
+        MOV    B, A             ; B <- A                 // Salva resultado parcial em B
+        ADD    A                ; A <- A + A             // A = 2 * (dado1 - 2 * dado2)
+        ADD    A                ; A <- A + A             // A = 4 * (dado1 - 2 * dado2)
+        
+        STA    dado3            ; MEM[dado3] <- A        // Armazena o resultado em dado3
+        HLT                     ; halt                   // Parar
+
+; Area de dados
+dado1:   DB 0Ah                ; primeiro dado de 8 bits
+dado2:   DB 02h                ; segundo dado de 8 bits
+dado3:   DB 00h                ; resultado de 8 bits
+
+05)
+
+// Guia_1505.txt
+// Calcular dado03 = dado01 * 4 + dado02 / 2
+// Usar dados com 8 bits, levando em consideração o bit do sinal
+
+// Area de código ; Significado  // Comentario
+        LXI    H, dado1         ; HL <- addr(dado1)        // Endereço de dado1
+        MOV    A, M             ; A <- MEM[HL]             // Carrega dado1 no acumulador
+        
+        MOV    B, A             ; B <- A                   // Salva dado1 em B
+        RLC                     ; A <- A << 1              // Desloca à esquerda (multiplica por 2)
+        RLC                     ; A <- A << 1              // Desloca à esquerda novamente (multiplica por 4)
+        
+        MOV    C, A             ; C <- A                   // Salva resultado de dado1 * 4 em C
+        
+        INX    H                ; HL <- HL + 1             // Incrementa para dado2
+        MOV    A, M             ; A <- MEM[HL]             // Carrega dado2 no acumulador
+        
+        RAR                     ; A <- A >> 1              // Desloca à direita (divide por 2)
+        
+        ADD    C                ; A <- A + C               // Soma (dado01 * 4) + (dado02 / 2)
+        
+        STA    dado3            ; MEM[dado3] <- A          // Armazena o resultado em dado3
+        HLT                     ; halt                     // Parar
+
+; Area de dados
+dado1:   DB 10h                ; primeiro dado de 8 bits (16 em decimal)
+dado2:   DB 08h                ; segundo dado de 8 bits (8 em decimal)
+dado3:   DB 00h                ; resultado de 8 bits
+
+
