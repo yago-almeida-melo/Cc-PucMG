@@ -1,13 +1,11 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdbool.h>
-#include <stdlib.h>
  
-void verify(char a[], char b[], char c[], char d[], char e[]){
+void verify(int a, int b, int c, int d, int e){
     int resp = 0;
-    int aa = atoi(a); int bb = atoi(b); int cc = atoi(c); int dd = atoi(d); int ee = atoi(e);
     int arr[5]; int count=0;
-    arr[0]=aa; arr[1]=bb; arr[2]=cc; arr[3]=dd; arr[4]=ee;
+    arr[0]=a; arr[1]=b; arr[2]=c; arr[3]=d; arr[4]=e;
     for(int i=0;i<5;i++){
         if(arr[i]<=127){
             count++;
@@ -35,16 +33,9 @@ int main() {
     int x=0;
     scanf("%d", &x);
     while(x!=0){
+        int a,b,c,d,e;
         for(int i=0;i<x;i++){
-            char in[50];
-            scanf("%[^\n]", in);
-            char a[4],b[4],c[4],d[4],e[4];
-            int indexIn=0, index=0;
-            while(in[indexIn]!=' '){a[index] = in[indexIn]; index++; indexIn++;} indexIn++;index=0;
-            while(in[indexIn]!=' '){b[index] = in[indexIn]; index++; indexIn++;} indexIn++;index=0;
-            while(in[indexIn]!=' '){c[index] = in[indexIn]; index++; indexIn++;} indexIn++;index=0;
-            while(in[indexIn]!=' '){d[index] = in[indexIn]; index++; indexIn++;} indexIn++;index=0;
-            while(in[indexIn]!=' '){e[index] = in[indexIn]; index++; indexIn++;}
+            scanf("%d %d %d %d %d",&a,&b,&c,&d,&e);
             verify(a,b,c,d,e);
         }
         scanf("%d", &x);
