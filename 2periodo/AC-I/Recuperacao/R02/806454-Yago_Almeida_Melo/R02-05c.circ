@@ -5,9 +5,25 @@
   <lib desc="#Wiring" name="0"/>
   <lib desc="#Gates" name="1"/>
   <lib desc="#TTL" name="2"/>
-  <lib desc="#Plexers" name="3"/>
+  <lib desc="#Plexers" name="3">
+    <tool name="Multiplexer">
+      <a name="enable" val="false"/>
+    </tool>
+    <tool name="Demultiplexer">
+      <a name="enable" val="false"/>
+    </tool>
+    <tool name="Decoder">
+      <a name="enable" val="false"/>
+    </tool>
+  </lib>
   <lib desc="#Arithmetic" name="4"/>
-  <lib desc="#Memory" name="5"/>
+  <lib desc="#Memory" name="5">
+    <tool name="ROM">
+      <a name="contents">addr/data: 8 8
+0
+</a>
+    </tool>
+  </lib>
   <lib desc="#I/O" name="6"/>
   <lib desc="#Base" name="7">
     <tool name="Text Tool">
@@ -63,7 +79,6 @@
     <wire from="(290,220)" to="(290,240)"/>
     <wire from="(420,220)" to="(420,240)"/>
     <wire from="(160,220)" to="(160,240)"/>
-    <wire from="(40,290)" to="(140,290)"/>
     <wire from="(290,120)" to="(290,220)"/>
     <wire from="(420,120)" to="(420,220)"/>
     <wire from="(160,120)" to="(160,220)"/>
@@ -97,6 +112,7 @@
     <wire from="(10,340)" to="(540,340)"/>
     <wire from="(10,250)" to="(10,340)"/>
     <wire from="(10,250)" to="(50,250)"/>
+    <wire from="(50,290)" to="(140,290)"/>
     <comp lib="5" loc="(410,220)" name="D Flip-Flop">
       <a name="Pre/Clr Positions" val="LEGACY"/>
       <a name="enable" val="true"/>
@@ -122,8 +138,13 @@
     </comp>
     <comp lib="0" loc="(40,170)" name="Pin">
       <a name="tristate" val="false"/>
+      <a name="label" val="CLK"/>
     </comp>
     <comp lib="1" loc="(90,240)" name="XOR Gate"/>
+    <comp lib="0" loc="(50,290)" name="Pin">
+      <a name="tristate" val="false"/>
+      <a name="label" val="CLEAR"/>
+    </comp>
     <comp lib="5" loc="(150,220)" name="D Flip-Flop">
       <a name="Pre/Clr Positions" val="LEGACY"/>
       <a name="enable" val="true"/>
@@ -138,9 +159,6 @@
       <a name="Pre/Clr Positions" val="LEGACY"/>
       <a name="enable" val="true"/>
       <a name="NewFFLayout" val="false"/>
-    </comp>
-    <comp lib="0" loc="(40,290)" name="Pin">
-      <a name="tristate" val="false"/>
     </comp>
     <comp lib="0" loc="(20,230)" name="Constant"/>
     <comp lib="5" loc="(280,220)" name="D Flip-Flop">
