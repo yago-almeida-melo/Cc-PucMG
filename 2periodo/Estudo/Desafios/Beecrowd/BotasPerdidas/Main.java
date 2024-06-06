@@ -13,8 +13,9 @@ public class Main {
         Scanner sc = new Scanner(System.in);
         int n = sc.nextInt();
         while(sc.hasNextInt()){
+            sc.nextLine();
             int pares=0;
-            String botas[] = new String[n];
+            String[] botas = new String[n];
             for(int i=0;i<n;i++){
                 botas[i] = sc.nextLine();                
             }
@@ -30,7 +31,7 @@ public class Main {
             System.out.println(pares);
             n = sc.nextInt();
         }
-        
+        sc.close();
     }
  
 }
