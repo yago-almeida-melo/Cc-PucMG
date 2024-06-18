@@ -7,6 +7,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include <stdbool.h>
+#include <time.h>
 
 #define MAX_TAM 404
 int comparacoes = 0;
@@ -157,7 +158,7 @@ No *balancear(No *no) {
 
 // Função auxiliar para imprimir o caminho percorrido na pesquisa
 void pesquisar(char *nome) {
-    printf("%s raiz", nome);
+    printf("%s => raiz", nome);
     comparacoes = 0; // Reinicializa o contador de comparações para cada busca
     if(pesquisarRec(raiz, nome)) {
         printf(" SIM\n");
@@ -360,18 +361,42 @@ void inserirNaArvore(Personagem array[]){
 void procurarNaArvore(){
     char nome[100];
     scanf(" %[^\n\r]", nome);
+    inicio = clock();
     while(strcmp(nome, "FIM")!=0){
         pesquisar(nome);
         scanf(" %[^\n\r]", nome);
     }
+    fim = clock();
+    tempo = ((double)(inicio - fim)) / CLOCKS_PER_SEC;
+}
+
+/*
+    function: registroLog
+    @params: int
+    action: Cria um arquivo contendo o tempo de execução e o numero de comparações do código
+*/
+void registroLog(int key){
+    FILE *arquivo;
+    if(key == 0){
+        arquivo = fopen("806454_avl.txt", "w");
+    }else{
+        arquivo = fopen("/tmp/806454_avl.txt", "w");
+    }
+    if (arquivo == NULL) {
+        perror("Erro ao abrir o arquivo.");
+        exit(EXIT_FAILURE); 
+    }
+    fprintf(arquivo, "Matricula: 806454\tTempo de execucao: %.6f segundos\tComparacoes: %d", tempo, comparacoes);
+    fclose(arquivo);
 }
 
 // MAIN
 int main(){
     Personagem array[MAX_TAM];
-    arrayOfPersonagens(array, 0); // 2* parâmetro: 0 == teste / 1 == verde
+    arrayOfPersonagens(array, 1); // 2* parâmetro: 0 == teste / 1 == verde
     start();
     inserirNaArvore(array);
     procurarNaArvore();
+    registroLog(1);          // 0 == teste  /  1 == verde
     return 0;
 }
