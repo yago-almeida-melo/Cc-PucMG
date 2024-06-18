@@ -57,7 +57,7 @@ class ArvoreBinaria {
      * caso contrario.
      */
     public void pesquisar(String x, Log log) {
-        System.out.print(x + " raiz");
+        System.out.print(x + " => raiz");
         boolean achou = pesquisar(x, raiz, log);
         if(achou){ System.out.print(" SIM\n"); } else{ System.out.print(" NAO\n"); }
     }
