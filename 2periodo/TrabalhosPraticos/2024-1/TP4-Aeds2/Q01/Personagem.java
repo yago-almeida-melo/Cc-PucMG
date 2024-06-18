@@ -671,9 +671,9 @@ class Personagem {
     public static void main(String[] args) throws Exception {
         Scanner sc = new Scanner(System.in);
         ArvoreBinaria arvore = new ArvoreBinaria();
-        Log log = new Log("806454_arvoreBinaria.txt");
+        Log log = new Log("/tmp/806454_arvoreBinaria.txt");
         Personagem personagens[] = new Personagem[404];
-        ler(personagens, 0);  // Segundo parametro: 0 para teste / 1 para enviar ao verde com /tmp/characters.csv
+        ler(personagens, 1);  // Segundo parametro: 0 para teste / 1 para enviar ao verde com /tmp/characters.csv
         inserirNaArvore(arvore, personagens, sc);
         Instant start = Instant.now();
         procuraNaArvore(arvore, log, sc);
