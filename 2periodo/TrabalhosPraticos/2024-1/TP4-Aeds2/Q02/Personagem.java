@@ -1,4 +1,8 @@
 
+/*
+ *  806454 - Yago Almeida Melo
+ *  TP4-Q02: Arvore de Arvore em Java
+ */
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.FileWriter;
@@ -8,42 +12,157 @@ import java.time.Instant;
 import java.time.LocalDate;
 import java.util.Scanner;
 
-class NoAN {
+class No {
+    public No2 outro;
+    public int elemento; // Conteudo do no.
+    public No esq, dir;  // Filhos da esq e dir.
 
-    public boolean cor;
-    public Personagem elemento;
-    public NoAN esq, dir;
-
-    public NoAN() {
-        this(null, false, null, null);
+    /**
+     * Construtor da classe.
+     *
+     * @param elemento Conteudo do no.
+     */
+    public No(int elemento) {
+        this(elemento, null, null, null);
     }
 
-    public NoAN(Personagem elemento) {
-        this(elemento, false, null, null);
+    /**
+     * Construtor da classe.
+     *
+     * @param elemento Conteudo do no.
+     * @param esq No da esquerda.
+     * @param dir No da direita.
+     */
+    public No(int elemento, No2 outro, No esq, No dir) {
+        this.elemento = elemento;
+        this.outro = outro;
+        this.esq = esq;
+        this.dir = dir;
+    }
+}
+
+class No2 {
+    public Personagem elemento; // Conteudo do no.
+    public No2 esq, dir;  // Filhos da esq e dir.
+
+    /**
+     * Construtor da classe.
+     *
+     * @param elemento Conteudo do no.
+     */
+    public No2(Personagem elemento) {
+        this(elemento, null, null);
     }
 
-    public NoAN(Personagem elemento, boolean cor) {
-        this(elemento, cor, null, null);
-    }
-
-    public NoAN(Personagem elemento, boolean cor, NoAN esq, NoAN dir) {
-        this.cor = cor;
+    /**
+     * Construtor da classe.
+     *
+     * @param elemento Conteudo do no.
+     * @param esq No da esquerda.
+     * @param dir No da direita.
+     */
+    public No2(Personagem elemento, No2 esq, No2 dir) {
         this.elemento = elemento;
         this.esq = esq;
         this.dir = dir;
     }
 }
 
-//Class Alvinegra
-class Alvinegra {
+class ArvoreArvore {
 
-    private NoAN raiz; // Raiz da arvore.
+    private No raiz; // Raiz da arvore.
 
     /**
      * Construtor da classe.
      */
-    public Alvinegra() {
+    public ArvoreArvore() throws Exception {
         raiz = null;
+        inserir(7);
+        inserir(3);
+        inserir(11);
+        inserir(1);
+        inserir(5);
+        inserir(9);
+        inserir(13);
+        inserir(0);
+        inserir(2);
+        inserir(4);
+        inserir(6);
+        inserir(8);
+        inserir(10);
+        inserir(12);
+        inserir(14);
+    }
+
+    /*
+     * Inserir na Primeira Arvore
+     */
+    public void inserir(int x) throws Exception {
+        inserir(x, raiz);
+    }
+
+    public void inserir(int x, No i) throws Exception {
+        if (i == null) {
+            i = new No(x);
+        } else if (x < i.elemento) {
+            inserir(x, i.esq);
+        } else if (x > i.elemento) {
+            inserir(x, i.dir);
+        } else {
+            System.err.println("ERROR AO INSERIR NUM");
+        }
+    }
+
+    /*
+     * Inserir na Segunda Arvore
+     */
+    public void inserir(Personagem s) throws Exception {
+        inserir(s, raiz);
+    }
+
+    public void inserir(Personagem s, No i) throws Exception {
+        if (i == null) {
+            throw new Exception("Erro ao inserir!");
+        } else if ((s.getYearOfBirth()%15) < i.elemento) {
+            inserir(s, i.esq);
+        } else if ((s.getYearOfBirth()%15) > i.elemento) {
+            inserir(s, i.dir);
+        } else {
+            i.outro = inserir2(s, i.outro);
+        }
+    }
+
+    public No2 inserir2(Personagem s, No2 i) throws Exception {
+        if (i == null) {
+            i = new No2(s);
+        } else if (s.getName().compareTo(i.elemento.getName()) < 0) {
+            i.esq = inserir2(s, i.esq);
+        } else if (s.getName().compareTo(i.elemento.getName()) > 0) {
+            i.dir = inserir2(s, i.dir);
+        } else {
+            throw new Exception("Erro ao inserir: elemento existente!");
+        }
+        return i;
+    }
+
+    public void mostrar() {
+        mostrar(raiz);
+    }
+
+    public void mostrar(No i) {
+        if (i != null) {
+            mostrar(i.esq);
+            mostrar(i.outro);
+            mostrar(i.dir);
+        }
+    }
+
+    public void mostrar(No2 i) {
+        if (i != null) {
+            mostrar(i.esq);
+            System.out.println(i.elemento);
+            mostrar(i.dir);
+        }
     }
 
     /**
@@ -53,252 +172,46 @@ class Alvinegra {
      * @return <code>true</code> se o elemento existir, <code>false</code> em
      * caso contrario.
      */
-    public void pesquisar(String elemento, Log log) {
-        System.out.print(elemento+" => raiz");
-        boolean resp = pesquisar(elemento, raiz, log);
-        if(resp){ System.out.print(" SIM\n"); } else{ System.out.print(" NAO\n"); }
+    public boolean pesquisar(String elemento) {
+        return pesquisar(raiz, elemento);
     }
 
-    /**
-     * Metodo privado recursivo para pesquisar elemento.
-     *
-     * @param elemento Elemento que sera procurado.
-     * @param i NoAN em analise.
-     * @return <code>true</code> se o elemento existir, <code>false</code> em
-     * caso contrario.
-     */
-    private boolean pesquisar(String elemento, NoAN i, Log log) {
+    private boolean pesquisar(No no, String x) {
         boolean resp;
-        if (i == null) {
-            log.incrementaComp();
+        if (no == null) {
             resp = false;
-        } else if (elemento.equals(i.elemento.getName())) {
-            log.incrementaComp();
-            resp = true;
-        } else if (elemento.compareTo(i.elemento.getName()) < 0) {
-            log.incrementaComp();
-            System.out.print(" esq");
-            resp = pesquisar(elemento, i.esq, log);
+
+        } else if (x.charAt(0) < no.elemento) {
+            resp = pesquisar(no.esq, x);
+
+        } else if (x.charAt(0) > no.elemento) {
+            resp = pesquisar(no.dir, x);
+
         } else {
-            System.out.print(" dir");
-            resp = pesquisar(elemento, i.dir, log);
+            resp = pesquisarSegundaArvore(no.outro, x);
         }
         return resp;
     }
 
-    /**
-     * Metodo publico iterativo para exibir elementos.
-     */
-    public void caminharCentral() {
-        System.out.print("[ ");
-        caminharCentral(raiz);
-        System.out.println("]");
-    }
+    private boolean pesquisarSegundaArvore(No2 no, String x) {
+        boolean resp;
+        if (no == null) {
+            resp = false;
 
-    /**
-     * Metodo privado recursivo para exibir elementos.
-     *
-     * @param i NoAN em analise.
-     */
-    private void caminharCentral(NoAN i) {
-        if (i != null) {
-            caminharCentral(i.esq); // Elementos da esquerda.
-            System.out.print(i.elemento + ((i.cor) ? "(p) " : "(b) ")); // Conteudo do no.
-            caminharCentral(i.dir); // Elementos da direita.
-        }
-    }
+        } else if (x.compareTo(no.elemento.getName()) < 0) {
+            resp = pesquisarSegundaArvore(no.esq, x);
 
-    /**
-     * Metodo publico iterativo para exibir elementos.
-     */
-    public void caminharPre() {
-        System.out.print("[ ");
-        caminharPre(raiz);
-        System.out.println("]");
-    }
+        } else if (x.compareTo(no.elemento.getName()) > 0) {
+            resp = pesquisarSegundaArvore(no.dir, x);
 
-    /**
-     * Metodo privado recursivo para exibir elementos.
-     *
-     * @param i NoAN em analise.
-     */
-    private void caminharPre(NoAN i) {
-        if (i != null) {
-            System.out.print(i.elemento + ((i.cor) ? "(p) " : "(b) ")); // Conteudo do no.
-            caminharPre(i.esq); // Elementos da esquerda.
-            caminharPre(i.dir); // Elementos da direita.
-        }
-    }
-
-    /**
-     * Metodo publico iterativo para exibir elementos.
-     */
-    public void caminharPos() {
-        System.out.print("[ ");
-        caminharPos(raiz);
-        System.out.println("]");
-    }
-
-    /**
-     * Metodo privado recursivo para exibir elementos.
-     *
-     * @param i NoAN em analise.
-     */
-    private void caminharPos(NoAN i) {
-        if (i != null) {
-            caminharPos(i.esq); // Elementos da esquerda.
-            caminharPos(i.dir); // Elementos da direita.
-            System.out.print(i.elemento + ((i.cor) ? "(p) " : "(b) ")); // Conteudo do no.
-        }
-    }
-
-    /**
-     * Metodo publico iterativo para inserir elemento.
-     *
-     * @param elemento Elemento a ser inserido.
-     * @throws Exception Se o elemento existir.
-     */
-    public void inserir(Personagem elemento) throws Exception {
-        // Se a arvore estiver vazia
-        if (raiz == null) {
-            raiz = new NoAN(elemento);
-            // Senao, se a arvore tiver um elemento
-        } else if (raiz.esq == null && raiz.dir == null) {
-            if (elemento.getName().compareTo(raiz.elemento.getName()) < 0) {
-                raiz.esq = new NoAN(elemento);
-            } else {
-                raiz.dir = new NoAN(elemento);
-            }
-            // Senao, se a arvore tiver dois elementos (raiz e dir)
-        } else if (raiz.esq == null) {
-            if (elemento.getName().compareTo(raiz.elemento.getName()) < 0) {
-                raiz.esq = new NoAN(elemento);
-            } else if (elemento.getName().compareTo(raiz.elemento.getName()) < 0) {
-                raiz.esq = new NoAN(raiz.elemento);
-                raiz.elemento = elemento;
-            } else {
-                raiz.esq = new NoAN(raiz.elemento);
-                raiz.elemento = raiz.dir.elemento;
-                raiz.dir.elemento = elemento;
-            }
-            raiz.esq.cor = raiz.dir.cor = false;
-            // Senao, se a arvore tiver dois elementos (raiz e esq)
-        } else if (raiz.dir == null) {
-            if (elemento.getName().compareTo(raiz.elemento.getName()) > 0) {
-                raiz.dir = new NoAN(elemento);
-            } else if (elemento.getName().compareTo(raiz.elemento.getName()) > 0) {
-                raiz.dir = new NoAN(raiz.elemento);
-                raiz.elemento = elemento;
-            } else {
-                raiz.dir = new NoAN(raiz.elemento);
-                raiz.elemento = raiz.esq.elemento;
-                raiz.esq.elemento = elemento;
-            }
-            raiz.esq.cor = raiz.dir.cor = false;
-
-            // Senao, a arvore tem tres ou mais elementos
         } else {
-            inserir(elemento, null, null, null, raiz);
+            resp = true;
         }
-        raiz.cor = false;
-    }
-
-    private void balancear(NoAN bisavo, NoAN avo, NoAN pai, NoAN i) {
-        // Se o pai tambem e preto, reequilibrar a arvore, rotacionando o avo
-        if (pai.cor == true) {
-            // 4 tipos de reequilibrios e acoplamento
-            if (pai.elemento.getName().compareTo(avo.elemento.getName()) > 0) { // rotacao a esquerda ou direita-esquerda
-                if (i.elemento.getName().compareTo(pai.elemento.getName()) > 0) {
-                    avo = rotacaoEsq(avo);
-                } else {
-                    avo = rotacaoDirEsq(avo);
-                }
-            } else { // rotacao a direita ou esquerda-direita
-                if (i.elemento.getName().compareTo(pai.elemento.getName()) < 0) {
-                    avo = rotacaoDir(avo);
-                } else {
-                    avo = rotacaoEsqDir(avo);
-                }
-            }
-            if (bisavo == null) {
-                raiz = avo;
-            } else if (avo.elemento.getName().compareTo(bisavo.elemento.getName()) < 0) {
-                bisavo.esq = avo;
-            } else {
-                bisavo.dir = avo;
-            }
-            // reestabelecer as cores apos a rotacao
-            avo.cor = false;
-            avo.esq.cor = avo.dir.cor = true;
-        } // if(pai.cor == true)
-    }
-
-    /**
-     * Metodo privado recursivo para inserir elemento.
-     *
-     * @param elemento Elemento a ser inserido.
-     * @param avo NoAN em analise.
-     * @param pai NoAN em analise.
-     * @param i NoAN em analise.
-     * @throws Exception Se o elemento existir.
-     */
-    private void inserir(Personagem elemento, NoAN bisavo, NoAN avo, NoAN pai, NoAN i) throws Exception {
-        if (i == null) {
-            if (elemento.getName().compareTo(pai.elemento.getName()) < 0) {
-                i = pai.esq = new NoAN(elemento, true);
-            } else {
-                i = pai.dir = new NoAN(elemento, true);
-            }
-            if (pai.cor == true) {
-                balancear(bisavo, avo, pai, i);
-            }
-        } else {
-            // Achou um 4-no: eh preciso fragmeta-lo e reequilibrar a arvore
-            if (i.esq != null && i.dir != null && i.esq.cor == true && i.dir.cor == true) {
-                i.cor = true;
-                i.esq.cor = i.dir.cor = false;
-                if (i == raiz) {
-                    i.cor = false;
-                } else if (pai.cor == true) {
-                    balancear(bisavo, avo, pai, i);
-                }
-            }
-            if (elemento.getName().compareTo(i.elemento.getName()) < 0) {
-                inserir(elemento, avo, pai, i, i.esq);
-            } else if (elemento.getName().compareTo(i.elemento.getName()) > 0) {
-                inserir(elemento, avo, pai, i, i.dir);
-            } else {
-                throw new Exception("Erro inserir (elemento repetido)!");
-            }
-        }
-    }
-
-    private NoAN rotacaoDir(NoAN no) {
-        NoAN noEsq = no.esq;
-        NoAN noEsqDir = noEsq.dir;
-        noEsq.dir = no;
-        no.esq = noEsqDir;
-        return noEsq;
-    }
-
-    private NoAN rotacaoEsq(NoAN no) {
-        NoAN noDir = no.dir;
-        NoAN noDirEsq = noDir.esq;
-        noDir.esq = no;
-        no.dir = noDirEsq;
-        return noDir;
-    }
-
-    private NoAN rotacaoDirEsq(NoAN no) {
-        no.dir = rotacaoDir(no.dir);
-        return rotacaoEsq(no);
-    }
-
-    private NoAN rotacaoEsqDir(NoAN no) {
-        no.esq = rotacaoEsq(no.esq);
-        return rotacaoDir(no);
+        return resp;
     }
 }
+
+//------------------------------------------------------------------------------------------------------------------
 
 /*
   * Class Lista
@@ -808,9 +721,9 @@ class Personagem {
         return resp;
     }
 
-    public static void inserirNaArvore(Alvinegra arvore, Personagem personagens[], Scanner sc) throws Exception{
+    public static void inserirNaArvore(ArvoreArvore arvore, Personagem personagens[], Scanner sc) throws Exception {
         String id = sc.nextLine();
-        while (!id.equals("FIM")){
+        while (!id.equals("FIM")) {
             Personagem novo;
             novo = procuraId(personagens, id);
             arvore.inserir(novo);
@@ -818,28 +731,17 @@ class Personagem {
         }
     }
 
-    public static void procuraNaArvore(Alvinegra arvore, Log log, Scanner sc){
+    public static void procuraNaArvore(ArvoreArvore arvore, Log log, Scanner sc) {
         String nome = sc.nextLine();
-        while(!nome.equals("FIM")){ 
+        while (!nome.equals("FIM")) {
             arvore.pesquisar(nome, log);
             nome = sc.nextLine();
         }
     }
 
     public static void main(String[] args) throws Exception {
-        Alvinegra alvinegra = new Alvinegra();
-        Log log = new Log("806454_alvinegra.txt");
-        Scanner sc = new Scanner(System.in);
-        Personagem personagens[] = new Personagem[404];
-        ler(personagens, 0);  // Segundo parametro: 0 para teste / 1 para enviar ao verde com /tmp/characters.csv
-        inserirNaArvore(alvinegra, personagens, sc);
-        Instant start = Instant.now();
-        procuraNaArvore(alvinegra, log, sc);
-        Instant end = Instant.now();
-        long elapsedTime = Duration.between(start, end).toMillis();
-        log.time = (float) elapsedTime / 1000; // Tempo em segundos
-        log.registroLog();
-        sc.close();
+        ArvoreArvore ar = new ArvoreArvore();
+        ar.caminharPre();
     }
 
 }
