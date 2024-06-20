@@ -173,7 +173,7 @@ class Alvinegra {
         } else if (raiz.esq == null) {
             if (elemento.getName().compareTo(raiz.elemento.getName()) < 0) {
                 raiz.esq = new NoAN(elemento);
-            } else if (elemento.getName().compareTo(raiz.elemento.getName()) < 0) {
+            } else if (elemento.getName().compareTo(raiz.dir.elemento.getName()) < 0) {
                 raiz.esq = new NoAN(raiz.elemento);
                 raiz.elemento = elemento;
             } else {
@@ -186,7 +186,7 @@ class Alvinegra {
         } else if (raiz.dir == null) {
             if (elemento.getName().compareTo(raiz.elemento.getName()) > 0) {
                 raiz.dir = new NoAN(elemento);
-            } else if (elemento.getName().compareTo(raiz.elemento.getName()) > 0) {
+            } else if (elemento.getName().compareTo(raiz.esq.elemento.getName()) > 0) {
                 raiz.dir = new NoAN(raiz.elemento);
                 raiz.elemento = elemento;
             } else {
@@ -828,10 +828,10 @@ class Personagem {
 
     public static void main(String[] args) throws Exception {
         Alvinegra alvinegra = new Alvinegra();
-        Log log = new Log("806454_alvinegra.txt");
+        Log log = new Log("/tmp/806454_alvinegra.txt");
         Scanner sc = new Scanner(System.in);
         Personagem personagens[] = new Personagem[404];
-        ler(personagens, 0);  // Segundo parametro: 0 para teste / 1 para enviar ao verde com /tmp/characters.csv
+        ler(personagens, 1);  // Segundo parametro: 0 para teste / 1 para enviar ao verde com /tmp/characters.csv
         inserirNaArvore(alvinegra, personagens, sc);
         Instant start = Instant.now();
         procuraNaArvore(alvinegra, log, sc);

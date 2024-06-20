@@ -611,9 +611,9 @@ class Personagem {
     public static void main(String[] args) throws Exception {
         Scanner sc = new Scanner(System.in);
         Hash hash = new Hash();
-        Log log = new Log("806454_hashReserva.txt");
+        Log log = new Log("/tmp/806454_hashReserva.txt");
         Personagem personagens[] = new Personagem[404];
-        ler(personagens, 0);  // Segundo parametro: 0 para teste / 1 para enviar ao verde com /tmp/characters.csv
+        ler(personagens, 1);  // Segundo parametro: 0 para teste / 1 para enviar ao verde com /tmp/characters.csv
         inserirNaHash(hash, personagens, sc);
         Instant start = Instant.now();
         procuraNaHash(hash, personagens, log, sc);
