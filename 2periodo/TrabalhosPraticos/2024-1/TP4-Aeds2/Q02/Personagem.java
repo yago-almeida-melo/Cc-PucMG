@@ -16,7 +16,6 @@ class No {
     public No2 outro;
     public int elemento; // Conteudo do no.
     public No esq, dir;  // Filhos da esq e dir.
-
     /**
      * Construtor da classe.
      *
@@ -144,27 +143,6 @@ class ArvoreArvore {
         }
         return i;
     }
-
-    public void mostrar() {
-        mostrar(raiz);
-    }
-
-    public void mostrar(No i) {
-        if (i != null) {
-            mostrar(i.esq);
-            mostrar(i.outro);
-            mostrar(i.dir);
-        }
-    }
-
-    public void mostrar(No2 i) {
-        if (i != null) {
-            mostrar(i.esq);
-            System.out.println(i.elemento);
-            mostrar(i.dir);
-        }
-    }
-
     /**
      * Metodo publico iterativo para pesquisar elemento.
      *
@@ -172,47 +150,50 @@ class ArvoreArvore {
      * @return <code>true</code> se o elemento existir, <code>false</code> em
      * caso contrario.
      */
-    public boolean pesquisar(String elemento) {
-        return pesquisar(raiz, elemento);
+    public boolean pesquisar(String elemento, Log log) {
+        System.out.print(elemento+" => raiz ");
+        boolean resp = pesquisar(raiz, elemento, log);
+        return resp;
     }
 
-    private boolean pesquisar(No no, String x) {
-        boolean resp;
-        if (no == null) {
-            resp = false;
-
-        } else if (x.charAt(0) < no.elemento) {
-            resp = pesquisar(no.esq, x);
-
-        } else if (x.charAt(0) > no.elemento) {
-            resp = pesquisar(no.dir, x);
-
-        } else {
-            resp = pesquisarSegundaArvore(no.outro, x);
+    private boolean pesquisar(No no, String x, Log log) {
+        boolean resp = false;
+        if (no!=null) {
+            resp = pesquisarSegundaArvore(no.outro, x, log);    
+            if(!resp){
+                System.out.print(" ESQ");
+                resp = pesquisar(no.esq, x, log);
+            }
+            if(!resp){
+                System.out.print(" DIR");
+                resp = pesquisar(no.dir, x, log);
+            }
         }
         return resp;
     }
 
-    private boolean pesquisarSegundaArvore(No2 no, String x) {
-        boolean resp;
-        if (no == null) {
-            resp = false;
-
-        } else if (x.compareTo(no.elemento.getName()) < 0) {
-            resp = pesquisarSegundaArvore(no.esq, x);
-
-        } else if (x.compareTo(no.elemento.getName()) > 0) {
-            resp = pesquisarSegundaArvore(no.dir, x);
-
-        } else {
-            resp = true;
+    private boolean pesquisarSegundaArvore(No2 no, String x, Log log) {
+        boolean resp = false;
+        if(no==null) { 
+            resp = false; 
+            log.incrementaComp();
         }
+        else if(no.elemento.getName().compareTo(x) > 0){ 
+            System.out.print("->esq"); 
+            log.incrementaComp();
+            resp = pesquisarSegundaArvore(no.esq, x, log);
+        }
+        else if(no.elemento.getName().compareTo(x) < 0){ 
+            System.out.print("->dir"); 
+            log.incrementaComp();
+            resp = pesquisarSegundaArvore(no.dir, x, log);
+        }
+        else resp = true;
         return resp;
     }
 }
 
 //------------------------------------------------------------------------------------------------------------------
-
 /*
   * Class Lista
   * Lista de Alternate_Name & Alternate_Actors
@@ -228,7 +209,6 @@ class Lista {
     Lista(String[] list) {
         this.list = list;
     }
-
     /*
       * function: getList()
       * @params: null
@@ -740,8 +720,19 @@ class Personagem {
     }
 
     public static void main(String[] args) throws Exception {
-        ArvoreArvore ar = new ArvoreArvore();
-        ar.caminharPre();
+        Scanner sc = new Scanner(System.in);
+        ArvoreArvore arvore = new ArvoreArvore();
+        Log log = new Log("/tmp/806454_arvoreArvore.txt");
+        Personagem personagens[] = new Personagem[404];
+        ler(personagens, 1);  // Segundo parametro: 0 para teste / 1 para enviar ao verde com /tmp/characters.csv
+        inserirNaArvore(arvore, personagens, sc);
+        Instant start = Instant.now();
+        procuraNaArvore(arvore, log, sc);
+        Instant end = Instant.now();
+        long elapsedTime = Duration.between(start, end).toMillis();
+        log.time = (float) elapsedTime / 1000; // Tempo em segundos
+        log.registroLog();
+        sc.close();
     }
 
 }
