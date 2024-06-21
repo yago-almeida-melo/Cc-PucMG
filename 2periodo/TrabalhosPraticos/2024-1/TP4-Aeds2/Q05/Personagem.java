@@ -34,7 +34,7 @@ class Hash{
     }
 
     public int h(Personagem elemento) {
-        return elemento.getYearOfBirth() % this.tamTab;
+        return elemento.getDateOfBirth().getYear() % this.tamTab;
     }
 
     public boolean inserir(Personagem elemento) {
@@ -43,9 +43,11 @@ class Hash{
             int pos = h(elemento);
             if (hash[pos] == null) {
                 hash[pos] = elemento;
+                System.out.println("Inserindo "+elemento.getName()+" em "+ pos);
                 resp = true;
             } else if (reserva < tamReserva) {
                 hash[tamTab + reserva] = elemento;
+                System.out.println("Inserindo "+elemento.getName()+" em "+ (tamTab + reserva));
                 reserva++;
                 resp = true;
             }
@@ -606,7 +608,7 @@ class Personagem {
         while(!nome.equals("FIM")){ 
             Personagem x = procuraNome(personagens, nome);
             int a = hash.pesquisar(x, log);
-            System.out.println(nome + ((a == -1) ? " NAO" : " "+a));
+            System.out.println(nome + ((a == -1) ? " NAO" : " (Posicao: "+a+") SIM"));
             nome = sc.nextLine();
         }
     }
