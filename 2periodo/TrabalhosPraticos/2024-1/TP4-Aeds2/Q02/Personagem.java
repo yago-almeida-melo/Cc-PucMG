@@ -76,41 +76,27 @@ class ArvoreArvore {
      */
     public ArvoreArvore() throws Exception {
         raiz = null;
-        inserir(7);
-        inserir(3);
-        inserir(11);
-        inserir(1);
-        inserir(5);
-        inserir(9);
-        inserir(13);
-        inserir(0);
-        inserir(2);
-        inserir(4);
-        inserir(6);
-        inserir(8);
-        inserir(10);
-        inserir(12);
-        inserir(14);
     }
 
     /*
      * Inserir na Primeira Arvore
      */
     public void inserir(int x) throws Exception {
-        inserir(x, raiz);
+        raiz = inserir(x, raiz);
     }
-
-    public void inserir(int x, No i) throws Exception {
+    private No inserir(int x, No i) throws Exception {
         if (i == null) {
             i = new No(x);
         } else if (x < i.elemento) {
-            inserir(x, i.esq);
+            i.esq = inserir(x, i.esq);
         } else if (x > i.elemento) {
-            inserir(x, i.dir);
+            i.dir = inserir(x, i.dir);
         } else {
             System.err.println("ERROR AO INSERIR NUM");
         }
+        return i;
     }
+    
 
     /*
      * Inserir na Segunda Arvore
@@ -120,14 +106,14 @@ class ArvoreArvore {
     }
 
     public void inserir(Personagem s, No i) throws Exception {
-        if (i == null) {
-            throw new Exception("Erro ao inserir!");
+        if (i.elemento == (s.getYearOfBirth()%15)) {
+            i.outro = inserir2(s, i.outro);
         } else if ((s.getYearOfBirth()%15) < i.elemento) {
             inserir(s, i.esq);
         } else if ((s.getYearOfBirth()%15) > i.elemento) {
             inserir(s, i.dir);
         } else {
-            i.outro = inserir2(s, i.outro);
+            throw new Exception("Erro ao inserir!");
         }
     }
 
@@ -150,11 +136,15 @@ class ArvoreArvore {
      * @return <code>true</code> se o elemento existir, <code>false</code> em
      * caso contrario.
      */
-    public boolean pesquisar(String elemento, Log log) {
+    public void pesquisar(String elemento, Log log) {
         System.out.print(elemento+" => raiz ");
         boolean resp = pesquisar(raiz, elemento, log);
-        return resp;
-    }
+        if(resp){
+            System.out.print(" SIM\n");
+        } else{
+            System.out.print(" NAO\n");
+        }
+    }   
 
     private boolean pesquisar(No no, String x, Log log) {
         boolean resp = false;
@@ -722,6 +712,21 @@ class Personagem {
     public static void main(String[] args) throws Exception {
         Scanner sc = new Scanner(System.in);
         ArvoreArvore arvore = new ArvoreArvore();
+        arvore.inserir(7);
+        arvore.inserir(3);
+        arvore.inserir(11);
+        arvore.inserir(1);
+        arvore.inserir(5);
+        arvore.inserir(9);
+        arvore.inserir(13);
+        arvore.inserir(0);
+        arvore.inserir(2);
+        arvore.inserir(4);
+        arvore.inserir(6);
+        arvore.inserir(8);
+        arvore.inserir(10);
+        arvore.inserir(12);
+        arvore.inserir(14);
         Log log = new Log("/tmp/806454_arvoreArvore.txt");
         Personagem personagens[] = new Personagem[404];
         ler(personagens, 1);  // Segundo parametro: 0 para teste / 1 para enviar ao verde com /tmp/characters.csv
