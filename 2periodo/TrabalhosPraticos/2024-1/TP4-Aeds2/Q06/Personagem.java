@@ -28,11 +28,24 @@ class Hash{
     }
 
     public int h(Personagem elemento) {
-        return elemento.getYearOfBirth() % this.tamTab;
+        int resp = 0;
+        String name = elemento.getName();
+        for(int i=0;i<name.length();i++){
+            resp += (int)name.charAt(i);
+        }
+        resp = resp % this.tamTab;
+        return resp;
     }
 
     public int rehash(Personagem elemento) {
-        return (elemento.getYearOfBirth()+1) % this.tamTab;
+        int resp = 0;
+        String name = elemento.getName();
+        for(int i=0;i<name.length();i++){
+            resp += (int)name.charAt(i);
+        }
+        resp++;
+        resp = resp % this.tamTab;
+        return resp;
     }
 
     public boolean inserir(Personagem elemento) {
@@ -603,7 +616,7 @@ class Personagem {
         while(!nome.equals("FIM")){ 
             Personagem x = procuraNome(personagens, nome);
             int a = hash.pesquisar(x, log);
-            System.out.println(nome + ((a == -1) ? " NAO" : " "+a));
+            System.out.println(nome + ((a == -1) ? " NAO" : " (pos: "+a+") SIM"));
             nome = sc.nextLine();
         }
     }
@@ -611,7 +624,7 @@ class Personagem {
     public static void main(String[] args) throws Exception {
         Scanner sc = new Scanner(System.in);
         Hash hash = new Hash();
-        Log log = new Log("/tmp/806454_hashReserva.txt");
+        Log log = new Log("/tmp/806454_hashRehash.txt");
         Personagem personagens[] = new Personagem[404];
         ler(personagens, 1);  // Segundo parametro: 0 para teste / 1 para enviar ao verde com /tmp/characters.csv
         inserirNaHash(hash, personagens, sc);
