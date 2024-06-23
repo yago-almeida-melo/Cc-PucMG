@@ -34,7 +34,13 @@ class Hash{
     }
 
     public int h(Personagem elemento) {
-        return elemento.getDateOfBirth().getYear() % this.tamTab;
+        int resp = 0;
+        String name = elemento.getName();
+        for(int i=0;i<name.length();i++){
+            resp += (int)name.charAt(i);
+        }
+        resp = resp % this.tamTab;
+        return resp;
     }
 
     public boolean inserir(Personagem elemento) {
@@ -43,11 +49,9 @@ class Hash{
             int pos = h(elemento);
             if (hash[pos] == null) {
                 hash[pos] = elemento;
-                System.out.println("Inserindo "+elemento.getName()+" em "+ pos);
                 resp = true;
             } else if (reserva < tamReserva) {
                 hash[tamTab + reserva] = elemento;
-                System.out.println("Inserindo "+elemento.getName()+" em "+ (tamTab + reserva));
                 reserva++;
                 resp = true;
             }

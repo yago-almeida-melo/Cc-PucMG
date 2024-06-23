@@ -1,1 +1,1 @@
-Matrícula: 806454	Tempo de execução: 0.011 segundos	Número de comparações: 155
+Matrícula: 806454	Tempo de execução: 0.01 segundos	Número de comparações: 118
