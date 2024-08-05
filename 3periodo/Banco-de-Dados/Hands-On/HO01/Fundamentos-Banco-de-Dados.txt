@@ -1,0 +1,88 @@
+806454 - Yago Almeida Melo
+
+1. O que é um sistema de banco de dados (SBD)?
+R: Um SBD é um conjunto de dados relacionados e com sua forma de acesso e organização, possui uma coleção de dados organizados,
+uma estrutura lógica e um software.
+
+2. Do que um SBD é composto?
+R: Um SBD é composto de uma coleção de dados, um estrutura lógica e um software.
+
+3. Como usuários e aplicações interagem com um SBD?
+R: Usuários e aplicações interagem com o SBD submetendo consultas. 
+
+4. O que é um banco de dados (BD)? Cite um exemplo de um BD, indicando o link onde seja possível encontrá-lo.
+R: Um banco de dados é uma coleção organizada de dados, estruturada para facilitar o armazenamento, recuperação e atualização de informações
+Exemplo: Amazon https://aws.amazon.com/pt/products/databases/
+
+5. Quais são as propriedades de um BD?
+R: As propriedades de um BD são:
+-> Finalidade: construído com um propósito específico.
+-> Realidade: representa o "mundo real", ou seja o universo de discurso.
+-> Coerência: mantém a coerência lógica da coleção
+-> Compartilhamento: provém Compartilhamento de dados
+
+6. Quais são as etapas de um projeto de BD?
+R: As etapas para um projeto de BD sã: 
+-> Especificação: descrição do minimundo.
+-> Análise de Requisitos: restrições de operação.
+-> Projeto Conceitual: estruturas e restrições conceituais.
+-> Projeto Lógico: estruturas e restrições lógicas.
+-> Projeto Físico: estruturas e restrições físicas.
+
+7. O que é um sistema gerenciador de banco de dados (SGBD)?
+R:  Um SGBD é uma coleção de programas que permitem aos usuários criar, manipular e manter bancos de dados.
+
+8. Quais são as propriedades de um SGBD?
+R: As propriedades de um SGBD são: flexibilidade, múltiplas interfaces, economia de escala, garantia de padrões, restrições de acesso,
+backup e recuperação, disponibilidade elevada, restrições de integridade, tempo de desenvolvimento, relacionamentos complexos.
+
+9. Indique situações em que o uso de SGBD pode se mostrar inadequado.
+R: Algumas situações, o uso de SGBD pode ser inadequado, por exemplo: Quando há acesso por múltiplos usuários não requerido,
+aplicações muito simples e bem definidas, aplicações de tempo real, alta escalabilidade e sistemas embarcados com capacidade
+de armazenamento limitada.
+
+10. O que é um modelo de dados? 
+R: Um modelo de dados é uma estrutura lógica que determina a forma como os dados são armazenados, organizados e manipulados. 
+
+11. Em relação ao nível de abstração, quais são os tipos de modelos de dados?
+R: Os tipos de modelos de dados em nível de abstração são: 
+-> Conceitual: alto nível.
+-> Representativo: nível intermediário.
+-> Físico: baixo nível.
+
+12. O que é um Esquema de BD?
+R: Esquema de BD é uma descrição do banco de dados (metadados), é especificado no projeto e não muda com frequência.
+
+13. O que é uma Instância de BD?
+R: A Instância de BD é um conjunto de dados armazenados em determinado momento, tendo o estado alterado ao inserir, remover ou
+modificar o valor de um item.
+
+14. Quais as vantagens de se adotar uma Arquitetura de Três Esquemas para implementar um BD?
+R: As vantagens são: os metadados são descritos em diferentes níveis de abstração, usuários e aplicações têm acesso restrito a
+porções do BD, de acordo com suas necessidades e a estrutura do BD é armazenada separadamente de aplicações, não alterando ambas.
+
+15. Quais níveis existem em uma Arquitetura de Três Esquemas?
+R: Os níveis são:
+-> Externo: visões do usuário.
+-> Conceitual: estrutura do BD.
+-> Interno: estrutura do armazenamento físico do BD. 
+
+16. O que é Mapeamento em uma Arquitetura de Três Esquemas?
+R: O Mapeamento é uma transformação de requisições e resultados entre níveis, para que possa ser realizado o processamento de dados. 
+
+17. O que é Independência de Dados e qual sua importância para um SBD?
+R: É a capacidade de se alterar o esquema em um nível sem precisar alterar o esquema no nível adjacente superior. Sua importância
+é manter a integridade dos dados, sem alterar os outros esquemas.
+
+18. O que é uma Linguagem de Consulta?
+R: É uma Linguagem de alto nível utilizada em bancos de dados para a recuperação de dados.
+
+19. Cite as linguagens incorporadas na linguagem SQL.
+R: As linguagens são:
+-> VDL: de definição de visão, especifica o esquema externo, as visões de usuário e seus mapeamentos ao esquema conceitual.
+-> DDL: de definição de dados que especifica o esquema conceitual.
+-> SDL: de definição de armazenamento que especifica o esquema interno.
+-> DML: de manipulação de dados, utilizada nas operaçõs de inserção, exclusão, modificação e recuperação de dados.
+
+
+Fonte: Slides e vídeos da aula.
