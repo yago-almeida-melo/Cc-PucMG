@@ -2,26 +2,48 @@
 //import java.io.DataOutputStream;
 //import java.io.FileInputStream;
 //import java.io.FileOutputStream;
-import java.io.RandomAccessFile;
+import java.io.File;
 
 public class Main {
     public static void main(String[] args) {
-        Carros c1 = new Carros(1,"Supra", 1990, 1500000);
-        Carros c2 = new Carros(2,"Civic", 2024, 500000);
+        Carros c1 = new Carros("Supra", 1990, 1500000);
+        Carros c2 = new Carros("Civic", 2024, 500000);
+        Carros c3 = new Carros("Yaris", 2023, 120000);
         
         //System.out.println(c1);
         //System.out.println(c2);
+        try {
+            File f = new File("/home/yago/Documents/Cc-PucMG/3periodo/Estudo/ArquivosEmJava/dados/carros.db");
+            f.delete();
+            Arquivo arq = new Arquivo("carros.db");
+
+            arq.create(c1);
+            arq.create(c2);
+            arq.create(c3);
+            Carros x = arq.read("Civic");
+            System.out.println(x);
+            arq.close();
+        } catch (Exception e) {
+            e.getMessage();
+        }
         
-        RandomAccessFile arq;
-        //FileOutputStream arq;
-        //DataOutputStream dos;
-        //FileInputStream arq2;
-        //DataInputStream dis;
+        
 
         byte[] ba;
 
 
-        try {
+       
+    }
+}
+
+//FIM
+
+
+//FileOutputStream arq;
+        //DataOutputStream dos;
+        //FileInputStream arq2;
+        //DataInputStream dis;
+ /*try {
             ///////// ESCRITA //////////
             arq = new RandomAccessFile("dados/carros.db", "rw");
 
@@ -57,17 +79,16 @@ public class Main {
 
             ///////////// LEITURA ////////////
 
-            Carros c3 = new Carros();
-            Carros c4 = new Carros();
+            //Carros c4 = new Carros();
 
-            int tam;
+            //int tam;
 
             
 
             //arq2 = new FileInputStream("dados/carros.db");
             //dis = new DataInputStream(arq2);
 
-            arq.seek(p1);
+            /*arq.seek(p1);
             tam = arq.readInt();
             ba = new byte[tam];
             arq.read(ba);
@@ -93,9 +114,7 @@ public class Main {
             c4.id = dis.readInt();
             c4.modelo = dis.readUTF();
             c4.ano = dis.readInt();
-            c4.preco = dis.readFloat();*/
+            c4.preco = dis.readFloat();
         } catch (Exception e) {
             e.printStackTrace();
-        }
-    }
-}
+        }*/

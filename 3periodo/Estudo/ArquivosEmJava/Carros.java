@@ -20,11 +20,14 @@ public class Carros{
         preco = 0F;
     }
 
-    public Carros(int i, String m, int a, float p){
-        id = i;
+    public Carros(String m, int a, float p){
         modelo = m;
         ano = a;
         preco = p;
+    }
+
+    public void setId(int id){
+        this.id = id;
     }
 
     public String toString(){
