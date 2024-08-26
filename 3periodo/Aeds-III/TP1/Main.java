@@ -10,16 +10,19 @@ public class Main {
             Produto p1 = new Produto("Produto A", 10.0f);
             Produto p2 = new Produto("Produto B", 20.0f);
             Produto p3 = new Produto("Produto C", 30.0f);
-            
+            Produto p4 = new Produto("Produto D", 50.0f);
+
             //Insere os Produtos
             int id1 = arqProdutos.create(p1);
             int id2 = arqProdutos.create(p2);
             int id3 = arqProdutos.create(p3);
+            int id4 = arqProdutos.create(p4);
 
             //Busca os tres produtos
             System.out.println(arqProdutos.read(id1));
             System.out.println(arqProdutos.read(id2));
             System.out.println(arqProdutos.read(id3));
+            System.out.println(arqProdutos.read(id4));
             System.err.println("");
 
             //Alterando o preço do p2 e exibindo resultado
@@ -48,6 +51,7 @@ public class Main {
             System.out.println(arqProdutos.read(id1));
             System.out.println(arqProdutos.read(id2));
             System.out.println(arqProdutos.read(id3)); // Deve retornar null
+            System.out.println(arqProdutos.read(id4));
 
             arqProdutos.close(); //fecha arquivo
         } catch (Exception e) {

@@ -28,6 +28,11 @@ public class CRUD<T extends Registro> {
         }
     }
 
+    /*
+     * Função: create
+     * @params: <T>
+     * Cria um registro no arquivo;
+     */
     public int create(T obj) throws IOException {
         arquivo.seek(0);
         int ultimoID = arquivo.readInt();
@@ -46,6 +51,11 @@ public class CRUD<T extends Registro> {
         return novoID;
     }
 
+    /*
+     * Função: read
+     * @params: int
+     * Faz a busca sequencial de um registro, a partir do id, e o retorna;
+     */
     public T read(int id) throws Exception {
         arquivo.seek(TAM_CABECALHO);
         while (arquivo.getFilePointer() < arquivo.length()) {
@@ -65,6 +75,11 @@ public class CRUD<T extends Registro> {
         return null;
     }
 
+    /*
+     * Função: update
+     * @params: <T>
+     * Atualiza um registro;
+     */
     public boolean update(T novoObj) throws Exception {
         arquivo.seek(TAM_CABECALHO);
         while (arquivo.getFilePointer() < arquivo.length()) {
@@ -100,6 +115,11 @@ public class CRUD<T extends Registro> {
         return false;
     }
 
+    /*
+     * Função: delete
+     * @params: int
+     * Deleta um registro, a partir de seu id;
+     */
     public boolean delete(int id) throws Exception {
         arquivo.seek(TAM_CABECALHO);
         while (arquivo.getFilePointer() < arquivo.length()) {
@@ -122,6 +142,7 @@ public class CRUD<T extends Registro> {
         return false;
     }
 
+    //Fecha o arquivo
     public void close() throws IOException {
         arquivo.close();
     }
