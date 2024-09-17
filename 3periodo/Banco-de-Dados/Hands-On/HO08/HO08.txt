@@ -1,0 +1,40 @@
+1. 
+SELECT actors.first_name, actors.last_name
+FROM actors 
+JOIN directors ON actors.first_name = directors.first_name AND
+actors.last_name = directors.last_name
+
+2. 
+SELECT actors.first_name, actors.last_name
+FROM actors 
+LEFT JOIN directors ON actors.first_name = directors.first_name AND actors.last_name = directors.last_name
+WHERE directors.id is NULL
+
+3.
+SELECT first_name, last_name
+FROM actors
+UNION
+SELECT first_name, last_name
+FROM directors
+
+4.
+SELECT name
+FROM movies
+LEFT JOIN movies_directors ON id = movie_id
+WHERE director_id  is NULL
+
+5.
+SELECT actors.first_name, actors.last_name, COUNT(*) AS filmes
+FROM actors
+JOIN roles ON actors.id = roles.actor_id
+GROUP BY actors.id, actors.first_name, actors.last_name
+HAVING filmes < 2
+
+6.
+SELECT movies_genres.genre, movies.year, COUNT(roles.actor_id) as total, AVG(movies.id) as media
+FROM movies 
+INNER JOIN movies_genres ON (movies.id = movies_genres.movie_id) 
+INNER JOIN roles ON (roles.movie_id = movies.id) 
+INNER JOIN actors ON (actors.id = roles.actor_id)
+GROUP BY movies_genres.genre, movies.year
+HAVING total < 2
