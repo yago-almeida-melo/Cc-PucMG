@@ -1,0 +1,16 @@
+Atores --> Fator de Bloco: 11 | Número de blocos: 910 | Espaço desperdiçado por bloco: 112B |  Espaço total gasto: 1,86MB
+
+Clientes --> Fator de Bloco: 5 | Número de blocos: 20000 | Espaço desperdiçado por bloco: 48B |  Espaço total gasto: 40,96MB
+
+Filmes --> Fator de Bloco: 8 | Número de blocos: 250000 | Espaço desperdiçado por bloco: 0B |  Espaço total gasto: 512MB
+
+Funcionários -->  Fator de Bloco: 11 | Número de blocos: 319 | Espaço desperdiçado por bloco: 46B |  Espaço total gasto: 653,31KB
+
+Mídias -->  Fator de Bloco: 28 | Número de blocos: 357143 | Espaço desperdiçado por bloco: 32B |  Espaço total gasto: 731,42MB
+
+Aluguel  --> Fator de Bloco: 22 | Número de blocos: 909091 | Espaço desperdiçado por bloco: 24B |  Espaço total gasto: 1860MB 
+
+Pagamentos --> Fator de Bloco: 15 | Número de blocos: 3333334 | Espaço desperdiçado por bloco: 83B |  Espaço total gasto: 6827MB
+
+AtoresEmFilmes --> Fator de Bloco: 64 | Número de blocos: 15625 | Espaço desperdiçado por bloco: 0B |  Espaço total gasto: 32MB
+  
