@@ -1,0 +1,29 @@
+Atores(Indice Primario: Código) --> Fator de bloco: 64 |  Número de blocos: 157 | Espaço desperdiçado por bloco: 0 B | Espaço total: 314  KB | Número de acessos: 8 
+
+Clientes(Indice Primario: CPF) --> Fator de bloco: 75 |  Número de blocos: 1334 | Espaço desperdiçado por bloco: 23 B | Espaço total: 2,61 MB  | Número de acessos: 11
+
+Filmes(Indice Primario: Código)  --> Fator de bloco: 64 |  Número de blocos: 31250 | Espaço desperdiçado por bloco: 0 B | Espaço total: 61,04 MB | Número de acessos: 15 
+
+Funcionários(Indice Primario: CPF) --> Fator de bloco: 75 |  Número de blocos: 47 | Espaço desperdiçado por bloco: 23 B | Espaço total: 94 KB | Número de acessos: 6
+
+Funcionários(Indice Secundario: CPF_Supervisor) --> Fator de bloco: 75 |  Número de blocos: 47 | Espaço desperdiçado por bloco: 23 B | Espaço total: 94 KB | Número de acessos: 6
+
+Midias(Indice Primario: Identificador) --> Fator de bloco: 51 |  Número de blocos: 196078 | Espaço desperdiçado por bloco: 48 B  | Espaço total: 382,88 MB | Número de acessos: 18
+
+Midias(Indice Secundario: CodFilme) --> Fator de bloco: 64 |  Número de blocos: 156250 | Espaço desperdiçado por bloco: 0 B | Espaço total: 312,5 MB | Número de acessos: 17
+
+Aluguel(Indice Primario: CPF_Cliente) --> Fator de bloco: 75 |  Número de blocos: 266667 | Espaço desperdiçado por bloco: 23 B | Espaço total: 520,75 MB | Número de acessos: 18
+
+Aluguel(Indice Secundario: ID_Midia) --> Fator de bloco: 51 |  Número de blocos: 392157 | Espaço desperdiçado por bloco: 48 B | Espaço total: 766,08 MB | Número de acessos: 19
+
+Aluguel(Indice Secundario: CPF_Funcionario) --> Fator de bloco: 75 |  Número de blocos: 266667 | Espaço desperdiçado por bloco: 23 B | Espaço total: 520,75 MB | Número de acessos: 18
+
+Pagamentos(Indice Primario: Codigo) --> Fator de bloco: 32 |  Número de blocos: 1562500 | Espaço desperdiçado por bloco: 0 B | Espaço total: 3,0 GB | Número de acessos: 21
+
+*Pagamentos(Indice Secundario: CPF_Cliente) --> Fator de bloco: 75 |  Número de blocos: 666667 | Espaço desperdiçado por bloco: 23 B | Espaço total: 1,3 GB | Número de acessos: 20
+
+Pagamentos(Indice Secundario: ID_Midia) --> Fator de bloco: 51 |  Número de blocos: 980392 | Espaço desperdiçado por bloco: 48 B | Espaço total: 1,87 GB | Número de acessos: 20
+
+AtoresEmFilmes(Indice Secundario: CodFilme) --> Fator de bloco: 64 |  Número de blocos: 15625 | Espaço desperdiçado por bloco: 0 B | Espaço total: 30,5 MB | Número de acessos: 14
+
+AtoresEmFilmes(Indice Secundario: CodAtor) --> Fator de bloco: 64 |  Número de blocos: 15625 | Espaço desperdiçado por bloco: 0 B | Espaço total: 30,5 MB | Número de acessos: 14
