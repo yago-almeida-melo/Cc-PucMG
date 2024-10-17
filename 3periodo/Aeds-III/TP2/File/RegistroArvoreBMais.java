@@ -1,4 +1,4 @@
-package ArvoreBMais;
+package File;
 
 /*
 REGISTRO ÁRVORE B+

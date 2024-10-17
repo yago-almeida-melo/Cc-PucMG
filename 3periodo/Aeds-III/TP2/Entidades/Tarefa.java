@@ -29,10 +29,10 @@ public class Tarefa implements Registro {
     }
 
     public Tarefa(String nome, Status status, Prioridade prioridade){
-        this(nome, LocalDateTime.now(), status, prioridade);
+        this(nome, LocalDateTime.now(), status, prioridade, -1);
     }
 
-    public Tarefa(String nome, LocalDateTime dataCriacao, Status status, Prioridade prioridade){
+    public Tarefa(String nome, LocalDateTime dataCriacao, Status status, Prioridade prioridade, int idCategoria){
         this.nome = nome;
         this.dataCriacao = dataCriacao;
         if(status == Status.CONCLUIDO) 
@@ -41,6 +41,7 @@ public class Tarefa implements Registro {
             this.dataConclusao = LocalDateTime.ofEpochSecond(0, 0, ZoneOffset.UTC);
         this.status = status;
         this.prioridade = prioridade;
+        this.idCategoria = idCategoria;
     }
 
     /*
@@ -70,6 +71,9 @@ public class Tarefa implements Registro {
     
     public void setPrioridade(Prioridade p){ this.prioridade = p; }
     public Prioridade getPrioridade(){ return this.prioridade; }
+
+    public void setIdCategoria(int idCategoria){ this.idCategoria = idCategoria; }
+    public int getIdCategoria(){ return this.idCategoria; }
     
     // Formata LocalDateTime
     DateTimeFormatter formatter = DateTimeFormatter.ofPattern( "yyyy-MM-dd HH:mm:ss");
@@ -91,7 +95,8 @@ public class Tarefa implements Registro {
         else resp += "Nao Concluido";
 
         resp += "\n Status: " + status +
-                "\n Prioridade: " + prioridade;
+                "\n Prioridade: " + prioridade +
+                "\n ID Categoria: " + idCategoria;
                 
         return resp;
     }
@@ -114,6 +119,7 @@ public class Tarefa implements Registro {
         dos.writeLong(LocalDateTimeToLong(this.dataConclusao));
         dos.writeByte(status.getValue());
         dos.writeByte(prioridade.getValue());
+        dos.writeInt(idCategoria);
 
         return baos.toByteArray();
     }
@@ -139,6 +145,8 @@ public class Tarefa implements Registro {
         
         byte prioridadeByte = dis.readByte();
         this.prioridade = Prioridade.fromByte(prioridadeByte);
+        
+        this.idCategoria = dis.readInt();
         
     }
 

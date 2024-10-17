@@ -1,4 +1,4 @@
-package ArvoreBMais;
+package File;
 
 /*********
  * ARVORE B+ 
@@ -23,7 +23,7 @@ import java.util.ArrayList;
 // isto é, quando a primeira chave de dois elementos for igual, a segunda chave,
 // deve ser necessariamente diferente.
 
-public class Arvore<T extends RegistroArvoreBMais<T>> {
+public class ArvoreBMais<T extends RegistroArvoreBMais<T>> {
 
     private int ordem; // Número máximo de filhos que uma página pode conter
     private int maxElementos; // Variável igual a ordem - 1 para facilitar a clareza do código
@@ -144,7 +144,7 @@ public class Arvore<T extends RegistroArvoreBMais<T>> {
 
     // ------------------------------------------------------------------------------
 
-    public Arvore(Constructor<T> c, int o, String na) throws Exception {
+    public ArvoreBMais(Constructor<T> c, int o, String na) throws Exception {
 
         // Inicializa os atributos da árvore
         construtor = c;

@@ -1,50 +1,51 @@
 package File;
 
 import Entidades.Tarefa;
+import java.util.ArrayList;
 
 public class ArquivoTarefa extends Arquivo<Tarefa> {
     Arquivo<Tarefa> arqTarefa;
-    HashExtensivel<ParNomeId> indiceIndiretoNome;
+    ArvoreBMais<ParIdId> indiceIndiretoIdCategoria;
 
     public ArquivoTarefa() throws Exception {
         super(Tarefa.class.getConstructor(), "tarefas");
-        indiceIndiretoNome = new HashExtensivel<>(
-            ParNomeId.class.getConstructor(), 
+        indiceIndiretoIdCategoria = new ArvoreBMais<>(
+            ParIdId.class.getConstructor(), 
             4, 
-            ".\\dados\\indiceNome.hash_d.db", 
-            ".\\dados\\indiceNome.hash_c.db"
+            ".\\BaseDeDados\\indiceIndiretoId.btree.db"
         );
     }
 
     @Override
     public int create(Tarefa c) throws Exception {
         int id = super.create(c);
-        indiceIndiretoNome.create(new ParNomeId(c.getNome(), id));
+        indiceIndiretoIdCategoria.create(new ParIdId(c.getId(), id));
         return id;
     }
 
     public Tarefa read(int id) throws Exception {
-        ParNomeId pci = indiceIndiretoNome.read(ParNomeId.hash(id));
-        if(pci == null)
-            return null;
-        return read(pci.getId());
+        ArrayList<ParIdId> p = indiceIndiretoIdCategoria.read(new ParIdId(id, -1));
+        return super.read(p.get(0).getIDTarefa());
     }
     
     public boolean delete(int id) throws Exception {
-        ParNomeId pci = indiceIndiretoNome.read(ParNomeId.hash(id));
-        if(pci != null) 
-            if(delete(pci.getId())) 
-                return indiceIndiretoNome.delete(ParNomeId.hash(id));
-        return false;
+        boolean result = false;
+        Tarefa obj = super.read(id);
+        if(obj != null) {
+            if(indiceIndiretoIdCategoria.delete(new ParIdId(obj.getIdCategoria(), obj.getId()))) {
+                result = super.delete(obj.getId());
+            } 
+        } 
+        return result;
     }
 
     @Override
-    public boolean update(Tarefa novoTarefa) throws Exception {
-        Tarefa TarefaVelho = read(novoTarefa.getId());
-        if(super.update(novoTarefa)) {
-            if(novoTarefa.getId() == TarefaVelho.getId()) {
-                indiceIndiretoNome.delete(ParNomeId.hash(TarefaVelho.getId()));
-                indiceIndiretoNome.create(new ParNomeId(novoTarefa.getNome(), novoTarefa.getId()));
+    public boolean update(Tarefa novaTarefa) throws Exception {
+        Tarefa TarefaVelho = read(novaTarefa.getId());
+        if(super.update(novaTarefa)) {
+            if(novaTarefa.getId() == TarefaVelho.getId()) {
+                indiceIndiretoIdCategoria.delete(new ParIdId(TarefaVelho.getIdCategoria(), TarefaVelho.getId()));
+                indiceIndiretoIdCategoria.create(new ParIdId(novaTarefa.getIdCategoria(), novaTarefa.getId()));
             }
             return true;
         }
