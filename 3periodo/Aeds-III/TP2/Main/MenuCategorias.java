@@ -17,7 +17,7 @@ public class MenuCategorias extends Principal {
             do {
                 opcoesMenu();
                 opcao = leOpcao();
-                executarOpcao(opcao);
+                executaOpcao(opcao);
             } while( opcao != 0 ); 
         } catch ( Exception e ) {
             e.printStackTrace();
@@ -36,8 +36,8 @@ public class MenuCategorias extends Principal {
         System.out.print  ("Opção: "                  );
     } // end opcoes_menu ()
 
-    protected static void executar_opcao( int opcao ) {
-        switch( opcao ) {
+    protected static void executar_opcao(int opcao) {
+        switch(opcao) {
             case 0:
                 break;
             case 1:
@@ -62,9 +62,9 @@ public class MenuCategorias extends Principal {
     public static void incluiCategoria() {
         String  nome = "";
         boolean dadosCompletos = false;
-        System.out.println( "\nInclusão de categoria:" );
+        System.out.println("\nInclusão de categoria:");
         do {
-            System.out.print("\nNome da categoria (min. de 5 letras): ");
+            System.out.print("\nNome da categoria (min. de 4 letras): ");
             nome = sc.nextLine();
             if( nome.length() >= 4 || nome.length() == 0 ) {
                 dadosCompletos = true;
@@ -73,15 +73,15 @@ public class MenuCategorias extends Principal {
             } 
         } while( dadosCompletos == false ); 
         if( nome.length() > 0 ) {
-            System.out.println( "Confirma a inclusao? (S/N)" );
+            System.out.println("Confirma a inclusao? (S/N)");
             char resp = sc.nextLine().charAt(0);
-            if(resp=='S' || resp=='s') {
+            if(resp == 'S' || resp == 's') {
                 try {
                     Categoria c = new Categoria(nome);
                     arqCategorias.create(c);
-                    System.out.println("Categoria criada!");
+                    System.out.println("Categoria < "+ nome +">criada!");
                 } catch(Exception e) {
-                    System.out.println("Error! " + e.getMessage());
+                    System.out.println("Erro! " + e.getMessage());
                 } 
             } 
         }

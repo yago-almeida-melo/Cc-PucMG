@@ -12,7 +12,7 @@ public class ArquivoTarefa extends Arquivo<Tarefa> {
         indiceIndiretoIdCategoria = new ArvoreBMais<>(
             ParIdId.class.getConstructor(), 
             4, 
-            ".\\BaseDeDados\\indiceIndiretoId.btree.db"
+            "BaseDeDados//indiceIndiretoId.btree.db"
         );
     }
 

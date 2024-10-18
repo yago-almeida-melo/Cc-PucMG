@@ -2,12 +2,9 @@ package Main;
 
 import java.util.Scanner;
 
-
 public class Principal {
     protected static Scanner sc = new Scanner(System.in);
-    protected static final String GREEN = "\u001B[32m";
-    protected static final String RED = "\u001B[31m";
-    protected static final String RESET = "\u001B[0m";
+
     public static void main(String[] args) {
         try {
             int opcao = 0;
@@ -16,21 +13,22 @@ public class Principal {
                 opcao = leOpcao();
                 executaOpcao(opcao);
             } while(opcao != 0); 
+        
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
             sc.close();
         }
-    } 
+    }// main()
 
     protected static void opcoesMenu() {
-        System.out.println("\nAEDs-III 1.0           ");
+        System.out.println("\nAEDs-III");
         System.out.println("-------------------------");
-        System.out.println("> Início                 ");
-        System.out.println("1 - Categorias           ");
-        System.out.println("2 - Tarefas              ");
-        System.out.println("0 - Sair                 ");
-        System.out.print  ("Opção: "                 );
+        System.out.println("CRUD de Tarefas e Categorias");
+        System.out.println("1 - Categorias");
+        System.out.println("2 - Tarefas");
+        System.out.println("0 - Fim");
+        System.out.print  ("Opção: ");
     } 
 
     protected static int leOpcao() {
@@ -46,7 +44,7 @@ public class Principal {
     protected static void executaOpcao(int opcao) throws Exception {
         switch(opcao) {
             case 0:
-                System.out.println("Saindo...");
+                System.out.println("Fim do programa.");
                 break;
             case 1:
                 (new MenuCategorias()).menu();
@@ -54,12 +52,10 @@ public class Principal {
             case 2:
                 (new MenuTarefas()).menu();
                 break;
-            
             default:
                 System.out.println("Opção inválida!");
                 break;
         } 
     } 
-
 } 
 

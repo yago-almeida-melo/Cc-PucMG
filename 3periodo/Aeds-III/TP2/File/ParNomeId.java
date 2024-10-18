@@ -8,7 +8,7 @@ import java.io.IOException;
 import java.text.Normalizer;
 import java.util.regex.Pattern;
 
-public class ParNomeId implements RegistroHashExtensivel<ParNomeId> {
+public class ParNomeId implements RegistroArvoreBMais<ParNomeId> {
     private int id;
     private String nome;
     private final short TAMANHO = 34;

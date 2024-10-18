@@ -1,16 +1,16 @@
 package File;
 
-import java.util.ArrayList;
 import Entidades.Categoria;
+import java.util.ArrayList;
+
 
 public class ArquivoCategoria extends Arquivo<Categoria> {
-    Arquivo<Categoria> arqTarefa;
     ArvoreBMais<ParNomeId> indiceIndiretoNome;
+    Arquivo<Categoria> arqTarefa;
 
     public ArquivoCategoria() throws Exception {
-        super("Categorias.db", Categoria.class.getConstructor());
-        indiceIndiretoNome = new ArvoreBMais<>(ParNomeId.class.getConstructor(), 5, ".\\BasedeDados\\indiceIndiretoNome.btree.db" 
-        );
+        super(Categoria.class.getConstructor(),"Categorias.db");
+        indiceIndiretoNome = new ArvoreBMais<>(ParNomeId.class.getConstructor(), 5, "BaseDeDados//indiceIndiretoNome.btree.db");
     } 
 
     @Override
@@ -22,7 +22,7 @@ public class ArquivoCategoria extends Arquivo<Categoria> {
 
     public Categoria read(String nome) throws Exception {
         ArrayList<ParNomeId> picn = indiceIndiretoNome.read(new ParNomeId(nome, -1));
-        return super.read(picn.get(0).getIDCategoria());
+        return super.read(picn.get(0).getId());
     } 
     
     public boolean delete (int nome) throws Exception {

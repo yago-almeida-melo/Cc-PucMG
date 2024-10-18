@@ -26,13 +26,12 @@ public class Arquivo<T extends Registro> {
 
         numRegistros = 0;
         this.construtor = construtor;
-        this.nomeArquivo = ".//BaseDeDados//" + nomeArquivo;
+        this.nomeArquivo = "BaseDeDados//"+ nomeArquivo;
         arquivo = new RandomAccessFile(this.nomeArquivo, "rw");
         if (arquivo.length() < CABECALHO) {
             arquivo.seek(0);
             arquivo.writeInt(0);
         }
-
         indiceDireto = new HashExtensivel<>(ParIDEndereco.class.getConstructor(), 4, this.nomeArquivo + ".d.idx", this.nomeArquivo + ".c.idx");
     }// Construtor
 

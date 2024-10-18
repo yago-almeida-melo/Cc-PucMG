@@ -1,9 +1,11 @@
 package Main;
 
 import Entidades.Tarefa;
+import Enums.Prioridade;
+import Enums.Status;
 import File.ArquivoCategoria;
 import File.ArquivoTarefa;
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
@@ -32,7 +34,7 @@ public class MenuTarefas extends Principal{
 
     protected static void opcoesMenu() {
         System.out.println("-------------------------"
-        +"\n> Início > Tarefas       "
+        +"\nTarefas       "
         +"\n1 - Buscar               "
         +"\n2 - Incluir              "
         +"\n3 - Alterar              "
@@ -63,11 +65,11 @@ public class MenuTarefas extends Principal{
         } 
     } 
 
-    public static LocalDate formatarData(String dataStr) {
+    public static LocalDateTime formatarData(String dataStr) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-        LocalDate data = null;
+        LocalDateTime data = null;
         try {
-            data = LocalDate.parse(dataStr, formatter);
+            data = LocalDateTime.parse(dataStr, formatter);
         } catch(DateTimeParseException e) {
             System.out.println("\nFormato inválido. Por favor, use o formato dd/MM/yyyy.");
         }
@@ -76,21 +78,18 @@ public class MenuTarefas extends Principal{
 
     private static void listaStatus() {
         System.out.println("\nEscolha um status:"
-        +"1 - Pendente" 
-        +"\n2 - Em Andamento" 
+        +"\n1 - Pendente" 
+        +"\n2 - Em Progresso" 
         +"\n3 - Concluída" 
-        +"\n4 - Cancelada" 
-        +"\n5 - Atrasada"
         +"\nStatus: ");
     } 
 
     private static void listaPrioridades() {
         System.out.println("\nEscolha uma prioridade:");
-        System.out.println("0 - Muito Baixa          ");
-        System.out.println("1 - Baixa                ");
-        System.out.println("2 - Média                ");
-        System.out.println("3 - Alta                 ");
-        System.out.println("4 - Urgente              ");
+        System.out.println("0 - Baixa                ");
+        System.out.println("1 - Média                ");
+        System.out.println("2 - Alta                 ");
+        System.out.println("3 - Urgente              ");
         System.out.print  ("Opção: "                  );
     } 
 
@@ -116,22 +115,20 @@ public class MenuTarefas extends Principal{
 
             System.out.print("\nData de Criação: ");
             String dc1 = sc.nextLine();
-            LocalDate dataCriacao = formatarData(dc1);
-
-            System.out.print("\nData de Conclusão: ");
-            String dc2 = sc.nextLine();
-            LocalDate dataConclusao = formatarData(dc2);
+            LocalDateTime dataCriacao = formatarData(dc1);
 
             listaStatus();
-            byte status = Byte.parseByte(sc.nextLine());
+            byte statusB = (sc.nextByte());
+            Status status = Status.fromByte(statusB);
 
             listaPrioridades();
-            byte prioridade = Byte.parseByte(sc.nextLine());
+            byte prioridadeB = sc.nextByte();
+            Prioridade prioridade = Prioridade.fromByte(prioridadeB);
 
             listaCategorias();
             int idCategoria = Integer.parseInt(sc.nextLine());
 
-            tarefa = new Tarefa(nome, dataCriacao, dataConclusao, status, prioridade, idCategoria);
+            tarefa = new Tarefa(nome, dataCriacao, status, prioridade, idCategoria);
         } catch (Exception e) {
             System.out.println("\nErro na leitura!");
         } 
