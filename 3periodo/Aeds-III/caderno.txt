@@ -1,1 +1,11 @@
-Opa.
+Código de Huffman
+
+--> Contar a ocorrência de cada caracter da frase
+--> Juntar os de menor valor e somá-los (de dois em dois) *repetir ate chegar no valor total
+--> Numerar cada arresta-filho com 0 e 1
+--> Olhar da direita para esquerda e montar o valor binário
+--> Pegar cada frequência de cada caracter e multiplicar pela quantidade de bits do valor binário
+--> Somar o total de bits utilizados na compressão
+
+**OBS: ENTROPIA -> Quantidade média de bits para representar um símbolo da informação
+Cáculo -> Qtd de ocorrência do caracter / Qtd de caracteres 
