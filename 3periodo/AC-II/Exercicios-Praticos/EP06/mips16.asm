@@ -12,18 +12,13 @@ main:
 	#y -> s1
 	#z -> s2
 	
-	ori $s0, $0, 0x186A
-	sll $s0, $s0, 4
-	ori $s1, $0, 0x1388
-	sll $s1, $s1, 4
-	ori $s2, $0, 0x61A8
-	sll $s2, $s2, 4
+	ori $s0, $0, 0x186A	#s0 = 0x186A
+	ori $s1, $0, 0x1388	#s1 = 0x1388
+	ori $s2, $0, 0x61A8	#s2 = 0x61A8
 	
-	and $t0, $0, $0
-if:	beq $t0, $s1, fim
-	add $t0, $t0, $s0
-	addi $t0, $t0, 1
-	j if	
-fim:
+	mult $s0,$s1		#s0 * s1
+	mflo $t0		#t0 = s0 * s1
+	div $s3,$t0, $s2 	#s3 = t0 / s2
+	sll $s3, $s3, 8 	#s3 << 8
 
 #FIM
