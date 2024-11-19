@@ -23,7 +23,7 @@ main:
 	bne $t1, $0, else	#if(t1!=0){ goto else; } 
 if:	and $s1, $0, $0		#s1 = 0 & 0
 	j fim			#goto fim
-else:	or $s1, $0, 1		#s1 = 0 | 1
+else:	ori $s1, $0, 1		#s1 = 0 | 1
 fim:	sw $s1, 4($t0)		#MEM[4+t0] = s1
 
 #FIM

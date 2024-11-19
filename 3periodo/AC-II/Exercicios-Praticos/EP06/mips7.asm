@@ -8,6 +8,6 @@
 .globl main
 main: 
 	ori $8, $0, 0x01	#$8 = 1
-	addi $8, $8, -2		#8 = 0xFFFFFFFF
-	
+	sll $8, $8, 31
+	sra $8, $8, 31
 #FIM

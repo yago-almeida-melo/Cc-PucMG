@@ -31,8 +31,8 @@ if2:	beq $t4, $0, fim	#if(t4==0){ goto fim2 }
 fim:	mult $t0, $t1		#t0 * t1
 	mflo $t5		#t5 = lo
 	slti  $t6, $t5, 32	#if(t5<32){ t6=1 } else { t6 = 0 }
-	bne $t6, 1, maior	#if(t6!=1){ goto maior }
-	or $s2, $0, $t5	#s2 = t5
+	beq $t6, $0, maior	#if(t6!=1){ goto maior }
+	or $s2, $0, $t5		#s2 = t5
 	mflo $s2		#s2 = lo
 	j fim2			#goto fim
 maior:	mfhi $s2		#s2 = hi

@@ -18,7 +18,8 @@ main:
 	
 	mult $s0,$s1		#s0 * s1
 	mflo $t0		#t0 = s0 * s1
-	div $s3,$t0, $s2 	#s3 = t0 / s2
-	sll $s3, $s3, 8 	#s3 << 8
+	div $t0, $s2 	#s3 = t0 / s2
+	mflo $t1
+	sll $s3, $t1, 8 	#s3 << 8
 
 #FIM
