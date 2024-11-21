@@ -8,11 +8,11 @@ public class ArquivoTarefa extends Arquivo<Tarefa> {
     ArvoreBMais<ParIdId> indiceIndiretoIdCategoria;
 
     public ArquivoTarefa() throws Exception {
-        super(Tarefa.class.getConstructor(), "tarefas");
+        super(Tarefa.class.getConstructor(), "Tarefas.db");
         indiceIndiretoIdCategoria = new ArvoreBMais<>(
             ParIdId.class.getConstructor(), 
             4, 
-            "BaseDeDados//indiceIndiretoId.btree.db"
+            "BaseDeDados//IndiceIndiretoId.btree.db"
         );
     }
 

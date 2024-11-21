@@ -5,7 +5,7 @@ import Enums.Prioridade;
 import Enums.Status;
 import File.ArquivoCategoria;
 import File.ArquivoTarefa;
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
@@ -65,11 +65,11 @@ public class MenuTarefas extends Principal{
         } 
     } 
 
-    public static LocalDateTime formatarData(String dataStr) {
+    public static LocalDate formatarData(String dataStr) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-        LocalDateTime data = null;
+        LocalDate data = null;
         try {
-            data = LocalDateTime.parse(dataStr, formatter);
+            data = LocalDate.parse(dataStr, formatter);
         } catch(DateTimeParseException e) {
             System.out.println("\nFormato inválido. Por favor, use o formato dd/MM/yyyy.");
         }
@@ -77,7 +77,7 @@ public class MenuTarefas extends Principal{
     } 
 
     private static void listaStatus() {
-        System.out.println("\nEscolha um status:"
+        System.out.println("\nEscolha o status:"
         +"\n1 - Pendente" 
         +"\n2 - Em Progresso" 
         +"\n3 - Concluída" 
@@ -85,12 +85,12 @@ public class MenuTarefas extends Principal{
     } 
 
     private static void listaPrioridades() {
-        System.out.println("\nEscolha uma prioridade:");
-        System.out.println("0 - Baixa                ");
-        System.out.println("1 - Média                ");
-        System.out.println("2 - Alta                 ");
-        System.out.println("3 - Urgente              ");
-        System.out.print  ("Opção: "                  );
+        System.out.println("\nEscolha a prioridade:"
+        +"\n0 - Baixa                "
+        +"\n1 - Média                "
+        +"\n2 - Alta                 "
+        +"\n3 - Urgente              "
+        +"\nOpcao: ");
     } 
 
     private static void listaCategorias() {
@@ -113,22 +113,24 @@ public class MenuTarefas extends Principal{
             System.out.print("Nome: ");
             String nome = sc.nextLine();
 
-            System.out.print("\nData de Criação: ");
+            System.out.println("\nData de Criacao (dd/MM/yyyy) - 0 para data atual");
+            System.out.print(": ");
             String dc1 = sc.nextLine();
-            LocalDateTime dataCriacao = formatarData(dc1);
+            LocalDate dataCriacao = (dc1.equals("0"))? LocalDate.now() : formatarData(dc1);
 
             listaStatus();
-            byte statusB = (sc.nextByte());
+            byte statusB = Byte.parseByte(sc.nextLine());
             Status status = Status.fromByte(statusB);
 
             listaPrioridades();
-            byte prioridadeB = sc.nextByte();
+            byte prioridadeB = Byte.parseByte(sc.nextLine());
             Prioridade prioridade = Prioridade.fromByte(prioridadeB);
 
             listaCategorias();
-            int idCategoria = Integer.parseInt(sc.nextLine());
+            //int idCategoria = Integer.parseInt(sc.nextLine());
+            MenuCategorias.buscaCategoria();
 
-            tarefa = new Tarefa(nome, dataCriacao, status, prioridade, idCategoria);
+            //tarefa = new Tarefa(nome, dataCriacao, status, prioridade, 0);
         } catch (Exception e) {
             System.out.println("\nErro na leitura!");
         } 
@@ -140,6 +142,7 @@ public class MenuTarefas extends Principal{
         try{
             Tarefa novaTarefa = leTarefa();
             if (novaTarefa != null) {
+                System.out.println(novaTarefa);
                 System.out.println("\nConfirma inclusao? (S/N)");
                 char resp = sc.nextLine().charAt(0);
                 if(resp == 'S' || resp == 's') {
@@ -147,10 +150,10 @@ public class MenuTarefas extends Principal{
                         arqTarefas.create(novaTarefa);
                         System.out.println("Tarefa criada!");
                     } catch(Exception e) {
-                        System.out.println("Erro do sistema. Não foi possível criar a tarefa!");
+                        System.out.println("Erro do sistema. Nao foi possível criar a tarefa!");
                     } 
                 } else {
-                    System.out.println("Inclusão cancelada!");
+                    System.out.println("Inclusao cancelada!");
                 } 
             }
         } catch(Exception e) {
@@ -159,14 +162,30 @@ public class MenuTarefas extends Principal{
     } 
 
     public static boolean buscaTarefa() {
-        boolean result = false;
+        boolean result = true;
         System.out.println("\nBuscar Tarefa:");
+
+        System.out.print("ID: ");
+        int id = Integer.parseInt(sc.nextLine());
+        if(id < 0){
+            result = false;
+            System.out.println("ID menor que 0 inválido!");
+        } 
+        else {
+            try {
+                System.out.println(arqTarefas.read(id));
+            } catch (Exception e) { 
+                System.out.println("Erro na busca: " + e.getMessage());
+            }
+        }
         return result;
     } 
 
     public static boolean alteraTarefa() {
         boolean result = false;
         System.out.println("\nAlterar Tarefa:");
+
+
         return result;
     } 
 

@@ -2,7 +2,7 @@ package Main;
 
 import Entidades.Categoria;
 import File.ArquivoCategoria;
-
+import java.util.List;
 
 public class MenuCategorias extends Principal {
     private static ArquivoCategoria arqCategorias;
@@ -24,19 +24,19 @@ public class MenuCategorias extends Principal {
         } 
     } 
 
-    protected static void opcoes_menu() {
-        System.out.println("\nAEDs-III 1.0           ");
-        System.out.println("-------------------------");
-        System.out.println("> Início > Categorias    ");
-        System.out.println("1 - Buscar               ");
-        System.out.println("2 - Incluir              ");
-        System.out.println("3 - Alterar              ");
-        System.out.println("4 - Excluir              ");
-        System.out.println("0 - Voltar               ");
-        System.out.print  ("Opção: "                  );
-    } // end opcoes_menu ()
+    protected static void opcoesMenu() {
+        System.out.println("\nAEDs-III 1.0           "
+        +"\n-------------------------"
+        +"\n> Início > Categorias    "
+        +"\n1 - Buscar               "
+        +"\n2 - Incluir              "
+        +"\n3 - Alterar              "
+        +"\n4 - Excluir              "
+        +"\n0 - Voltar               "
+        +"\nOpção: ");
+    } 
 
-    protected static void executar_opcao(int opcao) {
+    protected static void executaOpcao(int opcao) {
         switch(opcao) {
             case 0:
                 break;
@@ -51,6 +51,9 @@ public class MenuCategorias extends Principal {
                 break;
             case 4:
                 excluiCategoria();
+                break;
+            case 5:
+                listarCartegorias();
                 break;
             
             default:
@@ -79,7 +82,7 @@ public class MenuCategorias extends Principal {
                 try {
                     Categoria c = new Categoria(nome);
                     arqCategorias.create(c);
-                    System.out.println("Categoria < "+ nome +">criada!");
+                    System.out.println("Categoria "+ nome +" criada!");
                 } catch(Exception e) {
                     System.out.println("Erro! " + e.getMessage());
                 } 
@@ -88,10 +91,24 @@ public class MenuCategorias extends Principal {
 
     } 
 
-    public static boolean buscaCategoria() {
+    public static void buscaCategoria() {
         boolean result = false;
         System.out.println( "\nBuscar categoria:" );
-        return result;
+        System.out.print("Nome: ");
+        String nome = (sc.nextLine());
+
+        if (nome.isEmpty()) {
+            System.out.println("Nome inválido!");
+        }
+        else {
+            try {
+                result = arqCategorias.buscarCategoriaNome(nome);
+                System.out.println((result) ? "Categoria encontrada!" : "Categoria não encontrada!");
+                //System.out.println(arqCategorias.read(nome).nome);
+            } catch (Exception e) { 
+                System.out.println("Erro na busca: " + e.getMessage());
+            }
+        }
     } 
 
     public static boolean alteraCategoria() {
@@ -104,6 +121,18 @@ public class MenuCategorias extends Principal {
         boolean result = false;
         System.out.println( "\nExcluir categoria:" );
         return result;
+    }
+
+
+    public static void listarCartegorias(){
+        try {
+            List<Categoria> lista = arqCategorias.leTodasCategorias();
+            for (Categoria c : lista) {
+                System.out.println(c);
+            }
+        } catch (Exception e) {
+            System.out.println("Erro ao listar categorias: " + e.getMessage());
+        }
     }
 
 }

@@ -153,7 +153,6 @@ public class ArvoreBMais<T extends RegistroArvoreBMais<T>> {
         maxFilhos = o;
         nomeArquivo = na;
 
-        System.out.println("BBBBBB - " + nomeArquivo);
         // Abre (ou cria) o arquivo, escrevendo uma raiz empty, se necessário.
         arquivo = new RandomAccessFile(nomeArquivo, "rw");
         if (arquivo.length() < 16) {

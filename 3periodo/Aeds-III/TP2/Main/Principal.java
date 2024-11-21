@@ -2,6 +2,12 @@ package Main;
 
 import java.util.Scanner;
 
+/*
+Na pasta ../TP2/
+Compilar: javac -d NULL File/*.java Entidades/*.java Enums/*.java Interface/*.java Main/*.java
+Rodar: java -cp NULL Main.Principal
+*/
+
 public class Principal {
     protected static Scanner sc = new Scanner(System.in);
 
@@ -22,13 +28,13 @@ public class Principal {
     }// main()
 
     protected static void opcoesMenu() {
-        System.out.println("\nAEDs-III");
-        System.out.println("-------------------------");
-        System.out.println("CRUD de Tarefas e Categorias");
-        System.out.println("1 - Categorias");
-        System.out.println("2 - Tarefas");
-        System.out.println("0 - Fim");
-        System.out.print  ("Opção: ");
+        System.out.println("\nAEDs-III"
+        +"\n-------------------------"
+        +"\n> Inicio"
+        +"\n1) Tarefas"
+        +"\n2) Categorias"
+        +"\n0) Sair"
+        +"\nOpcao: ");
     } 
 
     protected static int leOpcao() {
@@ -47,13 +53,13 @@ public class Principal {
                 System.out.println("Fim do programa.");
                 break;
             case 1:
-                (new MenuCategorias()).menu();
-                break;
-            case 2:
                 (new MenuTarefas()).menu();
                 break;
+            case 2:
+                (new MenuCategorias()).menu();
+                break;
             default:
-                System.out.println("Opção inválida!");
+                System.out.println("Opcao invalida!");
                 break;
         } 
     } 
