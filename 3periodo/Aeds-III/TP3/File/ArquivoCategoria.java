@@ -13,8 +13,9 @@ public class ArquivoCategoria extends Arquivo<Categoria> {
     public ArquivoCategoria() throws Exception {
         super("Categorias", Categoria.class.getConstructor());
         // Inicializa o índice indireto utilizando uma Árvore B+
-        indiceIndiretoNome = new ArvoreBMais<>(ParNomeId.class.getConstructor(), 5,
-                "./BaseDeDados/indiceIndiretoNome.btree.db");
+        indiceIndiretoNome = new ArvoreBMais<>(ParNomeId.class.getConstructor(),
+        5,
+        "BaseDeDados//indiceIndiretoNome.btree.db");
     }
 
     // Sobrescreve o método create para incluir a inserção no índice indireto
@@ -52,7 +53,7 @@ public class ArquivoCategoria extends Arquivo<Categoria> {
     }
 
     // Método para listar todas as categorias
-    public void list() {
+    public void listar() {
         try {
             System.out.println();
             indiceIndiretoNome.show(); // Mostra os registros do índice indireto

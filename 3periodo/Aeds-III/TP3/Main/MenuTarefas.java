@@ -74,6 +74,7 @@ public class MenuTarefas {
     public void buscarTarefa() {
         String nomeCategoria;
         System.out.println("\nNome da categoria da tarefa: ");
+        arqCategoria.listar();
         nomeCategoria = sc.nextLine();
 
         try {
@@ -138,7 +139,7 @@ public class MenuTarefas {
             try {
                 catEscolhida = true;
 
-                arqCategoria.list();  // Lista todas as categorias
+                arqCategoria.listar();  // Lista todas as categorias
                 System.out.print("\n > ");
                 categoria = sc.nextLine();
                 
@@ -162,7 +163,7 @@ public class MenuTarefas {
     public void alterarTarefa() {
         String nomeCategoria;
         System.out.println("\nNome da categoria da tarefa a ser excluida: ");
-        arqCategoria.list();
+        arqCategoria.listar();
         System.out.print("\n > ");
         nomeCategoria = sc.nextLine();
 
@@ -285,7 +286,7 @@ public class MenuTarefas {
                 System.out.println("Não há categorias cadastradas!");
             } else {
                 // Lista as categorias disponíveis
-                arqCategoria.list();
+                arqCategoria.listar();
                 System.out.print("> ");
                 int idCategoria = Integer.parseInt(sc.nextLine());
     

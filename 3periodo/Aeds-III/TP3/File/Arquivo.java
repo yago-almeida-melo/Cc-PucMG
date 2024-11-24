@@ -4,6 +4,7 @@ import Interface.Registro;
 import java.io.File;
 import java.io.RandomAccessFile;
 import java.lang.reflect.Constructor;
+import java.util.ArrayList;
 
 public class Arquivo<T extends Registro> {
     final int TAM_CABECALHO = 4;  // Tamanho do cabeçalho do arquivo
@@ -15,12 +16,12 @@ public class Arquivo<T extends Registro> {
     // Construtor da classe Arquivo, recebendo o nome do arquivo e o construtor dos objetos
     public Arquivo(String na, Constructor<T> c) throws Exception {
         // Cria o diretório BaseDeDados, caso não exista
-        File d = new File(".\\BaseDeDados");
+        File d = new File("BaseDeDados");
         if (!d.exists())
             d.mkdir();
 
         // Define o nome do arquivo e inicializa variáveis
-        this.nomeArquivo = ".\\BaseDeDados\\" + na + ".db";
+        this.nomeArquivo = "BaseDeDados//" + na + ".db";
         this.construtor = c;
         arquivo = new RandomAccessFile(this.nomeArquivo, "rw");
 
@@ -32,8 +33,8 @@ public class Arquivo<T extends Registro> {
         indiceDireto = new HashExtensivel<>(
                 ParIDEndereco.class.getConstructor(),
                 4,
-                ".\\BaseDeDados\\" + na + ".hash_d.db",
-                ".\\BaseDeDados\\" + na + ".hash_c.db");
+                "BaseDeDados//" + na + ".hash_d.db",
+                "BaseDeDados//" + na + ".hash_c.db");
     }
 
     // Método para criar um novo registro no arquivo
@@ -168,6 +169,41 @@ public class Arquivo<T extends Registro> {
 
         return false;  // Retorna false caso o registro não seja encontrado ou não seja atualizado
     }
+
+    public ArrayList<T> list() throws Exception {
+    ArrayList<T> objects = new ArrayList<>();
+    try (RandomAccessFile raf = new RandomAccessFile(this.nomeArquivo, "rw")) {
+        long pos = TAM_CABECALHO; // Ignora o cabeçalho inicial
+        if(TAM_CABECALHO + 1 >= raf.length())
+            throw new Exception("Arquivo vazio");
+        // Percorre todo o arquivo
+        while (pos < raf.length()) {
+            raf.seek(pos);
+            
+            // Ler o metadado (lápide)
+            byte lapide = raf.readByte();
+            int tamArq = raf.readInt();
+
+            // Se não está excluído
+            if (lapide == 0) {
+                byte[] array = new byte[tamArq];
+                raf.read(array);
+                
+                T obj = construtor.newInstance();
+                obj.fromByteArray(array); // Reconstrói o objeto a partir do array de bytes
+                objects.add(obj);
+                pos = raf.getFilePointer();
+            }
+            else{
+                pos = raf.getFilePointer() + tamArq;
+            }
+        }
+    } catch (Exception e) {
+        System.out.println("Erro ao listar os registros.");
+        e.printStackTrace();
+    }
+    return objects;
+}
 
     // Método para fechar o arquivo e o índice
     public void close() throws Exception {

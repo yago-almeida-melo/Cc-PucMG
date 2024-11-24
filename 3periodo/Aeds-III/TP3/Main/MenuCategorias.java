@@ -18,7 +18,7 @@ public class MenuCategorias {
     }
 
     // Método principal do menu de categorias
-    public void menu() {
+    public void menu() throws Exception {
         int opcao;
         do {
             System.out.println("\nAEDsIII");
@@ -53,7 +53,7 @@ public class MenuCategorias {
                     excluirCategoria();  // Chama o método para excluir uma categoria
                     break;
                 case 5:
-                    arqCategoria.list();  // Chama o método para listar todas as categorias
+                    arqCategoria.listar();  // Chama o método para listar todas as categorias
                     break;
                 case 0:
                     break;

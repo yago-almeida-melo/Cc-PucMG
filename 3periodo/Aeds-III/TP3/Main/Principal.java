@@ -24,6 +24,7 @@ public class Principal {
                 System.out.println("-------");
                 System.out.println("1 - Categorias");
                 System.out.println("2 - Tarefas");
+                System.out.println("3 - Rotulos");
                 System.out.println("0 - Sair");
                 System.out.print("Opcao: ");
 
@@ -41,6 +42,8 @@ public class Principal {
                     case 2:
                         (new MenuTarefas()).menu();  // Chama o menu de tarefas
                         break;
+                    case 3:
+                        (new MenuRotulos()).menu();
                     case 0:
                         break;
                     default:
