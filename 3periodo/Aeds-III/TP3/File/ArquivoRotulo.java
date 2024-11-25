@@ -8,7 +8,7 @@ public class ArquivoRotulo extends Arquivo<Rotulo> {
 
     /* Criando o Arquivo de Rotulo */
     public ArquivoRotulo()throws Exception{
-        super("ArquivoRotulo", Rotulo.class.getConstructor());
+        super("Rotulos", Rotulo.class.getConstructor());
         try{
             arvoreB = new ArvoreBMais<>(ParRotuloId.class.getConstructor(),
             5,
@@ -158,10 +158,10 @@ public class ArquivoRotulo extends Arquivo<Rotulo> {
              rotulos = super.list();
 
             if(rotulos.isEmpty())
-                throw new Exception("Rotulo ainda não foram criadas");
+                throw new Exception("Rotulos ainda não foram criados");
             
             for(int i = 0; i<rotulos.size(); i++){
-                System.out.println("Indice: " + rotulos.get(i).getId() + " Nome da Rotulo: " + rotulos.get(i).getNome());
+                System.out.println("Indice: " + rotulos.get(i).getId() + " Nome do Rotulo: " + rotulos.get(i).getNome());
             }
         }catch(Exception e){
             System.out.println(e.getMessage());

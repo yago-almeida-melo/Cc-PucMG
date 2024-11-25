@@ -2,7 +2,6 @@ package File;
 
 import Entidades.*;
 import IndiceInvertido.*;
-import java.io.CharConversionException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;

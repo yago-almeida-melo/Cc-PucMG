@@ -14,16 +14,18 @@ public class MenuTarefas {
 
     ArquivoTarefa arqTarefa;  // Arquivo para manipulação das tarefas
     ArquivoCategoria arqCategoria;  // Arquivo para manipulação das categorias
+    ArquivoRotulo arqRotulo;  // Arquivo para manipulação dos rótulos
     private static Scanner sc = new Scanner(System.in);  // Scanner para leitura de entrada do usuário
 
     // Construtor da classe que inicializa os arquivos de categorias e tarefas
     public MenuTarefas() throws Exception {
         arqTarefa = new ArquivoTarefa();
         arqCategoria = new ArquivoCategoria();
+        arqRotulo = new ArquivoRotulo();
     }
 
     // Método principal do menu de tarefas
-    public void menu() {
+    public void menu() throws Exception {
         int opcao;
         do {
             System.out.println("\nAEDsIII");
@@ -34,6 +36,7 @@ public class MenuTarefas {
             System.out.println("3 - Alterar");
             System.out.println("4 - Excluir");
             System.out.println("5 - Listar por categoria");
+            System.out.println("6 - Atualizar Rotulo");
             System.out.println("0 - Voltar");
 
             System.out.print("Opcao: ");
@@ -46,7 +49,7 @@ public class MenuTarefas {
             // Switch para tratar cada opção do menu
             switch (opcao) {
                 case 1:
-                    buscarTarefa();  // Chama o método para buscar uma tarefa
+                    buscarTarefas();  // Chama o método para buscar uma tarefa
                     break;
                 case 2:
                     incluirTarefa();  // Chama o método para incluir uma nova tarefa
@@ -60,6 +63,9 @@ public class MenuTarefas {
                 case 5: // Chama o método para listar as tarefas por categoria
                     listarPorCategoria();
                     break;
+                case 6:
+                    atualizarRotulo();  // Chama o método para atualizar os rótulos de uma tarefa
+                    break;
                 case 0:
                     break;
                 default:
@@ -70,34 +76,170 @@ public class MenuTarefas {
         } while (opcao != 0);  // Repete o menu até que o usuário escolha sair
     }
 
-    // Método para buscar uma tarefa por nome e categoria
-    public void buscarTarefa() {
-        String nomeCategoria;
-        System.out.println("\nNome da categoria da tarefa: ");
-        arqCategoria.listar();
-        nomeCategoria = sc.nextLine();
+    /* Interface Deletando Tarefa */
+    public void excluirTarefa() throws Exception {
 
         try {
-            Categoria c = arqCategoria.read(nomeCategoria);  // Busca a categoria pelo nome
-            System.out.println("Nome da tarefa: ");
-            String nomeTarefa = sc.nextLine();
-            ArrayList<Tarefa> t = arqTarefa.readAll(c.getId());  // Busca todas as tarefas relacionadas à categoria
 
-            for (Tarefa tmp : t) {
-                if (tmp.getNome().equals(nomeTarefa)) {  // Verifica se o nome da tarefa corresponde
-                    System.out.println("Tarefa encontrada: ");
-                    System.out.println(tmp);  // Exibe a tarefa encontrada
-                    return;
+            String termo;
+            int numeroTarefa = -1;
+            sc.nextLine();
+            ArrayList<Tarefa> tarefas = null;
+            while (tarefas == null || tarefas.size() == 0) {
+                System.out.println("Digite o termo que deseja pesquisar no banco de tarefas: ");
+                termo = sc.nextLine();
+                tarefas = buscarTarefas(termo);
+                if (tarefas == null || tarefas.size() == 0) {
+                    System.out.println("Erro ao buscar tarefas, tente novamente com um termo diferente");
                 }
             }
-            System.out.println("Tarefa nao encontrada nesta categoria!");
+            while (numeroTarefa < 0 || numeroTarefa > tarefas.size()) {
+                System.out.println("Digite o número da Tarefa que deseja deletar\nObs: digite 0 para cancelar (favor ignorar a mensagem de erro)");
+                numeroTarefa = sc.nextInt();
+                if (numeroTarefa < 0 || numeroTarefa > tarefas.size()) {
+                    System.out.println("Tarefa não encontrada, tente novamente");
+                }
+            }
+            if (arqTarefa.delete(tarefas.get(numeroTarefa - 1).getId())) {
+                System.out.println("Tarefa deletada com sucesso");
+            } else {
+                System.out.println("Erro ao deletar a tarefa");
+            }
         } catch (Exception e) {
-            System.err.println("Erro no sistema");
+            System.out.println(e.getMessage());
         }
     }
 
-    // Método para incluir uma nova tarefa
-    public void incluirTarefa() {
+    /* Interface Listando Tarefa */
+    public ArrayList<Tarefa> buscarTarefas(String termo) throws Exception {
+        ArrayList<Tarefa> tarefas = null;
+        try {
+
+            termo = termo.toLowerCase();
+            tarefas = arqTarefa.listar(termo);
+            for (int i = 0; i < tarefas.size(); i++) {
+                System.out.println((i + 1) + "º Tarefa " + "[" + "Nome da Tarefa: " + tarefas.get(i).getNome() + "||" + "Data de Inicio: "
+                        + tarefas.get(i).getDataCriacao() + "||" + "Data de Fim: " + tarefas.get(i).getDataConclusao() + "||"
+                        + "Status: " + tarefas.get(i).getStatus() + "||" + "Prioridade: " + tarefas.get(i).getPrioridade() + "]");
+            }
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        return tarefas;
+    }
+
+    public void buscarTarefas() throws Exception {
+        try {
+            sc.nextLine();
+            System.out.println("Digite o termo que deseja buscar no banco de tarefas: ");
+            String titulo = sc.nextLine();
+            titulo = titulo.toLowerCase();
+            ArrayList<Tarefa> tarefas = arqTarefa.listar(titulo);
+            for (int i = 0; i < tarefas.size(); i++) {
+                System.out.println((i + 1) + "º Tarefa " + "[" + "Nome da Tarefa: " + tarefas.get(i).getNome() + "||" + "Data de Inicio: "
+                        + tarefas.get(i).getDataCriacao() + "||" + "Data de Fim: " + tarefas.get(i).getDataConclusao() + "||"
+                        + "Status: " + tarefas.get(i).getStatus() + "||" + "Prioridade: " + tarefas.get(i).getPrioridade() + "]");
+            }
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    /* Interface Atualizando Tarefa */
+    public void alterarTarefa() throws Exception {
+        String termo, input;
+        int numeroTarefa = -1;
+        Tarefa t = new Tarefa(), old;
+        ArrayList<Tarefa> tarefas = null;
+        try {
+            // Evitando Buffer
+            sc.nextLine();
+            while (tarefas == null || tarefas.isEmpty()) {
+                System.out.println("Digite o termo que deseja pesquisar no banco de tarefas: ");
+                termo = sc.nextLine();
+                tarefas = buscarTarefas(termo);
+                if (tarefas == null || tarefas.isEmpty()) {
+                    System.out.println("Erro ao buscar tarefas, tente novamente com um termo diferente");
+                }
+            }
+            while (numeroTarefa < 0 || numeroTarefa > tarefas.size()) {
+                System.out.println("Digite o número da Tarefa que deseja atualizar\nObs: digite 0 para cancelar (favor ignorar a mensagem de erro)");
+                numeroTarefa = sc.nextInt();
+                if (numeroTarefa < 0 || numeroTarefa > tarefas.size()) {
+                    System.out.println("Tarefa não encontrada, tente novamente");
+                }
+            }
+            old = tarefas.get(numeroTarefa - 1);
+            System.out.println("Tarefa Selecionada: " + old.getNome());
+
+            // Evitando Buffer
+            sc.nextLine();
+            System.out.println("Digite seu novo nome");
+            t.setNome(sc.nextLine());
+
+            // Evitando Buffer
+            sc.nextLine();
+
+            // Scanneando a Data de Inicio
+            LocalDate data = null;
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+            while (data == null) {
+                System.out.println("Digite a data de inicio (No formato dd/MM/yyyy)");
+                input = sc.nextLine();
+                try {
+                    data = LocalDate.parse(input, formatter);
+                } catch (Exception e) {
+                    System.out.println("Data inválida, favor utilizar o formato (dd/MM/yyyy)");
+                    data = null;
+                }
+                if (data != null) {
+                    t.setDataCriacao(data);
+                }
+            }
+
+            // Evitando Buffer
+            sc.nextLine();
+
+            data = null;
+            // Scanneando a Data Final
+            while (data == null) {
+                System.out.println("Digite a data do Fim (No formato dd/MM/yyyy)");
+                input = sc.nextLine();
+                try {
+                    data = LocalDate.parse(input, formatter);
+                } catch (Exception e) {
+                    System.out.println("Data inválida, favor utilizar o formato (dd/MM/yyyy)");
+                    data = null;
+                }
+                if (data != null) {
+                    t.setDataConclusao(data);
+                }
+            }
+
+            // Scanneando o Status da Tarefa
+            System.out.println("Digite os Status da tarefa (0 para não iniciado, 1 para em andamento e 2 para finalizado)");
+            t.setStatus(Status.values()[sc.nextInt()]);
+
+            // Scanneando a Prioridade da Tarefa
+            System.out.println("Digite a prioridade da nvoa Tarefa (Um numero inteiro)");
+            t.setPrioridade(Prioridade.values()[sc.nextInt()]);
+
+            if (arqTarefa.update(t)) {
+                System.out.println("Tarefa atualizada com sucesso");
+            } else {
+                System.out.println("Erro ao atualizar a tarefa");
+            }
+
+            t = null;
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    /* Interface de Criação da Tarefa */
+    public void incluirTarefa() throws Exception {
         String categoria;
         int idCategoria = -1;
 
@@ -159,119 +301,79 @@ public class MenuTarefas {
         }
     }
 
-    // Método para alterar uma tarefa existente
-    public void alterarTarefa() {
-        String nomeCategoria;
-        System.out.println("\nNome da categoria da tarefa a ser excluida: ");
-        arqCategoria.listar();
-        System.out.print("\n > ");
-        nomeCategoria = sc.nextLine();
-
+    // Interface de Adição de Rotulo
+    public void atualizarRotulo() throws Exception {
+        String termo;
+        int numeroTarefa = -1;
+        Tarefa old = new Tarefa();
+        ArrayList<Tarefa> tarefas = null;
         try {
-            Categoria c = arqCategoria.read(nomeCategoria);  // Busca a categoria pelo nome
-            System.out.println("\nNome da tarefa: ");
-            String nomeTarefa = sc.nextLine();
-            ArrayList<Tarefa> t = arqTarefa.readAll(c.getId());  // Busca todas as tarefas relacionadas à categoria
-
-            Tarefa tarefaVelha = new Tarefa();
-            tarefaVelha.setId(-1);
-            for (Tarefa tmp : t) {
-                if (tmp.getNome().equals(nomeTarefa)) {  // Verifica se o nome da tarefa corresponde
-                    System.out.println("Tarefa encontrada: ");
-                    System.out.println(tmp);  // Exibe a tarefa encontrada
-                    tarefaVelha = tmp;
-                    break;
+            // Evitando Buffer
+            sc.nextLine();
+            while (tarefas == null || tarefas.size() == 0) {
+                System.out.println("Digite o termo que deseja pesquisar no banco de tarefas: ");
+                termo = sc.nextLine();
+                tarefas = buscarTarefas(termo);
+                //System.out.println("Tarefas: " + tarefas.size());
+                if (tarefas == null || tarefas.size() == 0) {
+                    System.out.println("Erro ao buscar tarefas, tente novamente com um termo diferente");
                 }
             }
-
-            if (tarefaVelha.getId() != -1) {
-                System.out.println("Novos dados da tarefa: ");
-                System.out.print("Nome da Tarefa: ");
-                String nome = sc.nextLine();
-
-                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-
-                System.out.println("\nData de Criacao (dd/MM/yyyy) - 0 para data atual");
-                System.out.print(": ");
-                String dc1 = sc.nextLine();
-                LocalDate dataCriacao = dc1.isEmpty() ? null : LocalDate.parse(dc1, formatter);  // Define a nova data de criação
-
-                System.out.print("Data de Conclusão (dd/MM/yyyy): ");
-                String input = sc.nextLine();
-                LocalDate dataConclusao = input.isEmpty() ? null : LocalDate.parse(input, formatter);  // Define a nova data de conclusão
-
-                listaStatus();
-                byte statusB = Byte.parseByte(sc.nextLine());
-                Status status = Status.fromByte(statusB);  // Define o novo status da tarefa
-
-                listaPrioridades();
-                byte prioridadeB = Byte.parseByte(sc.nextLine());
-                Prioridade prioridade = Prioridade.fromByte(prioridadeB);  // Define a nova prioridade da tarefa
-
-                Tarefa novaTarefa = new Tarefa(tarefaVelha.getId(), tarefaVelha.getIdCategoria(), nome, dataCriacao, dataConclusao, status, prioridade);
-
-                System.out.println("Confirma a alteracao da tarefa? (S/N) ");
-                char resp = sc.nextLine().charAt(0);
-                if (resp == 'S' || resp == 's') {
-                    try {
-                        if (arqTarefa.update(novaTarefa)) {
-                            System.out.println("Tarefa alterada com sucesso.");
-                        } else {
-                            System.out.println("Falha ao alterar tarefa.");
-                        }
-                    } catch (Exception e) {
-                        System.err.println("Erro do sistema. Não foi possível alterar a tarefa!");
-                    }
+            while (numeroTarefa < 0 || numeroTarefa > tarefas.size()) {
+                System.out.println("Digite o número da Tarefa que deseja atualizar\nObs: digite 0 para cancelar (favor ignorar a mensagem de erro)");
+                numeroTarefa = sc.nextInt();
+                if (numeroTarefa < 0 || numeroTarefa > tarefas.size()) {
+                    System.out.println("Tarefa não encontrada, tente novamente");
+                } else if (numeroTarefa == 0) {
+                    return;
                 }
-            } else {
-                System.out.println("Tarefa não encontrada nesta categoria!");
             }
+            old = tarefas.get(numeroTarefa - 1);
+            System.out.println("Tarefa Selecionada: " + old.getNome());
         } catch (Exception e) {
-            System.err.println("Erro no sistema");
+            e.printStackTrace();
         }
-    }
 
-    // Método para excluir uma tarefa
-    public void excluirTarefa() {
-        String nomeCategoria;
-        System.out.println("\nNome da categoria da tarefa: ");
-        nomeCategoria = sc.nextLine();
+        // Definindo Rotulos
+        int newRotulo = 1;
+        ArrayList<Rotulo> Rotulos = new ArrayList<>();
+        ArrayList<Integer> posRotulosLista = new ArrayList<>();
+        System.out.println("Deseja remover Rotulos ? (1 para sim, 0 para não)");
+        newRotulo = sc.nextInt();
+        while (newRotulo == 1) {
+            System.out.println("Digite o índice da Rotulo que deseja remover dessa tarefa");
+            System.out.println();
+            Rotulos = arqRotulo.listar();
+            System.out.println();
+            posRotulosLista.add(sc.nextInt() - 1);
+            System.out.println("Deseja remover mais Rotulos? (1 para sim, 0 para não)");
+            newRotulo = sc.nextInt();
+        }
+        ArrayList<Integer> removed = new ArrayList<>();
+        for (int i = 0; i < posRotulosLista.size(); i++) {
+            removed.add(Rotulos.get(posRotulosLista.get(i)).getId());
+        }
+        posRotulosLista.clear();
+        System.out.println("Deseja adicionar Rotulos ? (1 para sim, 0 para não)");
+        newRotulo = sc.nextInt();
+        while (newRotulo == 1) {
+            System.out.println("Digite o índice da Rotulo que deseja adicionar dessa tarefa");
+            System.out.println();
+            Rotulos = arqRotulo.listar();
+            System.out.println();
+            posRotulosLista.add(sc.nextInt() - 1);
+            System.out.println("Deseja adicionar mais Rotulos? (1 para sim, 0 para não)");
+            newRotulo = sc.nextInt();
+        }
+        ArrayList<Integer> added = new ArrayList<>();
+        for (int i = 0; i < posRotulosLista.size(); i++) {
+            added.add(Rotulos.get(posRotulosLista.get(i)).getId());
+        }
 
-        try {
-            Categoria c = arqCategoria.read(nomeCategoria);  // Busca a categoria pelo nome
-            System.out.println("Nome da tarefa: ");
-            String nomeTarefa = sc.nextLine();
-            ArrayList<Tarefa> tarefas = arqTarefa.readAll(c.getId());  // Busca todas as tarefas relacionadas à categoria
-
-            int idTarefa = -1;
-            for (Tarefa tmp : tarefas) {
-                if (tmp.getNome().equals(nomeTarefa)) {  // Verifica se o nome da tarefa corresponde
-                    System.out.println("Tarefa encontrada: ");
-                    System.out.println(tmp);  // Exibe a tarefa encontrada
-                    idTarefa = tmp.getId();
-                    break;
-                }
-            }
-
-            if (idTarefa != -1) {
-                System.out.println("Confirma a exclusao da tarefa? (S/N) ");
-                char resp = sc.nextLine().charAt(0);
-                if (resp == 'S' || resp == 's') {
-                    try {
-                        if (arqTarefa.delete(idTarefa)) {
-                            System.out.println("Tarefa excluída com sucesso.");
-                        } else {
-                            System.out.println("Tarefa inexistente");
-                        }
-                    } catch (Exception e) {
-                        System.err.println("Erro do sistema. Não foi possível excluir a tarefa!");
-                    }
-                }
-            } else {
-                System.out.println("Tarefa não encontrada nesta categoria!");
-            }
-        } catch (Exception e) {
-            System.err.println("Erro no sistema");
+        if (arqTarefa.updateRotulos(old, removed, added)) {
+            System.out.println("Rotulos atualizadas com sucesso");
+        } else {
+            System.out.println("Erro ao atualizar as Rotulos");
         }
     }
 
@@ -280,7 +382,7 @@ public class MenuTarefas {
         try {
             // Obtém todas as categorias existentes
             List<Categoria> categorias = arqCategoria.readAll();
-            
+
             // Verifica se há categorias cadastradas
             if (categorias.isEmpty()) {
                 System.out.println("Não há categorias cadastradas!");
@@ -289,12 +391,12 @@ public class MenuTarefas {
                 arqCategoria.listar();
                 System.out.print("> ");
                 int idCategoria = Integer.parseInt(sc.nextLine());
-    
+
                 // Verifica se o ID da categoria inserido é válido
                 if (idCategoria > 0) {
                     // Obtém todas as tarefas associadas à categoria escolhida
                     List<Tarefa> tarefas = arqTarefa.readAll(idCategoria);
-    
+
                     // Verifica se há tarefas cadastradas para a categoria escolhida
                     if (tarefas.isEmpty()) {
                         System.out.println("Não há tarefas cadastradas!");
@@ -313,8 +415,6 @@ public class MenuTarefas {
             System.out.println("Erro no sistema. Não foi possível buscar tarefa!");
         }
     }
-    
-    
 
     // Método para listar os status disponíveis
     private static void listaStatus() {

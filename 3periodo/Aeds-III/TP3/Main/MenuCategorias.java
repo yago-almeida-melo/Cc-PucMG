@@ -13,7 +13,6 @@ public class MenuCategorias {
 
     // Construtor da classe que inicializa os arquivos de categorias e tarefas
     public MenuCategorias() throws Exception {
-        arqTarefa = new ArquivoTarefa();
         arqCategoria = new ArquivoCategoria();
     }
 

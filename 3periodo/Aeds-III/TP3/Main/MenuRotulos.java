@@ -59,7 +59,7 @@ public class MenuRotulos {
 
         String nomeEtiqueta;
         try {
-            System.out.println("Digite o nome da etiqueta que deseja listar as tarefas");
+            System.out.println("Digite o nome do Rotulo que deseja listar as tarefas");
             System.out.println();
             arqRotulo.listar();
 
