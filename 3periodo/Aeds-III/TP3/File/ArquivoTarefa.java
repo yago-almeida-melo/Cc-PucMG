@@ -22,7 +22,7 @@ public class ArquivoTarefa extends Arquivo<Tarefa> {
                 "BaseDeDados//indice_indireto_id.btree.db");
         arvoreB = new ArvoreBMais<>(
                 ParIdRotuloCId.class.getConstructor(),
-                4,
+                5,
                 "BaseDeDados//ArvoresTarefasRotulos.db");
         stopWords = new StopWords();
     }
@@ -35,8 +35,10 @@ public class ArquivoTarefa extends Arquivo<Tarefa> {
         indice_indireto_id.create(new ParIdId(c.getIdCategoria(), id));  // Atualiza o índice indireto
         ArrayList<Integer> idRotulos = c.getIdRotulos();
         for (int i = 0; i < idRotulos.size(); i++) {
+            idRotulos.add(i);
             arvoreB.create(new ParIdRotuloCId(idRotulos.get(i), id));
         }
+        c.setIdRotulos(idRotulos);
         stopWords.inserir(c.getNome(), id);
         return id;
     }
