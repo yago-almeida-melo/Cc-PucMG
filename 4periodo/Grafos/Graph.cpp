@@ -49,15 +49,40 @@ public:
         }
         return bfs;
     }
+
+    void dfs(int node, vector<bool> &vis, vector<int> &storeDfs) {
+        storeDfs.push_back(node); 
+        vis[node] = true; 
+        for(auto it : adj[node]) {
+            if(!vis[it]) {
+                dfs(it, vis, storeDfs); 
+            }
+        }
+    }
+	vector<int>dfsOfGraph(){
+	    vector<int> storeDfs; 
+	    vector<bool> vis(V, false); 
+        for(int i = 0;i<V;i++) {
+            if(!vis[i]) dfs(i, vis, storeDfs); 
+        }
+	    return storeDfs; 
+	}
 };
 
 int main(){
-    Graph g(4);
-    g.addEdge(2, 0);
-    g.addEdge(0, 3);
+    Graph g(7);
     g.addEdge(0, 1);
-    vector<int> bfs = g.bfs(2);
-    for(auto it : bfs){
+    g.addEdge(0, 3);
+    g.addEdge(1, 3);
+    g.addEdge(1, 4);
+    g.addEdge(2, 3);
+    g.addEdge(3, 4);
+    g.addEdge(4, 5);
+    g.addEdge(5, 6);
+    g.addEdge(6, 4);
+    vector<int> dfs = g.dfsOfGraph();
+    for(auto it : dfs){
         cout << it << " ";
     }
+    //0134562
 }
