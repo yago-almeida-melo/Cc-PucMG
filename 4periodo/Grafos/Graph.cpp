@@ -13,7 +13,10 @@ private:
 
 public:
     Graph(int V) : V(V), adj(V) {}
-    void addEdge(int u, int v) {
+    void addEdgeDirected(int u, int v) {
+        adj[u].push_back(v);
+    }
+    void addEdgeUndirected(int u, int v) {
         adj[u].push_back(v);
         adj[v].push_back(u);
     }
@@ -82,16 +85,16 @@ public:
 
 int main(){
     Graph g(8);
-    g.addEdge(0, 3);
-    g.addEdge(0, 1);
-    g.addEdge(1, 4);
-    g.addEdge(1, 3);
-    g.addEdge(2, 3);
-    g.addEdge(3, 4);
-    g.addEdge(4, 5);
-    g.addEdge(5, 6);
-    g.addEdge(6, 4);
-    g.addEdge(3, 7);
+    g.addEdgeUndirected(0, 3);
+    g.addEdgeUndirected(0, 1);
+    g.addEdgeUndirected(1, 4);
+    g.addEdgeUndirected(1, 3);
+    g.addEdgeUndirected(2, 3);
+    g.addEdgeUndirected(3, 4);
+    g.addEdgeUndirected(4, 5);
+    g.addEdgeUndirected(5, 6);
+    g.addEdgeUndirected(6, 4);
+    g.addEdgeUndirected(3, 7);
     /*
     vector<int> dfs = g.dfsOfGraph();
     cout << "DFS: ";
