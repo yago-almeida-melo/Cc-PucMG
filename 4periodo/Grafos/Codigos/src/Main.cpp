@@ -4,6 +4,10 @@
 #include <vector>
 
 using namespace std;
+/*
+    How to compile and run this code:
+    cd C:\Programacao\Repos\Cc-PucMG\4periodo\Grafos\Codigos\src    &&   mingw32-make run
+*/
 
 int main(){
 

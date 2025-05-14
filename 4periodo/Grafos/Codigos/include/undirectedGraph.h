@@ -3,10 +3,11 @@
 #define GRAPH_INTERNAL_ACCESS
 
 #include "Graph.h"
+using namespace std;
 
 class UndirectedGraph : public Graph {
 public:
-    void addEdge(const std::string& from, const std::string& to, double weight = 1.0);
+    void addEdge(const string& from, const string& to, double weight = 1.0);
     void removeEdge(const string& from, const string& to);
 };
 
