@@ -53,16 +53,16 @@ vector<string> GraphAlgorithms::DFS(const Graph& graph, const string& startVerte
     return visited;
 }
 
-int spanningTree(int V, int E, vector<vector<int>> &edges) {
+/*int spanningTree(int V, int E, vector<vector<Edge>> &edges) {
   
     // Create an adjacency list representation of the graph
     vector<vector<int>> adj[V];
     
     // Fill the adjacency list with edges and their weights
-    for (int i = 0; i < E; i++) {
-        int u = edges[i][0];
-        int v = edges[i][1];
-        int wt = edges[i][2];
+    for (Edge e : edges) {
+        int u = e.to;
+        int v = edges.at(i).at(1);
+        int wt = e.weight;
         adj[u].push_back({v, wt});
         adj[v].push_back({u, wt});
     }
@@ -105,3 +105,4 @@ int spanningTree(int V, int E, vector<vector<int>> &edges) {
     
     return res;  // Return the sum of edge weights of the Minimum Spanning Tree
 }
+*/
