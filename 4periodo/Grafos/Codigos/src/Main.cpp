@@ -23,6 +23,7 @@ int main(){
         g.addEdge("A", "C");
         //g.removeEdge("C", "B");
         g.print();
+        
         vector<string> nbs = g.getNeighbors("A");
         for(string nb : nbs){
             cout << nb << " ";
