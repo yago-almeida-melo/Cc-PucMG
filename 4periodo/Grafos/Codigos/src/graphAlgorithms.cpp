@@ -3,16 +3,18 @@
 #include <stack>
 #include <unordered_set>
 
-std::vector<std::string> GraphAlgorithms::BFS(const Graph& graph, const std::string& startVertex) {
-    std::vector<std::string> visited;
-    std::queue<std::string> toVisit;
-    std::unordered_set<std::string> visitedSet;
+using namespace std;
+
+vector<string> GraphAlgorithms::BFS(const Graph& graph, const string& startVertex) {
+    vector<string> visited;
+    queue<string> toVisit;
+    unordered_set<string> visitedSet;
 
     toVisit.push(startVertex);
     visitedSet.insert(startVertex);
 
     while (!toVisit.empty()) {
-        std::string current = toVisit.front();
+        string current = toVisit.front();
         toVisit.pop();
         visited.push_back(current);
 
@@ -27,15 +29,15 @@ std::vector<std::string> GraphAlgorithms::BFS(const Graph& graph, const std::str
     return visited;
 }
 
-std::vector<std::string> GraphAlgorithms::DFS(const Graph& graph, const std::string& startVertex) {
-    std::vector<std::string> visited;
-    std::stack<std::string> toVisit;
-    std::unordered_set<std::string> visitedSet;
+vector<string> GraphAlgorithms::DFS(const Graph& graph, const string& startVertex) {
+    vector<string> visited;
+    stack<string> toVisit;
+    unordered_set<string> visitedSet;
 
     toVisit.push(startVertex);
 
     while (!toVisit.empty()) {
-        std::string current = toVisit.top();
+        string current = toVisit.top();
         toVisit.pop();
 
         if (visitedSet.find(current) == visitedSet.end()) {
@@ -50,3 +52,57 @@ std::vector<std::string> GraphAlgorithms::DFS(const Graph& graph, const std::str
 
     return visited;
 }
+
+/*int spanningTree(int V, int E, vector<vector<Edge>> &edges) {
+  
+    // Create an adjacency list representation of the graph
+    vector<vector<int>> adj[V];
+    
+    // Fill the adjacency list with edges and their weights
+    for (Edge e : edges) {
+        int u = e.to;
+        int v = edges.at(i).at(1);
+        int wt = e.weight;
+        adj[u].push_back({v, wt});
+        adj[v].push_back({u, wt});
+    }
+    
+    // Create a priority queue to store edges with their weights
+    priority_queue<pair<int,int>, vector<pair<int,int>>, greater<pair<int,int>>> pq;
+    
+    // Create a visited array to keep track of visited vertices
+    vector<bool> visited(V, false);
+    
+    // Variable to store the result (sum of edge weights)
+    int res = 0;
+    
+    // Start with vertex 0
+    pq.push({0, 0});
+    
+    // Perform Prim's algorithm to find the Minimum Spanning Tree
+    while(!pq.empty()){
+        auto p = pq.top();
+        pq.pop();
+        
+        int wt = p.first;  // Weight of the edge
+        int u = p.second;  // Vertex connected to the edge
+        
+        if(visited[u] == true){
+            continue;  // Skip if the vertex is already visited
+        }
+        
+        res += wt;  // Add the edge weight to the result
+        visited[u] = true;  // Mark the vertex as visited
+        
+        // Explore the adjacent vertices
+        for(auto v : adj[u]){
+            // v[0] represents the vertex and v[1] represents the edge weight
+            if(visited[v[0]] == false){
+                pq.push({v[1], v[0]});  // Add the adjacent edge to the priority queue
+            }
+        }
+    }
+    
+    return res;  // Return the sum of edge weights of the Minimum Spanning Tree
+}
+*/

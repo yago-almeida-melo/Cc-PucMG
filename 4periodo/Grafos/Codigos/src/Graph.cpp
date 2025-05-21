@@ -86,3 +86,7 @@ void Graph::print() const {
         }
     }
 }
+
+vector<vector<Edge>> Graph::getAdjList() const {
+    return adjList;
+}

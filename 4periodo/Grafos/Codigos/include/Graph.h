@@ -32,7 +32,7 @@ class Graph {
         void removeVertex(const string& label);
         void print() const;
         vector<string> getNeighbors(const string& label) const;
-
+        vector<vector<Edge>> getAdjList() const;
 };
 
 #endif

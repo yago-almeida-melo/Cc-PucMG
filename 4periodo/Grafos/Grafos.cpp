@@ -9,7 +9,7 @@ class Graph {
 private:
     int V;
     int E;
-    std::vector<std::vector<int>> adj;
+    vector<vector<int>> adj;
 
 public:
     Graph(int V) : V(V), adj(V) {}
