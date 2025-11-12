@@ -22,15 +22,19 @@ def get_wifi_info():
     try:
         if "windows" in system:
             output = subprocess.check_output(["netsh", "wlan", "show", "interfaces"], text=True)
+
             ssid = re.search(r"SSID\s*:\s*(.+)", output)
             bssid = re.search(r"BSSID\s*:\s*([0-9A-Fa-f:]+)", output)
-            channel = re.search(r"Channel\s*:\s*(\d+)", output)
-            auth = re.search(r"Authentication\s*:\s*(.+)", output)
+            # procura em inglês e português
+            channel = re.search(r"(?:Channel|Canal)\s*:\s*(\d+)", output)
+            auth = re.search(r"(?:Authentication|Autenticação|Tipo de autenticação)\s*:\s*(.+)", output)
+
             ssid = ssid.group(1).strip() if ssid else None
             bssid = bssid.group(1).strip() if bssid else None
             channel = int(channel.group(1)) if channel else None
             auth = auth.group(1).strip() if auth else None
-        elif "linux" in system:
+        else:
+            # Linux
             output = subprocess.check_output(["nmcli", "-t", "-f", "ssid,bssid,chan,security", "dev", "wifi"], text=True)
             connected = next((line for line in output.splitlines() if "*" in line), None)
             if connected:
@@ -38,23 +42,18 @@ def get_wifi_info():
                 ssid, bssid, channel, auth = parts[0], parts[1], int(parts[2]), parts[3]
             else:
                 ssid = bssid = channel = auth = None
-        else:
-            return None
     except Exception:
         ssid = bssid = channel = auth = None
 
-    # OUI = primeiros 3 octetos do MAC (BSSID)
     oui = ":".join(bssid.split(":")[:3]) if bssid else None
-
     return {"SSID": ssid, "BSSID": bssid, "Canal": channel, "OUI": oui, "Auth": auth}
-
 
 def get_rssi():
     system = platform.system().lower()
     try:
         if "windows" in system:
             output = subprocess.check_output(["netsh", "wlan", "show", "interfaces"], text=True)
-            match = re.search(r"Signal\s*:\s*(\d+)%", output)
+            match = re.search(r"(?:Signal|Sinal)\s*:\s*(\d+)%", output)
             if match:
                 percent = int(match.group(1))
                 # Converte % para dBm aproximado
