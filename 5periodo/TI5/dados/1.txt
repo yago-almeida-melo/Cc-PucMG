@@ -1,0 +1,5 @@
+{'SSID': 'ALMG-PLENARIO', 'BSSID': '1c:28:af:bd:ab:f7', 'Canal': 149, 'OUI': '1c:28:af', 'Auth': None, 'MAC': '00-D7-6D-A0-9A-DE', 'IP': '169.254.104.32', 'RTT (ms)': 14.648, 'TTL': 114, 'RSSI (dBm)': -67.5, 'VAR_RSSI': 0}
+{'SSID': 'ALMG-PLENARIO', 'BSSID': '1c:28:af:bd:ab:f7', 'Canal': 149, 'OUI': '1c:28:af', 'Auth': None, 'MAC': '00-D7-6D-A0-9A-DE', 'IP': '169.254.104.32', 'RTT (ms)': 14.252, 'TTL': 114, 'RSSI (dBm)': -67.5, 'VAR_RSSI': 0}
+{'SSID': 'ALMG-PLENARIO', 'BSSID': '1c:28:af:bd:ab:f7', 'Canal': 149, 'OUI': '1c:28:af', 'Auth': None, 'MAC': '00-D7-6D-A0-9A-DE', 'IP': '169.254.104.32', 'RTT (ms)': 14.375, 'TTL': 114, 'RSSI (dBm)': -67.5, 'VAR_RSSI': 0}
+{'SSID': 'ALMG-PLENARIO', 'BSSID': '1c:28:af:bd:ab:f7', 'Canal': 149, 'OUI': '1c:28:af', 'Auth': None, 'MAC': '00-D7-6D-A0-9A-DE', 'IP': '169.254.104.32', 'RTT (ms)': 14.642, 'TTL': 114, 'RSSI (dBm)': -67.5, 'VAR_RSSI': 0}
+{'SSID': 'ALMG-PLENARIO', 'BSSID': '1c:28:af:bd:ab:f7', 'Canal': 149, 'OUI': '1c:28:af', 'Auth': None, 'MAC': '00-D7-6D-A0-9A-DE', 'IP': '169.254.104.32', 'RTT (ms)': 19.746, 'TTL': 114, 'RSSI (dBm)': -67.5, 'VAR_RSSI': 0}

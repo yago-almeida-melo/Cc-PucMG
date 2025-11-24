@@ -1,0 +1,5 @@
+{'SSID': 'Ynhago', 'BSSID': '16:d3:25:30:72:ab', 'Canal': 149, 'OUI': '16:d3:25', 'Auth': None, 'MAC': '00-D7-6D-A0-9A-DE', 'IP': '169.254.104.32', 'RTT (ms)': 55.352, 'TTL': 113, 'RSSI (dBm)': -53.5, 'VAR_RSSI': 0}
+{'SSID': 'Ynhago', 'BSSID': '16:d3:25:30:72:ab', 'Canal': 149, 'OUI': '16:d3:25', 'Auth': None, 'MAC': '00-D7-6D-A0-9A-DE', 'IP': '169.254.104.32', 'RTT (ms)': 34.486, 'TTL': 113, 'RSSI (dBm)': -52.0, 'VAR_RSSI': 1}
+{'SSID': 'Ynhago', 'BSSID': '16:d3:25:30:72:ab', 'Canal': 149, 'OUI': '16:d3:25', 'Auth': None, 'MAC': '00-D7-6D-A0-9A-DE', 'IP': '169.254.104.32', 'RTT (ms)': 56.565, 'TTL': 113, 'RSSI (dBm)': -52.0, 'VAR_RSSI': 0}
+{'SSID': 'Ynhago', 'BSSID': '16:d3:25:30:72:ab', 'Canal': 149, 'OUI': '16:d3:25', 'Auth': None, 'MAC': '00-D7-6D-A0-9A-DE', 'IP': '169.254.104.32', 'RTT (ms)': 43.538, 'TTL': 113, 'RSSI (dBm)': -52.0, 'VAR_RSSI': 0}
+{'SSID': 'Ynhago', 'BSSID': '16:d3:25:30:72:ab', 'Canal': 149, 'OUI': '16:d3:25', 'Auth': None, 'MAC': '00-D7-6D-A0-9A-DE', 'IP': '169.254.104.32', 'RTT (ms)': 45.224, 'TTL': 113, 'RSSI (dBm)': -52.0, 'VAR_RSSI': 0}

@@ -4,7 +4,7 @@
 using namespace std;
 
 // Função para dilatar (pegar o máximo local em uma vizinhança)
-vector<int> dilatar(const vector<int>& v, int tamanho = 6) {
+vector<int> dilatar(const vector<int>& v, int tamanho = 4) {
     int n = v.size();
     vector<int> res(n);
     int raio = tamanho / 2;
