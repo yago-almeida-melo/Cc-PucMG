@@ -16,22 +16,30 @@ def _safe_strip(s):
     return s.strip() if isinstance(s, str) else s
 
 def _first_nonloop_iface():
-    """
-    Retorna (iface_name, mac, ip) da primeira interface com IPv4 não-loopback.
-    Garante que o MAC seja da MESMA interface do IP escolhido.
-    """
+    wifi_keywords = ["wi-fi", "wifi", "wlan", "wireless"]
+    for iface, addrs in psutil.net_if_addrs().items():
+        if any(k in iface.lower() for k in wifi_keywords):
+            ipv4 = None
+            mac = None
+            for a in addrs:
+                if a.family == socket.AF_INET and not a.address.startswith("127."):
+                    ipv4 = a.address
+                if hasattr(psutil, "AF_LINK") and a.family == psutil.AF_LINK:
+                    mac = a.address
+            if ipv4:
+                return iface, mac, ipv4
+    # fallback original
     for iface, addrs in psutil.net_if_addrs().items():
         ipv4 = None
         mac = None
         for a in addrs:
             if a.family == socket.AF_INET and not a.address.startswith("127."):
                 ipv4 = a.address
+            if hasattr(psutil, "AF_LINK") and a.family == psutil.AF_LINK:
+                mac = a.address
         if ipv4:
-            for a in addrs:
-                if hasattr(psutil, "AF_LINK") and a.family == psutil.AF_LINK:
-                    mac = a.address
-                    break
             return iface, mac, ipv4
+
     return None, None, None
 
 # ============ REDE BÁSICO ============
