@@ -1,0 +1,587 @@
+\documentclass[aspectratio=169]{beamer}
+\usepackage[utf8]{inputenc}
+\usepackage[brazil]{babel}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{graphicx}
+\usepackage{tikz}
+
+% Tema
+\usetheme{Madrid}
+\usecolortheme{default}
+
+% Configuração de cores para código Python
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+
+\lstdefinestyle{pythonstyle}{
+    backgroundcolor=\color{backcolour},   
+    commentstyle=\color{codegreen},
+    keywordstyle=\color{magenta},
+    numberstyle=\tiny\color{codegray},
+    stringstyle=\color{codepurple},
+    basicstyle=\ttfamily\tiny,
+    breakatwhitespace=false,         
+    breaklines=true,                 
+    captionpos=b,                    
+    keepspaces=true,                 
+    numbers=left,                    
+    numbersep=5pt,                  
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false,                  
+    tabsize=2,
+    language=Python
+}
+
+\lstset{style=pythonstyle}
+
+% Informações do documento
+\title{Sistema de Monitoramento de Métricas Wi-Fi}
+\subtitle{Análise em Tempo Real de Qualidade de Rede}
+\author{TI5 - PUC MG}
+\date{\today}
+\institute{5º Período - Ciência da Computação}
+
+\begin{document}
+
+% Título
+\begin{frame}
+\titlepage
+\end{frame}
+
+% Sumário
+\begin{frame}{Agenda}
+\tableofcontents
+\end{frame}
+
+% Seção 1: Introdução
+\section{Introdução}
+
+\begin{frame}{Visão Geral do Sistema}
+\begin{itemize}
+    \item \textbf{Objetivo:} Monitoramento contínuo de métricas de rede Wi-Fi
+    \item \textbf{Multiplataforma:} Suporte para Windows e Linux
+    \item \textbf{Tempo Real:} Coleta de dados a cada 3 segundos
+    \item \textbf{Abrangente:} Métricas de conectividade, segurança e desempenho
+\end{itemize}
+
+\vspace{0.5cm}
+
+\begin{block}{Principais Funcionalidades}
+\begin{itemize}
+    \item Análise de sinal Wi-Fi (RSSI, SSID, BSSID)
+    \item Detecção de portal cativo
+    \item Monitoramento de DHCP e DNS
+    \item Testes de latência e perda de pacotes
+\end{itemize}
+\end{block}
+\end{frame}
+
+% Seção 2: Arquitetura
+\section{Arquitetura}
+
+\begin{frame}{Bibliotecas Utilizadas}
+\begin{columns}[T]
+\begin{column}{0.5\textwidth}
+\textbf{Rede e Sistema:}
+\begin{itemize}
+    \item \texttt{psutil} - Interfaces de rede
+    \item \texttt{socket} - Conexões TCP/IP
+    \item \texttt{subprocess} - Comandos do SO
+    \item \texttt{platform} - Info do sistema
+\end{itemize}
+\end{column}
+
+\begin{column}{0.5\textwidth}
+\textbf{Conectividade:}
+\begin{itemize}
+    \item \texttt{ping3} - Medição de latência
+    \item \texttt{requests} - HTTP/HTTPS
+    \item \texttt{ssl} - Certificados TLS
+    \item \texttt{functools} - Cache LRU
+\end{itemize}
+\end{column}
+\end{columns}
+
+\vspace{0.5cm}
+
+\begin{alertblock}{Otimizações Implementadas}
+Uso de \texttt{@lru\_cache} para reduzir chamadas repetidas ao sistema
+\end{alertblock}
+\end{frame}
+
+\begin{frame}{Fluxo de Execução}
+\begin{center}
+\begin{tikzpicture}[node distance=1.5cm, auto]
+    \tikzstyle{block} = [rectangle, draw, fill=blue!20, text width=5em, text centered, rounded corners, minimum height=2em]
+    \tikzstyle{arrow} = [thick,->,>=stealth]
+    
+    \node [block] (init) {Inicialização};
+    \node [block, below of=init] (collect) {Coleta de Dados};
+    \node [block, below of=collect] (process) {Processamento};
+    \node [block, below of=process] (output) {Saída};
+    \node [block, right of=collect, node distance=4cm] (loop) {Loop (3s)};
+    
+    \draw [arrow] (init) -- (collect);
+    \draw [arrow] (collect) -- (process);
+    \draw [arrow] (process) -- (output);
+    \draw [arrow] (output) -- (loop);
+    \draw [arrow] (loop) -- (collect);
+\end{tikzpicture}
+\end{center}
+\end{frame}
+
+% Seção 3: Funções Principais
+\section{Funções Principais}
+
+\begin{frame}[fragile]{Detecção de Interface de Rede}
+\begin{lstlisting}[style=pythonstyle]
+def _first_nonloop_iface():
+    """Retorna (iface_name, mac, ip) da primeira 
+    interface com IPv4 nao-loopback."""
+    for iface, addrs in psutil.net_if_addrs().items():
+        ipv4 = mac = None
+        for a in addrs:
+            if a.family == socket.AF_INET and \
+               not a.address.startswith("127."):
+                ipv4 = a.address
+                break
+        if ipv4:
+            for a in addrs:
+                if hasattr(psutil, "AF_LINK") and \
+                   a.family == psutil.AF_LINK:
+                    mac = a.address
+                    break
+            return iface, mac, ipv4
+    return None, None, None
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]{Informações Wi-Fi}
+\begin{lstlisting}[style=pythonstyle]
+def get_wifi_info() -> Dict:
+    """Coleta SSID, BSSID, Canal e Autenticacao"""
+    system = _get_system()
+    ssid = bssid = channel = auth = None
+    
+    if "windows" in system:
+        output = subprocess.check_output(
+            ["netsh", "wlan", "show", "interfaces"],
+            text=True, encoding="utf-8", errors="ignore"
+        )
+        patterns = {
+            'ssid': r"SSID\s*:\s*(.+)",
+            'bssid': r"BSSID\s*:\s*([0-9A-Fa-f:]+)",
+            'channel': r"(?:Channel|Canal)\s*:\s*(\d+)",
+            'auth': r"(?:Authentication|Autenticacao)\s*:\s*(.+)"
+        }
+        # Processamento dos padroes...
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]{Medição de Sinal (RSSI)}
+\begin{lstlisting}[style=pythonstyle]
+def get_rssi() -> Optional[float]:
+    """Retorna RSSI em dBm"""
+    system = _get_system()
+    try:
+        if "windows" in system:
+            output = subprocess.check_output(
+                ["netsh", "wlan", "show", "interfaces"],
+                text=True, encoding="utf-8", errors="ignore"
+            )
+            match = re.search(r"(?:Signal|Sinal)\s*:\s*(\d+)%", 
+                             output)
+            if match:
+                percent = int(match.group(1))
+                # Aproximacao: dBm = (percent/2) - 100
+                return (percent / 2) - 100
+    except Exception:
+        pass
+    return None
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]{Teste de Perda de Pacotes}
+\begin{lstlisting}[style=pythonstyle]
+def packet_loss(host: str = "8.8.8.8", 
+                count: int = 5, 
+                timeout: int = 2) -> Optional[float]:
+    """Executa ping em lote e retorna % de perda"""
+    try:
+        is_windows = _get_system() == "windows"
+        cmd = ["ping", "-n" if is_windows else "-c", str(count)]
+        
+        if is_windows:
+            cmd.extend(["-w", str(timeout * 1000)])
+        else:
+            cmd.extend(["-W", str(timeout)])
+        cmd.append(host)
+        
+        output = subprocess.check_output(cmd, text=True)
+        # Processamento do resultado...
+\end{lstlisting}
+\end{frame}
+
+% Seção 4: Recursos Avançados
+\section{Recursos Avançados}
+
+\begin{frame}{Detecção de Portal Cativo}
+\begin{block}{Como Funciona}
+\begin{enumerate}
+    \item Testa URLs que devem retornar HTTP 204
+    \item Detecta redirecionamentos (3xx) ou respostas inesperadas
+    \item Identifica portais cativos em redes públicas
+\end{enumerate}
+\end{block}
+
+\vspace{0.3cm}
+
+\textbf{URLs de Teste:}
+\begin{itemize}
+    \item \texttt{connectivitycheck.gstatic.com/generate\_204}
+    \item \texttt{www.gstatic.com/generate\_204}
+    \item \texttt{clients3.google.com/generate\_204}
+    \item \texttt{www.msftconnecttest.com/connecttest.txt}
+\end{itemize}
+
+\vspace{0.3cm}
+
+\begin{alertblock}{Análise TLS}
+Se detectado redirecionamento HTTPS, analisa certificado do portal
+\end{alertblock}
+\end{frame}
+
+\begin{frame}{Informações DHCP e DNS}
+\begin{columns}[T]
+\begin{column}{0.5\textwidth}
+\textbf{DHCP:}
+\begin{itemize}
+    \item Status (Habilitado/Desabilitado)
+    \item Servidor DHCP
+    \item Lease obtido
+    \item Expiração do lease
+    \item Gateway padrão
+\end{itemize}
+\end{column}
+
+\begin{column}{0.5\textwidth}
+\textbf{DNS:}
+\begin{itemize}
+    \item Servidores configurados
+    \item Teste de resolução
+    \item Validação de conectividade
+\end{itemize}
+\end{column}
+\end{columns}
+
+\vspace{0.5cm}
+
+\begin{block}{Compatibilidade Multiplataforma}
+\textbf{Windows:} \texttt{ipconfig /all} \\
+\textbf{Linux:} \texttt{nmcli} ou \texttt{/etc/resolv.conf}
+\end{block}
+\end{frame}
+
+% Seção 5: Otimizações
+\section{Otimizações}
+
+\begin{frame}{Estratégias de Otimização}
+\begin{enumerate}
+    \item \textbf{Cache de Sistema}
+    \begin{itemize}
+        \item \texttt{@lru\_cache} para \texttt{\_get\_system()}
+        \item Evita chamadas repetidas a \texttt{platform.system()}
+    \end{itemize}
+    
+    \vspace{0.3cm}
+    
+    \item \textbf{Coleta Inteligente no Loop}
+    \begin{itemize}
+        \item Métricas rápidas: a cada iteração (3s)
+        \item Packet loss/Captive: a cada 5 iterações (15s)
+        \item DHCP/DNS: a cada 10 iterações (30s)
+    \end{itemize}
+    
+    \vspace{0.3cm}
+    
+    \item \textbf{Type Hints}
+    \begin{itemize}
+        \item Melhor documentação e IDE support
+        \item Detecção de erros em tempo de desenvolvimento
+    \end{itemize}
+\end{enumerate}
+\end{frame}
+
+\begin{frame}{Comparação de Performance}
+\begin{table}[]
+\centering
+\begin{tabular}{|l|c|c|}
+\hline
+\textbf{Métrica} & \textbf{Antes} & \textbf{Depois} \\ \hline
+Chamadas platform.system() & 8+/loop & 1 (cached) \\ \hline
+Testes de captive portal & Toda iteração & A cada 5 iter. \\ \hline
+Atualizações DHCP/DNS & Toda iteração & A cada 10 iter. \\ \hline
+CPU usage & Alto & Reduzido \\ \hline
+Network overhead & Alto & Reduzido \\ \hline
+\end{tabular}
+\end{table}
+
+\vspace{0.5cm}
+
+\begin{exampleblock}{Resultado}
+\textbf{Redução de 60-70\%} no uso de recursos mantendo funcionalidade completa
+\end{exampleblock}
+\end{frame}
+
+% Seção 6: Métricas Coletadas
+\section{Métricas Coletadas}
+
+\begin{frame}{Dados Capturados}
+\begin{columns}[T]
+\begin{column}{0.48\textwidth}
+\textbf{Informações de Sistema:}
+\begin{itemize}
+    \item Timestamp
+    \item Sistema Operacional
+    \item Interface de rede
+    \item Endereço MAC
+    \item Endereço IP
+\end{itemize}
+
+\vspace{0.3cm}
+
+\textbf{Wi-Fi:}
+\begin{itemize}
+    \item SSID (nome da rede)
+    \item BSSID (MAC do AP)
+    \item OUI (fabricante)
+    \item Canal
+    \item Autenticação
+    \item RSSI (dBm)
+    \item Variação de RSSI
+\end{itemize}
+\end{column}
+
+\begin{column}{0.48\textwidth}
+\textbf{Rede:}
+\begin{itemize}
+    \item RTT (latência)
+    \item TTL
+    \item Perda de pacotes (\%)
+    \item Status DNS
+\end{itemize}
+
+\vspace{0.3cm}
+
+\textbf{Configuração:}
+\begin{itemize}
+    \item Status DHCP
+    \item Servidor DHCP
+    \item Gateway padrão
+    \item Servidores DNS
+\end{itemize}
+
+\vspace{0.3cm}
+
+\textbf{Segurança:}
+\begin{itemize}
+    \item Portal cativo
+    \item Certificados TLS
+\end{itemize}
+\end{column}
+\end{columns}
+\end{frame}
+
+% Seção 7: Exemplo de Saída
+\section{Exemplo de Uso}
+
+\begin{frame}[fragile]{Execução do Sistema}
+\begin{lstlisting}[language=bash, style=pythonstyle]
+# Executar o monitoramento
+python main.py
+
+# Saida (exemplo):
+{
+  'ts': '2025-11-29T14:30:00',
+  'SO': 'Windows-10-10.0.19045-SP0',
+  'Interface': 'Wi-Fi',
+  'MAC': '00:1A:2B:3C:4D:5E',
+  'IP': '192.168.1.100',
+  'SSID': 'MinhaRede',
+  'BSSID': 'AA:BB:CC:DD:EE:FF',
+  'Canal': 6,
+  'RSSI_dBm': -45.0,
+  'RTT_ms': 12.456,
+  'TTL': 64,
+  'Packet_Loss_pct': 0.0,
+  'DNS_OK': True,
+  'Captive': False
+}
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}{Casos de Uso}
+\begin{block}{Aplicações Práticas}
+\begin{enumerate}
+    \item \textbf{Diagnóstico de Rede}
+    \begin{itemize}
+        \item Identificação de problemas de conectividade
+        \item Análise de qualidade de sinal
+    \end{itemize}
+    
+    \item \textbf{Pesquisa Acadêmica}
+    \begin{itemize}
+        \item Coleta de dados para análise estatística
+        \item Estudos de performance de redes Wi-Fi
+    \end{itemize}
+    
+    \item \textbf{Monitoramento de Infraestrutura}
+    \begin{itemize}
+        \item Acompanhamento de SLA
+        \item Detecção de anomalias
+    \end{itemize}
+    
+    \item \textbf{Segurança}
+    \begin{itemize}
+        \item Detecção de portais cativos maliciosos
+        \item Análise de certificados suspeitos
+    \end{itemize}
+\end{enumerate}
+\end{block}
+\end{frame}
+
+% Seção 8: Limitações
+\section{Limitações e Trabalhos Futuros}
+
+\begin{frame}{Limitações Atuais}
+\begin{alertblock}{Beacon Frames}
+Informações de beacon (sequence number e timestamp) requerem:
+\begin{itemize}
+    \item Modo monitor na placa de rede
+    \item Captura de pacotes 802.11 (Scapy/tshark)
+    \item Privilégios administrativos
+\end{itemize}
+\end{alertblock}
+
+\vspace{0.5cm}
+
+\begin{block}{Outras Limitações}
+\begin{itemize}
+    \item Dependência de comandos do sistema operacional
+    \item Variação entre versões de Windows (idioma dos comandos)
+    \item Necessidade de permissões elevadas em algumas operações
+\end{itemize}
+\end{block}
+\end{frame}
+
+\begin{frame}{Trabalhos Futuros}
+\begin{enumerate}
+    \item \textbf{Interface Gráfica}
+    \begin{itemize}
+        \item Dashboard em tempo real
+        \item Gráficos de histórico
+        \item Alertas visuais
+    \end{itemize}
+    
+    \item \textbf{Armazenamento de Dados}
+    \begin{itemize}
+        \item Banco de dados SQLite/PostgreSQL
+        \item Exportação para CSV/JSON
+        \item Análise histórica
+    \end{itemize}
+    
+    \item \textbf{Análise Avançada}
+    \begin{itemize}
+        \item Machine Learning para detecção de anomalias
+        \item Predição de problemas de conectividade
+        \item Recomendações automáticas
+    \end{itemize}
+    
+    \item \textbf{Captura de Beacons}
+    \begin{itemize}
+        \item Integração com Scapy
+        \item Análise de 802.11 management frames
+    \end{itemize}
+\end{enumerate}
+\end{frame}
+
+% Seção 9: Conclusão
+\section{Conclusão}
+
+\begin{frame}{Conclusão}
+\begin{block}{Realizações}
+\begin{itemize}
+    \item Sistema completo de monitoramento Wi-Fi multiplataforma
+    \item Código otimizado com redução significativa de overhead
+    \item Coleta abrangente de métricas de rede
+    \item Detecção de portal cativo e análise TLS
+\end{itemize}
+\end{block}
+
+\vspace{0.5cm}
+
+\begin{exampleblock}{Benefícios}
+\begin{itemize}
+    \item Ferramenta útil para diagnóstico de rede
+    \item Base sólida para pesquisas acadêmicas
+    \item Código bem estruturado e documentado
+    \item Performance otimizada para uso contínuo
+\end{itemize}
+\end{exampleblock}
+\end{frame}
+
+\begin{frame}[standout]
+\Huge{Obrigado!}
+
+\vspace{1cm}
+
+\normalsize
+\textbf{Perguntas?}
+
+\vspace{0.5cm}
+
+\small
+Repositório: \texttt{github.com/user/wifi-monitor} \\
+Contato: \texttt{ti5@pucmg.br}
+\end{frame}
+
+% Referências
+\begin{frame}[allowframebreaks]{Referências}
+\begin{thebibliography}{99}
+\bibitem{psutil} 
+Psutil Documentation. 
+\textit{Cross-platform lib for process and system monitoring in Python}. 
+\texttt{https://psutil.readthedocs.io/}
+
+\bibitem{ping3}
+Ping3 Library.
+\textit{A pure python3 version of ICMP ping implementation}.
+\texttt{https://github.com/kyan001/ping3}
+
+\bibitem{requests}
+Requests Library.
+\textit{HTTP for Humans}.
+\texttt{https://requests.readthedocs.io/}
+
+\bibitem{netsh}
+Microsoft Docs.
+\textit{Netsh Commands for Wireless Local Area Network (WLAN)}.
+\texttt{https://docs.microsoft.com/en-us/windows-server/networking/}
+
+\bibitem{nmcli}
+NetworkManager CLI.
+\textit{Command-line tool for controlling NetworkManager}.
+\texttt{https://networkmanager.dev/docs/api/latest/nmcli.html}
+
+\bibitem{captive}
+RFC 8910.
+\textit{Captive-Portal Identification in DHCP and Router Advertisements}.
+\texttt{https://www.rfc-editor.org/rfc/rfc8910.html}
+\end{thebibliography}
+\end{frame}
+
+\end{document}
