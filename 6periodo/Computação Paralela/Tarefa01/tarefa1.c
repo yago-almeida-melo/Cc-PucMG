@@ -3,7 +3,7 @@
 
 int main()
 {
-    #pragma omp parallel num_threads(3)   // seta o número de threads em 2
+    #pragma omp parallel num_threads(2)   // seta o número de threads em 2
     {    
         int tid = omp_get_thread_num(); // lê o identificador da thread
         
