@@ -14,16 +14,18 @@ int sieveOfEratosthenes(int n) {
    int sqrt_n = sqrt(n);
  
    memset(prime, true,(n+1)*sizeof(bool)); 
-   for (int p=2; p <= sqrt_n; p++) {
-       // If prime[p] is not changed, then it is a prime
-        if (prime[p] == true) {
+   #pragma omp parallel  
+   {
+      for (int p=2; p <= sqrt_n; p++) {
+         // If prime[p] is not changed, then it is a prime
+         if (prime[p] == true) {
            // Update all multiples of p
-           #pragma omp parallel for schedule(static)  //Paraleliza o loop mais demorado
-           for (int i=p*2; i<=n; i += p)
-            prime[i] = false;
-        }
+            #pragma omp  for   //Paraleliza o loop mais demorado
+            for (int i=p*2; i<=n; i += p)
+               prime[i] = false;
+         }
     }
- 
+   }
     // count prime numbers
     #pragma omp parallel for reduction(+:primes)  // Paraleliza o loop de contagem de primos
     for (int p=2; p<=n; p++)                       // reduction para garantir o resultado correto
@@ -36,13 +38,17 @@ int sieveOfEratosthenes(int n) {
 int main()
 {
    int n = 100000000;
+   //omp_set_num_threads(2);  // limita a 2 threads em todo o programa
+   //se nao limitar, o OpenMP usará o número de threads igual ao número de núcleos disponíveis             
    printf("%d\n",sieveOfEratosthenes(n));
    return 0;
 } 
-// Tempo Sequencial:        real    0m1.080s
-//                          user    0m0.060s
-//                          sys     0m0.030s
+// Tempo Sequencial:        real    2,27s
+//                          user    2,26s
+//                          sys     0,01s
+//                          cpu     99% 
 //-------------------------------------------------
-// Tempo Paralelo:          real    0m0.771s
-//                          user    0m0.015s
-//                          sys     0m0.076s
+// Tempo Paralelo(8 threads)real    0,69s
+//                          user    5,25s
+//                          sys     0,02s
+//                          cpu     760%
