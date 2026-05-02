@@ -15,13 +15,14 @@
         {
             "type": "cppbuild",
             "label": "C/C++: gcc.exe build active file",
-            "command": "C:\\msys64\\mingw64\\bin\\gcc.exe",
+            "command": "C:\\TDM-GCC-64\\bin\\gcc.exe",
             "args": [
                 "-fdiagnostics-color=always",
                 "-g",
                 "${file}",
                 "-o",
-                "${fileDirname}\\${fileBasenameNoExtension}.exe"
+                "${fileDirname}\\${fileBasenameNoExtension}.exe",
+                "-fopenmp"
             ],
             "options": {
                 "cwd": "${fileDirname}"
