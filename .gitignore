@@ -1,0 +1,8 @@
+# Visual Studio
+.vs/
+
+# VS Code (opcional: ignore tudo e reabra o que precisar)
+.vscode/
+
+/6periodo/PAI/trab-LMLO-Densenet+Inception/Dataset
+/6periodo/PAI/trab-LMLO-Densenet+Inception/Pesos

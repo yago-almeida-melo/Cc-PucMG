@@ -77,5 +77,6 @@
     "C_Cpp.errorSquiggles": "disabled",
     "cmake.sourceDirectory": "C:/Programacao/Repos/Cc-PucMG/4periodo/Grafos/Codigos/build",
     "python-envs.defaultEnvManager": "ms-python.python:system",
-    "python-envs.pythonProjects": []
+    "python-envs.pythonProjects": [],
+    "C_Cpp.default.compilerPath": ""
 }
