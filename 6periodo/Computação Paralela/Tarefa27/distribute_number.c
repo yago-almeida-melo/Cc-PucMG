@@ -1,3 +1,7 @@
+/*
+*   Yago Almeida Melo - 806454
+*/
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <mpi.h>
