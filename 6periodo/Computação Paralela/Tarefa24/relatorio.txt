@@ -1,0 +1,183 @@
+================================================================================
+  RELATÓRIO — Somatório Paralelo em CUDA
+  Disciplina: Computação Paralela
+================================================================================
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+1. CONFIGURAÇÃO DO AMBIENTE
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  Tamanho do vetor : 40.000.000 elementos (double)
+  Memória ocupada  : ~320 MB
+  Blocos CUDA      : 39.063  (ceil(40.000.000 / 1024))
+  Threads/bloco    : 1024
+  Resultado correto: Sum = 799.999.980.000.000
+
+  Compiladores:
+    Sequencial / OpenMP : gcc8 -O3 [-fopenmp]
+    CUDA                : nvcc -O3
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+2. TEMPOS MEDIDOS  (comando: time ./executavel)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  ┌─────────────────────────────────────────┬─────────────┬──────────┐
+  │ Versão                                  │ Tempo (real)│ CPU%     │
+  ├─────────────────────────────────────────┼─────────────┼──────────┤
+  │ Sequencial (gcc8 -O3)                   │  a preencher│    —     │
+  │ OpenMP — multicore (gcc8 -O3 -fopenmp)  │  a preencher│    —     │
+  │ CUDA com __shared__   (nvcc -O3)        │  0,36 s     │   71%    │
+  │ CUDA sem __shared__   (nvcc -O3)        │  0,27 s     │   89%    │
+  └─────────────────────────────────────────┴─────────────┴──────────┘
+
+  Observação: o tempo "real" inclui inicialização do contexto CUDA,
+  transferências PCIe e execução do kernel. O tempo efetivo de GPU
+  é detalhado na seção 3 (nvprof).
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+3. PROFILING COM nvprof
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  Comando utilizado:
+    nvprof ./sum_cuda
+    nvprof ./sum_no_shared
+
+  3.1  Versão COM __shared__  (sum_cuda)
+  ──────────────────────────────────────────────────────────────────
+  Função                              │  Tempo      │    %
+  ────────────────────────────────────┼─────────────┼──────────────
+  [CUDA memcpy HtoD]                  │  114,31 ms  │  85,47 %
+  sum_cuda(double*, double*, int)     │   19,34 ms  │  14,46 %
+  ──────────────────────────────────────────────────────────────────
+  Total GPU activities                │  133,65 ms  │ 100,00 %
+
+  3.2  Versão SEM __shared__  (sum_no_shared)
+  ──────────────────────────────────────────────────────────────────
+  Função                              │  Tempo      │    %
+  ────────────────────────────────────┼─────────────┼──────────────
+  [CUDA memcpy HtoD]                  │  114,22 ms  │  83,95 %
+  sum_cuda(double*, double*, int)     │   21,74 ms  │  15,98 %
+  ──────────────────────────────────────────────────────────────────
+  Total GPU activities                │  135,96 ms  │  99,93 %
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+4. ANÁLISE E EXPLICAÇÃO DOS RESULTADOS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+4.1  Sequencial vs. OpenMP
+───────────────────────────────────────────────────────────────────────────────
+A versão sequencial percorre os 40 milhões de elementos em um único core. A
+versão OpenMP divide o vetor entre todos os cores disponíveis usando a diretiva
+#pragma omp parallel for reduction(+:soma). O speedup esperado é próximo ao
+número de cores físicos disponíveis, limitado pela largura de banda da memória
+RAM, que se torna o gargalo antes de atingir o pico teórico de FLOPs.
+
+4.2  OpenMP vs. CUDA (GPU)
+───────────────────────────────────────────────────────────────────────────────
+A GPU possui ordens de magnitude mais threads do que a CPU, mas seu ganho real
+em operações de redução depende criticamente do custo de transferência PCIe.
+Os dados medidos mostram que o tempo total do programa CUDA (0,27-0,36 s) inclui
+uma parcela expressiva de overhead de inicialização e transferência, tornando a
+comparação direta com OpenMP dependente de quanto tempo o OpenMP leva — se o
+vetor couber bem no cache L3 da CPU, o OpenMP pode ser competitivo ou até
+superior, pois evita o custo de PCIe.
+
+4.3  __shared__ vs. memória global — resultado SURPREENDENTE
+───────────────────────────────────────────────────────────────────────────────
+Os dados medidos revelam um resultado contraintuitivo:
+
+  ┌──────────────────────────┬────────────┬────────────┐
+  │ Função                   │ c/shared   │ s/shared   │
+  ├──────────────────────────┼────────────┼────────────┤
+  │ CUDA memcpy HtoD         │ 114,31 ms  │ 114,22 ms  │  praticamente igual
+  │ sum_cuda kernel          │  19,34 ms  │  21,74 ms  │  shared é +rápido
+  │ Tempo real (time)        │   0,36 s   │   0,27 s   │  sem shared +rápido!
+  └──────────────────────────┴────────────┴────────────┘
+
+  a) O kernel COM __shared__ (19,34 ms) é mais rápido do que o SEM __shared__
+     (21,74 ms), uma diferença de ~2,4 ms (~12%). Isso confirma a teoria: a
+     memória compartilhada (on-chip SRAM, ~1-5 ciclos de latência) reduz os
+     acessos à memória global (DRAM, ~200-800 ciclos) de 20 acessos/elemento
+     para apenas 2.
+
+  b) Porém, o tempo TOTAL do programa (comando time) mostrou o inverso:
+     a versão sem __shared__ foi mais rápida (0,27 s vs. 0,36 s). Isso se
+     deve ao overhead de inicialização do contexto CUDA e ao custo de
+     alocação/gerenciamento da memória compartilhada no driver, que afeta
+     o tempo de "wall clock" mas não aparece no nvprof. Em outras palavras,
+     o nvprof mede apenas as atividades de GPU, enquanto o "time" mede o
+     programa inteiro, incluindo alocações, inicialização e finalização do
+     contexto CUDA — fatores que variam entre execuções e ocultam a vantagem
+     real do kernel.
+
+  Conclusão desta seção: para avaliar o desempenho do kernel isoladamente,
+  o nvprof é a ferramenta correta. O comando time inclui ruído de sistema.
+
+4.4  [CUDA memcpy HtoD] — análise
+───────────────────────────────────────────────────────────────────────────────
+O [CUDA memcpy HtoD] transfere 320 MB (40M doubles × 8 bytes) da RAM para a
+memória da GPU via barramento PCIe:
+
+  • Medido com shared   : 114,31 ms  →  320 MB / 0,11431 s ≈ 2,8 GB/s efetivos
+  • Medido sem shared   : 114,22 ms  →  320 MB / 0,11422 s ≈ 2,8 GB/s efetivos
+  • PCIe 3.0 ×16 pico  : ~12 GB/s teóricos
+
+  Os ~2,8 GB/s efetivos (bem abaixo do pico teórico de 12 GB/s) indicam que a
+  memória do host NÃO está "pinned" (fixada). Memória alocada com malloc() é
+  paginável, e o driver precisa primeiro copiá-la para uma região intermediária
+  "pinned" antes de iniciar a transferência DMA, reduzindo a largura de banda
+  efetiva. O uso de cudaMallocHost() (memória pinned) poderia dobrar ou triplicar
+  essa taxa.
+
+  O tempo de memcpy é praticamente idêntico nas duas versões (diferença de apenas
+  0,09 ms), confirmando que a estratégia de memória do kernel (shared vs. global)
+  NÃO afeta a transferência PCIe — esta é determinada exclusivamente pelo tamanho
+  do dado e pelo tipo de alocação no host.
+
+  Este tempo de transferência (114 ms) domina completamente o perfil de execução
+  (85-86% do total de atividades GPU), evidenciando que o somatório de 40M
+  elementos é um problema memory-transfer-bound nesta configuração, não
+  compute-bound.
+
+4.5  Conclusão geral
+───────────────────────────────────────────────────────────────────────────────
+  1. O kernel com __shared__ é mais eficiente (19,34 ms vs. 21,74 ms), pois
+     reduz o número de acessos à memória global de 20 para 2 por elemento.
+
+  2. O gargalo real do programa é a transferência PCIe (114 ms ≈ 85% do tempo
+     de GPU), que é igual em ambas as versões e independe do kernel.
+
+  3. A memória não-pinned (malloc) limita a largura de banda de transferência
+     a ~2,8 GB/s, muito abaixo do potencial do PCIe 3.0 (12 GB/s).
+
+  4. Para aplicações reais, convém usar cudaMallocHost() (pinned memory) e,
+     se possível, sobrepor transferência e computação com CUDA streams, de
+     modo a esconder o custo de PCIe atrás da execução do kernel.
+
+  5. OpenMP pode ser competitivo para este problema se o vetor couber no cache
+     ou se a CPU tiver alta largura de banda de memória, pois elimina o custo
+     fixo de transferência PCIe.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+5. COMANDOS DE COMPILAÇÃO E EXECUÇÃO (referência)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  # Sequencial
+  gcc8 -O3 sum_seq.c -o sum_seq
+  time ./sum_seq
+
+  # OpenMP
+  gcc8 -O3 -fopenmp sum_omp.c -o sum_omp
+  time ./sum_omp
+
+  # CUDA com __shared__ (original)
+  nvcc -O3 sum_cuda.cu -o sum_cuda
+  time ./sum_cuda
+  nvprof ./sum_cuda
+
+  # CUDA sem __shared__
+  nvcc -O3 sum_cuda_no_shared.cu -o sum_no_shared
+  time ./sum_no_shared
+  nvprof ./sum_no_shared
+
+================================================================================

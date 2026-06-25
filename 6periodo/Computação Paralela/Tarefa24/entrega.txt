@@ -1,0 +1,33 @@
+time ./sum_cuda     
+
+Sum = 799999980000000.000000
+
+real    0,36s
+user    0,17s
+sys     0,09s
+cpu     71%
+
+==================================================================================================
+
+Type  Time(%)      Time     Calls       Avg       Min       Max  Name
+ GPU activities:   85.47%  114.31ms         1  114.31ms  114.31ms  114.31ms  [CUDA memcpy HtoD]
+                   14.46%  19.344ms         1  19.344ms  19.344ms  19.344ms  sum_cuda(double*, double*, int)
+
+==================================================================================================
+
+
+time ./sum_no_shared
+
+Sum = 799999980000000.000000
+
+real    0,27s
+user    0,16s
+sys     0,08s
+cpu     89%
+
+==================================================================================================
+
+
+Type  Time(%)      Time     Calls       Avg       Min       Max  Name
+ GPU activities:   83.95%  114.22ms         1  114.22ms  114.22ms  114.22ms  [CUDA memcpy HtoD]
+                   15.98%  21.743ms         1  21.743ms  21.743ms  21.743ms  sum_cuda(double*, double*, int)

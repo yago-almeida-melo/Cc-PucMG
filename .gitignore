@@ -6,3 +6,17 @@
 
 /6periodo/PAI/trab-LMLO-Densenet+Inception/Dataset
 /6periodo/PAI/trab-LMLO-Densenet+Inception/Pesos
+
+# Executáveis
+*.exe
+*.out
+
+# Arquivos objeto e de biblioteca estática
+*.o
+*.a
+*.lib
+
+# Arquivos de depuração e temporários
+*.obj
+*.pdb
+*.ilk
