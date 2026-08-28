@@ -20,3 +20,5 @@
 *.obj
 *.pdb
 *.ilk
+
+.obsidian
