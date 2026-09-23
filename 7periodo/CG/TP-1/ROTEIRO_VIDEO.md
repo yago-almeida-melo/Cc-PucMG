@@ -41,7 +41,8 @@ Duração estimada: 6 a 9 minutos.
 
 - Mostre rapidamente a organização em módulos.
 - Aponte as funções dos três rasterizadores, das matrizes e dos dois recortadores.
-- Execute `python -m unittest discover -v` e mostre todos os testes aprovados.
+- No diretório `tp1`, execute `python -m unittest discover -s ../tests -v` e mostre
+  todos os testes aprovados.
 
 ## 7. Encerramento — 30 segundos
 

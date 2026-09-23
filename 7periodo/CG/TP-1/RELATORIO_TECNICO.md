@@ -1,8 +1,8 @@
-# Relatório técnico — PixelLab CG
+# Relatório técnico — TP1-CG
 
 ## 1. Visão geral
 
-O PixelLab CG foi desenvolvido em Python com Tkinter. A biblioteca fornece somente a
+O TP1-CG foi desenvolvido em Python com Tkinter. A biblioteca fornece somente a
 janela, os botões e o `Canvas`; as primitivas do trabalho são mantidas como dados
 vetoriais e convertidas explicitamente em pixels pelos algoritmos implementados.
 
@@ -20,10 +20,19 @@ lista de vértices, algoritmo de reta, cor, nome e estado de seleção.
 - polígono: três ou mais vértices;
 - circunferência: centro e um ponto pertencente ao raio.
 
-`Cena` mantém a lista de objetos, o próximo identificador e a janela de recorte. A
-cópia da cena é usada pelo histórico de desfazer.
+`Cena` mantém a lista de objetos, os preenchimentos, o próximo identificador e a
+janela de recorte. Cada `Preenchimento` armazena a cor e faixas horizontais imutáveis
+de pixels `(y, x_inicial, x_final)`. Objetos e pinturas compartilham a sequência de
+identificadores, preservando a ordem de sobreposição. A cópia da cena é usada pelo
+histórico de desfazer e compartilha com segurança as pinturas imutáveis.
 
 ## 3. Rasterização
+
+Os rasterizadores recebem a função `plotar_pixel(x, y)` da interface e a chamam
+assim que cada pixel é calculado, em tempo de execução. Não há uma lista ou conjunto
+intermediário de pixels nos rasterizadores; a cena e o histórico guardam os dados
+vetoriais dos objetos. Para preencher, uma matriz de cores temporária recebe os
+pixels rasterizados e as pinturas anteriores, sem incluir as guias da interface.
 
 ### 3.1 Reta DDA
 
@@ -110,3 +119,26 @@ A suíte de testes usa apenas `unittest`, da biblioteca padrão. Ela cobre os al
 independentemente da interface. Para a apresentação, o roteiro de vídeo inclui testes
 visuais de todas as funcionalidades obrigatórias.
 
+## 9. Preenchimento e cores
+
+O **Boundary-Fill** parte de uma semente e percorre pixels cuja cor é diferente da
+cor de borda informada. O **Flood-Fill** captura a cor inicial da semente e percorre
+apenas pixels conectados dessa mesma cor. Ambos usam uma pilha explícita e quatro
+vizinhos (esquerda, direita, acima e abaixo), evitando estouro da pilha de recursão.
+Um conjunto de visitados evita ciclos; no Boundary-Fill, permite atravessar pixels
+que já tinham a cor de preenchimento sem tratá-los como bordas.
+
+A leitura e a pintura são fornecidas por funções. Cada pixel modificado é atualizado
+durante a execução. Os pixels alterados são depois compactados em faixas horizontais
+para exibição e histórico; o Canvas desenha essas faixas já calculadas. O custo do
+percurso é linear na região visitada, com memória auxiliar também linear. Regiões
+abertas são limitadas à área visível no momento do clique.
+
+O seletor nativo de cores oferece cores independentes para desenho, preenchimento
+e borda. Objetos selecionados mantêm a cor real e são destacados pela caixa
+tracejada. Pinturas são operações raster fixas no sistema de coordenadas do mundo;
+transformações e recorte continuam atuando somente nos objetos vetoriais.
+
+Os testes verificam contornos multicoloridos, regiões desconectadas, diagonais,
+sementes externas, regiões grandes, cores iguais, sobreposição, cópias do histórico
+e interação pelo Tkinter, incluindo desfazer, limpar, redimensionar e recolorir.

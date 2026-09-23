@@ -5,7 +5,7 @@ from __future__ import annotations
 from collections.abc import Callable
 from math import hypot
 
-from .modelos import ObjetoGrafico, Ponto, Retangulo, TipoObjeto
+from modelos import ObjetoGrafico, Ponto, Retangulo, TipoObjeto
 
 Segmento = tuple[Ponto, Ponto]
 
@@ -144,11 +144,15 @@ def recortar_segmentos(
     objetos: list[ObjetoGrafico],
     janela: Retangulo,
     algoritmo: Callable[[Ponto, Ponto, Retangulo], Segmento | None],
+    proximo_id: int | None = None,
 ) -> tuple[list[ObjetoGrafico], int]:
     """Recorta retas e arestas de polígonos, mantendo outros tipos intactos."""
 
     resultado: list[ObjetoGrafico] = []
-    proximo_id = max((objeto.identificador for objeto in objetos), default=0) + 1
+    proximo_id = max(
+        proximo_id or 1,
+        max((objeto.identificador for objeto in objetos), default=0) + 1,
+    )
     afetados = 0
 
     for objeto in objetos:

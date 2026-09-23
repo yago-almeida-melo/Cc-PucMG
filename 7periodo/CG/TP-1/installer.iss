@@ -1,18 +1,18 @@
-#define MyAppName "PixelLab CG"
+#define MyAppName "TP1-CG"
 #define MyAppVersion "1.0.0"
 #define MyAppPublisher "Projeto de Computação Gráfica"
-#define MyAppExeName "PixelLabCG.exe"
+#define MyAppExeName "TP1-CG.exe"
 
 [Setup]
 AppId={{5C38C25C-43CD-4CE4-9C1A-9AF0C9D40C74}
 AppName={#MyAppName}
 AppVersion={#MyAppVersion}
 AppPublisher={#MyAppPublisher}
-DefaultDirName={autopf}\PixelLab CG
-DefaultGroupName=PixelLab CG
+DefaultDirName={autopf}\{#MyAppName}
+DefaultGroupName={#MyAppName}
 AllowNoIcons=yes
 OutputDir=installer_saida
-OutputBaseFilename=PixelLabCG-Setup
+OutputBaseFilename=TP1-CG-Setup
 Compression=lzma2
 SolidCompression=yes
 WizardStyle=modern
@@ -27,7 +27,7 @@ Name: "brazilianportuguese"; MessagesFile: "compiler:Languages\BrazilianPortugue
 Name: "desktopicon"; Description: "Criar atalho na área de trabalho"; GroupDescription: "Atalhos adicionais:"; Flags: unchecked
 
 [Files]
-Source: "dist\PixelLabCG\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
+Source: "dist\TP1-CG\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
 
 [Icons]
 Name: "{group}\{#MyAppName}"; Filename: "{app}\{#MyAppExeName}"

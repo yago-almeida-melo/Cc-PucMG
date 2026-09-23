@@ -1,2 +1,2 @@
-"""Testes automatizados do PixelLab CG."""
+"""Testes automatizados do TP1-CG."""
 

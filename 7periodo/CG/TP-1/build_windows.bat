@@ -7,15 +7,16 @@ py -m pip install -r requirements-build.txt
 if errorlevel 1 goto :erro
 
 echo Executando os testes...
-py -m unittest discover -v
+set "PYTHONPATH=%~dp0tp1"
+py -m unittest discover -s tests -v
 if errorlevel 1 goto :erro
 
 echo Gerando o executavel...
-py -m PyInstaller --noconfirm --clean PixelLabCG.spec
+py -m PyInstaller --noconfirm --clean TP1-CG.spec
 if errorlevel 1 goto :erro
 
 echo.
-echo Executavel criado em dist\PixelLabCG\PixelLabCG.exe
+echo Executavel criado em dist\TP1-CG\TP1-CG.exe
 exit /b 0
 
 :erro

@@ -1,14 +1,16 @@
-"""Interface gráfica do TP1 CG, orientada à interação por mouse."""
+"""Interface gráfica do TP1-CG, orientada à interação por mouse."""
 
 from __future__ import annotations
 
 import tkinter as tk
-from tkinter import ttk
+from math import ceil, floor
+from tkinter import colorchooser, ttk
 
-from .modelos import AlgoritmoReta, Cena, ObjetoGrafico, Ponto, Retangulo, TipoObjeto
-from .rasterizacao import rasterizar_objeto
-from .recorte import cohen_sutherland, liang_barsky, objeto_intersecta_retangulo, recortar_segmentos
-from .transformacoes import (
+from modelos import AlgoritmoReta, Cena, ObjetoGrafico, Ponto, Preenchimento, Retangulo, TipoObjeto
+from preenchimento import calcular_preenchimento
+from rasterizacao import rasterizar_objeto
+from recorte import cohen_sutherland, liang_barsky, objeto_intersecta_retangulo, recortar_segmentos
+from transformacoes import (
     centro_da_selecao,
     escala,
     escalar_objeto,
@@ -34,7 +36,7 @@ class App:
 
     def __init__(self, raiz: tk.Tk) -> None:
         self.raiz = raiz
-        self.raiz.title("TP1 CG — Transformações, Rasterização e Recorte")
+        self.raiz.title("TP1-CG — Rasterização, Preenchimento, Transformações e Recorte")
         self.raiz.geometry("1420x820")
         self.raiz.minsize(1120, 700)
         self.raiz.configure(bg=self.COR_FUNDO)
@@ -48,6 +50,10 @@ class App:
         self.posicao_mouse: Ponto | None = None
         self.pivo_no_centro = True
         self.botoes_modo: dict[str, tk.Button] = {}
+        self.cor_desenho = self.COR_TINTA
+        self.cor_preenchimento = self.COR_AZUL
+        self.cor_borda = self.COR_TINTA
+        self.botoes_cor: dict[str, tk.Button] = {}
 
         self.dx = tk.DoubleVar(value=20)
         self.dy = tk.DoubleVar(value=20)
@@ -105,7 +111,7 @@ class App:
         cabecalho.pack(fill="x")
         bloco_titulo = ttk.Frame(cabecalho)
         bloco_titulo.pack(side="left")
-        ttk.Label(bloco_titulo, text="TP1 CG", style="Titulo.TLabel").pack(anchor="w")
+        ttk.Label(bloco_titulo, text="TP1-CG", style="Titulo.TLabel").pack(anchor="w")
         ttk.Label(
             bloco_titulo,
             text="Laboratório interativo de algoritmos gráficos 2D",
@@ -225,6 +231,54 @@ class App:
         ).pack(side="right")
 
     def _construir_painel(self) -> None:
+        ttk.Label(self.painel, text="CORES E PREENCHIMENTO", style="Secao.TLabel").pack(anchor="w")
+        for atributo, rotulo in (
+            ("cor_desenho", "Desenho"),
+            ("cor_preenchimento", "Preenchimento"),
+            ("cor_borda", "Borda (Boundary-Fill)"),
+        ):
+            linha = ttk.Frame(self.painel, style="Painel.TFrame")
+            linha.pack(fill="x", pady=(5, 0))
+            ttk.Label(linha, text=rotulo, style="Painel.TLabel").pack(side="left")
+            botao = tk.Button(
+                linha,
+                command=lambda valor=atributo: self.escolher_cor(valor),
+                width=9,
+                relief="flat",
+                cursor="hand2",
+                font=("Consolas", 9, "bold"),
+            )
+            botao.pack(side="right")
+            self.botoes_cor[atributo] = botao
+            self._atualizar_botao_cor(atributo)
+        ttk.Button(
+            self.painel,
+            text="Aplicar cor do desenho à seleção",
+            command=self.aplicar_cor_selecionados,
+        ).pack(fill="x", pady=(7, 5))
+        linha_preenchimento = ttk.Frame(self.painel, style="Painel.TFrame")
+        linha_preenchimento.pack(fill="x")
+        for modo, texto in (("boundary_fill", "Boundary-Fill"), ("flood_fill", "Flood-Fill")):
+            botao = tk.Button(
+                linha_preenchimento,
+                text=texto,
+                command=lambda valor=modo: self.definir_modo(valor),
+                relief="flat",
+                borderwidth=0,
+                pady=7,
+                font=("Segoe UI", 9, "bold"),
+                cursor="hand2",
+            )
+            botao.pack(side="left", expand=True, fill="x", padx=2)
+            self.botoes_modo[modo] = botao
+        ttk.Label(
+            self.painel,
+            text="Escolha o algoritmo e clique na região. No Boundary-Fill, a cor da borda deve coincidir com o contorno.",
+            style="Painel.TLabel",
+            wraplength=275,
+        ).pack(anchor="w", pady=(5, 0))
+
+        self._separador()
         ttk.Label(self.painel, text="SELEÇÃO", style="Secao.TLabel").pack(anchor="w")
         ttk.Label(
             self.painel,
@@ -350,6 +404,44 @@ class App:
     def _separador(self) -> None:
         ttk.Separator(self.painel, orient="horizontal").pack(fill="x", pady=12)
 
+    def _atualizar_botao_cor(self, atributo: str) -> None:
+        cor = getattr(self, atributo)
+        r, g, b = (int(cor[i:i + 2], 16) for i in (1, 3, 5))
+        contraste = "#10243e" if 0.299 * r + 0.587 * g + 0.114 * b > 150 else "white"
+        self.botoes_cor[atributo].configure(
+            text=cor.upper(), bg=cor, fg=contraste,
+            activebackground=cor, activeforeground=contraste,
+        )
+
+    def escolher_cor(self, atributo: str) -> None:
+        titulos = {
+            "cor_desenho": "Cor do desenho",
+            "cor_preenchimento": "Cor do preenchimento",
+            "cor_borda": "Cor da borda para Boundary-Fill",
+        }
+        _, cor = colorchooser.askcolor(
+            color=getattr(self, atributo), title=titulos[atributo], parent=self.raiz,
+        )
+        if cor is None:
+            return
+        setattr(self, atributo, cor.lower())
+        self._atualizar_botao_cor(atributo)
+        self.status.set(f"{titulos[atributo]}: {cor.upper()}.")
+        self.redesenhar()
+
+    def aplicar_cor_selecionados(self) -> None:
+        selecionados = self._obter_selecionados("alterar a cor")
+        if not selecionados:
+            return
+        if all(objeto.cor == self.cor_desenho for objeto in selecionados):
+            self.status.set("A seleção já possui a cor escolhida.")
+            return
+        self._registrar_estado()
+        for objeto in selecionados:
+            objeto.cor = self.cor_desenho
+        self.status.set(f"Cor {self.cor_desenho.upper()} aplicada a {len(selecionados)} objeto(s).")
+        self.redesenhar()
+
     def _vincular_eventos(self) -> None:
         self.canvas.bind("<ButtonPress-1>", self.ao_pressionar)
         self.canvas.bind("<B1-Motion>", self.ao_arrastar)
@@ -375,6 +467,8 @@ class App:
             "poligono": "Clique nos vértices e use “Concluir polígono” ou o botão direito.",
             "selecao": "Arraste uma região retangular para selecionar por interseção.",
             "janela": "Arraste para definir a janela de recorte.",
+            "boundary_fill": "Boundary-Fill: escolha a cor da borda e clique dentro de um contorno fechado.",
+            "flood_fill": "Flood-Fill: clique para substituir uma região conectada da mesma cor.",
         }
         self.status.set(instrucoes[modo])
         self._atualizar_modo_visual()
@@ -412,6 +506,9 @@ class App:
 
     def ao_pressionar(self, evento: tk.Event) -> None:
         ponto = self._canvas_para_mundo(evento.x, evento.y)
+        if self.modo in ("boundary_fill", "flood_fill"):
+            self.aplicar_preenchimento(ponto)
+            return
         if self.modo in ("selecao", "janela"):
             self.inicio_arraste = ponto
             self.fim_arraste = ponto
@@ -419,7 +516,7 @@ class App:
             return
         if self.modo == "ponto":
             self._registrar_estado()
-            self.cena.adicionar(TipoObjeto.PONTO, [ponto], cor=self.COR_TINTA)
+            self.cena.adicionar(TipoObjeto.PONTO, [ponto], cor=self.cor_desenho)
             self.status.set(f"Ponto inserido em ({ponto.x:.0f}, {ponto.y:.0f}).")
             self.redesenhar()
             return
@@ -428,7 +525,9 @@ class App:
         if self.modo in ("reta_dda", "reta_bresenham") and len(self.pontos_temporarios) == 2:
             algoritmo = AlgoritmoReta.DDA if self.modo == "reta_dda" else AlgoritmoReta.BRESENHAM
             self._registrar_estado()
-            self.cena.adicionar(TipoObjeto.RETA, self.pontos_temporarios, algoritmo=algoritmo)
+            self.cena.adicionar(
+                TipoObjeto.RETA, self.pontos_temporarios, algoritmo=algoritmo, cor=self.cor_desenho,
+            )
             self.pontos_temporarios = []
             self.status.set(f"Reta rasterizada com {algoritmo.value}.")
         elif self.modo == "circunferencia" and len(self.pontos_temporarios) == 2:
@@ -437,7 +536,9 @@ class App:
                 self.status.set("O raio precisa ser maior que zero. Clique novamente na borda.")
             else:
                 self._registrar_estado()
-                self.cena.adicionar(TipoObjeto.CIRCUNFERENCIA, self.pontos_temporarios)
+                self.cena.adicionar(
+                    TipoObjeto.CIRCUNFERENCIA, self.pontos_temporarios, cor=self.cor_desenho,
+                )
                 self.pontos_temporarios = []
                 self.status.set("Circunferência rasterizada com Bresenham.")
         elif self.modo == "poligono":
@@ -486,7 +587,7 @@ class App:
             self.status.set("Um polígono precisa de pelo menos três vértices.")
             return
         self._registrar_estado()
-        self.cena.adicionar(TipoObjeto.POLIGONO, self.pontos_temporarios)
+        self.cena.adicionar(TipoObjeto.POLIGONO, self.pontos_temporarios, cor=self.cor_desenho)
         quantidade = len(self.pontos_temporarios)
         self.pontos_temporarios = []
         self.status.set(f"Polígono com {quantidade} vértices concluído.")
@@ -497,6 +598,29 @@ class App:
         self.inicio_arraste = None
         self.fim_arraste = None
         self.status.set("Operação em andamento cancelada.")
+        self.redesenhar()
+
+    def _limites_pixels_visiveis(self) -> Retangulo:
+        meio_x = self.canvas.winfo_width() / (2 * self.ESCALA_PIXEL)
+        meio_y = self.canvas.winfo_height() / (2 * self.ESCALA_PIXEL)
+        return Retangulo(ceil(-meio_x), ceil(-meio_y), floor(meio_x), floor(meio_y))
+
+    def aplicar_preenchimento(self, semente: Ponto) -> None:
+        if self.modo == "boundary_fill" and self.cor_preenchimento == self.cor_borda:
+            self.status.set("No Boundary-Fill, escolha cores diferentes para a borda e o preenchimento.")
+            return
+        faixas = calcular_preenchimento(
+            self.cena, semente, self._limites_pixels_visiveis(),
+            self.modo, self.cor_preenchimento, self.cor_borda,
+        )
+        if not faixas:
+            self.status.set("Nenhum pixel alterado. Confira a cor escolhida e o ponto clicado.")
+            return
+        self._registrar_estado()
+        self.cena.adicionar_preenchimento(self.cor_preenchimento, faixas)
+        quantidade = sum(fim - inicio + 1 for _, inicio, fim in faixas)
+        nome = "Boundary-Fill" if self.modo == "boundary_fill" else "Flood-Fill"
+        self.status.set(f"{nome}: {quantidade} pixel(s) preenchido(s). Use Desfazer para restaurar.")
         self.redesenhar()
 
     def selecionar_todos(self) -> None:
@@ -594,9 +718,10 @@ class App:
             self.cena.objetos,
             self.cena.janela_recorte,
             funcao,
+            proximo_id=self.cena._proximo_id,
         )
         self.cena._proximo_id = max(
-            (objeto.identificador for objeto in self.cena.objetos), default=0
+            (elemento.identificador for elemento in self.cena.elementos_em_ordem()), default=0
         ) + 1
         self._atualizar_resumo_selecao()
         self.status.set(f"{afetados} objeto(s) recortado(s) com {nome_exibicao}.")
@@ -624,7 +749,7 @@ class App:
         self.redesenhar()
 
     def limpar_cena(self) -> None:
-        if not self.cena.objetos and self.cena.janela_recorte is None:
+        if not self.cena.objetos and not self.cena.preenchimentos and self.cena.janela_recorte is None:
             self.status.set("A cena já está vazia.")
             return
         self._registrar_estado()
@@ -656,8 +781,11 @@ class App:
                 tracejado=(7, 4),
                 preenchimento="#f3edff",
             )
-        for objeto in self.cena.objetos:
-            self._desenhar_objeto(objeto)
+        for elemento in self.cena.elementos_em_ordem():
+            if isinstance(elemento, Preenchimento):
+                self._desenhar_preenchimento(elemento)
+            else:
+                self._desenhar_objeto(elemento)
         self._desenhar_previa()
 
     def _desenhar_grade(self) -> None:
@@ -698,8 +826,9 @@ class App:
         )
 
     def _desenhar_objeto(self, objeto: ObjetoGrafico) -> None:
-        cor = self.COR_DESTAQUE if objeto.selecionado else objeto.cor
-        for x, y in rasterizar_objeto(objeto):
+        cor = objeto.cor
+
+        def plotar_pixel(x: int, y: int) -> None:
             cx, cy = self._mundo_para_canvas(Ponto(x, y))
             tamanho = self.ESCALA_PIXEL
             self.canvas.create_rectangle(
@@ -710,11 +839,23 @@ class App:
                 fill=cor,
                 outline=cor,
             )
+
+        rasterizar_objeto(objeto, plotar_pixel)
         if objeto.selecionado:
             xmin, ymin, xmax, ymax = self._limites_objeto(objeto)
             a = self._mundo_para_canvas(Ponto(xmin, ymax))
             b = self._mundo_para_canvas(Ponto(xmax, ymin))
             self.canvas.create_rectangle(*a, *b, outline=self.COR_DESTAQUE, dash=(3, 3))
+
+    def _desenhar_preenchimento(self, preenchimento: Preenchimento) -> None:
+        metade = self.ESCALA_PIXEL / 2
+        for y, inicio, fim in preenchimento.faixas:
+            x0, cy = self._mundo_para_canvas(Ponto(inicio, y))
+            x1, _ = self._mundo_para_canvas(Ponto(fim, y))
+            self.canvas.create_rectangle(
+                x0 - metade, cy - metade, x1 + metade, cy + metade,
+                fill=preenchimento.cor, outline="",
+            )
 
     def _limites_objeto(self, objeto: ObjetoGrafico) -> tuple[float, float, float, float]:
         if objeto.tipo == TipoObjeto.CIRCUNFERENCIA:
@@ -744,15 +885,18 @@ class App:
             return
 
         if self.modo == "circunferencia":
-            previa = ObjetoGrafico(0, TipoObjeto.CIRCUNFERENCIA, pontos[:2], cor=self.COR_AZUL)
+            previa = ObjetoGrafico(0, TipoObjeto.CIRCUNFERENCIA, pontos[:2], cor=self.cor_desenho)
         elif self.modo == "poligono" and len(pontos) >= 3:
-            previa = ObjetoGrafico(0, TipoObjeto.POLIGONO, pontos, cor=self.COR_AZUL)
+            previa = ObjetoGrafico(0, TipoObjeto.POLIGONO, pontos, cor=self.cor_desenho)
         else:
             algoritmo = AlgoritmoReta.DDA if self.modo == "reta_dda" else AlgoritmoReta.BRESENHAM
-            previa = ObjetoGrafico(0, TipoObjeto.RETA, pontos[-2:], algoritmo=algoritmo, cor=self.COR_AZUL)
-        for px, py in rasterizar_objeto(previa):
+            previa = ObjetoGrafico(0, TipoObjeto.RETA, pontos[-2:], algoritmo=algoritmo, cor=self.cor_desenho)
+
+        def plotar_pixel(px: int, py: int) -> None:
             cx, cy = self._mundo_para_canvas(Ponto(px, py))
-            self.canvas.create_rectangle(cx - 1, cy - 1, cx + 1, cy + 1, fill=self.COR_AZUL, outline="")
+            self.canvas.create_rectangle(cx - 1, cy - 1, cx + 1, cy + 1, fill=self.cor_desenho, outline="")
+
+        rasterizar_objeto(previa, plotar_pixel)
 
     def _desenhar_retangulo(
         self,
@@ -777,7 +921,7 @@ class App:
     def mostrar_ajuda(self) -> None:
         janela = tk.Toplevel(self.raiz)
         janela.title("Como usar")
-        janela.geometry("620x590")
+        janela.geometry("620x760")
         janela.configure(bg="white")
         janela.transient(self.raiz)
         conteudo = (
@@ -786,6 +930,13 @@ class App:
             "Retas: clique nas duas extremidades e escolha DDA ou Bresenham.\n"
             "Circunferência: clique no centro e depois na borda.\n"
             "Polígono: clique em cada vértice e conclua pelo botão laranja ou botão direito.\n\n"
+            "CORES E PREENCHIMENTO\n\n"
+            "Clique nas amostras do painel para escolher as cores. A cor do desenho vale "
+            "para novos objetos; use o botão de aplicar para mudar os selecionados.\n"
+            "Boundary-Fill: escolha a cor do contorno fechado e clique dentro dele.\n"
+            "Flood-Fill: clique para trocar a cor de uma região conectada.\n"
+            "As pinturas ficam nos pixels originais; as transformações afetam os objetos vetoriais. "
+            "Use Desfazer para remover uma pintura.\n\n"
             "COMO TRANSFORMAR\n\n"
             "Selecione objetos arrastando um retângulo. Ajuste os fatores pelos controles "
             "deslizantes e clique em Aplicar. Rotação e escala podem usar o centro da seleção "

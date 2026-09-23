@@ -1,7 +1,7 @@
 import unittest
 
-from pixel_lab.modelos import ObjetoGrafico, Ponto, TipoObjeto
-from pixel_lab.transformacoes import (
+from modelos import ObjetoGrafico, Ponto, TipoObjeto
+from transformacoes import (
     aplicar_matriz,
     centro_da_selecao,
     escalar_objeto,

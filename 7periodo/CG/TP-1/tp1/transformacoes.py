@@ -4,7 +4,7 @@ from __future__ import annotations
 
 from math import cos, pi, sin
 
-from .modelos import ObjetoGrafico, Ponto, TipoObjeto
+from modelos import ObjetoGrafico, Ponto, TipoObjeto
 
 Matriz = tuple[
     tuple[float, float, float],

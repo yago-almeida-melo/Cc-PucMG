@@ -122,13 +122,26 @@ class Retangulo:
         return self.xmin <= ponto.x <= self.xmax and self.ymin <= ponto.y <= self.ymax
 
 
+FaixaPixels = tuple[int, int, int]  # y, x inicial, x final (inclusive)
+
+
+@dataclass(frozen=True)
+class Preenchimento:
+    """Pintura raster imutável em coordenadas do mundo, compactada por linha."""
+
+    identificador: int
+    cor: str
+    faixas: tuple[FaixaPixels, ...]
+
+
 @dataclass
 class Cena:
-    """Coleção de objetos e janela de recorte da aplicação."""
+    """Objetos, pinturas raster e janela de recorte da aplicação."""
 
     objetos: list[ObjetoGrafico] = field(default_factory=list)
     janela_recorte: Retangulo | None = None
     _proximo_id: int = 1
+    preenchimentos: list[Preenchimento] = field(default_factory=list)
 
     def adicionar(
         self,
@@ -153,10 +166,22 @@ class Cena:
     def selecionados(self) -> list[ObjetoGrafico]:
         return [objeto for objeto in self.objetos if objeto.selecionado]
 
+    def elementos_em_ordem(self) -> list[ObjetoGrafico | Preenchimento]:
+        """Mantém desenhos e pinturas na ordem em que foram criados."""
+
+        return sorted(
+            [*self.objetos, *self.preenchimentos],
+            key=lambda elemento: elemento.identificador,
+        )
+
+    def adicionar_preenchimento(self, cor: str, faixas: tuple[FaixaPixels, ...]) -> None:
+        self.preenchimentos.append(Preenchimento(self._proximo_id, cor, faixas))
+        self._proximo_id += 1
+
     def copiar(self) -> "Cena":
         return Cena(
             objetos=[objeto.copiar() for objeto in self.objetos],
             janela_recorte=self.janela_recorte,
             _proximo_id=self._proximo_id,
+            preenchimentos=list(self.preenchimentos),
         )
-

@@ -1,7 +1,7 @@
 import unittest
 
-from pixel_lab.modelos import ObjetoGrafico, Ponto, Retangulo, TipoObjeto
-from pixel_lab.recorte import (
+from modelos import ObjetoGrafico, Ponto, Retangulo, TipoObjeto
+from recorte import (
     cohen_sutherland,
     liang_barsky,
     objeto_intersecta_retangulo,
@@ -77,4 +77,3 @@ class TesteSelecao(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
-

@@ -1,7 +1,7 @@
-# TP1 - CG
+# TP1-CG
 
 Aplicação didática em Python para demonstrar transformações geométricas 2D,
-rasterização e recorte de segmentos em uma área correspondente a uma matriz de
+rasterização, preenchimento e recorte de segmentos em uma área correspondente a uma matriz de
 pixels. Toda a operação principal é feita com o mouse: cliques, arrastes, botões e
 controles deslizantes.
 
@@ -10,6 +10,8 @@ controles deslizantes.
 - objetos de cena: pontos, retas, polígonos e circunferências;
 - rasterização de retas por DDA e Bresenham;
 - rasterização de circunferências por Bresenham;
+- preenchimento por Boundary-Fill e Flood-Fill com vizinhança de quatro pixels;
+- escolha das cores de desenho, preenchimento e borda por seletor de cores;
 - translação com deslocamentos X e Y informados pelo usuário;
 - rotação com ângulo e pivô configuráveis;
 - escala independente em X e Y, também com pivô configurável;
@@ -20,8 +22,9 @@ controles deslizantes.
 - histórico das últimas 30 alterações pelo botão **Desfazer**.
 
 As linhas visíveis na área de desenho não usam a primitiva de linha do Tkinter. Os
-algoritmos do projeto produzem as coordenadas inteiras e cada resultado é desenhado
-como uma célula da matriz lógica de pixels.
+algoritmos do projeto calculam as coordenadas inteiras e chamam `plotar_pixel(x, y)`
+imediatamente para cada resultado, sem acumular uma lista ou conjunto de pixels.
+Isso ocorre em tempo de execução, tanto nos objetos quanto nas prévias de desenho.
 
 ## Requisitos
 
@@ -35,7 +38,7 @@ O projeto não possui dependências externas para execução.
 No diretório do projeto:
 
 ```bash
-python main.py
+python tp1/main.py
 ```
 
 Em algumas distribuições Linux, pode ser necessário instalar o pacote do sistema que
@@ -68,6 +71,30 @@ Uma escala diferente em X e Y transforma geometricamente uma circunferência em
 elipse. Como a estrutura solicitada inclui polígonos, o programa preserva essa elipse
 como um polígono de 72 vértices depois da transformação.
 
+### Cores e preenchimento
+
+1. No painel **CORES E PREENCHIMENTO**, clique na amostra de **Desenho** para
+   escolher a cor dos próximos pontos, retas, polígonos e circunferências.
+   Para recolorir objetos existentes, selecione-os e use **Aplicar cor do desenho à seleção**.
+2. Escolha a cor de **Preenchimento**.
+3. Para **Boundary-Fill**, escolha também a cor de **Borda**, igual à do contorno
+   fechado e diferente da cor de preenchimento. Ative o botão e clique dentro da figura.
+   O algoritmo atravessa as cores internas até encontrar a borda escolhida.
+4. Para **Flood-Fill**, ative o botão e clique na região: somente os pixels conectados
+   com a mesma cor do pixel clicado são substituídos. A cor de borda não é usada.
+5. Use **Desfazer** (ou `Ctrl+Z`) para reverter pinturas e alterações de cor.
+
+Os algoritmos consideram os quatro vizinhos de cada pixel e param nos limites da área
+visível. Um contorno aberto ou uma cor de borda incorreta permite ao Boundary-Fill
+atingir o exterior da figura. Grade, eixos, prévias e janela de recorte são guias
+visuais e não bloqueiam o preenchimento.
+
+As pinturas são camadas raster, preservadas ao redesenhar e redimensionar a janela.
+Elas permanecem nas coordenadas originais: seleção, transformação, exclusão de
+objetos e recorte atuam nas primitivas vetoriais. Para transformar uma figura e
+preenchê-la, faça a transformação antes da pintura. **Limpar cena** remove também
+as pinturas. Novos desenhos e pinturas aparecem sobre os anteriores.
+
 ### Recorte
 
 1. Escolha **Janela de recorte** e arraste a região desejada.
@@ -80,27 +107,32 @@ recorte de segmentos.
 
 ## Testes automatizados
 
-Execute:
+No diretório do projeto, execute:
 
 ```bash
-python -m unittest discover -v
+cd tp1
+python -m unittest discover -s ../tests -v
 ```
 
 Os testes verificam octantes de Bresenham, casos-limite do DDA, simetria da
 circunferência, matrizes de transformação, seleção retangular e aceitação, rejeição e
-recorte nos dois algoritmos.
+recorte nos dois algoritmos, além dos preenchimentos, cores, limites e histórico.
+Os testes de interface são ignorados quando não há display gráfico. Em Linux, com
+Xvfb instalado, execute todos eles a partir de `tp1` com
+`xvfb-run -a python3 -m unittest discover -s ../tests -v`.
 
 ## Gerar o executável para Windows
 
-Em um computador Windows com Python instalado, execute:
+Em um computador Windows com Python instalado, execute no diretório do projeto:
 
 ```bat
 build_windows.bat
 ```
 
 O script instala o PyInstaller e gera a pasta executável
-`dist\PixelLabCG\PixelLabCG.exe`. O executável inclui o interpretador e as bibliotecas
+`dist\TP1-CG\TP1-CG.exe`. O executável inclui o interpretador e as bibliotecas
 necessárias, portanto o computador de destino não precisa ter Python instalado.
+Para distribuir a versão portátil, copie toda a pasta `dist\TP1-CG`.
 
 ## Gerar o instalador para Windows
 
@@ -109,23 +141,26 @@ necessárias, portanto o computador de destino não precisa ter Python instalado
 3. Abra `installer.iss` no Inno Setup e escolha **Compile**, ou execute
    `build_installer.bat` se o Inno Setup estiver no caminho padrão.
 
-O instalador será criado em `installer_saida\PixelLabCG-Setup.exe` e oferecerá atalhos
+O instalador será criado em `installer_saida\TP1-CG-Setup.exe` e oferecerá atalhos
 no menu Iniciar e, opcionalmente, na área de trabalho.
 
 ## Organização do projeto
 
 ```text
-pixel_lab/
+tp1/
+  main.py             Ponto de entrada
   interface.py        Interface, eventos de mouse e desenho da matriz
   modelos.py          Pontos, retas, polígonos, circunferências e cena
   rasterizacao.py     DDA e Bresenham para retas/circunferências
+  preenchimento.py    Boundary-Fill, Flood-Fill e leitura das cores da cena
   recorte.py          Cohen–Sutherland, Liang–Barsky e seleção
   transformacoes.py   Matrizes homogêneas e transformações 2D
 tests/                 Testes automatizados
-main.py                Ponto de entrada
+TP1-CG.spec            Configuração do executável
+build_windows.bat      Geração do executável no Windows
+build_installer.bat    Geração do instalador no Windows
 installer.iss          Projeto de instalador do Inno Setup
 ```
 
 Consulte também [RELATORIO_TECNICO.md](RELATORIO_TECNICO.md) para a explicação dos
 algoritmos e [ROTEIRO_VIDEO.md](ROTEIRO_VIDEO.md) para um roteiro de demonstração.
-
