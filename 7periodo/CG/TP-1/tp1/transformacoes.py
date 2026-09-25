@@ -1,9 +1,7 @@
 """Transformações geométricas 2D expressas por matrizes homogêneas 3x3."""
 
 from __future__ import annotations
-
 from math import cos, pi, sin
-
 from modelos import ObjetoGrafico, Ponto, TipoObjeto
 
 Matriz = tuple[
@@ -12,13 +10,11 @@ Matriz = tuple[
     tuple[float, float, float],
 ]
 
-
 def multiplicar(a: Matriz, b: Matriz) -> Matriz:
     return tuple(
         tuple(sum(a[i][k] * b[k][j] for k in range(3)) for j in range(3))
         for i in range(3)
-    )  # type: ignore[return-value]
-
+    )  
 
 def aplicar_matriz(ponto: Ponto, matriz: Matriz) -> Ponto:
     x = matriz[0][0] * ponto.x + matriz[0][1] * ponto.y + matriz[0][2]
@@ -26,10 +22,8 @@ def aplicar_matriz(ponto: Ponto, matriz: Matriz) -> Ponto:
     w = matriz[2][0] * ponto.x + matriz[2][1] * ponto.y + matriz[2][2]
     return Ponto(x / w, y / w)
 
-
 def translacao(dx: float, dy: float) -> Matriz:
     return ((1, 0, dx), (0, 1, dy), (0, 0, 1))
-
 
 def rotacao(angulo_graus: float, pivo: Ponto = Ponto(0, 0)) -> Matriz:
     angulo = angulo_graus * pi / 180

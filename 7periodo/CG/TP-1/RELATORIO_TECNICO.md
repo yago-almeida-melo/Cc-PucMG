@@ -8,7 +8,8 @@ vetoriais e convertidas explicitamente em pixels pelos algoritmos implementados.
 
 O sistema de coordenadas é cartesiano: a origem fica no centro da área de desenho, X
 cresce para a direita e Y cresce para cima. Cada posição lógica é mostrada por um
-quadrado de 2 × 2 pixels físicos, melhorando a visibilidade da rasterização.
+quadrado de 24 × 24 pixels físicos. A grade delimita cada pixel lógico e os eixos
+mostram todas as coordenadas inteiras visíveis.
 
 ## 2. Estruturas de dados
 
@@ -28,11 +29,14 @@ histórico de desfazer e compartilha com segurança as pinturas imutáveis.
 
 ## 3. Rasterização
 
-Os rasterizadores recebem a função `plotar_pixel(x, y)` da interface e a chamam
-assim que cada pixel é calculado, em tempo de execução. Não há uma lista ou conjunto
-intermediário de pixels nos rasterizadores; a cena e o histórico guardam os dados
-vetoriais dos objetos. Para preencher, uma matriz de cores temporária recebe os
-pixels rasterizados e as pinturas anteriores, sem incluir as guias da interface.
+Os rasterizadores chamam `plotar_pixel(x, y)` a cada pixel calculado. A interface
+guarda os pixels em uma fila e os exibe aos poucos usando `after` do Tkinter, sem
+bloquear os eventos. O delay global começa em 30 ms e pode ser zerado para exibição
+imediata. Objetos novos, transformados e recortados usam essa animação.
+
+A cena e o histórico guardam os dados vetoriais dos objetos. Para preencher, uma
+matriz de cores temporária recebe os pixels rasterizados e as pinturas anteriores,
+sem incluir as guias da interface.
 
 ### 3.1 Reta DDA
 
@@ -93,6 +97,9 @@ o caso em que o retângulo de seleção está inteiramente dentro de um polígon
 
 ## 6. Recorte
 
+Os dois algoritmos são aplicados somente a objetos do tipo reta. Os demais objetos,
+incluindo polígonos selecionados, permanecem intactos.
+
 ### 6.1 Cohen–Sutherland
 
 Cada extremidade recebe um código de quatro bits: esquerda, direita, abaixo e acima.
@@ -108,10 +115,10 @@ bordas atualizam os parâmetros de entrada `u1` e saída `u2`. Se `u1 > u2`, o s
 
 ## 7. Decisões de interface
 
-Nenhum fator numérico exige digitação. Deslocamentos, ângulo e escalas são informados
-por controles deslizantes. Criação, seleção, definição da janela, transformação e
-recorte são feitos por cliques ou arrastes. A barra inferior explica continuamente o
-próximo passo, e a posição cartesiana do cursor é exibida para apoiar a demonstração.
+A interface usa controles padrão do `ttk`, com campos numéricos para deslocamentos,
+ângulo e escalas. Criação, seleção e definição da janela de recorte são feitas com
+o mouse. Um controle deslizante **Delay (ms)** ajusta a animação; a barra inferior
+mostra as orientações e a posição cartesiana do cursor.
 
 ## 8. Verificação
 
@@ -123,8 +130,10 @@ visuais de todas as funcionalidades obrigatórias.
 
 O **Boundary-Fill** parte de uma semente e percorre pixels cuja cor é diferente da
 cor de borda informada. O **Flood-Fill** captura a cor inicial da semente e percorre
-apenas pixels conectados dessa mesma cor. Ambos usam uma pilha explícita e quatro
-vizinhos (esquerda, direita, acima e abaixo), evitando estouro da pilha de recursão.
+apenas pixels conectados dessa mesma cor. Ambos usam uma pilha explícita, evitando
+estouro da pilha de recursão. A conectividade pode ser 4 (esquerda, direita, acima e
+abaixo) ou 8 (inclui as diagonais). Na opção 8, uma passagem diagonal entre pixels
+da borda pode conectar o interior ao exterior da figura.
 Um conjunto de visitados evita ciclos; no Boundary-Fill, permite atravessar pixels
 que já tinham a cor de preenchimento sem tratá-los como bordas.
 

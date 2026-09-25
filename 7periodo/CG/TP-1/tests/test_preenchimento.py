@@ -27,10 +27,10 @@ class TestePreenchimento(unittest.TestCase):
         self.pixels[x, y] = cor
         self.pintados.add((x, y))
 
-    def executar(self, algoritmo: str, semente: Ponto, cor: str = "R") -> int:
+    def executar(self, algoritmo: str, semente: Ponto, cor: str = "R", conectividade: int = 4) -> int:
         if algoritmo == "boundary_fill":
-            return boundary_fill(semente, self.limites, cor, "B", self.ler, self.pintar)
-        return flood_fill(semente, self.limites, cor, self.ler, self.pintar)
+            return boundary_fill(semente, self.limites, cor, "B", self.ler, self.pintar, conectividade)
+        return flood_fill(semente, self.limites, cor, self.ler, self.pintar, conectividade)
 
     def test_boundary_fill_pinta_interior_multicolorido_e_preserva_borda(self) -> None:
         self.preparar(["BBBBB", "BWGWB", "BBGBB", "BBBBB"])
@@ -67,6 +67,20 @@ class TestePreenchimento(unittest.TestCase):
                 self.preparar(["WB", "BW"])
                 self.assertEqual(1, self.executar(algoritmo, Ponto(0, 0)))
                 self.assertEqual("W", self.pixels[1, 1])
+
+    def test_vizinhanca_de_oito_atravessa_as_quatro_diagonais(self) -> None:
+        for algoritmo in ("boundary_fill", "flood_fill"):
+            with self.subTest(algoritmo=algoritmo):
+                self.preparar(["WBW", "BWB", "WBW"])
+                self.assertEqual(5, self.executar(algoritmo, Ponto(1, 1), conectividade=8))
+                self.assertEqual({(0, 0), (2, 0), (1, 1), (0, 2), (2, 2)}, self.pintados)
+
+    def test_vizinhanca_de_oito_preserva_regiao_separada_por_borda(self) -> None:
+        for algoritmo in ("boundary_fill", "flood_fill"):
+            with self.subTest(algoritmo=algoritmo):
+                self.preparar(["WBW", "WBW", "WBW"])
+                self.assertEqual(3, self.executar(algoritmo, Ponto(0, 0), conectividade=8))
+                self.assertEqual({(0, 0), (0, 1), (0, 2)}, self.pintados)
 
     def test_regiao_aberta_para_nos_limites_sem_recursao(self) -> None:
         for algoritmo in ("boundary_fill", "flood_fill"):
@@ -115,6 +129,21 @@ class TestePinturaDaCena(unittest.TestCase):
                 )
                 self.assertEqual(tuple((y, -2, 2) for y in range(-2, 3)), faixas)
                 self.assertFalse(self.cena.preenchimentos)
+
+    def test_calculo_da_cena_usa_conectividade_escolhida(self) -> None:
+        cena = Cena()
+        cena.adicionar(TipoObjeto.PONTO, [Ponto(1, 0)], cor=self.BORDA)
+        cena.adicionar(TipoObjeto.PONTO, [Ponto(0, 1)], cor=self.BORDA)
+        for algoritmo in ("boundary_fill", "flood_fill"):
+            for conectividade in (4, 8):
+                with self.subTest(algoritmo=algoritmo, conectividade=conectividade):
+                    faixas = calcular_preenchimento(
+                        cena, Ponto(0, 0), Retangulo(0, 0, 1, 1), algoritmo,
+                        self.TINTA, self.BORDA, conectividade,
+                    )
+                    esperado = ((0, 0, 0),) if conectividade == 4 else ((0, 0, 0), (1, 1, 1))
+                    self.assertEqual(esperado, faixas)
+                    self.assertFalse(cena.preenchimentos)
 
     def test_ordem_de_pinturas_e_novos_objetos(self) -> None:
         ponto = self.cena.adicionar(TipoObjeto.PONTO, [Ponto(1, 1)], cor="#00ff00")

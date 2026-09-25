@@ -62,17 +62,53 @@ class TesteSelecao(unittest.TestCase):
         )
         self.assertTrue(objeto_intersecta_retangulo(objeto, self.regiao))
 
-    def test_recorte_de_poligono_gera_ids_unicos(self) -> None:
+    def test_recorte_preserva_poligono_selecionado(self) -> None:
         objeto = ObjetoGrafico(
             4,
             TipoObjeto.POLIGONO,
             [Ponto(-5, -5), Ponto(5, -5), Ponto(5, 5), Ponto(-5, 5)],
             selecionado=True,
         )
-        resultado, afetados = recortar_segmentos([objeto], self.regiao, liang_barsky)
-        self.assertEqual(1, afetados)
-        ids = [item.identificador for item in resultado]
-        self.assertEqual(len(ids), len(set(ids)))
+        for algoritmo in (cohen_sutherland, liang_barsky):
+            with self.subTest(algoritmo=algoritmo.__name__):
+                resultado, afetados = recortar_segmentos([objeto], self.regiao, algoritmo)
+                self.assertEqual(0, afetados)
+                self.assertEqual([objeto], resultado)
+                self.assertIs(objeto, resultado[0])
+
+    def test_recorte_em_selecao_mista_altera_apenas_retas(self) -> None:
+        reta = ObjetoGrafico(
+            1, TipoObjeto.RETA, [Ponto(-5, 0), Ponto(5, 0)], selecionado=True,
+        )
+        reta_externa = ObjetoGrafico(
+            2, TipoObjeto.RETA, [Ponto(-5, 5), Ponto(5, 5)], selecionado=True,
+        )
+        preservados = [
+            ObjetoGrafico(3, TipoObjeto.RETA, [Ponto(-5, 1), Ponto(5, 1)]),
+            ObjetoGrafico(
+                4, TipoObjeto.POLIGONO,
+                [Ponto(-5, -5), Ponto(5, -5), Ponto(0, 5)], selecionado=True,
+            ),
+            ObjetoGrafico(5, TipoObjeto.PONTO, [Ponto(10, 10)], selecionado=True),
+            ObjetoGrafico(
+                6, TipoObjeto.CIRCUNFERENCIA,
+                [Ponto(10, 10), Ponto(15, 10)], selecionado=True,
+            ),
+        ]
+        objetos = [reta, reta_externa, *preservados]
+        for algoritmo in (cohen_sutherland, liang_barsky):
+            with self.subTest(algoritmo=algoritmo.__name__):
+                resultado, afetados = recortar_segmentos(
+                    objetos, self.regiao, algoritmo, proximo_id=20,
+                )
+                self.assertEqual(2, afetados)
+                self.assertEqual([Ponto(-2, 0), Ponto(2, 0)], resultado[0].vertices)
+                self.assertEqual(20, resultado[0].identificador)
+                self.assertEqual(reta.cor, resultado[0].cor)
+                self.assertEqual(reta.algoritmo, resultado[0].algoritmo)
+                self.assertTrue(resultado[0].selecionado)
+                self.assertEqual(preservados, resultado[1:])
+                self.assertEqual([Ponto(-5, 0), Ponto(5, 0)], reta.vertices)
 
 
 if __name__ == "__main__":

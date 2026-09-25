@@ -15,8 +15,9 @@ class TesteInterfacePreenchimento(unittest.TestCase):
             self.raiz = tk.Tk()
         except tk.TclError as erro:
             self.skipTest(f"Display Tk indisponível: {erro}")
-        self.addCleanup(self.raiz.destroy)
         self.app = App(self.raiz)
+        self.addCleanup(self.app.fechar)
+        self.app.delay.set(0)
         self.raiz.update()
 
     def clicar(self, x: int, y: int) -> None:
@@ -26,7 +27,7 @@ class TesteInterfacePreenchimento(unittest.TestCase):
 
     def quadrado(self) -> None:
         self.app.definir_modo("poligono")
-        for x, y in ((-20, -20), (20, -20), (20, 20), (-20, 20)):
+        for x, y in ((-3, -3), (3, -3), (3, 3), (-3, 3)):
             self.clicar(x, y)
         self.app.concluir_poligono()
 
@@ -35,7 +36,7 @@ class TesteInterfacePreenchimento(unittest.TestCase):
         self.app.botoes_modo["boundary_fill"].invoke()
         self.clicar(0, 0)
         primeira_pintura = self.app.cena.preenchimentos[0]
-        self.assertEqual(1521, sum(b - a + 1 for _, a, b in primeira_pintura.faixas))
+        self.assertEqual(25, sum(b - a + 1 for _, a, b in primeira_pintura.faixas))
         self.app.cor_preenchimento = "#11aa33"
         self.app.botoes_modo["flood_fill"].invoke()
         self.clicar(0, 0)
@@ -64,7 +65,7 @@ class TesteInterfacePreenchimento(unittest.TestCase):
         self.quadrado()
         self.app.definir_modo("boundary_fill")
         quantidade = len(self.app.historico)
-        self.clicar(20, 0)
+        self.clicar(3, 0)
         self.assertEqual(quantidade, len(self.app.historico))
         self.app.cor_preenchimento = self.app.cor_borda
         self.clicar(0, 0)
@@ -107,6 +108,8 @@ class TesteInterfacePreenchimento(unittest.TestCase):
         self.app.definir_modo("boundary_fill")
         self.clicar(0, 0)
         self.app.selecionar_todos()
+        reta = self.app.cena.adicionar(TipoObjeto.RETA, [Ponto(-5, 0), Ponto(5, 0)])
+        reta.selecionado = True
         self.app.cena.janela_recorte = self.app._limites_pixels_visiveis()
         self.app.aplicar_recorte("cohen")
         self.app.definir_modo("ponto")

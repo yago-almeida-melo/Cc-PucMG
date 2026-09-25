@@ -5,7 +5,7 @@ Duração estimada: 6 a 9 minutos.
 ## 1. Abertura — 30 segundos
 
 - Apresente o objetivo do trabalho e a tela principal.
-- Mostre a origem, os eixos cartesianos e a grade da matriz de pixels.
+- Mostre a origem, os eixos numerados e a grade com pixels de 24 × 24.
 - Explique que cada quadradinho das figuras é produzido pelos algoritmos do projeto.
 
 ## 2. Estruturas e entrada pelo mouse — 1 minuto
@@ -13,13 +13,16 @@ Duração estimada: 6 a 9 minutos.
 - Insira um ponto.
 - Desenhe um triângulo ou quadrilátero e conclua pelo botão da interface.
 - Mostre uma seleção por região retangular.
-- Destaque que não foi necessário digitar coordenadas ou fatores.
+- Mostre os campos numéricos usados para ajustar as transformações.
 
 ## 3. Rasterização — 1 minuto e 30 segundos
 
 - Desenhe retas semelhantes com DDA e Bresenham, preferencialmente com inclinação.
-- Aproxime visualmente a captura, se o gravador permitir, para mostrar os pixels.
+- Ajuste **Delay (ms)** para acompanhar os pixels e depois use 0 para desenho imediato.
 - Desenhe uma circunferência e explique a simetria dos oito pontos de Bresenham.
+- Observe também a animação ao inserir um ponto e concluir um polígono.
+- Compare Flood-Fill e Boundary-Fill com conectividade 4 e 8, incluindo uma passagem
+  diagonal para mostrar a diferença.
 
 ## 4. Transformações — 2 minutos
 
@@ -36,6 +39,7 @@ Duração estimada: 6 a 9 minutos.
 - Aplique Cohen–Sutherland e explique brevemente os códigos de região.
 - Desfaça, aplique Liang–Barsky e explique os parâmetros de entrada e saída.
 - Mostre ao menos uma reta aceita, uma rejeitada e uma parcialmente recortada.
+- Inclua um polígono na seleção e mostre que o recorte preserva a figura.
 
 ## 6. Código e testes — 1 minuto
 
@@ -52,4 +56,3 @@ Duração estimada: 6 a 9 minutos.
 
 Use áudio claro e faça pausas curtas entre as demonstrações. Antes de gravar, feche
 notificações, ajuste a resolução para que o painel inteiro apareça e ensaie os cliques.
-

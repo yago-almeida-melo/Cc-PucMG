@@ -1,10 +1,8 @@
-"""Boundary-Fill e Flood-Fill iterativos, com vizinhança de quatro pixels."""
+"""Boundary-Fill e Flood-Fill com vizinhança de quatro ou oito pixels."""
 
 from __future__ import annotations
-
 from collections.abc import Callable
 from math import ceil, floor
-
 from modelos import Cena, FaixaPixels, Ponto, Preenchimento, Retangulo
 from rasterizacao import Pixel, rasterizar_objeto
 
@@ -20,8 +18,15 @@ def _preencher(
     ler_pixel: LerPixel,
     pintar_pixel: PintarPixel,
     pode_preencher: Callable[[str], bool],
+    conectividade: int,
 ) -> int:
     """Percorre a região sem recursão e pinta cada pixel alterado imediatamente."""
+
+    if conectividade not in (4, 8):
+        raise ValueError("A conectividade deve ser 4 ou 8.")
+    vizinhos = [(-1, 0), (1, 0), (0, -1), (0, 1)]
+    if conectividade == 8:
+        vizinhos += [(-1, -1), (-1, 1), (1, -1), (1, 1)]
 
     xmin, ymin = ceil(limites.xmin), ceil(limites.ymin)
     xmax, ymax = floor(limites.xmax), floor(limites.ymax)
@@ -40,8 +45,9 @@ def _preencher(
         if atual != cor:
             pintar_pixel(x, y, cor)
             quantidade += 1
-        for vizinho in ((x - 1, y), (x + 1, y), (x, y - 1), (x, y + 1)):
-            vx, vy = vizinho
+        for dx, dy in vizinhos:
+            vx, vy = x + dx, y + dy
+            vizinho = (vx, vy)
             if xmin <= vx <= xmax and ymin <= vy <= ymax and vizinho not in visitados:
                 visitados.add(vizinho)
                 pilha.append(vizinho)
@@ -55,6 +61,7 @@ def boundary_fill(
     cor_borda: str,
     ler_pixel: LerPixel,
     pintar_pixel: PintarPixel,
+    conectividade: int = 4,
 ) -> int:
     """Preenche até a cor de borda ou os limites, independentemente da cor interna.
 
@@ -67,6 +74,7 @@ def boundary_fill(
     return _preencher(
         semente, limites, cor_preenchimento, ler_pixel, pintar_pixel,
         lambda atual: atual != cor_borda,
+        conectividade,
     )
 
 
@@ -76,6 +84,7 @@ def flood_fill(
     cor_preenchimento: str,
     ler_pixel: LerPixel,
     pintar_pixel: PintarPixel,
+    conectividade: int = 4,
 ) -> int:
     """Substitui somente a região conexa que possui a cor original da semente."""
 
@@ -88,6 +97,7 @@ def flood_fill(
     return _preencher(
         semente, limites, cor_preenchimento, ler_pixel, pintar_pixel,
         lambda atual: atual == cor_original,
+        conectividade,
     )
 
 
@@ -118,6 +128,7 @@ def calcular_preenchimento(
     algoritmo: str,
     cor: str,
     cor_borda: str,
+    conectividade: int = 4,
 ) -> tuple[FaixaPixels, ...]:
     """Calcula uma pintura sem alterar a cena; guarda só os pixels modificados."""
 
@@ -132,9 +143,9 @@ def calcular_preenchimento(
         linhas.setdefault(y, []).append(x)
 
     if algoritmo == "boundary_fill":
-        boundary_fill(semente, limites, cor, cor_borda, ler_pixel, pintar_pixel)
+        boundary_fill(semente, limites, cor, cor_borda, ler_pixel, pintar_pixel, conectividade)
     elif algoritmo == "flood_fill":
-        flood_fill(semente, limites, cor, ler_pixel, pintar_pixel)
+        flood_fill(semente, limites, cor, ler_pixel, pintar_pixel, conectividade)
     else:
         raise ValueError(f"Algoritmo de preenchimento desconhecido: {algoritmo}")
 

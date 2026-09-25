@@ -1,10 +1,8 @@
 """Recorte de segmentos por Cohen-Sutherland e Liang-Barsky."""
 
 from __future__ import annotations
-
 from collections.abc import Callable
 from math import hypot
-
 from modelos import ObjetoGrafico, Ponto, Retangulo, TipoObjeto
 
 Segmento = tuple[Ponto, Ponto]
@@ -146,7 +144,7 @@ def recortar_segmentos(
     algoritmo: Callable[[Ponto, Ponto, Retangulo], Segmento | None],
     proximo_id: int | None = None,
 ) -> tuple[list[ObjetoGrafico], int]:
-    """Recorta retas e arestas de polígonos, mantendo outros tipos intactos."""
+    """Recorta apenas as retas selecionadas."""
 
     resultado: list[ObjetoGrafico] = []
     proximo_id = max(
@@ -156,25 +154,24 @@ def recortar_segmentos(
     afetados = 0
 
     for objeto in objetos:
-        if not objeto.selecionado or objeto.tipo not in (TipoObjeto.RETA, TipoObjeto.POLIGONO):
+        if not objeto.selecionado or objeto.tipo != TipoObjeto.RETA:
             resultado.append(objeto)
             continue
 
         afetados += 1
-        for indice, (inicio, fim) in enumerate(objeto.segmentos(), start=1):
-            segmento = algoritmo(inicio, fim, janela)
-            if segmento is None:
-                continue
-            resultado.append(
-                ObjetoGrafico(
-                    identificador=proximo_id,
-                    tipo=TipoObjeto.RETA,
-                    vertices=list(segmento),
-                    algoritmo=objeto.algoritmo,
-                    cor=objeto.cor,
-                    selecionado=True,
-                    nome=f"Recorte de {objeto.nome} — trecho {indice}",
-                )
+        segmento = algoritmo(*objeto.vertices, janela)
+        if segmento is None:
+            continue
+        resultado.append(
+            ObjetoGrafico(
+                identificador=proximo_id,
+                tipo=TipoObjeto.RETA,
+                vertices=list(segmento),
+                algoritmo=objeto.algoritmo,
+                cor=objeto.cor,
+                selecionado=True,
+                nome=f"Recorte de {objeto.nome}",
             )
-            proximo_id += 1
+        )
+        proximo_id += 1
     return resultado, afetados

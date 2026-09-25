@@ -2,29 +2,29 @@
 
 Aplicação didática em Python para demonstrar transformações geométricas 2D,
 rasterização, preenchimento e recorte de segmentos em uma área correspondente a uma matriz de
-pixels. Toda a operação principal é feita com o mouse: cliques, arrastes, botões e
-controles deslizantes.
+pixels. Os objetos são desenhados e selecionados com o mouse, e os valores das
+transformações são ajustados em campos numéricos.
 
 ## Funcionalidades
 
 - objetos de cena: pontos, retas, polígonos e circunferências;
 - rasterização de retas por DDA e Bresenham;
 - rasterização de circunferências por Bresenham;
-- preenchimento por Boundary-Fill e Flood-Fill com vizinhança de quatro pixels;
+- preenchimento por Boundary-Fill e Flood-Fill com conectividade 4 ou 8;
 - escolha das cores de desenho, preenchimento e borda por seletor de cores;
 - translação com deslocamentos X e Y informados pelo usuário;
 - rotação com ângulo e pivô configuráveis;
 - escala independente em X e Y, também com pivô configurável;
 - reflexões X, Y e XY em relação aos eixos cartesianos;
 - seleção de objetos por região retangular indicada com o mouse;
-- recorte por Cohen–Sutherland e Liang–Barsky;
+- recorte de retas por Cohen–Sutherland e Liang–Barsky;
+- pixels de 24 × 24, grade por pixel e eixos numerados em cada coordenada inteira;
+- animação da rasterização com delay ajustável;
 - pré-visualização durante o desenho, janela de recorte visível e destaque da seleção;
 - histórico das últimas 30 alterações pelo botão **Desfazer**.
 
-As linhas visíveis na área de desenho não usam a primitiva de linha do Tkinter. Os
-algoritmos do projeto calculam as coordenadas inteiras e chamam `plotar_pixel(x, y)`
-imediatamente para cada resultado, sem acumular uma lista ou conjunto de pixels.
-Isso ocorre em tempo de execução, tanto nos objetos quanto nas prévias de desenho.
+Os algoritmos calculam as coordenadas inteiras e chamam `plotar_pixel(x, y)` para
+cada resultado. A interface usa esses pixels para desenhar os objetos e suas prévias.
 
 ## Requisitos
 
@@ -55,12 +55,16 @@ fornece o Tkinter, como `python3-tk`.
 5. Para um polígono, clique nos vértices e use **Concluir polígono**. O botão direito
    também conclui a figura.
 
+O controle **Delay (ms)** define o intervalo entre pixels de pontos, retas,
+circunferências e polígonos. O padrão é 30 ms; use 0 para desenhar imediatamente.
+A animação também aparece após transformações e recortes, sem bloquear a interface.
+
 ### Seleção e transformações
 
 1. Escolha **Selecionar**.
 2. Arraste uma região retangular sobre um ou mais objetos. A seleção considera a
    interseção entre o objeto e a região.
-3. Ajuste os fatores nos controles deslizantes do painel lateral.
+3. Ajuste os valores nos campos numéricos do painel lateral.
 4. Clique na transformação desejada.
 
 Rotação e escala podem ocorrer em torno do centro da seleção ou da origem `(0, 0)`.
@@ -84,10 +88,11 @@ como um polígono de 72 vértices depois da transformação.
    com a mesma cor do pixel clicado são substituídos. A cor de borda não é usada.
 5. Use **Desfazer** (ou `Ctrl+Z`) para reverter pinturas e alterações de cor.
 
-Os algoritmos consideram os quatro vizinhos de cada pixel e param nos limites da área
-visível. Um contorno aberto ou uma cor de borda incorreta permite ao Boundary-Fill
-atingir o exterior da figura. Grade, eixos, prévias e janela de recorte são guias
-visuais e não bloqueiam o preenchimento.
+Escolha a conectividade **4** (vizinhos horizontais e verticais) ou **8** (inclui
+diagonais). Com 8, o preenchimento pode atravessar um contorno que só fecha pela
+união diagonal de pixels. Um contorno aberto ou uma cor de borda incorreta também
+permite ao Boundary-Fill atingir o exterior. Ambos param nos limites da área visível;
+grade, eixos, prévias e janela de recorte não bloqueiam o preenchimento.
 
 As pinturas são camadas raster, preservadas ao redesenhar e redimensionar a janela.
 Elas permanecem nas coordenadas originais: seleção, transformação, exclusão de
@@ -98,12 +103,11 @@ as pinturas. Novos desenhos e pinturas aparecem sobre os anteriores.
 ### Recorte
 
 1. Escolha **Janela de recorte** e arraste a região desejada.
-2. Escolha **Selecionar** e marque as retas ou os polígonos.
+2. Escolha **Selecionar** e marque as retas.
 3. Clique em **Cohen–Sutherland** ou **Liang–Barsky**.
 
-O recorte é aplicado aos segmentos selecionados. As arestas visíveis de um polígono
-passam a ser retas independentes, pois os dois algoritmos pedidos são algoritmos de
-recorte de segmentos.
+O recorte altera apenas as retas selecionadas. Polígonos, pontos e circunferências
+são preservados, mesmo quando fazem parte da seleção.
 
 ## Testes automatizados
 
