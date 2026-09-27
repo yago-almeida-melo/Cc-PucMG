@@ -4,7 +4,6 @@ import tkinter as tk
 from collections import deque
 from math import ceil, floor, isfinite
 from tkinter import colorchooser, ttk
-
 from modelos import AlgoritmoReta, Cena, ObjetoGrafico, Ponto, Preenchimento, Retangulo, TipoObjeto
 from preenchimento import calcular_preenchimento
 from rasterizacao import rasterizar_objeto
@@ -14,7 +13,7 @@ from transformacoes import centro_da_selecao, escalar_objeto, reflexao, rotacao,
 
 class App:
     ESCALA_PIXEL = 24
-    COR_TINTA = "#10243e"
+    COR_TINTA = "#000000"
 
     def __init__(self, raiz: tk.Tk) -> None:
         self.raiz = raiz
@@ -97,9 +96,9 @@ class App:
         ttk.Label(selecao, textvariable=self.resumo_selecao).pack(anchor="w")
         self._botoes(selecao, [("Todos", self.selecionar_todos), ("Nenhum", self.desselecionar_todos), ("Excluir", self.excluir_selecionados)])
         transformar = self._grupo(painel, "Transformações")
-        self._campos(transformar, [("dx", self.dx), ("dy", self.dy)], "Transladar", self.aplicar_translacao)
-        self._campos(transformar, [("Ângulo", self.angulo)], "Rotacionar", self.aplicar_rotacao)
-        self._campos(transformar, [("sx", self.sx), ("sy", self.sy)], "Escalar", self.aplicar_escala)
+        self._barras(transformar, [("dx", self.dx), ("dy", self.dy)], "Transladar", self.aplicar_translacao, -20, 20, 1)
+        self._barras(transformar, [("Ângulo", self.angulo)], "Rotacionar", self.aplicar_rotacao, -180, 180, 1)
+        self._barras(transformar, [("sx", self.sx), ("sy", self.sy)], "Escalar", self.aplicar_escala, -5, 5, 0.05)
         ttk.Checkbutton(transformar, text="Pivô no centro (desmarcado: origem)", variable=self.pivo_no_centro).pack(anchor="w")
         self._botoes(transformar, [(f"Refletir {eixo}", lambda e=eixo: self.aplicar_reflexao(e)) for eixo in ("X", "Y", "XY")])
         recorte = self._grupo(painel, "Recorte de retas")
@@ -117,13 +116,14 @@ class App:
         for texto, acao in acoes:
             ttk.Button(linha, text=texto, command=acao).pack(side="left", fill="x", expand=True)
 
-    def _campos(self, pai, campos, texto, acao) -> None:
+    def _barras(self, pai, campos, texto, acao, minimo, maximo, passo) -> None:
         linha = ttk.Frame(pai)
         linha.pack(fill="x", pady=3)
+        ttk.Button(linha, text=texto, command=acao).pack(side="right")
         for rotulo, variavel in campos:
             ttk.Label(linha, text=rotulo).pack(side="left")
-            ttk.Entry(linha, textvariable=variavel, width=5).pack(side="left", padx=3)
-        ttk.Button(linha, text=texto, command=acao).pack(side="right")
+            tk.Scale(linha, from_=minimo, to=maximo, resolution=passo, orient="horizontal",
+                     variable=variavel, length=100).pack(side="left", fill="x", expand=True, padx=3)
 
     def _botao_modo(self, pai, modo, texto) -> None:
         botao = ttk.Button(pai, text=texto, command=lambda: self.definir_modo(modo))
@@ -335,7 +335,7 @@ class App:
             if not all(isfinite(valor) for valor in valores):
                 raise ValueError("Valor não finito")
         except (tk.TclError, ValueError):
-            self.status.set("Informe números válidos; use ponto nas casas decimais.")
+            self.status.set("Selecione valores válidos nas barras de transformação.")
             return
         self._registrar_estado()
         for objeto in objetos:

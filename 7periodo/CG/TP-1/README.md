@@ -3,7 +3,7 @@
 Aplicação didática em Python para demonstrar transformações geométricas 2D,
 rasterização, preenchimento e recorte de segmentos em uma área correspondente a uma matriz de
 pixels. Os objetos são desenhados e selecionados com o mouse, e os valores das
-transformações são ajustados em campos numéricos.
+transformações são ajustados com o mouse em barras deslizantes.
 
 ## Funcionalidades
 
@@ -64,8 +64,12 @@ A animação também aparece após transformações e recortes, sem bloquear a i
 1. Escolha **Selecionar**.
 2. Arraste uma região retangular sobre um ou mais objetos. A seleção considera a
    interseção entre o objeto e a região.
-3. Ajuste os valores nos campos numéricos do painel lateral.
+3. Clique ou arraste as barras de **dx**, **dy**, **Ângulo**, **sx** e **sy** no painel
+   lateral para ajustar os valores, como na barra de delay.
 4. Clique na transformação desejada.
+
+As barras de deslocamento vão de -20 a 20, com passo 1; a de ângulo, de -180° a
+180°, com passo 1°; e as de escala, de -5 a 5, com passo 0,05.
 
 Rotação e escala podem ocorrer em torno do centro da seleção ou da origem `(0, 0)`.
 O botão de pivô alterna entre as duas opções. As reflexões sempre usam os eixos
@@ -166,5 +170,4 @@ build_installer.bat    Geração do instalador no Windows
 installer.iss          Projeto de instalador do Inno Setup
 ```
 
-Consulte também [RELATORIO_TECNICO.md](RELATORIO_TECNICO.md) para a explicação dos
-algoritmos e [ROTEIRO_VIDEO.md](ROTEIRO_VIDEO.md) para um roteiro de demonstração.
+Consulte também [RELATORIO_TECNICO.md](RELATORIO_TECNICO.md) para a explicação dos algoritmos 

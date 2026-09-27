@@ -115,10 +115,10 @@ bordas atualizam os parâmetros de entrada `u1` e saída `u2`. Se `u1 > u2`, o s
 
 ## 7. Decisões de interface
 
-A interface usa controles padrão do `ttk`, com campos numéricos para deslocamentos,
-ângulo e escalas. Criação, seleção e definição da janela de recorte são feitas com
-o mouse. Um controle deslizante **Delay (ms)** ajusta a animação; a barra inferior
-mostra as orientações e a posição cartesiana do cursor.
+A interface usa controles padrão do Tkinter e do `ttk`, com barras deslizantes para
+ajustar deslocamentos, ângulo e escalas pelo mouse. Criação, seleção e definição da
+janela de recorte também são feitas com o mouse. Um controle deslizante **Delay (ms)**
+ajusta a animação; a barra inferior mostra as orientações e a posição cartesiana do cursor.
 
 ## 8. Verificação
 

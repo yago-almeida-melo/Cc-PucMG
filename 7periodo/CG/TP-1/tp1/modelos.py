@@ -147,7 +147,7 @@ class Cena:
         tipo: TipoObjeto,
         vertices: Iterable[Ponto],
         algoritmo: AlgoritmoReta = AlgoritmoReta.BRESENHAM,
-        cor: str = "#10243e",
+        cor: str = "#000000",
         nome: str = "",
     ) -> ObjetoGrafico:
         objeto = ObjetoGrafico(

@@ -23,4 +23,3 @@ exit /b 0
 echo.
 echo Nao foi possivel concluir a geracao. Consulte as mensagens acima.
 exit /b 1
-

@@ -165,18 +165,18 @@ class TesteInterfaceAnimacao(unittest.TestCase):
     def test_transformacao_anima_e_rejeita_valores_invalidos(self) -> None:
         self.desenhar("reta_bresenham", [(-2, 0), (2, 0)])
         self.app.selecionar_todos()
-        for variavel, acao in ((self.app.dx, self.app.aplicar_translacao),
-                               (self.app.angulo, self.app.aplicar_rotacao),
-                               (self.app.sx, self.app.aplicar_escala)):
+        for atributo, acao in (("dx", self.app.aplicar_translacao),
+                               ("angulo", self.app.aplicar_rotacao),
+                               ("sx", self.app.aplicar_escala)):
             for valor in ("", "abc", "inf"):
-                with self.subTest(variavel=variavel, valor=valor):
-                    antigo = variavel.get()
-                    variavel.set(valor)
+                # As barras já restringem os valores; injeta uma variável independente
+                # para continuar verificando a validação defensiva da transformação.
+                variavel = tk.DoubleVar(master=self.raiz, value=valor)
+                with self.subTest(variavel=atributo, valor=valor), patch.object(self.app, atributo, variavel):
                     historico = len(self.app.historico)
                     acao()
                     self.assertEqual(historico, len(self.app.historico))
                     self.assertEqual([Ponto(-2, 0), Ponto(2, 0)], self.app.cena.objetos[0].vertices)
-                    variavel.set(antigo)
         self.app.dx.set(1)
         self.app.dy.set(2)
         self.app.aplicar_translacao()
